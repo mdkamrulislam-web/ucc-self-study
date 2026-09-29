@@ -2,6 +2,14 @@
 
 Dated log of working sessions. Newest first. Each entry: what changed, why, and anything left unfinished.
 
+## 2026-09-29 — Hosting live
+
+- Created public repo `mdkamrulislam-web/ucc-self-study` via the GitHub web UI (files uploaded folder by folder).
+- GitHub Pages enabled: deploy from branch `main`, folder `/ (root)`; custom domain `study.whoiskamrul.com` picked up from `CNAME`.
+- Cloudflare DNS (zone whoiskamrul.com): added `CNAME study → mdkamrulislam-web.github.io`, **DNS only** (grey cloud) so GitHub can issue the HTTPS certificate. The apex whoiskamrul.com is a Cloudflare Worker (`portfolio`) and was left untouched.
+- A local copy of the repo is also in Google Drive: `UCC/Self-Study/ucc-self-study/` (not a git clone; GitHub is the source of truth).
+- **Follow-up:** once GitHub's DNS check passes and the certificate is issued, tick **Enforce HTTPS** in Settings → Pages.
+
 ## 2026-09-29 — Project set up
 
 - Created the repo and the static site structure (`index.html` hub + one folder per module).
@@ -14,4 +22,3 @@ Dated log of working sessions. Newest first. Each entry: what changed, why, and 
 - Hub styled after the whoiskamrul.com "Amber IC" look; progress bars read each guide's `localStorage` ticks.
 - `CNAME` set to `study.whoiskamrul.com`; `robots.txt` + `noindex` keep the site out of search engines.
 - Tracking docs added: `README.md`, `CLAUDE.md`, `PROJECT_STATUS.md`, this file, per-module `NOTES.md`.
-- **Unfinished at time of writing:** GitHub Pages and DNS setup (see the next entry once done).
