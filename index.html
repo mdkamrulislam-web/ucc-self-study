@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Study Hub · Md Kamrul Islam</title>
+<meta name="description" content="Self-study guides for the UCC MEngSc in Electrical and Electronic Engineering, Semester 1 2026–27.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Bebas+Neue&family=Fira+Code:wght@400;500&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d1117'/%3E%3Cpath d='M9 8v16M9 16l9-8M13 13l6 11M23 8v16' stroke='%23f5b841' stroke-width='2.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+/* ---------- tokens (Amber IC, matches whoiskamrul.com) ---------- */
+:root {
+  color-scheme: dark;
+  --bg: #0b0e13;
+  --surface: #121720;
+  --surface-2: #19202b;
+  --rule: #263041;
+  --ink: #e8edf4;
+  --ink-2: #b9c3d1;
+  --muted: #8491a4;
+  --amber: #f5b841;
+  --amber-soft: #f5b8411f;
+  --teal: #2fd0c0;
+  --teal-soft: #2fd0c01c;
+  --live: #3ddc97;
+  --f-display: "Bebas Neue", "Arial Narrow", Impact, sans-serif;
+  --f-body: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "Fira Code", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    --bg: #f6f4ef; --surface: #ffffff; --surface-2: #efece4; --rule: #dcd6c8;
+    --ink: #151a22; --ink-2: #3a4452; --muted: #66707e;
+    --amber: #a86c00; --amber-soft: #a86c0014; --teal: #0b7f74; --teal-soft: #0b7f7414; --live: #13804f;
+  }
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f6f4ef; --surface: #ffffff; --surface-2: #efece4; --rule: #dcd6c8;
+  --ink: #151a22; --ink-2: #3a4452; --muted: #66707e;
+  --amber: #a86c00; --amber-soft: #a86c0014; --teal: #0b7f74; --teal-soft: #0b7f7414; --live: #13804f;
+}
+
+/* ---------- base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 var(--f-body); -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+.mono { font-family: var(--f-mono); }
+
+/* grid background */
+.bg-grid { position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background-image: linear-gradient(var(--rule) 1px, transparent 1px), linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+  background-size: 48px 48px; opacity: .28;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+          mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%); }
+
+/* ---------- top bar ---------- */
+.top { display: flex; align-items: center; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--rule); }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo .mark { width: 34px; height: 34px; border-radius: 7px; background: var(--amber); color: #0b0e13; display: grid; place-items: center; font: 22px/1 var(--f-display); letter-spacing: .04em; }
+.logo .who { font: 500 15px/1.2 var(--f-body); color: var(--ink-2); }
+.logo .who b { display: block; color: var(--ink); font-weight: 600; }
+.top nav { margin-left: auto; display: flex; gap: 6px; flex-wrap: wrap; }
+.top nav a { font: 500 14px var(--f-body); text-decoration: none; color: var(--ink-2); padding: 6px 10px; border-radius: 6px; }
+.top nav a:hover { background: var(--surface-2); color: var(--ink); }
+.theme-btn { font: 500 14px var(--f-body); background: transparent; color: var(--ink-2); border: 1px solid var(--rule); border-radius: 6px; padding: 5px 10px; cursor: pointer; }
+.theme-btn:hover { color: var(--ink); border-color: var(--muted); }
+
+/* ---------- hero ---------- */
+.hero { padding: 56px 0 28px; }
+.kicker { font: 500 13px var(--f-mono); color: var(--teal); letter-spacing: .06em; text-transform: uppercase; }
+h1 { font: 400 clamp(52px, 9vw, 96px)/.92 var(--f-display); letter-spacing: .01em; margin: 14px 0 0; }
+h1 .amb { color: var(--amber); }
+.lede { max-width: 62ch; margin: 18px 0 0; font-size: 19px; color: var(--ink-2); }
+.stats { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 28px; }
+.stat { display: grid; }
+.stat .n { font: 400 40px/1 var(--f-display); color: var(--amber); letter-spacing: .02em; }
+.stat .l { font: 500 12.5px var(--f-mono); color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+
+/* ---------- section heads ---------- */
+.sec { padding: 36px 0 8px; }
+.sec-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; border-bottom: 1px solid var(--rule); padding-bottom: 10px; }
+h2 { font: 400 34px/1 var(--f-display); letter-spacing: .02em; margin: 0; }
+.sec-head p { margin: 0; color: var(--muted); font-size: 15px; }
+
+/* ---------- module cards ---------- */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)); gap: 16px; margin-top: 20px; }
+.card { position: relative; display: flex; flex-direction: column; gap: 12px; background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 20px 20px 18px; text-decoration: none; transition: border-color .15s, transform .15s; }
+a.card:hover { border-color: var(--amber); transform: translateY(-2px); }
+.card::before { content: ""; position: absolute; left: 0; top: 18px; bottom: 18px; width: 3px; border-radius: 0 3px 3px 0; background: var(--accent, var(--amber)); }
+.card.an { --accent: var(--amber); }
+.card.dg { --accent: var(--teal); }
+.card.dsp { --accent: #8ab4ff; }
+.card.opt { --accent: #e58bd0; }
+.card-top { display: flex; align-items: center; gap: 10px; }
+.code { font: 500 13px var(--f-mono); padding: 2px 8px; border-radius: 4px; background: var(--surface-2); color: var(--ink); border: 1px solid var(--rule); }
+.badge { margin-left: auto; font: 600 11.5px var(--f-mono); letter-spacing: .06em; text-transform: uppercase; padding: 3px 8px; border-radius: 99px; }
+.badge.live { color: var(--live); background: color-mix(in srgb, var(--live) 13%, transparent); }
+.badge.soon { color: var(--muted); border: 1px dashed var(--muted); }
+.card h3 { font: 400 30px/1 var(--f-display); letter-spacing: .02em; margin: 0; color: var(--ink); }
+.card p { margin: 0; color: var(--ink-2); font-size: 15.5px; line-height: 1.5; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 16px; font: 13px var(--f-mono); color: var(--muted); margin-top: auto; padding-top: 8px; border-top: 1px dashed var(--rule); }
+.meta b { color: var(--ink-2); font-weight: 500; }
+.progress { display: flex; align-items: center; gap: 10px; font: 13px var(--f-mono); color: var(--muted); }
+.bar { flex: 1; height: 6px; border-radius: 99px; background: var(--surface-2); overflow: hidden; border: 1px solid var(--rule); }
+.bar span { display: block; height: 100%; width: 0; background: var(--accent, var(--amber)); transition: width .4s ease; }
+.go { font: 600 14.5px var(--f-body); color: var(--accent, var(--amber)); }
+.card.soon-card { background: transparent; border-style: dashed; }
+
+/* ---------- semester 2 list ---------- */
+.s2 { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 10px; margin-top: 18px; }
+.s2 div { border: 1px dashed var(--rule); border-radius: 8px; padding: 12px 14px; color: var(--muted); font-size: 15px; }
+.s2 b { display: block; color: var(--ink-2); font-weight: 600; }
+
+/* ---------- how-to ---------- */
+.how { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 14px; margin-top: 18px; }
+.how div { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 16px 18px; }
+.how h4 { margin: 0 0 6px; font: 600 16px var(--f-body); color: var(--ink); }
+.how p { margin: 0; color: var(--ink-2); font-size: 15.5px; }
+
+footer { margin: 56px 0 0; padding: 22px 0 40px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 14.5px; display: flex; flex-wrap: wrap; gap: 8px 24px; }
+footer a { color: var(--ink-2); }
+
+@media (max-width: 560px) {
+  .top nav { display: none; }
+  .hero { padding-top: 36px; }
+  .lede { font-size: 17.5px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="bg-grid" aria-hidden="true"></div>
+
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="https://whoiskamrul.com" aria-label="whoiskamrul.com home">
+      <span class="mark">KI</span>
+      <span class="who"><b>Md Kamrul Islam</b>Study hub</span>
+    </a>
+    <nav aria-label="Sections">
+      <a href="#semester-1">Semester 1</a>
+      <a href="#semester-2">Semester 2</a>
+      <a href="#how">How to use</a>
+    </nav>
+    <button class="theme-btn" id="theme-btn" type="button" aria-label="Switch colour theme">Theme</button>
+  </header>
+
+  <section class="hero">
+    <p class="kicker">UCC · MEngSc Electrical &amp; Electronic Engineering · 2026–27</p>
+    <h1>Learn it once,<br><span class="amb">learn it properly.</span></h1>
+    <p class="lede">Plain-English study guides for my MEngSc modules, written lecture by lecture. Each lesson opens with the one idea to keep, then builds the maths, with interactive plots, past-paper practice and a one-page cheat sheet.</p>
+    <div class="stats">
+      <div class="stat"><span class="n">3</span><span class="l">Guides live</span></div>
+      <div class="stat"><span class="n">45</span><span class="l">Lessons</span></div>
+      <div class="stat"><span class="n">4</span><span class="l">Modules · Sem 1</span></div>
+    </div>
+  </section>
+
+  <!-- ============ SEMESTER 1 MODULES ============
+       To add or update a module: edit its card below, and keep PROJECT_STATUS.md in step.
+       data-store = the guide's localStorage key for lesson ticks; data-total = number of lessons. -->
+  <section class="sec" id="semester-1">
+    <div class="sec-head"><h2>Semester 1</h2><p>7 Sep – 29 Nov 2026 · exams December</p></div>
+    <div class="cards">
+
+      <a class="card an" href="ee6049/" data-store="ee6049-guide-done-v1" data-total="11">
+        <div class="card-top"><span class="code">EE6049</span><span class="badge live">Live</span></div>
+        <h3>Design of Analogue ICs</h3>
+        <p>The MOSFET from the inside out: the I–V equation, operating regions, biasing, the small-signal model, intrinsic gain and the three common-source stages.</p>
+        <div class="progress"><div class="bar"><span></span></div><span class="pct">–</span></div>
+        <div class="meta"><span><b>11</b> lessons</span><span>Lectures 1–5</span><span>8–22 Sep</span></div>
+        <span class="go">Open guide →</span>
+      </a>
+
+      <a class="card dg soon-card" href="ee6043/">
+        <div class="card-top"><span class="code">EE6043</span><span class="badge soon">Coming soon</span></div>
+        <h3>Design of Digital ICs</h3>
+        <p>The guide for this module hasn’t been written yet. It will follow the same lesson-by-lesson format as the others.</p>
+        <div class="meta"><span>Thu lectures + ELECT_L2 lab</span></div>
+        <span class="go">See what’s planned →</span>
+      </a>
+
+      <a class="card dsp" href="ee6041/" data-store="ee6041-lti-progress-v1" data-total="19">
+        <div class="card-top"><span class="code">EE6041</span><span class="badge live">Live</span></div>
+        <h3>Advanced DSP</h3>
+        <p>Everything comes back to h(n): sampling, LTI systems, convolution, causality and stability, the DTFT, FIR vs IIR, linear phase and group delay.</p>
+        <div class="progress"><div class="bar"><span></span></div><span class="pct">–</span></div>
+        <div class="meta"><span><b>19</b> lessons</span><span>Lectures of 8, 9, 15 Sep</span></div>
+        <span class="go">Open guide →</span>
+      </a>
+
+      <a class="card opt" href="cs6322/" data-store="cs6322-done" data-total="15">
+        <div class="card-top"><span class="code">CS6322</span><span class="badge live">Live</span></div>
+        <h3>Optimisation</h3>
+        <p>Linear and integer programming: graphical solutions, lp_solve, big-M and logical constraints, the travelling salesman and cutting stock. Includes a live LP solver.</p>
+        <div class="progress"><div class="bar"><span></span></div><span class="pct">–</span></div>
+        <div class="meta"><span><b>15</b> lessons</span><span>Notes 1–7</span></div>
+        <span class="go">Open guide →</span>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="sec" id="semester-2">
+    <div class="sec-head"><h2>Semester 2</h2><p>Planned — guides start when lectures do</p></div>
+    <div class="s2">
+      <div><b>Introduction to MEMS</b>Microelectromechanical systems</div>
+      <div><b>Data Converter Techniques</b>Circuits and architecture</div>
+      <div><b>Advanced Analogue IC Design</b>Follows on from EE6049</div>
+      <div><b>Design of RF ICs</b>Radio-frequency circuits</div>
+    </div>
+  </section>
+
+  <section class="sec" id="how">
+    <div class="sec-head"><h2>How to use the guides</h2></div>
+    <div class="how">
+      <div><h4>One idea per lesson</h4><p>Read the highlighted box first. Everything below it builds that single idea, with slide or note references so you can check against the lecture material.</p></div>
+      <div><h4>Tick as you go</h4><p>Each guide has an “I’ve got this lesson” tick. Ticks are stored in your browser only, and the progress bars on this page read them.</p></div>
+      <div><h4>Practise before peeking</h4><p>Past-paper and exam-style questions sit near the end of each guide. Work them on paper, then open the worked solution.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Md Kamrul Islam</span>
+    <a href="https://whoiskamrul.com">whoiskamrul.com</a>
+    <span>Personal study notes, not official UCC material.</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  // ----- theme toggle (remembered per browser) -----
+  var root = document.documentElement, KEY = 'hub-theme';
+  function get() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function set(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+  var saved = get(); if (saved) root.setAttribute('data-theme', saved);
+  document.getElementById('theme-btn').addEventListener('click', function () {
+    var cur = root.getAttribute('data-theme') ||
+      (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    var next = cur === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next); set(next);
+  });
+
+  // ----- progress bars -----
+  // Guides share this origin, so their "I've got this lesson" ticks (localStorage) are readable here.
+  // data-store = the guide's localStorage key; value is an object like {"l1": true, "l2": false}.
+  document.querySelectorAll('[data-store]').forEach(function (card) {
+    var total = +card.dataset.total, done = 0, v;
+    try { v = JSON.parse(localStorage.getItem(card.dataset.store) || '{}') || {}; } catch (e) { return; }
+    Object.keys(v).forEach(function (k) { if (/^[a-z]*\d+$/i.test(k) && v[k] === true) done++; });
+    done = Math.min(done, total);
+    card.querySelector('.bar span').style.width = (100 * done / total) + '%';
+    card.querySelector('.pct').textContent = done + ' / ' + total;
+  });
+})();
+</script>
+</body>
+</html>
