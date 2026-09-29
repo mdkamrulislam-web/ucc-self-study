@@ -31,5 +31,7 @@ _Last updated: 29 September 2026_
 
 ## Open decisions
 
+- Syncing is manual for now (say "sync the website"); later connect the repo to a Claude Code session for direct pushes.
+
 - Whether to also link the hub from the main portfolio at whoiskamrul.com.
 - Whether EE6019 (research project) planning pages belong on this site. Currently out of scope.

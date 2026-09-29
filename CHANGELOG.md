@@ -2,6 +2,10 @@
 
 Dated log of working sessions. Newest first. Each entry: what changed, why, and anything left unfinished.
 
+## 2026-09-29 — Sync workflow agreed
+
+- Decision: guides stay in their learning projects; the site is updated on request ("sync the website"). Steps documented in `CLAUDE.md`. Later: connect the repo to a Claude Code session for direct pushes.
+
 ## 2026-09-29 — Hosting live
 
 - Created public repo `mdkamrulislam-web/ucc-self-study` via the GitHub web UI (files uploaded folder by folder).

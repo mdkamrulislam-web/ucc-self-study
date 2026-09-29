@@ -42,6 +42,17 @@ A static website of self-study guides for Kamrul's (Shuvo's) MEngSc in Electrica
 4. Update `<module>/NOTES.md` (coverage table, to-do), `PROJECT_STATUS.md`, and add a dated entry to `CHANGELOG.md`.
 5. Test locally (`python3 -m http.server`), then commit and push to `main`.
 
+### "Sync the website" (agreed workflow, 29 Sep 2026)
+Guides are still edited in their own learning projects as Claude artifacts; the site does **not** update automatically. When Kamrul says "sync the website":
+1. For each module, read its artifact (URL in `<module>/NOTES.md`) and compare with the repo copy; skip unchanged ones.
+2. Save the new HTML and run `python3 tools/import_guide.py raw.html <module>`.
+3. If lessons were added: update that card in `index.html` (`data-total`, lesson count, coverage line) and the hero "Lessons" stat.
+4. Update `<module>/NOTES.md`, `PROJECT_STATUS.md`, `CHANGELOG.md`.
+5. Push to `main`. With git access, just push. Without it (Cowork session), write the files to Drive `UCC/Self-Study/ucc-self-study/`, stage them, and upload through github.com → *Add file → Upload files* in Chrome, one folder per upload (scroll to the bottom and click **Commit changes** by coordinates; the ref-based click doesn't always submit).
+6. Check https://study.whoiskamrul.com/<module>/ loads the new version.
+
+Planned later: connect this repo to a Claude Code session so step 5 is a plain `git push`.
+
 ### Import a guide that was edited as a Claude artifact
 ```bash
 # save the artifact's full HTML as raw.html first
