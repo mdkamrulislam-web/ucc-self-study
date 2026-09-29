@@ -18,7 +18,7 @@ _Last updated: 29 September 2026_
 |---|---|
 | GitHub repo `mdkamrulislam-web/ucc-self-study` | Created 29 Sep 2026, public |
 | GitHub Pages (main, root) | Enabled 29 Sep 2026 |
-| Custom domain `study.whoiskamrul.com` | Cloudflare `CNAME study → mdkamrulislam-web.github.io` (DNS only) added 29 Sep 2026. Tick **Enforce HTTPS** once the certificate is issued |
+| Custom domain `study.whoiskamrul.com` | Cloudflare `CNAME study → mdkamrulislam-web.github.io` (DNS only) added 29 Sep 2026. HTTPS enforced, site verified live |
 | Search engines | Blocked (`robots.txt` + `noindex` on every page) |
 
 ## Next steps

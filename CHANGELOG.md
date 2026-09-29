@@ -8,7 +8,7 @@ Dated log of working sessions. Newest first. Each entry: what changed, why, and 
 - GitHub Pages enabled: deploy from branch `main`, folder `/ (root)`; custom domain `study.whoiskamrul.com` picked up from `CNAME`.
 - Cloudflare DNS (zone whoiskamrul.com): added `CNAME study → mdkamrulislam-web.github.io`, **DNS only** (grey cloud) so GitHub can issue the HTTPS certificate. The apex whoiskamrul.com is a Cloudflare Worker (`portfolio`) and was left untouched.
 - A local copy of the repo is also in Google Drive: `UCC/Self-Study/ucc-self-study/` (not a git clone; GitHub is the source of truth).
-- **Follow-up:** once GitHub's DNS check passes and the certificate is issued, tick **Enforce HTTPS** in Settings → Pages.
+- HTTPS certificate issued and **Enforce HTTPS** turned on. Verified live: hub, all four module pages, `CLAUDE.md` and the 404 page load at https://study.whoiskamrul.com.
 
 ## 2026-09-29 — Project set up
 
