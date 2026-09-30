@@ -2,6 +2,15 @@
 
 Dated log of working sessions. Newest first. Each entry: what changed, why, and anything left unfinished.
 
+## 2026-09-30 — First sync
+
+- Checked all four artifacts against the repo. Synced three; CS6322 unchanged (version 28 Sep).
+- **EE6049:** 11 → 13 lessons (lectures 1–6; new: CMOS inverter amplifier, two-port shortcut; 12 practice problems).
+- **EE6043:** new guide replaces the placeholder — 13 lessons, lectures 1–3; progress key `ee6043-guide-done-v1`.
+- **EE6041:** 19 → 31 sections (added z-transform, lectures of 22 and 23 Sep, plus an Assignment 1 section); renamed "Advanced Signal Processing". New keys `z1`–`z12` share the existing storage key.
+- Hub: EE6043 card now live with a progress bar; card counts and descriptions updated; stats now 4 guides, 72 lessons.
+- NOTES.md for the three modules, README and PROJECT_STATUS updated.
+
 ## 2026-09-29 — Sync workflow agreed
 
 - Decision: guides stay in their learning projects; the site is updated on request ("sync the website"). Steps documented in `CLAUDE.md`. Later: connect the repo to a Claude Code session for direct pushes.

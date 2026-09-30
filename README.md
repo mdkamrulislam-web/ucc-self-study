@@ -6,10 +6,10 @@ Plain-English, lesson-by-lesson study guides for my MEngSc in Electrical & Elect
 
 | Module | Title | Guide | Status |
 |---|---|---|---|
-| EE6049 | Design of Analogue ICs | [`ee6049/`](ee6049/) | Live · lectures 1–5 |
-| EE6043 | Design of Digital ICs | [`ee6043/`](ee6043/) | Placeholder |
-| EE6041 | Advanced DSP | [`ee6041/`](ee6041/) | Live · lectures of 8, 9, 15 Sep |
-| CS6322 | Optimisation | [`cs6322/`](cs6322/) | Live · notes 1–7 |
+| EE6049 | Design of Analogue ICs | [`ee6049/`](ee6049/) | Live · 13 lessons, lectures 1–6 |
+| EE6043 | Design of Digital ICs | [`ee6043/`](ee6043/) | Live · 13 lessons, lectures 1–3 |
+| EE6041 | Advanced Signal Processing | [`ee6041/`](ee6041/) | Live · 31 sections, LTI + z-transform |
+| CS6322 | Optimisation | [`cs6322/`](cs6322/) | Live · 15 lessons, notes 1–7 |
 
 ## Start here (continuing on another computer or Claude account)
 
@@ -24,8 +24,7 @@ Plain-English, lesson-by-lesson study guides for my MEngSc in Electrical & Elect
 index.html            Hub page (module cards, progress bars, semester 2 plan)
 ee6049/index.html     EE6049 guide (self-contained HTML)
 ee6049/NOTES.md       Tracking notes for that guide
-ee6041/  cs6322/      Same pattern
-ee6043/index.html     "Coming soon" placeholder
+ee6041/ ee6043/ cs6322/  Same pattern
 tools/import_guide.py Prepares a guide HTML for the site (noindex, <title>, hub link)
 CNAME                 Custom domain for GitHub Pages
 .nojekyll             Serve files as-is (no Jekyll build)

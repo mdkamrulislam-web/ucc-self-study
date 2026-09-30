@@ -25,8 +25,9 @@ A static website of self-study guides for Kamrul's (Shuvo's) MEngSc in Electrica
 - Guides are plain-English, **one idea per lesson**: each lesson opens with a highlighted "one idea" box, then builds the maths slowly, cites slide/note numbers, has worked examples, "check yourself" questions, and an exam-angle note.
 - Each guide ends with past-paper / exam-style practice (solutions behind `<details>`), and a one-page cheat sheet.
 - Progress ticks use `localStorage`; the hub reads them. Keep each guide's key stable:
-  - EE6049 → `ee6049-guide-done-v1` (keys `l1`…`l11`)
-  - EE6041 → `ee6041-lti-progress-v1` (keys `s1`…`s19`)
+  - EE6049 → `ee6049-guide-done-v1` (keys `l1`…`l13`)
+  - EE6043 → `ee6043-guide-done-v1` (keys `l1`…`l13`)
+  - EE6041 → `ee6041-lti-progress-v1` (keys `s1`…`s19`, `z1`…`z12`)
   - CS6322 → `cs6322-done` (keys `l1`…`l15`)
   If you add lessons, update `data-total` on that module's card in `index.html`.
 - Labs: CS6322's lecturer asks that GenAI is not used for lab answers. Guides may explain ideas and check models, but never publish full lab solutions.
