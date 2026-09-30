@@ -309,6 +309,11 @@ select { font: 14px var(--f-head); padding: 4px 6px; border-radius: 4px; border:
 .seg { display: flex; flex-wrap: wrap; gap: 6px; }
 .seg button { font: 650 14px var(--f-head); font-stretch: 87%; padding: 6px 12px; border-radius: 5px; border: 1.5px solid var(--rule); background: var(--surface); color: var(--ink); cursor: pointer; }
 .seg button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--bg); }
+.seg[hidden] { display: none; }
+.seg-sm { align-items: center; }
+.seg-sm::before { content: "Slide 132:"; font: 700 12px var(--f-head); font-stretch: 87%; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-right: 2px; }
+.seg-sm button { font-size: 13px; padding: 4px 10px; }
+.seg-sm button[aria-pressed="true"] { background: var(--hl-soft); color: var(--ink); border-color: var(--ink); }
 .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
 .quiz-fig { max-width: 300px; margin: 0 auto; }
 .quiz-answers { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -368,6 +373,9 @@ footer.site p + p { margin-top: 8px; }
 .intro h3 + p { margin-top: 10px; }
 figure.wide .fig-box svg { min-width: 540px; }
 .tbl-wrap table { min-width: 520px; }
+
+.tbl-note { font-size: 14.5px; color: var(--muted); margin-top: 8px; }
+[hidden] { display: none !important; }
 
 /* temml */
 /*
@@ -703,7 +711,7 @@ body {
 <header class="topbar">
   <div class="topbar-in">
     <div class="brand"><span class="code">EE6049</span><span class="name">Design of Analogue Integrated Circuits</span></div>
-    <div class="meter" aria-live="polite"><span id="meter-text"><span class="lbl-long">Lessons done: </span>0 / 11</span><span class="meter-bar" aria-hidden="true"><span id="meter-fill"></span></span></div>
+    <div class="meter" aria-live="polite"><span id="meter-text"><span class="lbl-long">Lessons done: </span>0 / 13</span><span class="meter-bar" aria-hidden="true"><span id="meter-fill"></span></span></div>
     <button class="toc-btn" id="toc-btn" aria-expanded="false" aria-controls="rail">Contents</button>
   </div>
 </header>
@@ -715,12 +723,12 @@ body {
     <li class="lec"><div class="lec-date">Tue 8 Sept · Lecture 1</div>
       <ol>
         <li><a href="#l1"><span class="n">1</span><span>The big picture</span><span class="tick" aria-label="done">✓</span></a></li>
-        <li><a href="#l2"><span class="n">2</span><span>Inside a MOSFET</span><span class="tick" aria-label="done">✓</span></a></li>
-        <li><a href="#l3"><span class="n">3</span><span>The I–V equation</span><span class="tick" aria-label="done">✓</span></a></li>
       </ol>
     </li>
     <li class="lec"><div class="lec-date">Fri 11 Sept · Lecture 2</div>
       <ol>
+        <li><a href="#l2"><span class="n">2</span><span>Inside a MOSFET</span><span class="tick" aria-label="done">✓</span></a></li>
+        <li><a href="#l3"><span class="n">3</span><span>The I–V equation</span><span class="tick" aria-label="done">✓</span></a></li>
         <li><a href="#l4"><span class="n">4</span><span>Which region is it in?</span><span class="tick" aria-label="done">✓</span></a></li>
         <li><a href="#l5"><span class="n">5</span><span>Second-order effects</span><span class="tick" aria-label="done">✓</span></a></li>
       </ol>
@@ -740,16 +748,22 @@ body {
     <li class="lec"><div class="lec-date">Tue 22 Sept · Lecture 5</div>
       <ol>
         <li><a href="#l10"><span class="n">10</span><span>CS stage: diode load</span><span class="tick" aria-label="done">✓</span></a></li>
-        <li><a href="#l11"><span class="n">11</span><span>CS stage: current-source load</span><span class="tick" aria-label="done">✓</span></a></li>
       </ol>
     </li>
-    <li class="lec next"><div class="lec-date">Fri 25 Sept · Lecture 6</div>
-      <p class="note">Added here after the lecture.</p>
+    <li class="lec"><div class="lec-date">Fri 25 Sept · Lecture 6</div>
+      <ol>
+        <li><a href="#l11"><span class="n">11</span><span>CS stage: current-source load</span><span class="tick" aria-label="done">✓</span></a></li>
+        <li><a href="#l12"><span class="n">12</span><span>CMOS inverter amplifier</span><span class="tick" aria-label="done">✓</span></a></li>
+        <li><a href="#l13"><span class="n">13</span><span>Two-port shortcut</span><span class="tick" aria-label="done">✓</span></a></li>
+      </ol>
+    </li>
+    <li class="lec next"><div class="lec-date">Tue 29 Sept · Lecture 7</div>
+      <p class="note">Added here when its caption arrives.</p>
     </li>
   </ol>
   <div class="extras">
     <a href="#lab"><span class="n">↗</span><span>Amplifier lab</span></a>
-    <a href="#practice"><span class="n">↗</span><span>Exam practice (11 problems)</span></a>
+    <a href="#practice"><span class="n">↗</span><span>Exam practice (12 problems)</span></a>
     <a href="#formulas"><span class="n">↗</span><span>Formula sheet</span></a>
   </div>
   <p class="note">Your ticks are saved in this browser only.</p>
@@ -761,11 +775,11 @@ body {
 <section id="start" class="intro">
   <p class="kicker">UCC · EE6049 · Semester 1, 2026–27</p>
   <h1>Analogue IC design, <span class="hl">one idea at a time</span></h1>
-  <p class="lede">Plain-English lessons for everything covered in lectures 1 to 5 (8–22 September 2026), which is slides 1–131 of the course notes. Each lesson opens with the one idea you need, then builds the maths slowly, with slide numbers so you can check against the notes.</p>
+  <p class="lede">Plain-English lessons for everything covered in lectures 1 to 6 (8–25 September 2026), which is slides 1–146 of the course notes. Each lesson opens with the one idea you need, then builds the maths slowly, with slide numbers so you can check against the notes.</p>
 
   <div class="facts">
     <div class="fact"><h3>The exam</h3><p>December 2026 · 1.5 hours · answer 3 of 4 questions · 70% of the module. Problem-based and “very similar to the problems in the notes”.</p></div>
-    <div class="fact"><h3>Labs</h3><p>30% in total: 3 Cadence labs with worksheets (10%) and an op-amp design assignment (20%). Labs start in October.</p></div>
+    <div class="fact"><h3>Labs</h3><p>30% in total: 3 Cadence labs with worksheets (10%) and an op-amp design assignment (20%). Labs start the week of 5 October; the lab manual and Word worksheets are on Canvas (submit as PDF).</p></div>
     <div class="fact"><h3>Given on the paper</h3><p>Only the NMOS saturation equation, plus “ignore the body effect” and “use λ = 0 for DC biasing”. Everything else you derive.</p></div>
   </div>
 
@@ -780,14 +794,16 @@ body {
     <table>
       <thead><tr><th>Lecture</th><th>Slides</th><th>Topics</th><th>Lessons</th></tr></thead>
       <tbody>
-        <tr><td><span class="when">Tue 8 Sept</span></td><td class="num">1–63</td><td>Course introduction, analogue vs digital, MOSFET structure, deriving the I–V equation, operating regions</td><td><a href="#l1">1</a>, <a href="#l2">2</a>, <a href="#l3">3</a></td></tr>
-        <tr><td><span class="when">Fri 11 Sept</span></td><td class="num">35–80</td><td>Wells and isolation, FinFETs and scaling, region problems (solutions to slides 62–63), stacked transistors, second-order effects</td><td><a href="#l2">2</a>, <a href="#l4">4</a>, <a href="#l5">5</a></td></tr>
-        <tr><td><span class="when">Tue 15 Sept</span></td><td class="num">81–101</td><td>Recorded lecture: DC biasing solutions (slides 81–83), circuit basics, small-signal model, gm and gds</td><td><a href="#l6">6</a>, <a href="#l7">7</a></td></tr>
-        <tr><td><span class="when">Fri 18 Sept</span></td><td class="num">101–115</td><td>Intrinsic gain (slide 101 solution), CS/CD/CG stages, common-source stage with a resistor load</td><td><a href="#l8">8</a>, <a href="#l9">9</a></td></tr>
-        <tr><td><span class="when">Tue 22 Sept</span></td><td class="num">115–131</td><td>PMOS resistor-load solution (slide 115), diode-connected load, current-source load</td><td><a href="#l9">9</a>, <a href="#l10">10</a>, <a href="#l11">11</a></td></tr>
+        <tr><td><span class="when">Tue 8 Sept</span></td><td class="num">1–34</td><td>Course introduction, analogue vs digital, the IC design flow, the battery-management example, a first look at the MOSFET</td><td><a href="#l1">1</a></td></tr>
+        <tr><td><span class="when">Fri 11 Sept</span></td><td class="num">35–83</td><td>MOSFET structure, wells and isolation, FinFETs and scaling, the I–V equation, operating regions (solutions to slides 62–63), stacked transistors, second-order effects</td><td><a href="#l2">2</a>, <a href="#l3">3</a>, <a href="#l4">4</a>, <a href="#l5">5</a></td></tr>
+        <tr><td><span class="when">Tue 15 Sept</span></td><td class="num">84–101</td><td>Recorded lecture: DC biasing solutions (slides 81–83), circuit basics, the small-signal model, g<sub>m</sub> and g<sub>ds</sub></td><td><a href="#l6">6</a>, <a href="#l7">7</a></td></tr>
+        <tr><td><span class="when">Fri 18 Sept</span></td><td class="num">93–115</td><td>Small-signal recap, intrinsic gain (slide 101 solution), CS/CD/CG stages, common-source stage with a resistor load</td><td><a href="#l8">8</a>, <a href="#l9">9</a></td></tr>
+        <tr><td><span class="when">Tue 22 Sept</span></td><td class="num">116–128</td><td>PMOS resistor-load solution (slide 115), diode-connected loads, the start of the current-source load</td><td><a href="#l9">9</a>, <a href="#l10">10</a>, <a href="#l11">11</a></td></tr>
+        <tr><td><span class="when">Fri 25 Sept</span></td><td class="num">129–146</td><td>Recap of diode and folded loads, the current-source load example (slides 132–138), the CMOS inverter amplifier (slide 139 solution) and a clock-buffer application, two-port analysis and y-parameters (Section 8)</td><td><a href="#l10">10</a>, <a href="#l11">11</a>, <a href="#l12">12</a>, <a href="#l13">13</a></td></tr>
       </tbody>
     </table>
   </div>
+  <p class="tbl-note">Slide ranges follow the names of your caption files. Lectures overlap a little, because each one starts by recapping the last.</p>
 
   <h3 style="margin-top:36px">How to read the diagrams</h3>
   <p>In every schematic, <span class="nm-c">NMOS transistors are blue</span> and <span class="pm-c">PMOS transistors are red</span>, following the usual n-type/p-type colouring. Regions of operation always use the same colours: <span class="rg sat">saturation</span> <span class="rg tri">triode</span> <span class="rg off">cut-off</span>. Yellow highlighting marks numbers and results worth remembering.</p>
@@ -909,7 +925,7 @@ body {
   <p>The lecturer’s group at Infineon in Cork designs battery-management chips. An electric-vehicle battery is a stack of lithium-ion cells of about 4 V each. The state of charge is read from each cell’s voltage, but the voltage-versus-charge curve is very flat: <strong>1% of charge is only about 3 mV</strong>. So the whole measurement chain needs roughly 3 mV total error. That error budget is made of gain error, noise, offset (transistor mismatch), non-linearity, the accuracy of the reference voltage (a bandgap) and the temperature sensor. Those are exactly the topics of the later sections.</p>
 
   <h3>Levels of abstraction and the course map</h3>
-  <p>Analogue design is described at four levels: <strong>device</strong> (the transistor), <strong>circuit</strong>, <strong>architecture</strong> and <strong>system</strong>. This course is mainly at the circuit level: start from the transistor, build gain stages, then op-amps. The 27 sections run: MOS review (1–4) → single-transistor stages (5–13) → current mirrors and matching (14–15) → differential amplifiers (16–17) → frequency response, feedback and compensation (18–21) → noise (22–23) → op-amps (24–25) → references (26) → active filters (27). So far: sections 1–6 complete and section 7 started.</p>
+  <p>Analogue design is described at four levels: <strong>device</strong> (the transistor), <strong>circuit</strong>, <strong>architecture</strong> and <strong>system</strong>. This course is mainly at the circuit level: start from the transistor, build gain stages, then op-amps. The 27 sections run: MOS review (1–4) → single-transistor stages (5–13) → current mirrors and matching (14–15) → differential amplifiers (16–17) → frequency response, feedback and compensation (18–21) → noise (22–23) → op-amps (24–25) → references (26) → active filters (27). So far (to 25 September): sections 1–8 complete.</p>
 
   <details>
     <summary>History in one minute (slides 10–14)</summary>
@@ -1908,7 +1924,7 @@ body {
     <li><strong>Identical diodes in series:</strong> N identical diode-connected transistors in a chain carry the same current, so each has the same V<sub>GS</sub> and the supply splits equally. Three across 3 V gives 1 V each.</li>
   </ul>
 
-  <aside class="exam"><span class="tag">Exam angle</span><p>Almost every question has a bias part worth 2–3 marks: find a drain current, a bias voltage, a W/L for a given overdrive, or the largest resistor that keeps a transistor saturated. Practice problems <a href="#p-w24q2">P10</a> and <a href="#p-w25q2">P11</a> are pure biasing.</p></aside>
+  <aside class="exam"><span class="tag">Exam angle</span><p>Almost every question has a bias part worth 2–3 marks: find a drain current, a bias voltage, a W/L for a given overdrive, or the largest resistor that keeps a transistor saturated. Practice problems <a href="#p-w24q2">P11</a> and <a href="#p-w25q2">P12</a> are pure biasing.</p></aside>
 
   <div class="check"><span class="tag">Check yourself</span>
     <details><summary>The current doubles at the same W/L. What happens to the overdrive?</summary><div class="d-body"><p>It rises by √2 (square law).</p></div></details>
@@ -2490,7 +2506,7 @@ body {
 <!-- =============================== LESSON 10 =============================== -->
 <section id="l10" class="lesson" data-title="Lesson 10 · CS stage with a diode-connected load">
   <header class="lesson-head">
-    <div class="eyebrow"><span class="lnum">Lesson 10</span><span>Section 6 · slides 116–126 · Tue 22 Sept</span></div>
+    <div class="eyebrow"><span class="lnum">Lesson 10</span><span>Section 6 · slides 116–126 · Tue 22 Sept, recap Fri 25 Sept</span></div>
     <h2>Common-source stage: diode-connected load</h2>
     <p class="idea"><b>The one idea</b>Swap the resistor for a diode-connected transistor, which behaves like a resistor of value 1/g<sub>m</sub>. The gain becomes a ratio of two transconductances, g<sub>m1</sub>/g<sub>m2</sub>, so it stays constant (linear) and depends much less on process spread.</p>
   </header>
@@ -2629,7 +2645,12 @@ body {
     <p>Gain = −(2.8 − 0.8)/(1 − 0.8) = −2.0/0.2 = <strong>−10</strong>, which is <strong>20 dB</strong>.</p>
     <p>Limits: |V<sub>GS2</sub>| = 2.8 V uses most of a 5 V supply, and the driver’s overdrive can’t go much below 0.2 V without leaving strong inversion. So once again the gain is about 10 and headroom sets the limit.</p>
   </div>
-  <p><strong>Process:</strong> there is no resistor any more, which helps. But K′<sub>n</sub> and K′<sub>p</sub> come from different dopings and vary independently, so some spread remains.</p>
+  <h4>How steady is that gain? (recap, 25 Sept)</h4>
+  <ul>
+    <li><strong>Over process:</strong> the gain depends on √(K′<sub>n</sub>/K′<sub>p</sub>) and a W/L ratio. K′ contains the mobility, which depends on doping and varies from wafer to wafer and batch to batch, roughly ±10%. NMOS and PMOS are doped in separate steps, so their K′ values are not correlated: one can come out 10% high while the other is 10% low. Make a million of these chips and the gain spreads by about ±10%.</li>
+    <li><strong>Over temperature:</strong> mobility changes far more with temperature than with process, but that hardly matters here. The two transistors sit side by side on the same die at the same temperature, so both mobilities move together and their ratio holds.</li>
+  </ul>
+  <p>So the diode load is linear and fairly predictable. The next two ideas (slide 126 and the folded load) remove even the K′<sub>n</sub>/K′<sub>p</sub> spread.</p>
 
   <h3>Problem slide 126: an NMOS diode load, and the body effect</h3>
   <figure class="wide">
@@ -2714,13 +2735,14 @@ body {
       <li>KCL: g<sub>m1</sub>v<sub>in</sub> + v<sub>out</sub>(g<sub>ds1</sub> + g<sub>m2</sub> + g<sub>mb2</sub> + g<sub>ds2</sub>) = 0, so <math><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><msub><mi>v</mi><mrow><mi>o</mi><mi>u</mi><mi>t</mi></mrow></msub><msub><mi>v</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub></mfrac></mstyle><mo>≈</mo></mrow><mrow><mo form="prefix" stretchy="false">−</mo></mrow><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><msub><mi>g</mi><mrow><mi>m</mi><mn>1</mn></mrow></msub><mrow><msub><mi>g</mi><mrow><mi>m</mi><mn>2</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>m</mi><mi>b</mi><mn>2</mn></mrow></msub></mrow></mfrac></mstyle><mo>=</mo></mrow><mrow><mo form="prefix" stretchy="false">−</mo></mrow><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><msub><mi>g</mi><mrow><mi>m</mi><mn>1</mn></mrow></msub><mrow><msub><mi>g</mi><mrow><mi>m</mi><mn>2</mn></mrow></msub><mo form="prefix" stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>η</mi><mo form="postfix" stretchy="false" lspace="0em" rspace="0em">)</mo></mrow></mfrac></mstyle></mrow></math>.</li>
       <li>Same current and the same K′<sub>n</sub> in both, so <math><mrow><msub><mi>g</mi><mrow><mi>m</mi><mn>1</mn></mrow></msub><mi>/</mi><msub><mi>g</mi><mrow><mi>m</mi><mn>2</mn></mrow></msub><mo>=</mo></mrow><mrow><msqrt><mrow><mo form="prefix" stretchy="false" lspace="0em" rspace="0em">(</mo><mi>W</mi><mi>/</mi><mi>L</mi><msub><mo form="postfix" stretchy="false">)</mo><mn>1</mn></msub><mi>/</mi><mo form="prefix" stretchy="false">(</mo><mi>W</mi><mi>/</mi><mi>L</mi><msub><mo form="postfix" stretchy="false">)</mo><mn>2</mn></msub></mrow></msqrt><mo>=</mo></mrow><mrow><msqrt><mn>25</mn></msqrt><mo>=</mo></mrow><mrow><mn>5</mn></mrow></math>. Gain = −5/1.3 = <strong>−3.85</strong>, which is <strong>11.7 dB</strong>.</li>
     </ol>
-    <p>Nice feature: K′<sub>n</sub> cancels, so the gain is set by geometry and varies much less over process than with a PMOS load. Drawbacks: η still varies a little, and M2’s raised V<sub>t</sub> eats headroom.</p>
+    <p>Nice feature: K′<sub>n</sub> cancels, so the gain is set by geometry and varies much less over process than with a PMOS load. Drawbacks: η still varies a little (it also depends on doping), and M2’s raised V<sub>t</sub> eats headroom. On 25 Sept the lecturer went through this solution and called it “a gain of four”: modest, like the resistor load. K′<sub>n</sub> cancels, so the gain depends much less on process, though η still varies.</p>
   </div></details>
 
   <h4>The fix: a folded load</h4>
   <p>Supply the output from a PMOS current source M3 and move the diode-connected NMOS M2 so its source is at ground (right-hand figure). No body effect. Because M3’s current is fixed, any change in M1’s current has to come out of M2, and M2 turns it into a voltage:</p>
   <math display="block" class="tml-display" style="display:block math;"><mrow><mfrac><msub><mi>v</mi><mrow><mi>o</mi><mi>u</mi><mi>t</mi></mrow></msub><msub><mi>v</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub></mfrac><mo>=</mo><mo form="prefix" stretchy="false">−</mo><mfrac><msub><mi>g</mi><mrow><mi>m</mi><mn>1</mn></mrow></msub><mrow><msub><mi>g</mi><mrow><mi>m</mi><mn>2</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>2</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>3</mn></mrow></msub></mrow></mfrac><mo>≈</mo><mo form="prefix" stretchy="false">−</mo><mfrac><msub><mi>g</mi><mrow><mi>m</mi><mn>1</mn></mrow></msub><msub><mi>g</mi><mrow><mi>m</mi><mn>2</mn></mrow></msub></mfrac><mo>=</mo><mo form="prefix" stretchy="false">−</mo><msqrt><mfrac><mrow><mo form="prefix" stretchy="false" lspace="0em" rspace="0em">(</mo><mi>W</mi><mi>/</mi><mi>L</mi><msub><mo form="postfix" stretchy="false">)</mo><mn>1</mn></msub><mspace width="0.1667em"></mspace><msub><mi>I</mi><mrow><mi>D</mi><mn>1</mn></mrow></msub></mrow><mrow><mo form="prefix" stretchy="false" lspace="0em" rspace="0em">(</mo><mi>W</mi><mi>/</mi><mi>L</mi><msub><mo form="postfix" stretchy="false">)</mo><mn>2</mn></msub><mspace width="0.1667em"></mspace><msub><mi>I</mi><mrow><mi>D</mi><mn>2</mn></mrow></msub></mrow></mfrac></msqrt></mrow></math>
-  <p>The price is extra current, since M1 and M2 no longer share one current. The bonus: I<sub>D2</sub> can be smaller than I<sub>D1</sub>, which lowers g<sub>m2</sub> and raises the gain. Past papers <a href="#p-w23q4">P5</a> and <a href="#p-w25q1">P6</a> use exactly this circuit.</p>
+  <p><strong>Why the current has to go into M2 (25 Sept):</strong> raise v<sub>in</sub> and M1 takes a little more of M3’s fixed current, so M2 gets a little less, and the diode turns that change into a voltage. This only works if M3’s own resistance, 1/g<sub>ds3</sub>, is far higher than M2’s 1/g<sub>m2</sub>, so that almost all of the change goes into M2. A PMOS in saturation manages that easily.</p>
+  <p><strong>The price</strong> is extra current. With the ordinary diode load, M1’s current is reused by the load; here M3 must feed both branches, so the stage is less power-efficient. <strong>The bonus</strong> is that you choose the split. From 100 µA you could run 50/50, or 80 µA in M1 and 20 µA in M2. Because g<sub>m</sub> ∝ √I, the 80/20 split doubles the gain compared with 50/50 (√(80/20) = 2), for the same transistor sizes. Putting a load between the output and ground like this (“folding” it) comes back later in the course, for example to save headroom in folded cascodes. Past papers <a href="#p-w23q4">P5</a> and <a href="#p-w25q1">P6</a> use exactly this circuit.</p>
 
   <aside class="exam"><span class="tag">Exam angle</span><p>See a diode-connected transistor: write 1/g<sub>m</sub>. Gain ≈ −g<sub>m1</sub>/g<sub>m2</sub>, then turn it into a W/L ratio (same current) or an overdrive ratio. Remember the output can’t exceed V<sub>DD</sub> − |V<sub>tp</sub>| with a PMOS diode.</p></aside>
 
@@ -2732,26 +2754,27 @@ body {
   <footer class="lesson-foot"><label class="done-toggle"><input type="checkbox" id="done-l10" data-done="l10"> I’ve got this lesson</label><button class="btn ask-btn" data-ask="l10" hidden>Ask about this lesson</button></footer>
 </section>
 
+
 <!-- =============================== LESSON 11 =============================== -->
 <section id="l11" class="lesson" data-title="Lesson 11 · CS stage with a current-source load">
   <header class="lesson-head">
-    <div class="eyebrow"><span class="lnum">Lesson 11</span><span>Section 7 · slides 127–131 · Tue 22 Sept (continues Fri 25 Sept)</span></div>
+    <div class="eyebrow"><span class="lnum">Lesson 11</span><span>Section 7 · slides 127–138 · 22 &amp; 25 Sept</span></div>
     <h2>Common-source stage: current-source load</h2>
-    <p class="idea"><b>The one idea</b>A transistor in saturation acts like a current source with a large output resistance, yet it needs only a few hundred millivolts across it. Use a PMOS in saturation as the load and the gain jumps to g<sub>m1</sub>/(g<sub>ds1</sub> + g<sub>ds2</sub>): typically 50 to 100.</p>
+    <p class="idea"><b>The one idea</b>A transistor in saturation acts like a current source with a large output resistance, yet it needs only a few hundred millivolts across it. Use a PMOS in saturation as the load and the gain jumps to g<sub>m1</sub>/(g<sub>ds1</sub> + g<sub>ds2</sub>): typically 50 to 100. The catch: the DC bias becomes very touchy.</p>
   </header>
 
   <h3>Why a current-source load</h3>
   <p>With a resistor or a diode, more gain costs DC voltage: a bigger R<sub>L</sub> or a smaller g<sub>m2</sub> both mean a bigger drop. A PMOS biased in saturation only needs V<sub>SD</sub> ≥ its overdrive (roughly 0.2–0.4 V), but its small-signal resistance is r<sub>ds2</sub> = 1/g<sub>ds2</sub>, hundreds of kΩ. Gain and headroom are decoupled.</p>
   <p>Picture the PMOS I–V curve in saturation: almost flat. A tiny change in current needs a huge change in voltage, which is exactly what a high resistance means.</p>
 
-  <h3>Large-signal behaviour (slide 129)</h3>
+  <h3>Large-signal behaviour (slides 129–130)</h3>
   <ol>
     <li><strong>Low V<sub>in</sub>:</strong> M1 off; M2 pulls the output to V<sub>DD</sub>, so M2 has no voltage across it and is in triode.</li>
     <li><strong>V<sub>in</sub> above V<sub>tn</sub>:</strong> M1 on in saturation, M2 still in triode; the output starts to fall.</li>
     <li><strong>Both saturated:</strong> the output drops very steeply. This narrow window is the high-gain region.</li>
     <li><strong>Higher V<sub>in</sub>:</strong> M1 enters triode and the gain is gone.</li>
   </ol>
-  <p>Useful output swing: V<sub>DD</sub> − V<sub>SAT1</sub> − V<sub>SAT2</sub>. The input window for high gain is tiny (tens of millivolts), so biasing this stage without feedback is hard. Try it in the <a href="#lab" data-preset="cs">amplifier lab (current-source preset)</a>.</p>
+  <p>Useful output swing: V<sub>DD</sub> − V<sub>SAT1</sub> − V<sub>SAT2</sub>. The input window for high gain is tiny (tens of millivolts), so biasing this stage without feedback is hard. Slide 130 gets the gain the long way, by writing both square-law equations with λ, solving for V<sub>out</sub> and differentiating; the answer is the same as the small-signal one below. Try it in the <a href="#lab" data-preset="cs">amplifier lab (current-source preset)</a>.</p>
 
   <h3>The signal-path insight</h3>
   <p>M2’s gate is at a DC voltage (V<sub>BIAS2</sub>) and its source is at V<sub>DD</sub>. Neither can wiggle, so v<sub>gs2</sub> = 0 and the current source g<sub>m2</sub>v<sub>gs2</sub> carries nothing: it is an open circuit. All that M2 contributes is its output resistance 1/g<sub>ds2</sub>. The lecturer’s rule: <strong>follow the signal</strong>. A transistor with no signal on its gate or source is just its output resistance.</p>
@@ -2805,8 +2828,8 @@ body {
 <path class="w" d="M470 50 L470 79"/>
 <path class="w" d="M470 101 L470 130"/>
 <circle class="ss ghost src" cx="470" cy="90" r="11"/>
-<path class="ss ghost" d="M470 84 L470 93"/>
-<polygon class="ah-ss" points="470,97 467,92 473,92"/>
+<path class="ss ghost" d="M470 96 L470 87"/>
+<polygon class="ah-ss" points="470,83 467,88 473,88"/>
 <text class="wl" x="456" y="86" text-anchor="end">g<tspan class="sub" dy="3.2">m2</tspan><tspan dy="-3.2">v</tspan><tspan class="sub" dy="3.2">gs2</tspan></text>
 <text class="wl" x="456" y="100" text-anchor="end">= 0 (open)</text>
 <path class="w" d="M540 50 L540 75 L547 77.5 L533 82.5 L547 87.5 L533 92.5 L547 97.5 L533 102.5 L540 105 L540 130"/>
@@ -2837,16 +2860,47 @@ body {
   </div>
   <p><strong>Design knob:</strong> λ ∝ 1/L, so longer transistors give more gain. But a longer L needs a larger overdrive for the same current (V<sub>OV</sub> = √(2I/(K′W/L))), which eats headroom, unless you also widen them, which makes them bigger and slower.</p>
 
-  <div class="example"><span class="tag">Preview · slide 132 example (worked through on Fri 25 Sept)</span>
-    <p>V<sub>DD</sub> = 3 V, V<sub>BIAS1</sub> = 1.2 V, V<sub>BIAS2</sub> = 1.8 V, V<sub>t</sub> = ±0.8 V, λ = 0.04/L, K′<sub>n</sub> = 160 µA/V², K′<sub>p</sub> = 40 µA/V², W<sub>1</sub>/L<sub>1</sub> = 10/1, W<sub>2</sub>/L<sub>2</sub> = 40/1.</p>
-    <ol>
-      <li>Both transistors have 0.4 V overdrive: M1 gives 80 × 10 × 0.4² = 128 µA and M2 gives 20 × 40 × 0.4² = 128 µA. They match.</li>
-      <li>Gain = −2/(0.4 × (0.04 + 0.04)) = <strong>−62.5</strong>, which is <strong>35.9 dB</strong>.</li>
-    </ol>
-    <p>Parts (ii), doubling every W and L, and (iii), doubling only W<sub>2</sub>, come in Friday’s lecture and will be added here.</p>
+  <h3>Worked example: slide 132 (solved on 25 Sept)</h3>
+  <div class="example"><span class="tag">Worked example · slides 132–138 · lecturer’s solution</span>
+    <p>V<sub>DD</sub> = 3 V, V<sub>BIAS1</sub> = 1.2 V, V<sub>BIAS2</sub> = 1.8 V, V<sub>t</sub> = ±0.8 V, λ = 0.04/L, K′<sub>n</sub> = 160 µA/V², K′<sub>p</sub> = 40 µA/V², W<sub>1</sub>/L<sub>1</sub> = 10/1, W<sub>2</sub>/L<sub>2</sub> = 40/1. Careful: this problem uses K′ = 160 and 40, not the usual 200 and 50.</p>
+    <p><strong>(i) Gain with both saturated.</strong> Both overdrives are 0.4 V and the currents match: M1 gives 80 × 10 × 0.4² = 128 µA and M2 gives 20 × 40 × 0.4² = 128 µA. Gain = −2/(0.4 × (0.04 + 0.04)) = <strong>−62.5</strong>, which is <strong>36 dB</strong>.</p>
+    <p><strong>(ii) Every W and L doubled.</strong> W/L is unchanged, so the currents and overdrives are unchanged, both transistors stay saturated and g<sub>m1</sub> stays the same. But λ = 0.04/L halves, so both g<sub>ds</sub> halve and the gain doubles: <strong>−125</strong> (42 dB). On slide 135 the transfer curve is steeper and the gain peak higher.</p>
+    <p><strong>(iii) Only W<sub>2</sub> doubled.</strong> The lecturer singled this one out, so it gets its own section below.</p>
   </div>
 
-  <h3>Homework for Friday (slide 139): the CMOS inverter as an amplifier</h3>
+  <h4>Part (iii): why doubling W<sub>2</sub> alone breaks the stage (slides 136–138)</h4>
+  <p>With V<sub>BIAS2</sub> unchanged, a twice-as-wide M2 wants to pass twice the current, 256 µA. But M1’s current is pinned at 128 µA by V<sub>BIAS1</sub>. Two current sources in series that disagree cannot both get their way.</p>
+  <ol>
+    <li>The only thing free to move is the output voltage. It rises: that gives M1 a bit more V<sub>DS</sub> (slightly more current) and M2 a bit less V<sub>SD</sub> (slightly less current).</li>
+    <li>But in saturation the current hardly depends on V<sub>DS</sub>. Per volt of output rise, M1 gains only about 5 µA and M2 loses about 10 µA (slide 136 uses a round 4 µA/V), nowhere near the 128 µA mismatch.</li>
+    <li>So the output keeps rising. Once it passes 2.6 V (V<sub>SD2</sub> below M2’s 0.4 V overdrive), M2 is in triode and its current falls. The output settles at about 2.87 V, only 0.13 V below V<sub>DD</sub>, where the weakened M2 finally matches M1. The gain has collapsed.</li>
+  </ol>
+  <p class="analogy">a tug of war between two teams that each pull with a fixed force. If the forces are exactly equal, the rope (the output) can rest in the middle. If one team is even slightly stronger, the rope slides all the way to its side. Doubling W<sub>2</sub> makes the PMOS team twice as strong, so the output slides up until M2 runs out of room (triode) and weakens, just below V<sub>DD</sub>.</p>
+  <p><strong>The fix (slide 137):</strong> make M1 carry the doubled current too. Current ∝ V<sub>OV</sub>², so M1’s overdrive must rise by √2: 0.4 × √2 = 0.566 V, giving V<sub>BIAS1</sub> = 0.8 + 0.566 ≈ <strong>1.366 V</strong> (the slide rounds to 1.365 V). Both transistors are saturated again, now at 256 µA. What happens to the gain? g<sub>m1</sub> = √(2K′<sub>n</sub>(W/L)I) rises only by √2, while g<sub>ds</sub> = λI doubles, so the gain falls by √2: 62.5/√2 = <strong>−44</strong> (32.9 dB). The high-gain window has moved to a higher input voltage (slide 138). The other way out, which the lecturer also mentioned, is to double W<sub>1</sub> as well: M1 then carries 256 µA at the same 0.4 V overdrive, so the gain stays at −62.5, at twice the power.</p>
+  <p>The lab reproduces all of this: the current-source preset has buttons for (i), (ii), (iii) and the fix. <a href="#lab" data-preset="cs">Open the amplifier lab</a>.</p>
+  <div class="key"><span class="tag">Remember · the lecturer’s warning</span><p>In a high-gain stage it is hard to get the DC operating point right. The currents must match almost exactly, because the output voltage is the only thing that can absorb a mismatch, and it does so by running towards a rail. He said he will come back to this.</p></div>
+
+  <aside class="exam"><span class="tag">Exam angle</span><p>Winter 2024 Q4 and Winter 2025 Q3 are this stage (<a href="#p-w24q4">P7</a>, <a href="#p-w25q3">P8</a>). Draw the model with M2 reduced to 1/g<sub>ds2</sub>, write the gain, use λ = 0.04/L, and give the answer in dB. For a “what if W or L changes?” part, redo the bias first (does each transistor still want the same current?), and only then the gain.</p></aside>
+
+  <div class="check"><span class="tag">Check yourself</span>
+    <details><summary>In the slide 132 circuit, V<sub>BIAS2</sub> drifts down by 50 mV. What happens?</summary><div class="d-body"><p>M2’s overdrive grows from 0.4 to 0.45 V, so it wants (0.45/0.4)² × 128 ≈ 162 µA while M1 still gives 128 µA. Same story as part (iii): the output runs up towards V<sub>DD</sub>, M2 enters triode and the gain collapses. A 50 mV error is enough.</p></div></details>
+    <details><summary>After the fix in part (iii), why is the gain lower than in part (i), even though the current doubled?</summary><div class="d-body"><p>g<sub>m</sub> grows only as √I, but g<sub>ds</sub> = λI grows in proportion to I. Twice the current gives √2 more g<sub>m</sub> and twice the g<sub>ds</sub>, so the gain drops by √2, from 62.5 to 44. (Same lesson as intrinsic gain: gain ∝ 1/√I.)</p></div></details>
+    <details><summary>Why is g<sub>m2</sub>v<sub>gs2</sub> zero here but not in the CMOS inverter of Lesson 12?</summary><div class="d-body"><p>Here M2’s gate sits at a DC bias, so v<sub>gs2</sub> = 0. In the inverter its gate carries v<sub>in</sub>, so M2 amplifies too.</p></div></details>
+  </div>
+
+  <footer class="lesson-foot"><label class="done-toggle"><input type="checkbox" id="done-l11" data-done="l11"> I’ve got this lesson</label><button class="btn ask-btn" data-ask="l11" hidden>Ask about this lesson</button></footer>
+</section>
+
+
+<!-- =============================== LESSON 12 =============================== -->
+<section id="l12" class="lesson" data-title="Lesson 12 · The CMOS inverter as an amplifier">
+  <header class="lesson-head">
+    <div class="eyebrow"><span class="lnum">Lesson 12</span><span>Section 7 · slide 139 and an application · Fri 25 Sept</span></div>
+    <h2>The CMOS inverter as an amplifier</h2>
+    <p class="idea"><b>The one idea</b>Drive the PMOS gate with the input too. Now both transistors turn the input into signal current, and both currents push the output the same way, so the gain doubles to (g<sub>m1</sub> + g<sub>m2</sub>)/(g<sub>ds1</sub> + g<sub>ds2</sub>) for the same current and overdrive (as on slide 139). It is simply the digital inverter, biased half-way.</p>
+  </header>
+
+  <h3>How it amplifies</h3>
   <figure>
     <div class="fig-box"><svg class="sch" viewBox="0 0 330 240" style="max-width:330px" role="img" aria-label="Slide 139 problem: CMOS inverter used as an amplifier, VDD 3 V, NMOS M1 10/1 and PMOS M2 40/1, both gates driven by VBIAS plus vin." xmlns="http://www.w3.org/2000/svg">
 <path class="w" d="M100 30 L220 30"/>
@@ -2886,19 +2940,222 @@ body {
 <text class="lbl" x="55" y="194.5" text-anchor="end">V<tspan class="sub" dy="3.2">BIAS</tspan></text>
 <path class="w" d="M60 214 L80 214 M63.5 218 L76.5 218 M67 222 L73 222"/>
 </svg></div>
-    <figcaption><b>Slide 139.</b> V<sub>DD</sub> = 3 V, V<sub>BIAS</sub> = 1.5 V, |V<sub>t</sub>| = 1 V, I<sub>D1</sub> = 100 µA, λ<sub>n</sub> = λ<sub>p</sub> = 0.05 V⁻¹, W<sub>1</sub>/L<sub>1</sub> = 10/1, W<sub>2</sub>/L<sub>2</sub> = 40/1, both saturated. (i) Small-signal model. (ii) Gain expression. (iii) Gain value.</figcaption>
+    <figcaption><b>Slide 139.</b> V<sub>DD</sub> = 3 V, V<sub>BIAS</sub> = 1.5 V, |V<sub>t</sub>| = 1 V, I<sub>D1</sub> = 100 µA, λ<sub>n</sub> = λ<sub>p</sub> = 0.05 V⁻¹, W<sub>1</sub>/L<sub>1</sub> = 10/1, W<sub>2</sub>/L<sub>2</sub> = 40/1, both saturated.</figcaption>
   </figure>
-  <p><strong>Hint:</strong> this time M2’s gate carries v<sub>in</sub> too, and its source is at AC ground, so v<sub>gs2</sub> = v<sub>in</sub>. Both transistors push signal current into the output in the same direction.</p>
-  <details class="sol"><summary>Show my worked answer (check against the official solution on Friday)</summary><div class="d-body">
-    <ol type="i">
-      <li>Output node: g<sub>m1</sub>v<sub>in</sub> (M1, to ground) and g<sub>m2</sub>v<sub>in</sub> (M2, to AC ground at V<sub>DD</sub>) both pull the same way, with 1/g<sub>ds1</sub> and 1/g<sub>ds2</sub> in parallel.</li>
-      <li>KCL: (g<sub>m1</sub> + g<sub>m2</sub>)v<sub>in</sub> + (g<sub>ds1</sub> + g<sub>ds2</sub>)v<sub>out</sub> = 0, so <math><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><msub><mi>v</mi><mrow><mi>o</mi><mi>u</mi><mi>t</mi></mrow></msub><msub><mi>v</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub></mfrac></mstyle><mo>=</mo></mrow><mrow><mo form="prefix" stretchy="false">−</mo></mrow><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><msub><mi>g</mi><mrow><mi>m</mi><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>m</mi><mn>2</mn></mrow></msub></mrow><mrow><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>2</mn></mrow></msub></mrow></mfrac></mstyle></mrow></math>.</li>
-      <li>V<sub>OV1</sub> = 1.5 − 1 = 0.5 V and V<sub>OV2</sub> = (3 − 1.5) − 1 = 0.5 V. g<sub>m1</sub> = g<sub>m2</sub> = 2 × 100/0.5 = 400 µA/V; g<sub>ds1</sub> = g<sub>ds2</sub> = 0.05 × 100 = 5 µA/V. Gain = −800/10 = <strong>−80</strong>, which is <strong>38.1 dB</strong>: double what M1 alone with a current-source load would give.</li>
-    </ol>
-    <p>The sizes are consistent: 100 µA at 0.5 V overdrive implies K′<sub>n</sub>(W/L)<sub>1</sub> = K′<sub>p</sub>(W/L)<sub>2</sub>, and a PMOS four times wider matches an NMOS that is four times stronger. The Winter 2025 exam (<a href="#p-w25q4">P9</a>) asked the same thing with a 2.5 V supply.</p>
-  </div></details>
+  <p>Bias the input half-way so both transistors are on and saturated (the analogue inverter from Lesson 1). Then nudge the input up a little:</p>
+  <ol>
+    <li>M1’s V<sub>GS</sub> rises, so M1 wants <em>more</em> current.</li>
+    <li>M2’s V<sub>SG</sub> falls, so M2 wants to give <em>less</em> current.</li>
+    <li>They are in series and must carry the same current, so the output moves to settle the argument. It falls, which gives M2 more V<sub>SD</sub> and M1 less V<sub>DS</sub>.</li>
+    <li>In saturation the current depends strongly on V<sub>GS</sub> but only weakly on V<sub>DS</sub>, so the output has to move much further than the input did. That ratio is the gain.</li>
+  </ol>
+  <p>Compare Lesson 11: there M2 had a fixed gate and just sat there as a high resistance. Here M2 actively helps: when M1 pulls harder, M2 lets go.</p>
 
-  <h3>The common-source family so far</h3>
+  <h3>Small-signal model and gain</h3>
+  <figure class="wide">
+    <div class="fig-box"><svg class="sch" viewBox="0 0 640 250" style="max-width:640px" role="img" aria-label="CMOS inverter amplifier (slide 139) and its small-signal circuit. Both gates carry vin and both sources sit at AC ground, so gm1 vin and gm2 vin both pull current out of the output node, in parallel with 1/gds1 and 1/gds2." xmlns="http://www.w3.org/2000/svg">
+<text class="lbl strong" x="20" y="18" text-anchor="start">Circuit (slide 139)</text>
+<path class="w" d="M110 36 L230 36"/>
+<text class="lbl strong" x="235" y="40" text-anchor="start">V<tspan class="sub" dy="3.2">DD</tspan></text>
+<path class="pm" d="M130 84 L148 84 M148 70 L148 98"/>
+<path class="pm thick" d="M154 67 L154 101"/>
+<path class="pm" d="M154 73 L172 73 L172 52 M154 95 L172 95 L172 116"/>
+<polygon class="ah-pm" points="160,73 166,69.4 166,76.6"/>
+<text class="lbl strong" x="180" y="81" text-anchor="start">M2</text>
+<path class="w" d="M172 52 L172 36"/>
+<circle class="dot" cx="172" cy="124" r="2.7"/>
+<path class="w" d="M172 116 L172 124"/>
+<path class="w" d="M172 124 L230 124"/>
+<circle class="odot" cx="233" cy="124" r="3"/>
+<text class="lbl" x="233" y="114" text-anchor="middle">v<tspan class="sub" dy="3.2">out</tspan></text>
+<path class="nm" d="M130 164 L148 164 M148 150 L148 178"/>
+<path class="nm thick" d="M154 147 L154 181"/>
+<path class="nm" d="M154 153 L172 153 L172 132 M154 175 L172 175 L172 196"/>
+<polygon class="ah-nm" points="167,175 161,171.4 161,178.6"/>
+<text class="lbl strong" x="180" y="161" text-anchor="start">M1</text>
+<path class="w" d="M172 124 L172 132"/>
+<path class="w" d="M172 196 L172 214"/>
+<path class="w" d="M162 214 L182 214 M165.5 218 L178.5 218 M169 222 L175 222"/>
+<path class="w" d="M130 84 L130 164"/>
+<circle class="dot" cx="130" cy="124" r="2.7"/>
+<path class="w" d="M130 124 L80 124"/>
+<path class="w" d="M80 124 L80 135.5"/>
+<path class="w" d="M80 157.5 L80 169"/>
+<circle class="w src" cx="80" cy="146.5" r="11"/>
+<path class="w" d="M74 146.5 C76 139.5 79 139.5 80 146.5 C81 153.5 84 153.5 86 146.5"/>
+<text class="lbl" x="64" y="150.5" text-anchor="end">v<tspan class="sub" dy="3.2">in</tspan></text>
+<path class="w" d="M80 169 L80 188.5"/>
+<path class="w" d="M80 194.5 L80 214"/>
+<path class="w" d="M70 188.5 L90 188.5"/>
+<path class="w thick" d="M75 194.5 L85 194.5"/>
+<text class="lbl" x="65" y="195.5" text-anchor="end">V<tspan class="sub" dy="3.2">BIAS</tspan></text>
+<path class="w" d="M70 214 L90 214 M73.5 218 L86.5 218 M77 222 L83 222"/>
+<text class="bigsym" x="300" y="130" text-anchor="middle">⇒</text>
+<text class="lbl strong" x="350" y="18" text-anchor="start">Small-signal</text>
+<path class="w" d="M440 50 L560 50"/>
+<text class="wl" x="562" y="54" text-anchor="start">AC ground</text>
+<circle class="dot" cx="470" cy="50" r="2.7"/>
+<circle class="dot" cx="540" cy="50" r="2.7"/>
+<path class="w" d="M470 50 L470 79"/>
+<path class="w" d="M470 101 L470 130"/>
+<circle class="ss src" cx="470" cy="90" r="11"/>
+<path class="ss" d="M470 96 L470 87"/>
+<polygon class="ah-ss" points="470,83 467,88 473,88"/>
+<text class="lbl" x="454" y="94" text-anchor="end">g<tspan class="sub" dy="3.2">m2</tspan><tspan dy="-3.2">v</tspan><tspan class="sub" dy="3.2">in</tspan></text>
+<text class="wl" x="454" y="108" text-anchor="end">(M2)</text>
+<path class="w" d="M540 50 L540 75 L547 77.5 L533 82.5 L547 87.5 L533 92.5 L547 97.5 L533 102.5 L540 105 L540 130"/>
+<text class="lbl" x="553" y="94" text-anchor="start">1/g<tspan class="sub" dy="3.2">ds2</tspan></text>
+<path class="w" d="M440 130 L600 130"/>
+<circle class="dot" cx="470" cy="130" r="2.7"/>
+<circle class="dot" cx="540" cy="130" r="2.7"/>
+<text class="lbl" x="604" y="134" text-anchor="start">v<tspan class="sub" dy="3.2">out</tspan></text>
+<path class="w" d="M470 130 L470 159"/>
+<path class="w" d="M470 181 L470 210"/>
+<circle class="ss src" cx="470" cy="170" r="11"/>
+<path class="ss" d="M470 164 L470 173"/>
+<polygon class="ah-ss" points="470,177 467,172 473,172"/>
+<text class="lbl" x="454" y="174" text-anchor="end">g<tspan class="sub" dy="3.2">m1</tspan><tspan dy="-3.2">v</tspan><tspan class="sub" dy="3.2">in</tspan></text>
+<text class="wl" x="454" y="188" text-anchor="end">(M1)</text>
+<path class="w" d="M540 130 L540 155 L547 157.5 L533 162.5 L547 167.5 L533 172.5 L547 177.5 L533 182.5 L540 185 L540 210"/>
+<text class="lbl" x="553" y="174" text-anchor="start">1/g<tspan class="sub" dy="3.2">ds1</tspan></text>
+<path class="w" d="M440 210 L560 210"/>
+<circle class="dot" cx="470" cy="210" r="2.7"/>
+<circle class="dot" cx="540" cy="210" r="2.7"/>
+<path class="w" d="M490 210 L510 210 M493.5 214 L506.5 214 M497 218 L503 218"/>
+<text class="wl" x="470" y="240" text-anchor="middle">Both sources pull current out of v<tspan class="sub" dy="3.2">out</tspan><tspan dy="-3.2">.</tspan></text>
+</svg></div>
+    <figcaption><b>Slide 139 solution.</b> M2’s source is at V<sub>DD</sub> (AC ground) and its gate carries v<sub>in</sub>, so v<sub>gs2</sub> = v<sub>in</sub>. Its current source points from drain to source, as in every MOSFET model (Lesson 7).</figcaption>
+  </figure>
+  <p>KCL at the output, counting currents leaving: g<sub>m1</sub>v<sub>in</sub> + g<sub>m2</sub>v<sub>in</sub> + (g<sub>ds1</sub> + g<sub>ds2</sub>)v<sub>out</sub> = 0, so</p>
+  <div class="key"><span class="tag">Remember · CMOS inverter amplifier</span>
+    <math display="block" class="tml-display" style="display:block math;"><mrow><mfrac><msub><mi>v</mi><mrow><mi>o</mi><mi>u</mi><mi>t</mi></mrow></msub><msub><mi>v</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub></mfrac><mo>=</mo><mo form="prefix" stretchy="false">−</mo><mfrac><mrow><msub><mi>g</mi><mrow><mi>m</mi><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>m</mi><mn>2</mn></mrow></msub></mrow><mrow><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>2</mn></mrow></msub></mrow></mfrac><mo>=</mo><mo form="prefix" stretchy="false">−</mo><mfrac><mn>4</mn><mrow><mo form="prefix" stretchy="false" lspace="0em" rspace="0em">(</mo><msub><mi>λ</mi><mi>n</mi></msub><mo>+</mo><msub><mi>λ</mi><mi>p</mi></msub><mo form="postfix" stretchy="false">)</mo><mspace width="0.1667em"></mspace><msub><mi>V</mi><mrow><mi>O</mi><mi>V</mi></mrow></msub></mrow></mfrac></mrow></math>
+    <p style="margin-top:4px">The second form assumes the same current and the same overdrive V<sub>OV</sub> in both transistors (g<sub>m</sub> = 2I/V<sub>OV</sub>, g<sub>ds</sub> = λI). It is exactly twice the current-source-load gain at the same bias.</p>
+  </div>
+
+  <div class="example"><span class="tag">Worked example · slide 139 · lecturer’s solution (25 Sept)</span>
+    <ol type="i">
+      <li><strong>Model:</strong> as in the figure. g<sub>m1</sub>v<sub>in</sub> and g<sub>m2</sub>v<sub>in</sub> both run from the output to AC ground, with 1/g<sub>ds1</sub> and 1/g<sub>ds2</sub> in parallel.</li>
+      <li><strong>Gain expression:</strong> −(g<sub>m1</sub> + g<sub>m2</sub>)/(g<sub>ds1</sub> + g<sub>ds2</sub>). This is exact for the model; the question’s g<sub>m</sub> ≫ g<sub>ds</sub> assumption isn’t even needed.</li>
+      <li><strong>Numbers:</strong> V<sub>OV1</sub> = 1.5 − 1 = 0.5 V and V<sub>OV2</sub> = (3 − 1.5) − 1 = 0.5 V. g<sub>m1</sub> = g<sub>m2</sub> = 2 × 100/0.5 = 400 µA/V; g<sub>ds1</sub> = g<sub>ds2</sub> = 0.05 × 100 = 5 µA/V. Gain = −800/10 = <strong>−80</strong>, which is <strong>38 dB</strong>.</li>
+    </ol>
+    <p>Sizes check: 100 µA at 0.5 V overdrive in both means K′<sub>n</sub>(W/L)<sub>1</sub> = K′<sub>p</sub>(W/L)<sub>2</sub>. A PMOS four times wider matches an NMOS that is four times stronger, and that matching is what puts the high-gain point at V<sub>DD</sub>/2.</p>
+  </div>
+  <p><strong>Same warning as Lesson 11:</strong> the high-gain window is narrow. It sits at the inverter’s switching point, where both transistors carry the same current in saturation. If the two drive strengths don’t match, that point moves away from V<sub>DD</sub>/2. In the <a href="#lab" data-preset="inv">amplifier lab (inverter preset)</a>, change the PMOS width and watch it move.</p>
+
+  <h3>Where it is used: a clock buffer</h3>
+  <p>The lecturer’s example comes from radio chips. An RF transceiver mixes a signal of several GHz down to baseband, and the mixer needs a clean clock. That clock often comes from an off-chip crystal oscillator and arrives through a coupling capacitor as a small sine wave, at a DC level you don’t control. A chain of inverter amplifiers gains it up until it becomes a square wave from 0 to V<sub>DD</sub>. The trick is biasing each stage inside its narrow high-gain window.</p>
+  <figure class="wide">
+    <div class="fig-box"><svg class="sch" viewBox="0 0 600 280" style="max-width:600px" role="img" aria-label="Clock buffer from the 25 September lecture. A small sine wave from a crystal oscillator arrives through a capacitor C at a first inverter, M1 and M2, whose input and output are joined by a resistor R (or a plain wire). No DC current can flow through R, so that inverter settles at its switching point, about VDD/2, with both transistors saturated. The second inverter, M3 and M4, is an identical copy, so its output sits at the same DC voltage and it is biased in its high-gain region. A few more stages turn the sine into a square wave from 0 to VDD." xmlns="http://www.w3.org/2000/svg">
+<path class="w" d="M150 30 L420 30"/>
+<text class="lbl strong" x="425" y="34" text-anchor="start">V<tspan class="sub" dy="3.2">DD</tspan></text>
+<path class="w" d="M50 246 L420 246"/>
+<path class="w" d="M272 246 L292 246 M275.5 250 L288.5 250 M279 254 L285 254"/>
+<path class="pm" d="M170 78 L188 78 M188 64 L188 92"/>
+<path class="pm thick" d="M194 61 L194 95"/>
+<path class="pm" d="M194 67 L212 67 L212 46 M194 89 L212 89 L212 110"/>
+<polygon class="ah-pm" points="200,67 206,63.4 206,70.6"/>
+<text class="lbl strong" x="220" y="75" text-anchor="start">M2</text>
+<path class="w" d="M212 46 L212 30"/>
+<path class="nm" d="M170 182 L188 182 M188 168 L188 196"/>
+<path class="nm thick" d="M194 165 L194 199"/>
+<path class="nm" d="M194 171 L212 171 L212 150 M194 193 L212 193 L212 214"/>
+<polygon class="ah-nm" points="207,193 201,189.4 201,196.6"/>
+<text class="lbl strong" x="220" y="179" text-anchor="start">M1</text>
+<path class="w" d="M212 214 L212 246"/>
+<path class="w" d="M212 110 L212 150"/>
+<path class="w" d="M170 78 L150 78"/>
+<path class="w" d="M170 182 L150 182"/>
+<path class="w" d="M150 78 L150 182"/>
+<circle class="dot" cx="150" cy="130" r="2.7"/>
+<circle class="dot" cx="212" cy="130" r="2.7"/>
+<path class="pm" d="M310 78 L328 78 M328 64 L328 92"/>
+<path class="pm thick" d="M334 61 L334 95"/>
+<path class="pm" d="M334 67 L352 67 L352 46 M334 89 L352 89 L352 110"/>
+<polygon class="ah-pm" points="340,67 346,63.4 346,70.6"/>
+<text class="lbl strong" x="360" y="75" text-anchor="start">M4</text>
+<path class="w" d="M352 46 L352 30"/>
+<path class="nm" d="M310 182 L328 182 M328 168 L328 196"/>
+<path class="nm thick" d="M334 165 L334 199"/>
+<path class="nm" d="M334 171 L352 171 L352 150 M334 193 L352 193 L352 214"/>
+<polygon class="ah-nm" points="347,193 341,189.4 341,196.6"/>
+<text class="lbl strong" x="360" y="179" text-anchor="start">M3</text>
+<path class="w" d="M352 214 L352 246"/>
+<path class="w" d="M352 110 L352 150"/>
+<path class="w" d="M310 78 L290 78"/>
+<path class="w" d="M310 182 L290 182"/>
+<path class="w" d="M290 78 L290 182"/>
+<circle class="dot" cx="290" cy="130" r="2.7"/>
+<circle class="dot" cx="352" cy="130" r="2.7"/>
+<path class="w" d="M150 130 L166 130 L168.5 137 L173.5 123 L178.5 137 L183.5 123 L188.5 137 L193.5 123 L196 130 L212 130"/>
+<text class="lbl" x="181" y="118" text-anchor="middle">R</text>
+<path class="w" d="M212 130 L290 130"/>
+<rect class="pill" x="229.175" y="106.5" width="53.65" height="16" rx="3"/>
+<text class="pilltxt" x="256" y="118" text-anchor="middle">≈ V<tspan class="sub" dy="3.2">DD</tspan><tspan dy="-3.2">/2</tspan></text>
+<path class="w" d="M96 130 L120 130"/>
+<path class="w" d="M126 130 L150 130"/>
+<path class="w thick" d="M120 121 L120 139 M126 121 L126 139"/>
+<text class="lbl" x="123" y="117" text-anchor="middle">C</text>
+<path class="w" d="M50 130 L96 130"/>
+<path class="w" d="M50 130 L50 177"/>
+<path class="w" d="M50 199 L50 246"/>
+<circle class="w src" cx="50" cy="188" r="11"/>
+<path class="w" d="M44 188 C46 181 49 181 50 188 C51 195 54 195 56 188"/>
+<text class="lbl" x="34" y="192" text-anchor="end">v<tspan class="sub" dy="3.2">clk</tspan></text>
+<text class="wl" x="50" y="118" text-anchor="middle">crystal</text>
+<path class="w" d="M352 130 L430 130"/>
+<rect class="pill" x="373.175" y="106.5" width="53.65" height="16" rx="3"/>
+<text class="pilltxt" x="400" y="118" text-anchor="middle">≈ V<tspan class="sub" dy="3.2">DD</tspan><tspan dy="-3.2">/2</tspan></text>
+<path class="w dash" d="M430 130 L468 130"/>
+<path class="w" d="M474 142 L484 142 L484 118 L502 118 L502 142 L520 142 L520 118 L538 118 L538 142 L556 142 L556 118 L566 118"/>
+<text class="wl" x="520" y="104" text-anchor="middle">a few more stages</text>
+<text class="wl" x="520" y="162" text-anchor="middle">square wave, 0 to V<tspan class="sub" dy="3.2">DD</tspan></text>
+<text class="lbl strong" x="206" y="270" text-anchor="middle">Sets the bias</text>
+<text class="lbl strong" x="346" y="270" text-anchor="middle">A copy: high gain</text>
+</svg></div>
+    <figcaption><b>From the 25 Sept lecture.</b> R can be a plain wire (the lecturer’s first version) or a large resistor (his second).</figcaption>
+  </figure>
+  <ol>
+    <li><strong>The capacitor blocks the unknown DC level</strong> of the incoming clock, so the chip can set its own.</li>
+    <li><strong>Stage 1 biases itself.</strong> Its input is tied to its output, so M1 and M2 are both diode-connected. The node settles at the inverter’s switching point, about V<sub>DD</sub>/2 when the two have equal drive strength, with both saturated.</li>
+    <li><strong>Stage 2 is a copy.</strong> M3 matches M1 and M4 matches M2 (same W/L). Its gates sit at stage 1’s voltage, so it carries the same currents at the same V<sub>GS</sub>, and its output settles at that same voltage. It is biased in its high-gain region by construction, not by luck.</li>
+    <li>A few more copies turn the millivolt-level sine into a full-swing square wave.</li>
+  </ol>
+  <p class="analogy">a replica. Instead of calculating the right bias voltage and hoping it is accurate, you build a twin of the stage, let the twin find its own balance point, and hand that voltage to the real stage.</p>
+
+  <h4>The resistor version: bias and gain from stage 1</h4>
+  <p>With a plain wire, stage 1 only sets the bias: its output equals its input, so it adds no gain. Replace the wire with a large resistor R. No DC current flows through R (the input is capacitor-coupled and gates draw no current), so both ends of R sit at the same DC voltage and the bias is unchanged. But the signal now sees a stage with gain:</p>
+  <div class="key"><span class="tag">Remember · inverter with a feedback resistor</span>
+    <math display="block" class="tml-display" style="display:block math;"><mrow><mfrac><msub><mi>v</mi><mrow><mi>o</mi><mi>u</mi><mi>t</mi></mrow></msub><msub><mi>v</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub></mfrac><mo>=</mo><mo form="prefix" stretchy="false">−</mo><mfrac><mrow><msub><mi>g</mi><mrow><mi>m</mi><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>m</mi><mn>2</mn></mrow></msub><mo>−</mo><mn>1</mn><mi>/</mi><mi>R</mi></mrow><mrow><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>2</mn></mrow></msub><mo>+</mo><mn>1</mn><mi>/</mi><mi>R</mi></mrow></mfrac></mrow></math>
+  </div>
+  <details class="sol"><summary>Show the derivation (the lecturer suggested it as practice)</summary><div class="d-body">
+    <p>Same model as above, plus R from v<sub>in</sub> to v<sub>out</sub>, which carries (v<sub>out</sub> − v<sub>in</sub>)/R out of the output node. KCL at the output:</p>
+    <math display="block" class="tml-display" style="display:block math;"><mtable displaystyle="true" class="tml-jot"><mtr><mtd class="tml-right" style="padding-left:0em;padding-right:0em;"><mrow><mo form="prefix" stretchy="false">(</mo><msub><mi>g</mi><mrow><mi>m</mi><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>m</mi><mn>2</mn></mrow></msub><mo form="postfix" stretchy="false">)</mo><mspace width="0.1667em"></mspace><msub><mi>v</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub></mrow></mtd><mtd class="tml-left" style="padding-left:0em;padding-right:0em;"><mrow><mo>+</mo><mo form="prefix" stretchy="false">(</mo><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>2</mn></mrow></msub><mo form="postfix" stretchy="false">)</mo><mspace width="0.1667em"></mspace><msub><mi>v</mi><mrow><mi>o</mi><mi>u</mi><mi>t</mi></mrow></msub></mrow></mtd></mtr><mtr><mtd class="tml-right" style="padding-left:0em;padding-right:0em;"><mrow></mrow></mtd><mtd class="tml-left" style="padding-left:0em;padding-right:0em;"><mrow><mo>+</mo><mfrac><mrow><msub><mi>v</mi><mrow><mi>o</mi><mi>u</mi><mi>t</mi></mrow></msub><mo>−</mo><msub><mi>v</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub></mrow><mi>R</mi></mfrac><mo>=</mo><mn>0</mn></mrow></mtd></mtr></mtable></math>
+    <p>Collect the v<sub>out</sub> terms: v<sub>out</sub>(g<sub>ds1</sub> + g<sub>ds2</sub> + 1/R) = −v<sub>in</sub>(g<sub>m1</sub> + g<sub>m2</sub> − 1/R), which is the result. The −1/R on top is signal leaking forward through R.</p>
+    <p><strong>Sanity checks:</strong> R → ∞ gives back −(g<sub>m1</sub> + g<sub>m2</sub>)/(g<sub>ds1</sub> + g<sub>ds2</sub>). R → 0 gives (1/R)/(1/R) = +1: the output simply equals the input, which is the plain-wire case.</p>
+    <p><strong>Numbers (my illustration, slide 139 values):</strong> R = 1 MΩ gives −(800 − 1)/(10 + 1) ≈ −73 (37 dB); R = 100 kΩ gives −(800 − 10)/(10 + 10) ≈ −40 (32 dB).</p>
+  </div></details>
+  <p>Why bother? Every stage in the chain draws current while the signal is switching, so getting gain out of the biasing stage means fewer stages and less power.</p>
+
+  <aside class="exam"><span class="tag">Exam angle</span><p>Winter 2025 Q4 is this exact circuit with a 2.5 V supply (<a href="#p-w25q4">P9</a>). Winter 2022 Q3 (<a href="#p-w22q3">P10</a>) uses the feedback-resistor trick on a PMOS driver with an NMOS current-source load: the same KCL, with only one g<sub>m</sub> on top.</p></aside>
+
+  <div class="check"><span class="tag">Check yourself</span>
+    <details><summary>In the slide 139 circuit, disconnect M2’s gate from the input and tie it to a DC voltage that keeps 100 µA flowing. What is the gain now?</summary><div class="d-body"><p>M2 becomes a plain current-source load (Lesson 11): gain = −g<sub>m1</sub>/(g<sub>ds1</sub> + g<sub>ds2</sub>) = −400/10 = −40 (32 dB). Driving both gates doubles it to −80.</p></div></details>
+    <details><summary>In the clock buffer, why does no DC current flow through R?</summary><div class="d-body"><p>One end of R connects only to transistor gates and to a coupling capacitor, and neither passes DC current. There is nowhere for a DC current in R to go, so both ends of R sit at the same DC voltage.</p></div></details>
+    <details><summary>Why does stage 2 of the clock buffer land in its high-gain region without any tuning?</summary><div class="d-body"><p>It is an identical copy of stage 1 with the same gate voltage, so its transistors want the same currents at the same V<sub>GS</sub>. The only output voltage that balances them is the same voltage as stage 1’s, which is the switching point where both are saturated.</p></div></details>
+  </div>
+
+  <footer class="lesson-foot"><label class="done-toggle"><input type="checkbox" id="done-l12" data-done="l12"> I’ve got this lesson</label><button class="btn ask-btn" data-ask="l12" hidden>Ask about this lesson</button></footer>
+</section>
+
+<!-- =============================== LESSON 13 =============================== -->
+<section id="l13" class="lesson" data-title="Lesson 13 · Two-port analysis and y-parameters">
+  <header class="lesson-head">
+    <div class="eyebrow"><span class="lnum">Lesson 13</span><span>Section 8 · slides 140–146 · Fri 25 Sept</span></div>
+    <h2>Two-port analysis: gain by inspection</h2>
+    <p class="idea"><b>The one idea</b>Every stage so far does the same two things: it turns the input voltage into a signal current (the stage’s transconductance G<sub>m</sub>), and that current flows into all the conductances at the output node. So gain = −G<sub>m</sub>/(G<sub>out</sub> + G<sub>L</sub>). Find G<sub>m</sub> by shorting the output; find G<sub>out</sub> by shorting the input.</p>
+  </header>
+
+  <h3>The pattern (slide 141)</h3>
   <figure class="wide">
     <div class="fig-box"><svg class="sch" viewBox="0 0 640 200" style="max-width:640px" role="img" aria-label="The four common-source stages so far, all with the same NMOS driver M1: ideal current source load, resistor load, diode-connected PMOS load and PMOS current-source load." xmlns="http://www.w3.org/2000/svg">
 <path class="w" d="M50 26 L110 26"/>
@@ -2981,35 +3238,324 @@ body {
 <circle class="odot" cx="501" cy="130" r="3"/>
 <text class="lbl strong" x="546" y="194" text-anchor="middle">PMOS current source</text>
 </svg></div>
-    <figcaption><b>Slide 141 preview.</b> The same NMOS driver M1 with four different loads.</figcaption>
+    <figcaption><b>Slide 141.</b> The same NMOS driver M1 with the four loads from Lessons 8–11.</figcaption>
   </figure>
   <div class="tbl-wrap">
     <table>
-      <thead><tr><th>Load</th><th>Gain v<sub>out</sub>/v<sub>in</sub></th><th>Typical size</th></tr></thead>
+      <thead><tr><th>Load</th><th>Gain v<sub>out</sub>/v<sub>in</sub></th><th>Conductance at the output</th><th>Typical gain</th></tr></thead>
       <tbody>
-        <tr><td>Ideal current source</td><td><math><mrow><mo>−</mo></mrow><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><msub><mi>g</mi><mrow><mi>m</mi><mn>1</mn></mrow></msub><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>1</mn></mrow></msub></mfrac></mstyle></mrow></math></td><td>~100 (the limit)</td></tr>
-        <tr><td>Resistor R<sub>L</sub></td><td><math><mrow><mo>−</mo></mrow><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><msub><mi>g</mi><mrow><mi>m</mi><mn>1</mn></mrow></msub><mrow><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>1</mn></mrow></msub><mo>+</mo><mn>1</mn><mi>/</mi><msub><mi>R</mi><mi>L</mi></msub></mrow></mfrac></mstyle><mo>≈</mo></mrow><mrow><mo form="prefix" stretchy="false">−</mo></mrow><mrow><msub><mi>g</mi><mrow><mi>m</mi><mn>1</mn></mrow></msub><msub><mi>R</mi><mi>L</mi></msub></mrow></math></td><td>~10, headroom-limited</td></tr>
-        <tr><td>Diode-connected</td><td><math><mrow><mo>−</mo></mrow><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><msub><mi>g</mi><mrow><mi>m</mi><mn>1</mn></mrow></msub><mrow><msub><mi>g</mi><mrow><mi>m</mi><mn>2</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>2</mn></mrow></msub></mrow></mfrac></mstyle><mo>≈</mo></mrow><mrow><mo form="prefix" stretchy="false">−</mo></mrow><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><msub><mi>g</mi><mrow><mi>m</mi><mn>1</mn></mrow></msub><msub><mi>g</mi><mrow><mi>m</mi><mn>2</mn></mrow></msub></mfrac></mstyle></mrow></math></td><td>~10, but linear</td></tr>
-        <tr><td>Current source (PMOS)</td><td><math><mrow><mo>−</mo></mrow><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><msub><mi>g</mi><mrow><mi>m</mi><mn>1</mn></mrow></msub><mrow><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>2</mn></mrow></msub></mrow></mfrac></mstyle></mrow></math></td><td>~50–100</td></tr>
+        <tr><td>Ideal current source</td><td><math><mrow><mo>−</mo></mrow><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><msub><mi>g</mi><mrow><mi>m</mi><mn>1</mn></mrow></msub><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>1</mn></mrow></msub></mfrac></mstyle></mrow></math></td><td>g<sub>ds1</sub></td><td>~100 (the limit)</td></tr>
+        <tr><td>Resistor R<sub>L</sub></td><td><math><mrow><mo>−</mo></mrow><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><msub><mi>g</mi><mrow><mi>m</mi><mn>1</mn></mrow></msub><mrow><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>1</mn></mrow></msub><mo>+</mo><mn>1</mn><mi>/</mi><msub><mi>R</mi><mi>L</mi></msub></mrow></mfrac></mstyle></mrow></math></td><td>g<sub>ds1</sub> + 1/R<sub>L</sub></td><td>~10, headroom-limited</td></tr>
+        <tr><td>Diode-connected PMOS</td><td><math><mrow><mo>−</mo></mrow><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><msub><mi>g</mi><mrow><mi>m</mi><mn>1</mn></mrow></msub><mrow><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>m</mi><mn>2</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>2</mn></mrow></msub></mrow></mfrac></mstyle></mrow></math></td><td>g<sub>ds1</sub> + g<sub>m2</sub> + g<sub>ds2</sub></td><td>~10, but linear</td></tr>
+        <tr><td>PMOS current source</td><td><math><mrow><mo>−</mo></mrow><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><msub><mi>g</mi><mrow><mi>m</mi><mn>1</mn></mrow></msub><mrow><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>2</mn></mrow></msub></mrow></mfrac></mstyle></mrow></math></td><td>g<sub>ds1</sub> + g<sub>ds2</sub></td><td>~50–100</td></tr>
       </tbody>
     </table>
   </div>
-  <p><strong>One pattern covers all four:</strong> gain = −g<sub>m1</sub> divided by the <em>sum of all the conductances at the output node</em>. Spot the conductances, add them, divide. Section 8 (two-port analysis and y-parameters) formalises exactly this.</p>
+  <p>On top, always g<sub>m1</sub>: how much signal current the input creates. Underneath, always the total conductance at the output node: what you see looking down (g<sub>ds1</sub>) plus what you see looking up (the load). Conductances in parallel simply add, which is why the lecturer works in conductances here rather than resistances.</p>
+  <p class="analogy">a pump and some leaks. The stage pumps signal current into the output node (G<sub>m</sub>v<sub>in</sub>), and every conductance at the node is a leak. The output voltage settles where the leaks carry away exactly what the pump pushes in: v<sub>out</sub> = pumped current ÷ total leak.</p>
 
-  <aside class="exam"><span class="tag">Exam angle</span><p>Winter 2024 Q4 and Winter 2025 Q3/Q4 are this stage. Draw the model with M2 reduced to 1/g<sub>ds2</sub> (or with g<sub>m2</sub>v<sub>in</sub> for the inverter), write the gain, use λ = 0.04/L, and give the answer in dB.</p></aside>
+  <h3>y-parameters (slide 142)</h3>
+  <p>This is the theory behind the pattern. Treat any linear circuit with no independent sources inside (a small-signal model qualifies) as a black box with an input port and an output port. Four admittances describe it completely:</p>
+  <figure class="wide">
+    <div class="fig-box"><svg class="sch" viewBox="0 0 640 236" style="max-width:640px" role="img" aria-label="A two-port network described by y-parameters (slide 142). Input port on the left with current i1 flowing in and voltage v1; output port on the right with current i2 flowing in and voltage v2. Inside, the input admittance y11 sits in parallel with a current source y12 v2, and at the output a current source y21 v1 sits in parallel with the output admittance y22." xmlns="http://www.w3.org/2000/svg">
+<rect class="w dim dash" x="150" y="40" width="360" height="164" rx="4"/>
+<text class="wl" x="330" y="196" text-anchor="middle">Two-port network (linear, no independent sources)</text>
+<circle class="odot" cx="60" cy="70" r="3"/>
+<circle class="odot" cx="60" cy="170" r="3"/>
+<path class="w" d="M63 70 L265 70"/>
+<path class="w" d="M63 170 L265 170"/>
+<circle class="dot" cx="200" cy="70" r="2.7"/>
+<circle class="dot" cx="200" cy="170" r="2.7"/>
+<path class="w" d="M200 70 L200 105 L207 107.5 L193 112.5 L207 117.5 L193 122.5 L207 127.5 L193 132.5 L200 135 L200 170"/>
+<text class="lbl" x="213" y="124" text-anchor="start">y<tspan class="sub" dy="3.2">11</tspan></text>
+<path class="w" d="M265 70 L265 109"/>
+<path class="w" d="M265 131 L265 170"/>
+<circle class="ss src" cx="265" cy="120" r="11"/>
+<path class="ss" d="M265 114 L265 123"/>
+<polygon class="ah-ss" points="265,127 262,122 268,122"/>
+<text class="lbl" x="281" y="124" text-anchor="start">y<tspan class="sub" dy="3.2">12</tspan><tspan dy="-3.2">v</tspan><tspan class="sub" dy="3.2">2</tspan></text>
+<path class="w cur" d="M96 58 L108 58"/>
+<polygon class="ah-cur" points="112,58 107,55 107,61"/>
+<text class="curtxt" x="104" y="51" text-anchor="middle">i<tspan class="sub" dy="3.2">1</tspan></text>
+<text class="lbl" x="64" y="92" text-anchor="middle">+</text>
+<text class="lbl strong" x="64" y="124" text-anchor="middle">v<tspan class="sub" dy="3.2">1</tspan></text>
+<text class="lbl" x="64" y="156" text-anchor="middle">−</text>
+<circle class="odot" cx="590" cy="70" r="3"/>
+<circle class="odot" cx="590" cy="170" r="3"/>
+<path class="w" d="M395 70 L587 70"/>
+<path class="w" d="M395 170 L587 170"/>
+<circle class="dot" cx="460" cy="70" r="2.7"/>
+<circle class="dot" cx="460" cy="170" r="2.7"/>
+<path class="w" d="M395 70 L395 109"/>
+<path class="w" d="M395 131 L395 170"/>
+<circle class="ss src" cx="395" cy="120" r="11"/>
+<path class="ss" d="M395 114 L395 123"/>
+<polygon class="ah-ss" points="395,127 392,122 398,122"/>
+<text class="lbl" x="379" y="124" text-anchor="end">y<tspan class="sub" dy="3.2">21</tspan><tspan dy="-3.2">v</tspan><tspan class="sub" dy="3.2">1</tspan></text>
+<path class="w" d="M460 70 L460 105 L467 107.5 L453 112.5 L467 117.5 L453 122.5 L467 127.5 L453 132.5 L460 135 L460 170"/>
+<text class="lbl" x="473" y="124" text-anchor="start">y<tspan class="sub" dy="3.2">22</tspan></text>
+<path class="w cur" d="M558 58 L546 58"/>
+<polygon class="ah-cur" points="542,58 547,55 547,61"/>
+<text class="curtxt" x="550" y="51" text-anchor="middle">i<tspan class="sub" dy="3.2">2</tspan></text>
+<text class="lbl" x="606" y="92" text-anchor="middle">+</text>
+<text class="lbl strong" x="606" y="124" text-anchor="middle">v<tspan class="sub" dy="3.2">2</tspan></text>
+<text class="lbl" x="606" y="156" text-anchor="middle">−</text>
+</svg></div>
+    <figcaption><b>Slide 142.</b> Both currents are defined as flowing into the box, and each depends on both port voltages.</figcaption>
+  </figure>
+  <math display="block" class="tml-display" style="display:block math;"><mrow><msub><mi>i</mi><mn>1</mn></msub><mo>=</mo><msub><mi>y</mi><mn>11</mn></msub><msub><mi>v</mi><mn>1</mn></msub><mo>+</mo><msub><mi>y</mi><mn>12</mn></msub><msub><mi>v</mi><mn>2</mn></msub><mspace width="2em"></mspace><mspace width="2em"></mspace><msub><mi>i</mi><mn>2</mn></msub><mo>=</mo><msub><mi>y</mi><mn>21</mn></msub><msub><mi>v</mi><mn>1</mn></msub><mo>+</mo><msub><mi>y</mi><mn>22</mn></msub><msub><mi>v</mi><mn>2</mn></msub></mrow></math>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Parameter</th><th>Name</th><th>How to measure it</th></tr></thead>
+      <tbody>
+        <tr><td>y<sub>11</sub> = i<sub>1</sub>/v<sub>1</sub></td><td>Input admittance</td><td>Short the output (v<sub>2</sub> = 0)</td></tr>
+        <tr><td>y<sub>12</sub> = i<sub>1</sub>/v<sub>2</sub></td><td>Reverse transconductance</td><td>Short the input (v<sub>1</sub> = 0)</td></tr>
+        <tr><td>y<sub>21</sub> = i<sub>2</sub>/v<sub>1</sub></td><td>Forward transconductance</td><td>Short the output (v<sub>2</sub> = 0)</td></tr>
+        <tr><td>y<sub>22</sub> = i<sub>2</sub>/v<sub>2</sub></td><td>Output admittance</td><td>Short the input (v<sub>1</sub> = 0)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><strong>The rule:</strong> to measure a parameter, drive one port and <em>short the other</em>. The short removes the other port’s term, so what you measure is the one parameter you want.</p>
 
-  <div class="check"><span class="tag">Check yourself</span>
-    <details><summary>In the slide 132 example, every W and L is doubled. What happens to the gain?</summary><div class="d-body"><p>W/L is unchanged, so the current and overdrive stay the same and g<sub>m1</sub> is unchanged. But λ = 0.04/L halves, so both g<sub>ds</sub> halve and the gain doubles, to −125 (42 dB).</p></div></details>
-    <details><summary>Why is g<sub>m2</sub>v<sub>gs2</sub> zero here but not in the inverter?</summary><div class="d-body"><p>Here M2’s gate sits at a DC bias, so v<sub>gs2</sub> = 0. In the inverter its gate carries v<sub>in</sub>.</p></div></details>
+  <h3>The unilateral model (slide 143)</h3>
+  <p>In a transistor stage at low frequency, nothing at the drain can change anything at the gate, so y<sub>12</sub> = 0: the network is <em>unilateral</em>. (Unless something connects the output back to the input: the feedback resistor of Lesson 12 gives y<sub>12</sub> = −1/R. Driven from an ideal voltage source, the gain is still −y<sub>21</sub>/y<sub>22</sub> = −(G<sub>m</sub> − 1/R)/(G<sub>out</sub> + 1/R), exactly the Lesson 12 result.) Rename the rest: R<sub>in</sub> = 1/y<sub>11</sub>, G<sub>m</sub> = y<sub>21</sub> and G<sub>out</sub> = y<sub>22</sub> = 1/R<sub>out</sub>.</p>
+  <figure class="wide">
+    <div class="fig-box"><svg class="sch" viewBox="0 0 660 226" style="max-width:660px" role="img" aria-label="Unilateral two-port model of an amplifier stage (slide 143): input resistance Rin at the input port; at the output a current source Gm v1 in parallel with the output resistance Rout, which equals 1/Gout; a load ZL, equal to 1/GL, connected across the output." xmlns="http://www.w3.org/2000/svg">
+<rect class="w dim dash" x="150" y="40" width="350" height="164" rx="4"/>
+<text class="wl" x="325" y="196" text-anchor="middle">No y<tspan class="sub" dy="3.2">12</tspan><tspan dy="-3.2">: nothing at the output reaches back to the input</tspan></text>
+<circle class="odot" cx="60" cy="70" r="3"/>
+<circle class="odot" cx="60" cy="170" r="3"/>
+<path class="w" d="M63 70 L215 70"/>
+<path class="w" d="M63 170 L215 170"/>
+<path class="w" d="M215 70 L215 105 L222 107.5 L208 112.5 L222 117.5 L208 122.5 L222 127.5 L208 132.5 L215 135 L215 170"/>
+<text class="lbl" x="228" y="118" text-anchor="start">R<tspan class="sub" dy="3.2">in</tspan></text>
+<text class="wl" x="228" y="132" text-anchor="start">= 1/y<tspan class="sub" dy="3.2">11</tspan></text>
+<path class="w cur" d="M96 58 L108 58"/>
+<polygon class="ah-cur" points="112,58 107,55 107,61"/>
+<text class="curtxt" x="104" y="51" text-anchor="middle">i<tspan class="sub" dy="3.2">1</tspan></text>
+<text class="lbl" x="64" y="92" text-anchor="middle">+</text>
+<text class="lbl strong" x="64" y="124" text-anchor="middle">v<tspan class="sub" dy="3.2">1</tspan></text>
+<text class="lbl" x="64" y="156" text-anchor="middle">−</text>
+<path class="w" d="M360 70 L590 70"/>
+<path class="w" d="M360 170 L590 170"/>
+<circle class="dot" cx="425" cy="70" r="2.7"/>
+<circle class="dot" cx="425" cy="170" r="2.7"/>
+<path class="w" d="M360 70 L360 109"/>
+<path class="w" d="M360 131 L360 170"/>
+<circle class="ss src" cx="360" cy="120" r="11"/>
+<path class="ss" d="M360 114 L360 123"/>
+<polygon class="ah-ss" points="360,127 357,122 363,122"/>
+<text class="lbl" x="344" y="118" text-anchor="end">G<tspan class="sub" dy="3.2">m</tspan><tspan dy="-3.2">v</tspan><tspan class="sub" dy="3.2">1</tspan></text>
+<text class="wl" x="344" y="132" text-anchor="end">G<tspan class="sub" dy="3.2">m</tspan><tspan dy="-3.2"> = y</tspan><tspan class="sub" dy="3.2">21</tspan></text>
+<path class="w" d="M425 70 L425 105 L432 107.5 L418 112.5 L432 117.5 L418 122.5 L432 127.5 L418 132.5 L425 135 L425 170"/>
+<text class="lbl" x="438" y="118" text-anchor="start">R<tspan class="sub" dy="3.2">out</tspan></text>
+<text class="wl" x="438" y="132" text-anchor="start">= 1/G<tspan class="sub" dy="3.2">out</tspan></text>
+<path class="w cur" d="M548 58 L536 58"/>
+<polygon class="ah-cur" points="532,58 537,55 537,61"/>
+<text class="curtxt" x="540" y="51" text-anchor="middle">i<tspan class="sub" dy="3.2">2</tspan></text>
+<text class="lbl" x="530" y="92" text-anchor="middle">+</text>
+<text class="lbl strong" x="530" y="124" text-anchor="middle">v<tspan class="sub" dy="3.2">2</tspan></text>
+<text class="lbl" x="530" y="156" text-anchor="middle">−</text>
+<path class="w" d="M590 70 L590 105 L597 107.5 L583 112.5 L597 117.5 L583 122.5 L597 127.5 L583 132.5 L590 135 L590 170"/>
+<text class="lbl" x="603" y="118" text-anchor="start">Z<tspan class="sub" dy="3.2">L</tspan></text>
+<text class="wl" x="603" y="132" text-anchor="start">= 1/G<tspan class="sub" dy="3.2">L</tspan></text>
+<text class="wl" x="598" y="58" text-anchor="start">load</text>
+</svg></div>
+    <figcaption><b>Slide 143.</b> Capital G<sub>m</sub> is the transconductance of the whole stage, which is not always the g<sub>m</sub> of one transistor.</figcaption>
+  </figure>
+  <p>Unloaded, no current leaves the output (i<sub>2</sub> = 0), so G<sub>m</sub>v<sub>1</sub> + G<sub>out</sub>v<sub>2</sub> = 0. Add a load Z<sub>L</sub> = 1/G<sub>L</sub> and its conductance simply joins G<sub>out</sub>:</p>
+  <div class="key"><span class="tag">Remember · gain of any unilateral stage</span>
+    <p>Unloaded:</p>
+    <math display="block" class="tml-display" style="display:block math;"><mrow><msub><mi>a</mi><mi>v</mi></msub><mo>=</mo><mfrac><msub><mi>v</mi><mn>2</mn></msub><msub><mi>v</mi><mn>1</mn></msub></mfrac><mo>=</mo><mo form="prefix" stretchy="false">−</mo><mfrac><msub><mi>G</mi><mi>m</mi></msub><msub><mi>G</mi><mrow><mi>o</mi><mi>u</mi><mi>t</mi></mrow></msub></mfrac><mo>=</mo><mo form="prefix" stretchy="false">−</mo><msub><mi>G</mi><mi>m</mi></msub><msub><mi>R</mi><mrow><mi>o</mi><mi>u</mi><mi>t</mi></mrow></msub></mrow></math>
+    <p>With a load G<sub>L</sub> = 1/R<sub>L</sub>:</p>
+    <math display="block" class="tml-display" style="display:block math;"><mrow><msub><mi>a</mi><mi>v</mi></msub><mo>=</mo><mo form="prefix" stretchy="false">−</mo><mfrac><msub><mi>G</mi><mi>m</mi></msub><mrow><msub><mi>G</mi><mrow><mi>o</mi><mi>u</mi><mi>t</mi></mrow></msub><mo>+</mo><msub><mi>G</mi><mi>L</mi></msub></mrow></mfrac><mo>=</mo><mo form="prefix" stretchy="false">−</mo><msub><mi>G</mi><mi>m</mi></msub><mspace width="0.1667em"></mspace><mo form="prefix" stretchy="false">(</mo><msub><mi>R</mi><mrow><mi>o</mi><mi>u</mi><mi>t</mi></mrow></msub><mo>∥</mo><msub><mi>R</mi><mi>L</mi></msub><mo form="postfix" stretchy="false">)</mo></mrow></math>
   </div>
 
-  <footer class="lesson-foot"><label class="done-toggle"><input type="checkbox" id="done-l11" data-done="l11"> I’ve got this lesson</label><button class="btn ask-btn" data-ask="l11" hidden>Ask about this lesson</button></footer>
+  <h3>Measuring G<sub>m</sub> and G<sub>out</sub>: the common-source stage (slides 144–145)</h3>
+  <figure class="wide">
+    <div class="fig-box"><svg class="sch" viewBox="0 0 640 246" style="max-width:640px" role="img" aria-label="How to measure the two numbers for a common-source stage (slide 144). Left: short the output, so vout is 0; no current flows in 1/gds and all of gm vin flows through the short, so Gm equals gm. Right: short the input, so vin is 0 and the gm vin source carries nothing; a test voltage vx at the output drives current ix through 1/gds only, so Gout equals gds." xmlns="http://www.w3.org/2000/svg">
+<text class="lbl strong" x="20" y="18" text-anchor="start">G<tspan class="sub" dy="3.2">m</tspan><tspan dy="-3.2">: short the output</tspan></text>
+<path class="w" d="M110 70 L270 70"/>
+<path class="w" d="M110 180 L270 180"/>
+<path class="w" d="M110 70 L110 114"/>
+<path class="w" d="M110 136 L110 180"/>
+<circle class="ss src" cx="110" cy="125" r="11"/>
+<path class="ss" d="M110 119 L110 128"/>
+<polygon class="ah-ss" points="110,132 107,127 113,127"/>
+<text class="lbl" x="94" y="129" text-anchor="end">g<tspan class="sub" dy="3.2">m</tspan><tspan dy="-3.2">v</tspan><tspan class="sub" dy="3.2">in</tspan></text>
+<circle class="dot" cx="110" cy="70" r="2.7"/>
+<circle class="dot" cx="110" cy="180" r="2.7"/>
+<path class="w" d="M180 70 L180 110 L187 112.5 L173 117.5 L187 122.5 L173 127.5 L187 132.5 L173 137.5 L180 140 L180 180"/>
+<text class="lbl" x="193" y="129" text-anchor="start">1/g<tspan class="sub" dy="3.2">ds</tspan></text>
+<circle class="dot" cx="180" cy="70" r="2.7"/>
+<circle class="dot" cx="180" cy="180" r="2.7"/>
+<path class="w" d="M270 70 L270 180"/>
+<path class="w cur" d="M282 134 L282 120"/>
+<polygon class="ah-cur" points="282,116 279,121 285,121"/>
+<text class="curtxt" x="289" y="129" text-anchor="start">i<tspan class="sub" dy="3.2">out</tspan></text>
+<text class="wl" x="180" y="58" text-anchor="middle">v<tspan class="sub" dy="3.2">out</tspan><tspan dy="-3.2"> = 0</tspan></text>
+<path class="w" d="M170 180 L190 180 M173.5 184 L186.5 184 M177 188 L183 188"/>
+<text class="wl" x="160" y="210" text-anchor="middle">No voltage across 1/g<tspan class="sub" dy="3.2">ds</tspan><tspan dy="-3.2">, so all of g</tspan><tspan class="sub" dy="3.2">m</tspan><tspan dy="-3.2">v</tspan><tspan class="sub" dy="3.2">in</tspan></text>
+<text class="lbl strong" x="160" y="226" text-anchor="middle">flows through the short:  G<tspan class="sub" dy="3.2">m</tspan><tspan dy="-3.2"> = g</tspan><tspan class="sub" dy="3.2">m</tspan></text>
+<text class="lbl strong" x="340" y="18" text-anchor="start">G<tspan class="sub" dy="3.2">out</tspan><tspan dy="-3.2">: short the input</tspan></text>
+<path class="w" d="M420 70 L590 70"/>
+<path class="w" d="M420 180 L590 180"/>
+<path class="w" d="M420 70 L420 114"/>
+<path class="w" d="M420 136 L420 180"/>
+<circle class="ss ghost src" cx="420" cy="125" r="11"/>
+<path class="ss ghost" d="M420 119 L420 128"/>
+<polygon class="ah-ss" points="420,132 417,127 423,127"/>
+<text class="wl" x="404" y="121" text-anchor="end">g<tspan class="sub" dy="3.2">m</tspan><tspan dy="-3.2">v</tspan><tspan class="sub" dy="3.2">in</tspan></text>
+<text class="wl" x="404" y="135" text-anchor="end">= 0 (open)</text>
+<circle class="dot" cx="420" cy="70" r="2.7"/>
+<circle class="dot" cx="420" cy="180" r="2.7"/>
+<path class="w" d="M490 70 L490 110 L497 112.5 L483 117.5 L497 122.5 L483 127.5 L497 132.5 L483 137.5 L490 140 L490 180"/>
+<text class="lbl" x="503" y="129" text-anchor="start">1/g<tspan class="sub" dy="3.2">ds</tspan></text>
+<circle class="dot" cx="490" cy="70" r="2.7"/>
+<circle class="dot" cx="490" cy="180" r="2.7"/>
+<path class="w" d="M590 70 L590 114"/>
+<path class="w" d="M590 136 L590 180"/>
+<circle class="w src" cx="590" cy="125" r="11"/>
+<path class="w" d="M584 125 C586 118 589 118 590 125 C591 132 594 132 596 125"/>
+<text class="lbl" x="606" y="129" text-anchor="start">v<tspan class="sub" dy="3.2">x</tspan></text>
+<path class="w cur" d="M563 58 L551 58"/>
+<polygon class="ah-cur" points="547,58 552,55 552,61"/>
+<text class="curtxt" x="555" y="51" text-anchor="middle">i<tspan class="sub" dy="3.2">x</tspan></text>
+<path class="w" d="M480 180 L500 180 M483.5 184 L496.5 184 M487 188 L493 188"/>
+<text class="wl" x="490" y="210" text-anchor="middle">v<tspan class="sub" dy="3.2">in</tspan><tspan dy="-3.2"> = 0 switches the source off; only 1/g</tspan><tspan class="sub" dy="3.2">ds</tspan><tspan dy="-3.2"> is left:</tspan></text>
+<text class="lbl strong" x="490" y="226" text-anchor="middle">i<tspan class="sub" dy="3.2">x</tspan><tspan dy="-3.2"> = g</tspan><tspan class="sub" dy="3.2">ds</tspan><tspan dy="-3.2">v</tspan><tspan class="sub" dy="3.2">x</tspan><tspan dy="-3.2">,  so  G</tspan><tspan class="sub" dy="3.2">out</tspan><tspan dy="-3.2"> = g</tspan><tspan class="sub" dy="3.2">ds</tspan></text>
+</svg></div>
+    <figcaption><b>Slide 144.</b> Two quick experiments on the small-signal model.</figcaption>
+  </figure>
+  <ul>
+    <li><strong>G<sub>m</sub>:</strong> short the output. There is then no voltage across 1/g<sub>ds</sub>, so all of g<sub>m</sub>v<sub>in</sub> flows through the short: G<sub>m</sub> = g<sub>m</sub>.</li>
+    <li><strong>R<sub>in</sub>:</strong> the gate draws no current, so R<sub>in</sub> = ∞.</li>
+    <li><strong>G<sub>out</sub>:</strong> short the input. With v<sub>in</sub> = 0 the controlled source switches off, and only 1/g<sub>ds</sub> is left: G<sub>out</sub> = g<sub>ds</sub>. Unloaded gain −g<sub>m</sub>/g<sub>ds</sub>, the intrinsic gain from Lesson 8.</li>
+  </ul>
+  <p>Each load then adds only its own G<sub>L</sub> underneath (slide 145):</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Load on the CS stage</th><th>G<sub>L</sub></th><th>Gain = −G<sub>m</sub>/(G<sub>out</sub> + G<sub>L</sub>)</th></tr></thead>
+      <tbody>
+        <tr><td>Resistor R<sub>L</sub></td><td>1/R<sub>L</sub></td><td><math><mrow><mo>−</mo></mrow><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><msub><mi>g</mi><mi>m</mi></msub><mrow><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi></mrow></msub><mo>+</mo><mn>1</mn><mi>/</mi><msub><mi>R</mi><mi>L</mi></msub></mrow></mfrac></mstyle></mrow></math></td></tr>
+        <tr><td>PMOS diode</td><td>g<sub>mp</sub> + g<sub>dsp</sub></td><td><math><mrow><mo>−</mo></mrow><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><msub><mi>g</mi><mrow><mi>m</mi><mi>n</mi></mrow></msub><mrow><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mi>n</mi></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>m</mi><mi>p</mi></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mi>p</mi></mrow></msub></mrow></mfrac></mstyle></mrow></math></td></tr>
+        <tr><td>PMOS current source</td><td>g<sub>dsp</sub></td><td><math><mrow><mo>−</mo></mrow><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><msub><mi>g</mi><mrow><mi>m</mi><mi>n</mi></mrow></msub><mrow><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mi>n</mi></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mi>p</mi></mrow></msub></mrow></mfrac></mstyle></mrow></math></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><strong>When G<sub>m</sub> is not simply g<sub>m</sub>:</strong> in the CMOS inverter (Lesson 12) both transistors create signal current, so shorting the output catches both: G<sub>m</sub> = g<sub>m1</sub> + g<sub>m2</sub>. In Section 9, next, a resistor in the source makes G<sub>m</sub> smaller than g<sub>m</sub>, and that is where this method saves the most work.</p>
+
+  <h3>Problem slide 146 (homework from 25 Sept)</h3>
+  <figure class="wide">
+    <div class="fig-box"><svg class="sch" viewBox="0 0 640 262" style="max-width:640px" role="img" aria-label="Slide 146 problem: the CMOS inverter amplifier (NMOS M1 and PMOS M2, both gates driven by vin) loaded by (i) a resistor RL from the output to ground and (ii) a diode-connected NMOS M3 from the output to ground." xmlns="http://www.w3.org/2000/svg">
+<path class="w" d="M110 30 L250 30"/>
+<text class="lbl strong" x="255" y="34" text-anchor="start">V<tspan class="sub" dy="3.2">DD</tspan></text>
+<path class="pm" d="M120 78 L138 78 M138 64 L138 92"/>
+<path class="pm thick" d="M144 61 L144 95"/>
+<path class="pm" d="M144 67 L162 67 L162 46 M144 89 L162 89 L162 110"/>
+<polygon class="ah-pm" points="150,67 156,63.4 156,70.6"/>
+<text class="lbl strong" x="170" y="75" text-anchor="start">M2</text>
+<path class="w" d="M162 46 L162 30"/>
+<path class="nm" d="M120 162 L138 162 M138 148 L138 176"/>
+<path class="nm thick" d="M144 145 L144 179"/>
+<path class="nm" d="M144 151 L162 151 L162 130 M144 173 L162 173 L162 194"/>
+<polygon class="ah-nm" points="157,173 151,169.4 151,176.6"/>
+<text class="lbl strong" x="170" y="159" text-anchor="start">M1</text>
+<path class="w" d="M162 110 L162 130"/>
+<path class="w" d="M162 194 L162 214"/>
+<path class="w" d="M120 78 L120 162"/>
+<circle class="dot" cx="120" cy="120" r="2.7"/>
+<path class="w" d="M120 120 L70 120"/>
+<path class="w" d="M70 120 L70 156"/>
+<path class="w" d="M70 178 L70 214"/>
+<circle class="w src" cx="70" cy="167" r="11"/>
+<path class="w" d="M64 167 C66 160 69 160 70 167 C71 174 74 174 76 167"/>
+<text class="lbl" x="54" y="171" text-anchor="end">v<tspan class="sub" dy="3.2">in</tspan></text>
+<circle class="dot" cx="162" cy="120" r="2.7"/>
+<path class="w" d="M162 120 L275 120"/>
+<circle class="odot" cx="278" cy="120" r="3"/>
+<text class="lbl" x="278" y="110" text-anchor="middle">v<tspan class="sub" dy="3.2">out</tspan></text>
+<circle class="dot" cx="220" cy="120" r="2.7"/>
+<path class="w" d="M70 214 L220 214"/>
+<circle class="dot" cx="162" cy="214" r="2.7"/>
+<path class="w" d="M130 214 L150 214 M133.5 218 L146.5 218 M137 222 L143 222"/>
+<path class="w" d="M220 120 L220 152 L227 154.5 L213 159.5 L227 164.5 L213 169.5 L227 174.5 L213 179.5 L220 182 L220 214"/>
+<text class="lbl" x="233" y="171" text-anchor="start">R<tspan class="sub" dy="3.2">L</tspan></text>
+<text class="lbl strong" x="170" y="250" text-anchor="middle">(i) Resistive load</text>
+<path class="w" d="M420 30 L560 30"/>
+<text class="lbl strong" x="565" y="34" text-anchor="start">V<tspan class="sub" dy="3.2">DD</tspan></text>
+<path class="pm" d="M430 78 L448 78 M448 64 L448 92"/>
+<path class="pm thick" d="M454 61 L454 95"/>
+<path class="pm" d="M454 67 L472 67 L472 46 M454 89 L472 89 L472 110"/>
+<polygon class="ah-pm" points="460,67 466,63.4 466,70.6"/>
+<text class="lbl strong" x="480" y="75" text-anchor="start">M2</text>
+<path class="w" d="M472 46 L472 30"/>
+<path class="nm" d="M430 162 L448 162 M448 148 L448 176"/>
+<path class="nm thick" d="M454 145 L454 179"/>
+<path class="nm" d="M454 151 L472 151 L472 130 M454 173 L472 173 L472 194"/>
+<polygon class="ah-nm" points="467,173 461,169.4 461,176.6"/>
+<text class="lbl strong" x="480" y="159" text-anchor="start">M1</text>
+<path class="w" d="M472 110 L472 130"/>
+<path class="w" d="M472 194 L472 214"/>
+<path class="w" d="M430 78 L430 162"/>
+<circle class="dot" cx="430" cy="120" r="2.7"/>
+<path class="w" d="M430 120 L380 120"/>
+<path class="w" d="M380 120 L380 156"/>
+<path class="w" d="M380 178 L380 214"/>
+<circle class="w src" cx="380" cy="167" r="11"/>
+<path class="w" d="M374 167 C376 160 379 160 380 167 C381 174 384 174 386 167"/>
+<text class="lbl" x="364" y="171" text-anchor="end">v<tspan class="sub" dy="3.2">in</tspan></text>
+<circle class="dot" cx="472" cy="120" r="2.7"/>
+<path class="w" d="M472 120 L585 120"/>
+<circle class="odot" cx="588" cy="120" r="3"/>
+<text class="lbl" x="588" y="110" text-anchor="middle">v<tspan class="sub" dy="3.2">out</tspan></text>
+<circle class="dot" cx="530" cy="120" r="2.7"/>
+<path class="w" d="M380 214 L530 214"/>
+<circle class="dot" cx="472" cy="214" r="2.7"/>
+<path class="w" d="M440 214 L460 214 M443.5 218 L456.5 218 M447 222 L453 222"/>
+<path class="nm" d="M572 167 L554 167 M554 153 L554 181"/>
+<path class="nm thick" d="M548 150 L548 184"/>
+<path class="nm" d="M548 156 L530 156 L530 135 M548 178 L530 178 L530 199"/>
+<polygon class="ah-nm" points="535,178 541,174.4 541,181.6"/>
+<path class="w" d="M572 167 L572 143 L530 143"/>
+<circle class="dot" cx="530" cy="143" r="2.7"/>
+<text class="lbl strong" x="578" y="164" text-anchor="start">M3</text>
+<path class="w" d="M530 120 L530 135"/>
+<path class="w" d="M530 199 L530 214"/>
+<text class="lbl strong" x="480" y="250" text-anchor="middle">(ii) NMOS diode load</text>
+</svg></div>
+    <figcaption><b>Slide 146.</b> Use y-parameters to find the gain of the CMOS inverter (both transistors saturated) with (i) a resistive load and (ii) an NMOS diode load.</figcaption>
+  </figure>
+  <p><strong>Hint:</strong> find the inverter’s G<sub>m</sub> (short the output) and G<sub>out</sub> (short the input) once. Each load then only changes G<sub>L</sub>.</p>
+  <details class="sol"><summary>Show my worked answer (check it against the lecturer’s solution in lecture 7)</summary><div class="d-body">
+    <ol>
+      <li><strong>G<sub>m</sub>:</strong> short the output. Both g<sub>m1</sub>v<sub>in</sub> and g<sub>m2</sub>v<sub>in</sub> flow into the short, while 1/g<sub>ds1</sub> and 1/g<sub>ds2</sub> carry nothing: G<sub>m</sub> = g<sub>m1</sub> + g<sub>m2</sub>.</li>
+      <li><strong>G<sub>out</sub>:</strong> short the input. Both controlled sources switch off; looking down you see 1/g<sub>ds1</sub> and looking up 1/g<sub>ds2</sub>: G<sub>out</sub> = g<sub>ds1</sub> + g<sub>ds2</sub>. Unloaded, this gives back the −80 of slide 139.</li>
+      <li><strong>(i) Resistive load:</strong> G<sub>L</sub> = 1/R<sub>L</sub>, so
+        <math display="block" class="tml-display" style="display:block math;"><mrow><msub><mi>a</mi><mi>v</mi></msub><mo>=</mo><mo form="prefix" stretchy="false">−</mo><mfrac><mrow><msub><mi>g</mi><mrow><mi>m</mi><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>m</mi><mn>2</mn></mrow></msub></mrow><mrow><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>2</mn></mrow></msub><mo>+</mo><mn>1</mn><mi>/</mi><msub><mi>R</mi><mi>L</mi></msub></mrow></mfrac></mrow></math></li>
+      <li><strong>(ii) NMOS diode load:</strong> M3 is diode-connected with its source at ground, so its source and bulk are both at ground and there is no body effect. It looks like 1/g<sub>m3</sub> in parallel with 1/g<sub>ds3</sub>, so G<sub>L</sub> = g<sub>m3</sub> + g<sub>ds3</sub> and
+        <math display="block" class="tml-display" style="display:block math;"><mrow><msub><mi>a</mi><mi>v</mi></msub><mo>=</mo><mo form="prefix" stretchy="false">−</mo><mfrac><mrow><msub><mi>g</mi><mrow><mi>m</mi><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>m</mi><mn>2</mn></mrow></msub></mrow><mrow><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>2</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>m</mi><mn>3</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>3</mn></mrow></msub></mrow></mfrac></mrow></math>
+        which is about −(g<sub>m1</sub> + g<sub>m2</sub>)/g<sub>m3</sub>, because g<sub>m3</sub> dominates the bottom line.</li>
+    </ol>
+    <p><strong>A feel for the numbers (slide 139 values):</strong> the inverter’s own R<sub>out</sub> is 1/(10 µA/V) = 100 kΩ, so a 100 kΩ load halves the gain, from −80 to −40 (6 dB less). A diode is a much heavier load (g<sub>m3</sub> is hundreds of µA/V), so the gain drops to a small but predictable ratio of transconductances, as in Lesson 10.</p>
+  </div></details>
+
+  <aside class="exam"><span class="tag">Exam angle</span><p>When a question asks you to “derive the gain”, you can now write it by inspection: G<sub>m</sub> over (conductance looking down + conductance looking up + load). Still draw the small-signal circuit, because it carries marks, and use it to show where G<sub>m</sub> and G<sub>out</sub> come from.</p></aside>
+
+  <div class="check"><span class="tag">Check yourself</span>
+    <details><summary>A stage has G<sub>m</sub> = 1 mA/V and R<sub>out</sub> = 50 kΩ. What is its gain with a 50 kΩ load?</summary><div class="d-body"><p>−G<sub>m</sub>(R<sub>out</sub> ∥ R<sub>L</sub>) = −1 mA/V × 25 kΩ = −25 (28 dB). Without the load it would be −50: a load equal to R<sub>out</sub> halves the gain.</p></div></details>
+    <details><summary>For a CS stage with a PMOS current-source load, what are G<sub>m</sub> and G<sub>out</sub>?</summary><div class="d-body"><p>G<sub>m</sub> = g<sub>m1</sub>, since only M1 sees the input. G<sub>out</sub> = g<sub>ds1</sub> + g<sub>ds2</sub>, looking down plus looking up. Gain −g<sub>m1</sub>/(g<sub>ds1</sub> + g<sub>ds2</sub>): Lesson 11 in one line.</p></div></details>
+    <details><summary>Why is y<sub>22</sub> measured with the input shorted rather than left open?</summary><div class="d-body"><p>The definition needs v<sub>1</sub> = 0, so that the controlled source g<sub>m</sub>v<sub>in</sub> carries nothing and the test current sees only the stage’s own conductances. If the input were left open in a circuit with a path from output back to input (a feedback resistor, say), the input would follow the output and switch the source back on, giving a different answer.</p></div></details>
+  </div>
+
+  <footer class="lesson-foot"><label class="done-toggle"><input type="checkbox" id="done-l13" data-done="l13"> I’ve got this lesson</label><button class="btn ask-btn" data-ask="l13" hidden>Ask about this lesson</button></footer>
 </section>
+
 
 <!-- =============================== AMPLIFIER LAB =============================== -->
 <section id="lab" class="block" data-title="Amplifier lab">
   <header class="lesson-head block-head">
-    <div class="eyebrow"><span class="lnum">Amplifier lab</span><span>Lessons 9–11 · slides 108–109, 119–120, 134–135</span></div>
+    <div class="eyebrow"><span class="lnum">Amplifier lab</span><span>Lessons 9–12 · slides 108–109, 119–120, 134–138</span></div>
     <h2>See the gain appear and collapse</h2>
     <p class="idea"><b>What this shows</b>The transfer curves from the slides, computed live with the square-law model (λ = 0.04/L). Pick a load, move the bias, and watch where the gain lives: only where every transistor is saturated (the green band).</p>
   </header>
@@ -3024,6 +3570,12 @@ body {
         <button type="button" data-load="inv" aria-pressed="false">CMOS inverter (slide 139)</button>
       </div>
       <p id="lab-desc" style="margin:0;font-size:15px;color:var(--muted)"></p>
+      <div class="seg seg-sm" id="lab-scen" role="group" aria-label="Slide 132 cases" hidden>
+        <button type="button" data-scen="i" aria-pressed="true">(i) Slide values</button>
+        <button type="button" data-scen="ii" aria-pressed="false">(ii) Every W and L doubled</button>
+        <button type="button" data-scen="iii" aria-pressed="false">(iii) Only W<sub>2</sub> doubled</button>
+        <button type="button" data-scen="fix" aria-pressed="false">(iii) fixed: V<sub>BIAS1</sub> = 1.366 V</button>
+      </div>
       <div class="ctrls">
         <label class="ctrl" for="lab-vin"><span class="row"><span>Input bias V<sub>IN</sub></span><output id="lab-vin-o"></output></span><input type="range" id="lab-vin" min="0" max="5" step="0.001" value="1.25"></label>
         <label class="ctrl" for="lab-p"><span class="row"><span id="lab-p-l">Load</span><output id="lab-p-o"></output></span><input type="range" id="lab-p" min="0" max="1" step="0.001" value="0.5"></label>
@@ -3046,7 +3598,7 @@ body {
   <header class="lesson-head block-head">
     <div class="eyebrow"><span class="lnum">Exam practice</span><span>Past EE6049 / EE4022 papers, Winter 2022–2025</span></div>
     <h2>Past-paper questions on what you’ve covered</h2>
-    <p class="idea"><b>How to use this</b>Each item is the part of a real exam question that uses only Lessons 1–11. Try it on paper first. Solutions marked <span class="who official">official</span> follow the lecturer’s published Winter 2024 solutions; the others are my worked answers, checked by recalculation.</p>
+    <p class="idea"><b>How to use this</b>Each item is the part of a real exam question that uses only Lessons 1–13. Try it on paper first. Solutions marked <span class="who official">official</span> follow the lecturer’s published Winter 2024 solutions; the others are my worked answers, checked by recalculation.</p>
   </header>
 
   <p>Every paper starts with the same instructions: ignore the body effect, use λ<sub>n</sub> = λ<sub>p</sub> = 0 for DC bias, and only the NMOS saturation equation is given. The remaining parts of these questions (differential pairs, frequency response, noise, cascode output resistance) belong to later sections and will be added as they are taught.</p>
@@ -3639,8 +4191,10 @@ body {
     </div></details>
   </article>
 
+  <h3>CMOS inverter stages and feedback resistors</h3>
+
   <article class="prob" id="p-w25q4">
-    <div class="prob-head"><span class="src">P9 · Winter 2025 · Q4 (i)–(iii)</span><span class="who">my working</span><h3>CMOS inverter amplifier</h3><span class="tags">Lesson 11 · 8 marks</span></div>
+    <div class="prob-head"><span class="src">P9 · Winter 2025 · Q4 (i)–(iii)</span><span class="who">my working</span><h3>CMOS inverter amplifier</h3><span class="tags">Lesson 12 · 8 marks</span></div>
     <div class="prob-body">
       <figure><div class="fig-box"><svg class="sch" viewBox="0 0 330 240" style="max-width:330px" role="img" aria-label="Winter 2025 Q4: CMOS inverter amplifier, both gates at VBIAS plus vin, VDD 2.5 V." xmlns="http://www.w3.org/2000/svg">
 <path class="w" d="M100 30 L220 30"/>
@@ -3697,10 +4251,103 @@ body {
     </div></details>
   </article>
 
+  <article class="prob stack" id="p-w22q3">
+    <div class="prob-head"><span class="src">P10 · Winter 2022 · Q3 (i), (iii)–(v)</span><span class="who">my working</span><h3>PMOS driver with a feedback resistor</h3><span class="tags">Lessons 6, 12, 13 · 10 marks</span></div>
+    <div class="prob-body">
+      <figure><div class="fig-box"><svg class="sch" viewBox="0 0 480 300" style="max-width:480px" role="img" aria-label="Winter 2022 Q3 figure 3: PMOS M1 32/1 from VDD to the output and NMOS M2 32/1 from the output to ground. M2 is biased by a mirror from the diode-connected NMOS M3 3.2/1, fed through RBIAS from VDD. The input vin reaches the gate of M1 through CIN; RF and CF in parallel connect the gate of M1 to the output; CL loads the output." xmlns="http://www.w3.org/2000/svg">
+<path class="w" d="M60 30 L412 30"/>
+<text class="lbl strong" x="417" y="34" text-anchor="start">V<tspan class="sub" dy="3.2">DD</tspan></text>
+<path class="w" d="M60 272 L412 272"/>
+<path class="pm" d="M190 78 L208 78 M208 64 L208 92"/>
+<path class="pm thick" d="M214 61 L214 95"/>
+<path class="pm" d="M214 67 L232 67 L232 46 M214 89 L232 89 L232 110"/>
+<polygon class="ah-pm" points="220,67 226,63.4 226,70.6"/>
+<text class="lbl strong" x="240" y="75" text-anchor="start">M1</text>
+<text class="wl" x="240" y="89" text-anchor="start">32/1</text>
+<path class="w" d="M232 46 L232 30"/>
+<path class="nm" d="M274 226 L256 226 M256 212 L256 240"/>
+<path class="nm thick" d="M250 209 L250 243"/>
+<path class="nm" d="M250 215 L232 215 L232 194 M250 237 L232 237 L232 258"/>
+<polygon class="ah-nm" points="237,237 243,233.4 243,240.6"/>
+<text class="lbl strong" x="224" y="223" text-anchor="end">M2</text>
+<text class="wl" x="224" y="237" text-anchor="end">32/1</text>
+<path class="w" d="M232 110 L232 194"/>
+<path class="w" d="M232 258 L232 272"/>
+<circle class="dot" cx="232" cy="272" r="2.7"/>
+<path class="w" d="M222 272 L242 272 M225.5 276 L238.5 276 M229 280 L235 280"/>
+<path class="nm" d="M370 226 L388 226 M388 212 L388 240"/>
+<path class="nm thick" d="M394 209 L394 243"/>
+<path class="nm" d="M394 215 L412 215 L412 194 M394 237 L412 237 L412 258"/>
+<polygon class="ah-nm" points="407,237 401,233.4 401,240.6"/>
+<path class="w" d="M370 226 L370 202 L412 202"/>
+<circle class="dot" cx="412" cy="202" r="2.7"/>
+<text class="lbl strong" x="420" y="223" text-anchor="start">M3</text>
+<text class="wl" x="420" y="237" text-anchor="start">3.2/1</text>
+<path class="w" d="M412 258 L412 272"/>
+<path class="w" d="M274 226 L370 226"/>
+<path class="w" d="M412 30 L412 97 L419 99.5 L405 104.5 L419 109.5 L405 114.5 L419 119.5 L405 124.5 L412 127 L412 194"/>
+<text class="lbl" x="425" y="116" text-anchor="start">R<tspan class="sub" dy="3.2">BIAS</tspan></text>
+<path class="w" d="M190 78 L130 78"/>
+<path class="w" d="M130 78 L130 182"/>
+<path class="w" d="M130 118 L166 118 L168.5 125 L173.5 111 L178.5 125 L183.5 111 L188.5 125 L193.5 111 L196 118 L232 118"/>
+<text class="lbl" x="181" y="106" text-anchor="middle">R<tspan class="sub" dy="3.2">F</tspan></text>
+<circle class="dot" cx="130" cy="118" r="2.7"/>
+<circle class="dot" cx="232" cy="118" r="2.7"/>
+<path class="w" d="M130 182 L178 182"/>
+<path class="w" d="M184 182 L232 182"/>
+<path class="w thick" d="M178 173 L178 191 M184 173 L184 191"/>
+<text class="lbl" x="181" y="169" text-anchor="middle">C<tspan class="sub" dy="3.2">F</tspan></text>
+<circle class="dot" cx="232" cy="182" r="2.7"/>
+<path class="w" d="M80 150 L102 150"/>
+<path class="w" d="M108 150 L130 150"/>
+<path class="w thick" d="M102 141 L102 159 M108 141 L108 159"/>
+<text class="lbl" x="105" y="137" text-anchor="middle">C<tspan class="sub" dy="3.2">IN</tspan></text>
+<circle class="dot" cx="130" cy="150" r="2.7"/>
+<path class="w" d="M60 150 L80 150"/>
+<path class="w" d="M60 150 L60 200"/>
+<path class="w" d="M60 222 L60 272"/>
+<circle class="w src" cx="60" cy="211" r="11"/>
+<path class="w" d="M54 211 C56 204 59 204 60 211 C61 218 64 218 66 211"/>
+<text class="lbl" x="44" y="215" text-anchor="end">v<tspan class="sub" dy="3.2">in</tspan></text>
+<circle class="dot" cx="232" cy="150" r="2.7"/>
+<path class="w" d="M232 150 L330 150"/>
+<circle class="odot" cx="333" cy="150" r="3"/>
+<text class="lbl" x="333" y="140" text-anchor="middle">v<tspan class="sub" dy="3.2">out</tspan></text>
+<circle class="dot" cx="300" cy="150" r="2.7"/>
+<path class="w" d="M300 150 L300 170"/>
+<path class="w" d="M300 176 L300 196"/>
+<path class="w thick" d="M291 170 L309 170 M291 176 L309 176"/>
+<text class="lbl" x="313" y="177" text-anchor="start">C<tspan class="sub" dy="3.2">L</tspan></text>
+<path class="w" d="M290 196 L310 196 M293.5 200 L306.5 200 M297 204 L303 204"/>
+</svg></div></figure>
+      <div>
+        <p class="givens" style="margin:0">All transistors saturated; g<sub>m1</sub>, g<sub>m2</sub>, 1/R<sub>F</sub> ≫ g<sub>ds1</sub>, g<sub>ds2</sub>. V<sub>DD</sub> = 3 V, I<sub>D2</sub> = 200 µA, V<sub>tn</sub> = 0.75 V, V<sub>tp</sub> = −0.75 V, K′<sub>n</sub> = 200 µA/V², K′<sub>p</sub> = 50 µA/V², C<sub>F</sub> = 1 pF, C<sub>L</sub> = 9 pF. C<sub>IN</sub> is a large DC-blocking capacitor (a short for signals).</p>
+        <ol type="i">
+          <li>Draw the small-signal equivalent circuit. <span class="marks">[3]</span></li>
+          <li value="3">Calculate R<sub>BIAS</sub> to bias M2 with a drain current of 200 µA. <span class="marks">[2]</span></li>
+          <li>Calculate g<sub>m1</sub>, the transconductance of M1. <span class="marks">[2]</span></li>
+          <li>What value of R<sub>F</sub> gives a low-frequency gain from v<sub>in</sub> to v<sub>out</sub> of 16.9 dB? <span class="marks">[3]</span></li>
+        </ol>
+        <p class="givens">Part (ii), the high-frequency transfer function, and parts (vi)–(vii), break frequencies and a Bode plot, need Section 18 onwards.</p>
+      </div>
+    </div>
+    <details class="sol"><summary>Show solution</summary><div class="d-body">
+      <ol type="i">
+        <li>C<sub>IN</sub> is a short, so M1’s gate carries v<sub>in</sub>. R<sub>F</sub> in parallel with C<sub>F</sub> connects the gate (v<sub>in</sub>) to the output. At the output: g<sub>m1</sub>v<sub>in</sub> (M1, from the output to its source at AC ground), 1/g<sub>ds1</sub>, 1/g<sub>ds2</sub> and C<sub>L</sub>. M2’s gate sits at a DC mirror voltage, so g<sub>m2</sub>v<sub>gs2</sub> = 0 and M2 is just 1/g<sub>ds2</sub>.</li>
+        <li value="3">M2 (32/1) shares its V<sub>GS</sub> with M3 (3.2/1), so I<sub>3</sub> = 200/10 = 20 µA. Then 20 = 100 × 3.2 × V<sub>OV</sub>², so V<sub>OV</sub> = 0.25 V and V<sub>GS3</sub> = 1.0 V. R<sub>BIAS</sub> = (3 − 1.0) V / 20 µA = <strong>100 kΩ</strong>.</li>
+        <li>M1 carries the same 200 µA: g<sub>m1</sub> = √(2 × 50 × 32 × 200) µA/V = <strong>800 µA/V</strong>, with an overdrive of 0.5 V.</li>
+        <li>At low frequency the capacitors are open. KCL at the output is Lesson 12’s feedback-resistor equation with only one transconductance: g<sub>m1</sub>v<sub>in</sub> + (g<sub>ds1</sub> + g<sub>ds2</sub>)v<sub>out</sub> + (v<sub>out</sub> − v<sub>in</sub>)/R<sub>F</sub> = 0, so
+          <math display="block" class="tml-display" style="display:block math;"><mrow><mfrac><msub><mi>v</mi><mrow><mi>o</mi><mi>u</mi><mi>t</mi></mrow></msub><msub><mi>v</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub></mfrac><mo>=</mo><mo form="prefix" stretchy="false">−</mo><mfrac><mrow><msub><mi>g</mi><mrow><mi>m</mi><mn>1</mn></mrow></msub><mo>−</mo><mn>1</mn><mi>/</mi><msub><mi>R</mi><mi>F</mi></msub></mrow><mrow><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>g</mi><mrow><mi>d</mi><mi>s</mi><mn>2</mn></mrow></msub><mo>+</mo><mn>1</mn><mi>/</mi><msub><mi>R</mi><mi>F</mi></msub></mrow></mfrac></mrow></math>
+          With 1/R<sub>F</sub> ≫ g<sub>ds</sub> this is −(g<sub>m1</sub> − 1/R<sub>F</sub>)R<sub>F</sub> = −(g<sub>m1</sub>R<sub>F</sub> − 1). 16.9 dB is a gain of 10<sup>16.9/20</sup> = 7.0, so g<sub>m1</sub>R<sub>F</sub> = 8 and R<sub>F</sub> = 8/(800 µA/V) = <strong>10 kΩ</strong>. Dropping the −1 would give 8.75 kΩ; the tidy 10 kΩ suggests the examiner intended the full expression.</li>
+      </ol>
+      <p><strong>Bonus insight:</strong> no DC current flows in R<sub>F</sub>, so M1’s gate sits at the output’s DC voltage and M1 behaves like a diode at DC. With 200 µA its V<sub>SG</sub> = 0.75 + 0.5 = 1.25 V, so the output settles at 3 − 1.25 = 1.75 V by itself. M2 then has 1.75 V across it against a 0.25 V overdrive, so it is saturated too. This is the self-biasing trick from the clock buffer.</p>
+    </div></details>
+  </article>
+
   <h3>Pure DC biasing</h3>
 
   <article class="prob" id="p-w24q2">
-    <div class="prob-head"><span class="src">P10 · Winter 2024 · Q2 (i)–(v)</span><span class="who official">official</span><h3>Biasing a PMOS cascode current source</h3><span class="tags">Lessons 4, 6 · 12 marks</span></div>
+    <div class="prob-head"><span class="src">P11 · Winter 2024 · Q2 (i)–(v)</span><span class="who official">official</span><h3>Biasing a PMOS cascode current source</h3><span class="tags">Lessons 4, 6 · 12 marks</span></div>
     <div class="prob-body">
       <figure><div class="fig-box"><svg class="sch" viewBox="0 0 360 260" style="max-width:360px" role="img" aria-label="Winter 2024 Q2: PMOS cascode current mirror. M1 50/1 is diode-connected at the top left and carries IIN through R2 and R1 to ground; M2 50/1 shares its gate; M3 100/0.5 sits below M2 with its gate at the R1-R2 junction and delivers IOUT." xmlns="http://www.w3.org/2000/svg">
 <path class="w" d="M60 26 L290 26"/>
@@ -3769,7 +4416,7 @@ body {
   </article>
 
   <article class="prob stack" id="p-w25q2">
-    <div class="prob-head"><span class="src">P11 · Winter 2025 · Q2 (i)–(v)</span><span class="who">my working</span><h3>Biasing a low-voltage cascode mirror</h3><span class="tags">Lessons 4, 6 · 12 marks</span></div>
+    <div class="prob-head"><span class="src">P12 · Winter 2025 · Q2 (i)–(v)</span><span class="who">my working</span><h3>Biasing a low-voltage cascode mirror</h3><span class="tags">Lessons 4, 6 · 12 marks</span></div>
     <div class="prob-body">
       <figure><div class="fig-box"><svg class="sch" viewBox="0 0 440 272" style="max-width:440px" role="img" aria-label="Winter 2025 Q2: PMOS cascode current mirror. M1 and M2 at the top share a gate that is wired to the drain of M3, the input node where IIN flows out. M3 and M4 below share a gate at VB, the voltage made by diode-connected M5 carrying IBIAS. IOUT leaves the drain of M4." xmlns="http://www.w3.org/2000/svg">
 <path class="w" d="M30 24 L400 24"/>
@@ -3868,7 +4515,7 @@ body {
 <!-- =============================== FORMULA SHEET =============================== -->
 <section id="formulas" class="block" data-title="Formula sheet">
   <header class="lesson-head block-head">
-    <div class="eyebrow"><span class="lnum">Formula sheet</span><span>Lessons 1–11 on one page</span></div>
+    <div class="eyebrow"><span class="lnum">Formula sheet</span><span>Lessons 1–13 on one page</span></div>
     <h2>Everything so far, on one page</h2>
   </header>
   <div class="sheet">
@@ -3895,6 +4542,11 @@ body {
       <p>Ideal I: −g<sub>m1</sub>/g<sub>ds1</sub> · Resistor: ≈ −g<sub>m1</sub>R<sub>L</sub> · Diode: ≈ −g<sub>m1</sub>/g<sub>m2</sub> · Current source: −g<sub>m1</sub>/(g<sub>ds1</sub> + g<sub>ds2</sub>) · Inverter: −(g<sub>m1</sub> + g<sub>m2</sub>)/(g<sub>ds1</sub> + g<sub>ds2</sub>).</p>
       <p>Intrinsic gain g<sub>m</sub>/g<sub>ds</sub> = 2/(λV<sub>OV</sub>).</p>
     </div>
+    <div class="card"><h3>Two-port shortcut</h3>
+      <math display="block" class="tml-display" style="display:block math;"><mrow><msub><mi>a</mi><mi>v</mi></msub><mo>=</mo><mo form="prefix" stretchy="false">−</mo><mfrac><msub><mi>G</mi><mi>m</mi></msub><mrow><msub><mi>G</mi><mrow><mi>o</mi><mi>u</mi><mi>t</mi></mrow></msub><mo>+</mo><msub><mi>G</mi><mi>L</mi></msub></mrow></mfrac></mrow></math>
+      <p>G<sub>m</sub>: short the output, take i<sub>out</sub>/v<sub>in</sub>. G<sub>out</sub>: short the input, take i/v at the output (looking down + looking up). Then add the load’s G<sub>L</sub>.</p>
+      <p>Inverter: G<sub>m</sub> = g<sub>m1</sub> + g<sub>m2</sub>. Feedback R from input to output: −(G<sub>m</sub> − 1/R)/(G<sub>out</sub> + 1/R).</p>
+    </div>
     <div class="card"><h3>Numbers</h3>
       <p>K′<sub>n</sub> = 200 µA/V², K′<sub>p</sub> = 50 µA/V² (course values). V<sub>t</sub> ≈ 0.7–0.8 V. Keep V<sub>OV</sub> ≥ 0.2 V. kT/q = 26 mV at room temperature.</p>
       <p>dB = 20 log<sub>10</sub>|A|: ×2 = 6 dB, ×10 = 20 dB, ×100 = 40 dB.</p>
@@ -3903,8 +4555,8 @@ body {
 </section>
 
 <footer class="site">
-  <p><strong>Built from</strong> the EE4022/EE6049 course notes (v1.1, 7 September 2026), the lecture recordings’ captions for 8, 11, 15, 18 and 22 September 2026, last year’s captions, the sample solutions for slides 62, 81, 101, 115 and 126, and the Winter 2022–2025 exam papers (official solutions for Winter 2024).</p>
-  <p>Answers marked “my working” are not official: if one disagrees with the lecturer’s solution, trust the lecturer and tell me. Updated 24 September 2026; Friday 25 September’s lecture will be added next.</p>
+  <p><strong>Built from</strong> the EE4022/EE6049 course notes (v1.1, 7 September 2026), the lecture recordings’ captions for 8, 11, 15, 18, 22 and 25 September 2026, last year’s captions, the sample solutions for slides 62, 81, 101, 115 and 126, and the Winter 2022–2025 exam papers (official solutions for Winter 2024).</p>
+  <p>Answers marked “my working” are not official: if one disagrees with the lecturer’s solution, trust the lecturer and tell me. Updated 30 September 2026 with lecture 6 (25 September). Lecture 7 (Tuesday 29 September) will be added when its caption arrives.</p>
 </footer>
 
 </div>
@@ -4266,8 +4918,8 @@ body {
       desc: 'Slide 119: V<sub>DD</sub> = 5 V, NMOS 10/1 (K′<sub>n</sub> = 160 µA/V²), PMOS diode 1/2.5 (K′<sub>p</sub> = 40 µA/V²), |V<sub>t</sub>| = 0.8 V.',
       note: 'The gain curve is flat while M1 is saturated: a linear stage, gain = √(K′<sub>n</sub>(W/L)<sub>1</sub>/K′<sub>p</sub>(W/L)<sub>2</sub>) = 10. With M1 off the output rests at V<sub>DD</sub> − |V<sub>tp</sub>| = 4.2 V. A smaller (W/L)<sub>2</sub> raises the gain but lowers the output, so M1 leaves saturation sooner.' },
     cs: { kind: 'cs', VDD: 3, n: { K: 160e-6, Vt: 0.8, W: 10, L: 1 }, pm: { K: 40e-6, Vt: 0.8, W: 40, L: 1 }, VB2: 1.8, vin: 1.2,
-      desc: 'Slide 132: V<sub>DD</sub> = 3 V, NMOS 10/1 and PMOS 40/1, K′<sub>n</sub> = 160, K′<sub>p</sub> = 40 µA/V², |V<sub>t</sub>| = 0.8 V, λ = 0.04 V⁻¹, V<sub>BIAS2</sub> = 1.8 V.',
-      note: 'Both transistors are saturated only in a narrow window around V<sub>IN</sub> = 1.2 V, and there the gain is about 62. Change V<sub>BIAS2</sub> by 10 mV and watch the operating point run out of the window: this stage needs feedback to hold its bias.' },
+      desc: 'Slide 132: V<sub>DD</sub> = 3 V, V<sub>BIAS2</sub> = 1.8 V, NMOS 10/1, K′<sub>n</sub> = 160 and K′<sub>p</sub> = 40 µA/V², |V<sub>t</sub>| = 0.8 V, λ = 0.04/L. The buttons set up the three parts of the problem.',
+      note: 'The green window only exists where the two currents agree. Move the PMOS width and V<sub>IN</sub> must move to a new, equally narrow window: a high-gain stage needs its bias set very precisely.' },
     inv: { kind: 'inv', VDD: 3, n: { K: 80e-6, Vt: 1, W: 10, L: 1 }, pm: { K: 20e-6, Vt: 1, W: 40, L: 1 }, vin: 1.5,
       desc: 'Slide 139: V<sub>DD</sub> = 3 V, |V<sub>t</sub>| = 1 V, NMOS 10/1, PMOS 40/1, λ = 0.05 V⁻¹. K′ values chosen so that I<sub>D</sub> = 100 µA at V<sub>IN</sub> = 1.5 V, as in the problem.',
       note: 'Both transistors amplify, so the peak gain (about 80) is twice what M1 would give with a plain current-source load. Change the PMOS width and the high-gain point moves away from V<sub>DD</sub>/2.' }
@@ -4275,10 +4927,22 @@ body {
   const PARAM = {
     res: { label: 'Load resistor R<sub>L</sub>', min: 2000, max: 100000, step: 500, get: (s) => s.RL, set: (s, v) => { s.RL = v; }, fmt: (v) => fmtR(v) },
     diode: { label: 'PMOS diode (W/L)<sub>2</sub>', min: 0.1, max: 4, step: 0.02, get: (s) => s.pm.W / s.pm.L, set: (s, v) => { s.pm.W = v * s.pm.L; }, fmt: (v) => v.toFixed(2) },
-    cs: { label: 'PMOS gate V<sub>BIAS2</sub>', min: 1.0, max: 2.2, step: 0.002, get: (s) => s.VB2, set: (s, v) => { s.VB2 = v; }, fmt: (v) => fmtV(v, 3) },
+    cs: { label: 'PMOS size W<sub>2</sub>/L<sub>2</sub>', min: 10, max: 100, step: 1, get: (s) => s.pm.W / s.pm.L, set: (s, v) => { s.pm.W = v * s.pm.L; }, fmt: (v, s) => (v * s.pm.L).toFixed(0) + '/' + s.pm.L },
     inv: { label: 'PMOS width W<sub>2</sub>/L<sub>2</sub>', min: 10, max: 80, step: 1, get: (s) => s.pm.W / s.pm.L, set: (s, v) => { s.pm.W = v * s.pm.L; }, fmt: (v) => v.toFixed(0) + '/1' }
   };
   const lamOf = (t, kind) => kind === 'inv' ? 0.05 : 0.04 / t.L;
+  // the three parts of the slide 132 problem (current-source preset only)
+  const SCEN = {
+    i: { apply: () => {}, vin: 1.2,
+      note: '<strong>(i)</strong> Both transistors are saturated only in a narrow window around V<sub>IN</sub> = 1.2 V, and there the gain is about 66 here (62.5 by hand; the lab keeps λ in the DC currents, so it reads a few percent high). Move V<sub>IN</sub> by 20 mV either way and the gain collapses.' },
+    ii: { apply: (s) => { s.n.W = 20; s.n.L = 2; s.pm.W = 80; s.pm.L = 2; }, vin: 1.2,
+      note: '<strong>(ii)</strong> Every W and L doubled: same currents and overdrives, but λ = 0.04/L halves to 0.02 V⁻¹, so the gain at V<sub>IN</sub> = 1.2 V roughly doubles, to about 129 here (125 by hand), and the drop is steeper (slide 135).' },
+    iii: { apply: (s) => { s.pm.W = 80; }, vin: 1.2,
+      note: '<strong>(iii)</strong> Only W<sub>2</sub> doubled, V<sub>IN</sub> still 1.2 V: M2 wants about 256 µA but M1 supplies about 128 µA. The output runs up to about 2.87 V, M2 falls into triode and the gain collapses (slide 136).' },
+    fix: { apply: (s) => { s.pm.W = 80; }, vin: 0.8 + 0.4 * Math.SQRT2,
+      note: '<strong>(iii) fixed</strong> V<sub>BIAS1</sub> raised to 1.366 V so that M1 also carries about 256 µA. Both are saturated again and the gain is about 47 here (44 by hand, 62.5/√2): the high-gain window has moved to the right (slides 137–138).' }
+  };
+  let scen = null;
   let LS = null;
   function clone(o) { return JSON.parse(JSON.stringify(o)); }
   function In(s, vin, vo) { const t = s.n; return idm(t.K, t.W / t.L, t.Vt, lamOf(t, s.kind), vin, vo); }
@@ -4314,11 +4978,19 @@ body {
     else if (s.kind === 'inv') r2 = region(s.VDD - vin, s.VDD - vo, s.pm.Vt);
     return { r1: r1, r2: r2, good: r1 === 'sat' && (r2 === null || r2 === 'sat') };
   }
-  function setLoad(kind, keepBias) {
+  function markScen() {
+    $$('#lab-scen button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.scen === scen ? 'true' : 'false'));
+  }
+  function setLoad(kind, keepBias, scenKey) {
     const prevVin = LS ? LS.vin : null;
     LS = clone(PRESETS[kind]);
     if (keepBias && prevVin !== null) LS.vin = Math.min(prevVin, LS.VDD);
-    $$('#lab-tool .seg button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.load === kind ? 'true' : 'false'));
+    scen = kind === 'cs' ? (scenKey || 'i') : null;
+    if (scen) { SCEN[scen].apply(LS); LS.vin = SCEN[scen].vin; }
+    $$('#lab-tool .seg button[data-load]').forEach((b) => b.setAttribute('aria-pressed', b.dataset.load === kind ? 'true' : 'false'));
+    const sc = $('lab-scen');
+    if (sc) sc.hidden = kind !== 'cs';
+    markScen();
     $('lab-desc').innerHTML = LS.desc;
     const vinEl = $('lab-vin');
     vinEl.max = LS.VDD; vinEl.value = LS.vin;
@@ -4328,13 +5000,17 @@ body {
     $('lab-p-l').innerHTML = P.label;
     drawLab();
   }
+  function userMoved() {
+    if (scen) { scen = null; markScen(); }
+    drawLab();
+  }
   function drawLab() {
     if (!LS) return;
     const s = LS;
     s.vin = +$('lab-vin').value;
     PARAM[s.kind].set(s, +$('lab-p').value);
     $('lab-vin-o').textContent = fmtV(s.vin, 3);
-    $('lab-p-o').textContent = PARAM[s.kind].fmt(PARAM[s.kind].get(s));
+    $('lab-p-o').textContent = PARAM[s.kind].fmt(PARAM[s.kind].get(s), s);
     const N = 700, xs = [], vo = [], g = [], good = [];
     for (let i = 0; i <= N; i++) {
       const v = s.VDD * i / N; const o = solve(s, v);
@@ -4383,7 +5059,7 @@ body {
     ];
     let formula = '';
     const G = (x) => (x * 1e6).toFixed(x * 1e6 >= 100 ? 0 : x * 1e6 >= 10 ? 1 : 2);
-    const gtxt = ss.gain.toFixed(Math.abs(ss.gain) >= 10 ? 1 : 2).replace('-', '−') + (Math.abs(ss.gain) > 0.01 ? ' (' + dB(ss.gain).toFixed(1) + ' dB)' : '');
+    const gtxt = ss.gain.toFixed(Math.abs(ss.gain) >= 10 ? 1 : 2).replace('-', '−') + (Math.abs(ss.gain) > 0.01 ? ' (' + dB(ss.gain).toFixed(1).replace('-', '−') + ' dB)' : '');
     if (s.kind === 'res') {
       cells.push(['1/R<sub>L</sub>', fmtG(1 / s.RL)]);
       formula = 'gain = −g<sub>m1</sub> / (g<sub>ds1</sub> + 1/R<sub>L</sub>) = −' + G(ss.gm1) + ' / (' + G(ss.gds1) + ' + ' + G(1 / s.RL) + ') = ' + gtxt;
@@ -4407,12 +5083,13 @@ body {
     else if (rg.r1 === 'tri') warn = '<p class="warn">M1 is in triode, so the gain has collapsed. Lower V<sub>IN</sub> back into the green window.</p>';
     else if (rg.r2 === 'tri') warn = '<p class="warn">M2 is in triode (not enough voltage across it), so the gain has collapsed. Raise V<sub>IN</sub> towards the green window.</p>';
     else if (rg.r2 === 'off') warn = '<p class="warn">M2 is off.</p>';
-    $('lab-ex').innerHTML = warn + '<p>' + s.note + '</p>';
+    $('lab-ex').innerHTML = warn + '<p>' + (scen ? SCEN[scen].note : s.note) + '</p>';
   }
   if ($('lab-tool')) {
-    $$('#lab-tool .seg button').forEach((b) => b.addEventListener('click', () => setLoad(b.dataset.load, false)));
-    $('lab-vin').addEventListener('input', drawLab);
-    $('lab-p').addEventListener('input', drawLab);
+    $$('#lab-tool .seg button[data-load]').forEach((b) => b.addEventListener('click', () => setLoad(b.dataset.load, false)));
+    $$('#lab-scen button').forEach((b) => b.addEventListener('click', () => setLoad('cs', false, b.dataset.scen)));
+    $('lab-vin').addEventListener('input', userMoved);
+    $('lab-p').addEventListener('input', userMoved);
     $('lab-reset').addEventListener('click', () => setLoad(LS ? LS.kind : 'res', false));
     $$('a[data-preset]').forEach((a) => a.addEventListener('click', () => setLoad(a.dataset.preset, false)));
     setLoad('res', false);
