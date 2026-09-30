@@ -8,8 +8,8 @@ Plain-English, lesson-by-lesson study guides for my MEngSc in Electrical & Elect
 |---|---|---|---|
 | EE6049 | Design of Analogue ICs | [`ee6049/`](ee6049/) | Live · 13 lessons, lectures 1–6 |
 | EE6043 | Design of Digital ICs | [`ee6043/`](ee6043/) | Live · 13 lessons, lectures 1–3 |
-| EE6041 | Advanced Signal Processing | [`ee6041/`](ee6041/) | Live · 31 sections, LTI + z-transform |
-| CS6322 | Optimisation | [`cs6322/`](cs6322/) | Live · 15 lessons, notes 1–7 |
+| EE6041 | Advanced Signal Processing | [`ee6041/`](ee6041/) | Live · 34 sections, LTI + z-transform (to 30 Sep) |
+| CS6322 | Optimisation | [`cs6322/`](cs6322/) | Live · 18 lessons, notes 1–8 |
 
 ## Start here (continuing on another computer or Claude account)
 

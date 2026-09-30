@@ -2,6 +2,23 @@
 
 Dated log of working sessions. Newest first. Each entry: what changed, why, and anything left unfinished.
 
+## 2026-09-30 — Sync: CS6322 notes 8, EE6041 sections 32–34 pushed
+
+- Found the updates in Drive `UCC/SEMESTER-1/COURSES/<module>/Claude outputs/`, not in the artifacts (all four artifacts were unchanged), so the first check of the day missed them.
+- **EE6041:** applied the learning project's commit (bundle/patch `ee6041-sections-32-34`), see the entry below.
+- **CS6322:** 15 → 18 lessons from notes 8 (16 Branch and bound · 17 Greedy algorithms · 18 Dynamic programming). Imported the Drive `Claude outputs/index.html` with `tools/import_guide.py`. Keys `l16`–`l18` share `cs6322-done`.
+- Hub: CS6322 card 18 lessons, notes 1–8; stats 78 lessons. README, CLAUDE.md, PROJECT_STATUS, `cs6322/NOTES.md` updated.
+- **Sync rule change:** check each module's Drive `Claude outputs/` folder as well as its artifact; the newer one wins. EE6049 and EE6043 had nothing new.
+
+## 2026-09-30 — EE6041: lectures of 29 and 30 September
+
+- **EE6041:** 31 → 34 sections, written straight into `ee6041/index.html` (the guide is no longer edited as an artifact, so it must not be re-synced from one).
+  - 32 A double pole: the step convolved with itself, (z/(z−1))² ↔ (n+1)u(n).
+  - 33 The system function: H(z) from a difference equation and back (Z slides 24–28, the 30 Sep board example).
+  - 34 The unit circle as the stability boundary (Z slides 29–36), with a "move the pole" demo and the s-plane link z = e^{sT}.
+  - Notes from the two lectures added to sections 30 and 31; cheat sheet, traps, "still to come", hero and module overview updated; tick keys `z13`–`z15` added.
+- Hub: EE6041 card 34 sections, 8–30 Sep; stats 75 lessons. README, CLAUDE.md (EE6041 keys and edit-here rule), NOTES.md, PROJECT_STATUS updated.
+
 ## 2026-09-30 — First sync
 
 - Checked all four artifacts against the repo. Synced three; CS6322 unchanged (version 28 Sep).

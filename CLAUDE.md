@@ -18,6 +18,7 @@ A static website of self-study guides for Kamrul's (Shuvo's) MEngSc in Electrica
 - If you *can* open the artifact and it is newer than the repo copy, download it and re-import it (workflow below).
 - Otherwise edit the repo HTML directly. Don't rebuild a guide from scratch.
 - After editing a guide in the repo, if you're on the main account you may republish it to its artifact so both match, but that's optional.
+- **EE6041 is edited here directly (from 30 Sep 2026).** Its artifact is no longer updated and is older than the repo copy, so never sync or re-import EE6041 from the artifact.
 
 ## Writing and style rules (from Kamrul)
 
@@ -27,8 +28,8 @@ A static website of self-study guides for Kamrul's (Shuvo's) MEngSc in Electrica
 - Progress ticks use `localStorage`; the hub reads them. Keep each guide's key stable:
   - EE6049 → `ee6049-guide-done-v1` (keys `l1`…`l13`)
   - EE6043 → `ee6043-guide-done-v1` (keys `l1`…`l13`)
-  - EE6041 → `ee6041-lti-progress-v1` (keys `s1`…`s19`, `z1`…`z12`)
-  - CS6322 → `cs6322-done` (keys `l1`…`l15`)
+  - EE6041 → `ee6041-lti-progress-v1` (keys `s1`…`s19`, `z1`…`z15`)
+  - CS6322 → `cs6322-done` (keys `l1`…`l18`)
   If you add lessons, update `data-total` on that module's card in `index.html`.
 - Labs: CS6322's lecturer asks that GenAI is not used for lab answers. Guides may explain ideas and check models, but never publish full lab solutions.
 - Don't put personal details (phone, email, student number, addresses) anywhere in this public repo.
@@ -45,7 +46,7 @@ A static website of self-study guides for Kamrul's (Shuvo's) MEngSc in Electrica
 
 ### "Sync the website" (agreed workflow, 29 Sep 2026)
 Guides are still edited in their own learning projects as Claude artifacts; the site does **not** update automatically. When Kamrul says "sync the website":
-1. For each module, read its artifact (URL in `<module>/NOTES.md`) and compare with the repo copy; skip unchanged ones.
+1. For each module, check **both** its artifact (URL in `<module>/NOTES.md`) **and** Drive `UCC/SEMESTER-1/COURSES/<module folder>/Claude outputs/` (a full `index.html`, or a git `.patch`/`.bundle` against this repo). Use whichever is newer; skip unchanged modules.
 2. Save the new HTML and run `python3 tools/import_guide.py raw.html <module>`.
 3. If lessons were added: update that card in `index.html` (`data-total`, lesson count, coverage line) and the hero "Lessons" stat.
 4. Update `<module>/NOTES.md`, `PROJECT_STATUS.md`, `CHANGELOG.md`.

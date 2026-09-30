@@ -8,8 +8,8 @@ _Last updated: 30 September 2026_
 |---|---|---|---|---|---|
 | EE6049 Design of Analogue ICs | `ee6049/` | 13 | Lectures 1–6 (8–25 Sep), slides 1–146; lecture 7 (29 Sep) not yet written up | 30 Sep 2026 | Live |
 | EE6043 Design of Digital ICs | `ee6043/` | 13 | Lectures 1–3 (intro, Verilog parts 1–2) | 30 Sep 2026 | Live |
-| EE6041 Advanced Signal Processing | `ee6041/` | 31 | Topics 1–2 of 7: LTI systems (8, 9, 15 Sep) and z-transform (22, 23 Sep) | 29 Sep 2026 | Live |
-| CS6322 Optimisation | `cs6322/` | 15 | Lecture notes 1–7 | 28 Sep 2026 | Live |
+| EE6041 Advanced Signal Processing | `ee6041/` | 34 | Topics 1–2 of 7: LTI systems (8, 9, 15 Sep) and z-transform (22, 23, 29, 30 Sep; Z slides 1–36) | 30 Sep 2026 | Live |
+| CS6322 Optimisation | `cs6322/` | 18 | Lecture notes 1–8 | 30 Sep 2026 | Live |
 | Semester 2 (MEMS, Data Converters, Adv. Analogue IC, RF ICs) | — | — | — | — | Planned |
 
 ## Site infrastructure
@@ -25,9 +25,9 @@ _Last updated: 30 September 2026_
 
 1. **Sync after each guide update** — say "sync the website" (workflow in `CLAUDE.md`).
 2. **EE6043** — FPGA architecture lecture next, then timing and power.
-3. **EE6041** — topics 3–7 as they are lectured.
+3. **EE6041** — z-transform slides 37–53 (frequency response) next, then topics 3–7. Edited directly in this repo now; its artifact is frozen.
 4. **EE6049** — write up lecture 7 (29 Sep) onwards; lab-related theory before the labs on 8, 22, 29 Oct (no lab answers).
-5. **CS6322** — beyond notes 7 (dynamic programming, greedy, local search, genetic algorithms).
+5. **CS6322** — beyond notes 8 (local search / simulated annealing, genetic algorithms).
 6. Optional: a small "last updated" line on each hub card, generated from `NOTES.md`.
 
 ## Open decisions
