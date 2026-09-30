@@ -1,9 +1,9 @@
 # CS6322 Optimisation — guide notes
 
 - **Page:** `cs6322/index.html` (title "CS6322 Study Guide")
-- **Original artifact (main Claude account only):** https://claude.ai/artifact/NJTSQzZfgMAd6rne1VRbQD
-- **Progress key:** `cs6322-done` → `l1`…`l15` (the built-in LP lab also stores its text under `cs6322-lab`)
-- **Last content update:** 28 Sep 2026 (imported to repo 29 Sep 2026)
+- **Original artifact (main Claude account only):** https://claude.ai/artifact/NJTSQzZfgMAd6rne1VRbQD — **stale since 30 Sep 2026.** The learning project now saves the guide to Drive `UCC/SEMESTER-1/COURSES/CS6322 - Optimisation/Claude outputs/index.html`; sync from that file, not the artifact.
+- **Progress key:** `cs6322-done` → `l1`…`l18` (the built-in LP lab also stores its text under `cs6322-lab`)
+- **Last content update:** 30 Sep 2026 (Drive file of 18:40; synced 30 Sep 2026)
 - **Lecturer:** Dr Steven Prestwich
 
 ## Module facts
@@ -23,8 +23,10 @@
 | 4–5 Fixed costs | 11 Fixed costs and big-M |
 | 5–6 Logic and tricks | 12 Logical constraints · 13 Either/or, lists, curves |
 | 6–7 Tours and cutting | 14 Travelling salesman · 15 Cutting stock, templates |
+| 8 Beyond IP | 16 Branch and bound · 17 Greedy algorithms · 18 Dynamic programming |
 
 Extras: LP lab (parses lp_solve files, solves, plots 2-variable LPs), lab assignment overview, exam practice, "still to come", cheat sheet.
 
 ## To do
-- [ ] Notes 8 onwards: dynamic programming, greedy algorithms, local search / simulated annealing, genetic algorithms
+- [x] Notes 8: branch and bound, greedy algorithms, dynamic programming
+- [ ] Notes 9 onwards: local search / simulated annealing, genetic algorithms
