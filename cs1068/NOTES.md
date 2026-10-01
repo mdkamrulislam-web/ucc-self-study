@@ -3,8 +3,8 @@
 - **Page:** `cs1068/index.html` (title "CS1068 Study Guide")
 - **Original artifact:** none. Started 1 Oct 2026 in the repo from a Claude Code session (project "CS1068 Introductory Programming in Python"), so it is **edited here directly**, like EE6041.
 - **Progress key:** `cs1068-guide-done-v1` → `l1`…`l15`
-- **Last content update:** 1 Oct 2026 (lectures 0.1–3.1)
-- **Course material:** the project's shared files, `CS1068 - Introductory Programming in Python/` (Week 0–3 slides, lab and practice sheets, Quizzes 2–3, Canvas notices, Winter 2022–23 to 2025–26 papers). Kamrul's own lab submissions are in `Week N/Lab/My Submissions/`; the guide doesn't use them.
+- **Last content update:** 1 Oct 2026 (lectures 0.1–3.1; coverage re-checked against every slide, sheet, quiz, notice and paper the same day)
+- **Course material:** the project's shared files, `CS1068 - Introductory Programming in Python/` (Week 0–3 slides, lab and practice sheets, Quizzes 2–3, Canvas notices, Winter 2022–23 to 2025–26 papers; the "Question Papers – Booklet" PDF is the same four papers). Kamrul's own lab submissions are in `Week N/Lab/My Submissions/`; the guide doesn't use them.
 
 ## Module facts
 - Lecturer: Dr Tatiana Tabirca. Co-taught as CS1068 / CS6501 / CS6506 (same lectures and labs; the Canvas page is labelled CS1068). Assumes no programming background.
@@ -24,6 +24,8 @@
 | 2.1 Input, output, type conversion | 6 Type conversion · 7 input() gives a string · 8 print(), sep and end · 9 f-strings |
 | 2.2 Conditional statements | 10 The if statement · 11 else and elif · 12 Nested if, and/or/not |
 | 3.1 Functions | 13 Defining and calling · 14 return vs print · 15 Docstrings and built-ins |
+
+Also on the start page: the Golden Rule, Phase 1, tips, textbook, software and academic-integrity points from 0.1 and 1.1. Lesson 1 carries the Gale–Shapley worked example and the 0.2 exercise (0.1 and 0.2 aren't examined, so this is background).
 
 Extras: Python playground, weekly quizzes 2–3 explained, labs and deadlines (topics only, no answers), exam practice (4 past-paper Q1 openers with solutions + 3 exam-style questions), still to come (topics mapped to past-paper questions), cheat sheet.
 
