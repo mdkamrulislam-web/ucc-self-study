@@ -443,6 +443,32 @@ else:
     <li><p><strong>Do the <a href="#practice">exam practice</a> on paper.</strong> The exam is handwritten, so practise writing code without an editor.</p></li>
   </ol>
 
+  <h3 style="margin-top:40px">How the lecturer wants you to learn</h3>
+  <div class="key"><span class="tag">The Golden Rule</span><p>“If you cannot explain it, you do not understand it. If you do not understand it, you should not use it.” (end of every lecture from 1.1)</p></div>
+  <p><strong>Our goal</strong> (Lecture 1.1): by the end of the module you can write Python programs that solve problems of moderate complexity. AI will be used to support your learning, without replacing your own thinking, but only later.</p>
+  <p><strong>Phase 1: build your foundations</strong> (now). Learn the new concepts from worked examples, then practise by solving problems yourself. Each week opens with a short ungraded quiz in the first lecture. During this phase, don’t use AI to generate solutions: think, practise, make mistakes and learn from them.</p>
+  <div class="cols2">
+    <div>
+      <p><strong>Tips for success</strong> (Lecture 0.1)</p>
+      <ol>
+        <li>Attend and take part.</li>
+        <li>Keep up with the work week by week.</li>
+        <li>Practise.</li>
+        <li>Take notes.</li>
+        <li>Make your effort continuous, as the assessment is.</li>
+      </ol>
+    </div>
+    <div>
+      <p><strong>Resources and software</strong></p>
+      <ul>
+        <li>Canvas: slides, lab and practice sheets, assignment materials, code examples, old exam papers.</li>
+        <li>Useful text: <em>Python: Visual QuickStart Guide</em> (3rd edition) by Toby Donaldson, Peachpit Press.</li>
+        <li>Python <strong>3.x</strong>, not 2.x. VS Code (or any text editor). Ubuntu in the labs; Windows, macOS or Linux at home.</li>
+      </ul>
+    </div>
+  </div>
+  <p><strong>Academic integrity</strong> (Lecture 0.1 appendix). Plagiarism includes <em>collusion</em> (handing in joint work as your own; it applies to both students when one lets another copy), <em>self-plagiarism</em> (reusing your own earlier submitted work without saying so) and <em>verbatim</em> copying. Software counts, and submissions are checked. Every piece of coursework now carries a GenAI declaration: where GenAI is not allowed you declare you didn’t use it; where it is allowed you say which tools you used and what for.</p>
+
   <h3 style="margin-top:40px">What each lecture covered</h3>
   <div class="tbl-wrap min">
     <table>
@@ -478,10 +504,51 @@ else:
     <li><strong>Write the program.</strong> Translate each step into Python.</li>
     <li><strong>Check the solution.</strong> Run it with different inputs and fix what is wrong.</li>
   </ol>
-  <p>A <strong>program</strong> is “a set of instructions written in a programming language that tells a computer what to do” (the exact wording Quiz 2 used). Application programs help users (Google Maps, Word, games); system programs run the computer itself (drivers, Windows, Linux).</p>
+  <p>A <strong>program</strong> is “a set of instructions written in a programming language that tells a computer what to do” (the exact wording Quiz 2 used). Writing those instructions is called <em>programming</em> or <em>coding</em>. Application programs help users (Google Maps, Word, games); system programs run the computer itself (drivers, Windows, Linux).</p>
+  <p>Lecture 0.2 puts the same idea as a chain: <strong>Problem → Algorithm → Pseudocode → Program</strong>. Its first algorithm was the sum of two numbers:</p>
+  <div class="codepair">
+    <div><p class="cap">Algorithm (Lecture 0.2)</p>
+<pre class="pseudo">1. Start
+2. Read a, b
+3. c = a + b
+4. Print or display c
+5. Stop</pre></div>
+    <div><p class="cap">Python</p>
+<pre class="py" data-run>a = 4
+b = 9
+c = a + b
+print(c)</pre>
+<pre class="out">13</pre></div>
+  </div>
+
+  <h3>Kinds of programming language</h3>
+  <p>Lecture 1.1 sorts languages by how close they are to the hardware:</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Kind</th><th>What it is</th></tr></thead>
+      <tbody>
+        <tr><td>Machine language</td><td>Binary number codes that one particular CPU understands: <code>0101001000111</code></td></tr>
+        <tr><td>Assembly language</td><td>Short codes that match machine instructions one to one, so still specific to one CPU: <code>mov rax, rdx</code></td></tr>
+        <tr><td>High-level language</td><td>“Human-readable” and machine independent: algebra-like expressions plus English words, such as <code>c = a + b</code>. It has to be translated before the CPU can run it.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>High-level languages in order of arrival: Fortran, COBOL, LISP, Pascal and Prolog (1950s to 70s); C (70s); C++ (80s); Java and Python (90s); also Perl and Ruby.</p>
+  <p><strong>Why Python?</strong> A good first language that is also powerful: simple, clean syntax, with everything needed for both big and small jobs. It is widely used in web development, data science, AI, machine learning, game development and bioinformatics. Slide 2 compares printing one line:</p>
+  <div class="codepair">
+    <div><p class="cap">Python</p>
+<pre class="py" data-run>print("Welcome to MPT")</pre>
+<pre class="out">Welcome to MPT</pre></div>
+    <div><p class="cap">Java (not run here)</p>
+<pre class="pseudo">public class Main {
+    public static void main(String[] args) {
+        System.out.println("Welcome to MPT");
+    }
+}</pre></div>
+  </div>
 
   <h3>The lecturer’s worked example: an average</h3>
-  <p><strong>Problem:</strong> a teacher wants a student’s average from two test scores. <strong>Algorithm</strong>, split into input, processing and output:</p>
+  <p><strong>Problem:</strong> a teacher wants a student’s average from two test scores. <strong>Algorithm</strong>, “a structured method for a computer to solve a problem step by step”, split into input, processing and output. Lecture 1.1 then writes it two ways. <strong>Pseudocode</strong> is symbolic text that must be translated into a programming language before it can run; it lets you write out the logic without worrying about code. A <strong>flowchart</strong> is a diagram of the same algorithm, read from top to bottom, with shapes for the steps and arrows between them.</p>
   <div class="codepair">
     <div><p class="cap">Pseudocode</p>
 <pre class="pseudo">Program find_average
@@ -523,6 +590,40 @@ print("Average score:", average)</pre>
   Afternoon: every receiver keeps the best proposal so far
              and rejects the rest
   Evening:   every rejected proposer crosses that name off their list</pre>
+  <p>(The slide’s termination line reads “repeat days until any person is engaged”; it means until <em>every</em> person is engaged.)</p>
+  <div class="example"><span class="tag">Worked example · Lecture 0.2, slide 15</span>
+    <p>Four boys and four girls, each with a ranked list, favourite first:</p>
+    <div class="codepair">
+      <div><div class="tbl-wrap"><table>
+        <thead><tr><th>Boy</th><th>Ranking, 1st to 4th</th></tr></thead>
+        <tbody>
+          <tr><td>Jim</td><td>Amy, Dee, Cathy, Beth</td></tr>
+          <tr><td>Ken</td><td>Amy, Beth, Cathy, Dee</td></tr>
+          <tr><td>Leo</td><td>Beth, Dee, Cathy, Amy</td></tr>
+          <tr><td>Max</td><td>Cathy, Amy, Beth, Dee</td></tr>
+        </tbody></table></div></div>
+      <div><div class="tbl-wrap"><table>
+        <thead><tr><th>Girl</th><th>Ranking, 1st to 4th</th></tr></thead>
+        <tbody>
+          <tr><td>Amy</td><td>Leo, Jim, Ken, Max</td></tr>
+          <tr><td>Beth</td><td>Jim, Max, Leo, Ken</td></tr>
+          <tr><td>Cathy</td><td>Ken, Max, Leo, Jim</td></tr>
+          <tr><td>Dee</td><td>Max, Ken, Jim, Leo</td></tr>
+        </tbody></table></div></div>
+    </div>
+    <p><strong>Boys propose.</strong> Follow the three steps day by day:</p>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Day</th><th>Proposals</th><th>Decisions</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Jim → Amy, Ken → Amy, Leo → Beth, Max → Cathy</td><td>Amy keeps Jim (she ranks him above Ken). Beth holds Leo, Cathy holds Max.</td></tr>
+        <tr><td>2</td><td>Ken → Beth</td><td>Beth prefers Leo: Ken rejected again.</td></tr>
+        <tr><td>3</td><td>Ken → Cathy</td><td>Cathy prefers Ken to Max: she swaps, Max is free.</td></tr>
+        <tr><td>4</td><td>Max → Amy</td><td>Amy prefers Jim: Max rejected.</td></tr>
+        <tr><td>5</td><td>Max → Beth</td><td>Beth prefers Max to Leo: she swaps, Leo is free.</td></tr>
+        <tr><td>6</td><td>Leo → Dee</td><td>Dee is free and accepts. Everyone is engaged.</td></tr>
+      </tbody></table></div>
+    <p>Result: (Jim, Amy) (Max, Beth) (Ken, Cathy) (Leo, Dee), the slide’s answer. <strong>Girls propose</strong> instead and every girl’s first choice is a different boy, so it ends on day 1 with (Amy, Leo) (Beth, Jim) (Cathy, Ken) (Dee, Max). Both matchings are stable, yet they differ: the side that proposes ends up with the best partners it can have in any stable matching.</p>
+  </div>
   <p>The procedure always ends, and always ends with a stable matching. Versions of it run school admissions in New York (unmatched students fell from about 30,000 to 3,000 a year), kidney exchanges, and the assignment of users to web servers. Shapley and Roth shared the 2012 Nobel Prize in Economics for this work.</p>
 
   <aside class="exam"><span class="tag">Exam angle</span><p>Lectures 0.1 and 0.2 are <em>not</em> examined (Canvas). What matters from here is the habit: in the exam every “write a complete program” question is easier if you jot down input → processing → output first. Quiz 2 Q8 asked for the order of the four steps.</p></aside>
@@ -534,6 +635,8 @@ print("Average score:", average)</pre>
 Input quantity
 Total = price * quantity
 Print Total</pre></div></details>
+    <details><summary>In the boys-first result above, Leo ranks Beth first. Are Leo and Beth a blocking pair?</summary><div class="d-body"><p>No. Leo prefers Beth to Dee, but Beth is with Max, whom she ranks above Leo. A blocking pair needs <em>both</em> people to prefer each other.</p></div></details>
+    <details><summary>Lecture 0.2’s exercise: boys A: X Y Z, B: X Z Y, C: Y X Z; girls X: B A C, Y: A C B, Z: C B A. Find a stable matching.</summary><div class="d-body"><p>Boys propose. Day 1: A and B propose to X, C to Y; X keeps B. Day 2: A → Y, and Y prefers A to C, so C is free. Day 3: C → X, who keeps B. Day 4: C → Z, who accepts. Result: (A, Y) (B, X) (C, Z).</p><p>With the girls proposing, X → B, Y → A and Z → C all accept on day 1: the same matching. When both versions agree, that matching is the only stable one.</p></div></details>
   </div>
 
   <footer class="lesson-foot"><label class="done-toggle"><input type="checkbox" data-done="l1"> I’ve got this lesson</label></footer>
@@ -551,6 +654,20 @@ Print Total</pre></div></details>
   <h3>Running a file</h3>
   <p>In the lab you boot Ubuntu, log in with your CS account, and use <strong>VS Code</strong>, an IDE (integrated development environment): an editor that also runs your code. Lab 2 had you create a folder <code>CS1068/Lab_Week2</code>, a file <code>lab_week2.py</code>, and run it with the ▷ button. From a terminal the same thing is</p>
 <pre class="out">$ python3 average.py</pre>
+  <p>Lecture 1.1’s <code>average.py</code> is the average example from Lesson 1, now reading the scores from the keyboard. Each comment names a step of the algorithm:</p>
+<pre class="py" data-run data-stdin="70&#10;80"># Step 1: Ask for user input
+score1 = int(input("Enter the first test score: "))
+score2 = int(input("Enter the second test score: "))
+
+# Step 2: Calculate the average
+average_score = (score1 + score2) / 2
+
+# Step 3: Display the result
+print("The average test score is:", average_score)</pre>
+<pre class="out">Enter the first test score: 70
+Enter the second test score: 80
+The average test score is: 75.0</pre>
+  <p>Lesson 7 explains <code>int(input(…))</code>; for now, read it as “ask for a whole number”. The slide’s point: “all code is mostly a mix of variables and functions”. <code>score1</code> is a variable, a small piece of memory with a sensible name (Lesson 3). <code>print()</code> and <code>input()</code> are functions, small blocks of code that take some input, do one job and give back an output (Lesson 13).</p>
   <p>Use Python <strong>3</strong>, never Python 2 (Lecture 0.1). For quick experiments the lecturer uses the Programiz online compiler; every ▶ Try it button in this guide does the same job.</p>
 
   <h3>The smallest program</h3>
@@ -571,6 +688,20 @@ Print Total</pre></div></details>
       </tbody>
     </table>
   </div>
+
+  <h3>Three kinds of error</h3>
+  <p>Past papers ask you to find errors “both syntactic and logical”. It helps to know the three kinds:</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Kind</th><th>When you find out</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Syntax error</strong></td><td>Before anything runs: Python can’t read the file, so not even line 1 runs.</td><td><code>print Welcome</code>, a missing colon or bracket, bad indentation (<code>SyntaxError</code>, <code>IndentationError</code>)</td></tr>
+        <tr><td><strong>Runtime error</strong></td><td>While it runs: the program stops at the bad line, after earlier lines have already run.</td><td><code>print(Welcome)</code> (<code>NameError</code>), <code>1 + "3"</code> (<code>TypeError</code>), <code>int("2.5")</code> (<code>ValueError</code>)</td></tr>
+        <tr><td><strong>Logic error</strong></td><td>Never, unless you test: it runs and prints an answer, but the answer is wrong.</td><td><code>score1 + score2 / 2</code> without brackets gives 125 instead of 85</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Python reports the first two for you. Only testing (step 4) catches the third, which is why the lecturer insists on it.</p>
 
   <h3>Comments</h3>
   <p>A comment is text Python ignores, written for people. “All professional code should be commented” (Lecture 1.1).</p>
@@ -926,6 +1057,26 @@ variable = int(input(prompt as a string))       → an int
 variable = float(input(prompt as a string))     → a float</pre>
   <p>The prompt is optional but always worth giving, ending with a space so the user’s typing doesn’t touch it. When you press ▶ Try it here, Python asks for each input in a pop-up box; in the output, what you typed appears after the prompt, as it would in a terminal.</p>
 
+  <h3>Slide 10: three inputs, then a report</h3>
+<pre class="py" data-run data-stdin="Jessa&#10;8000&#10;Google"># take three values from user
+name = input("Enter Employee Name: ")
+salary = input("Enter salary: ")
+company = input("Enter Company name: ")
+
+# Display all values on screen
+print()
+print("Printing Employee Details")
+print("Name", "Salary", "Company")
+print(name, salary, company)</pre>
+<pre class="out">Enter Employee Name: Jessa
+Enter salary: 8000
+Enter Company name: Google
+
+Printing Employee Details
+Name Salary Company
+Jessa 8000 Google</pre>
+  <p>Each <code>input</code> stops and waits, so the three questions come one after another. The empty <code>print()</code> gives the blank line. This works without any conversion only because nothing does arithmetic: <code>salary</code> is the string <code>"8000"</code>.</p>
+
   <h3>Slide 11: everything typed is a string</h3>
 <pre class="py" data-run data-stdin="22&#10;Jessa">number = input("Enter roll number ")
 name = input("Enter age ")
@@ -1210,7 +1361,7 @@ Let's go outside</pre>
       </tbody>
     </table>
   </div>
-  <p>A condition has the shape <code>&lt;expr1&gt; &lt;relop&gt; &lt;expr2&gt;</code>, and its value is a <code>bool</code>: try <code>print(5 &gt; 3)</code>. <strong>Double equals checks; single equals assigns.</strong></p>
+  <p>A condition has the shape <code>&lt;expr1&gt; &lt;relop&gt; &lt;expr2&gt;</code> (relop is short for relational operator), and its value is a <code>bool</code>: try <code>print(5 &gt; 3)</code>. That is why slide 9 also calls a condition a <strong>boolean expression</strong>: an expression whose result is <code>True</code> or <code>False</code>. <strong>Double equals checks; single equals assigns.</strong></p>
 
   <h3>Slide 12: spot the errors</h3>
 <pre class="py" data-run>a = 100
@@ -1247,7 +1398,7 @@ print("done")</pre></summary><div class="d-body"><p>Only <code>print("done")</co
 <!-- =============================== LESSON 11 =============================== -->
 <section id="l11" class="lesson" data-title="Lesson 11 · else and elif">
   <header class="lesson-head">
-    <div class="eyebrow"><span class="lnum">Lesson 11</span><span>Lecture 2.2, slides 13–26</span></div>
+    <div class="eyebrow"><span class="lnum">Lesson 11</span><span>Lecture 2.2, slides 13–26 · Lecture 3.1, slide 2</span></div>
     <h2>Choosing one of several paths: else and elif</h2>
     <p class="idea"><b>The one idea</b><code>if</code>–<code>elif</code>–<code>else</code> tests its conditions from the top and runs the body of the <em>first</em> one that is true, then skips the rest. Exactly one branch runs (or none, if there is no <code>else</code>), so the order of the tests matters.</p>
   </header>
@@ -1329,6 +1480,49 @@ elif mark &gt;= 70:
 <pre class="out">Mark: 85
 Pass</pre>
   <p>85 ≥ 40 is true, so “Pass” is printed and the <code>elif</code> is never reached: “First class” is unreachable for every mark. Test <code>mark &gt;= 70</code> first, then <code>mark &gt;= 40</code>.</p>
+
+  <h3>A chain of ranges (Lecture 3.1 review)</h3>
+  <p>Lecture 3.1 opened by reviewing this chain, which sorts students by credit hours. The slide’s last line is <code>print studentType</code>, Python 2 style; in Python 3 it needs brackets.</p>
+<pre class="py" data-run data-stdin="35">hours = int(input("Credit hours: "))
+
+if hours &lt; 12:
+    studentType = "beginning freshman"
+elif hours &lt; 30:
+    studentType = "freshman"
+elif hours &lt; 45:
+    studentType = "second year"
+else:
+    studentType = "nearing graduation"
+print(studentType)</pre>
+<pre class="out">Credit hours: 35
+second year</pre>
+  <figure><div class="fig-box">
+    <svg class="fc" viewBox="0 0 470 340" role="img" aria-label="Flowchart of an elif chain: hours less than 12 leads to beginning freshman; otherwise less than 30 leads to freshman; otherwise less than 45 leads to second year; otherwise nearing graduation; every path then prints studentType">
+      <defs><marker id="ar4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+      <polygon class="dia" points="90,8 160,40 90,72 20,40"/><text x="90" y="44" text-anchor="middle" class="mono">hours &lt; 12</text>
+      <polygon class="dia" points="90,92 160,124 90,156 20,124"/><text x="90" y="128" text-anchor="middle" class="mono">hours &lt; 30</text>
+      <polygon class="dia" points="90,176 160,208 90,240 20,208"/><text x="90" y="212" text-anchor="middle" class="mono">hours &lt; 45</text>
+      <rect class="box" x="230" y="24" width="190" height="32"/><text x="325" y="45" text-anchor="middle">beginning freshman</text>
+      <rect class="box" x="230" y="108" width="190" height="32"/><text x="325" y="129" text-anchor="middle">freshman</text>
+      <rect class="box" x="230" y="192" width="190" height="32"/><text x="325" y="213" text-anchor="middle">second year</text>
+      <rect class="box" x="10" y="262" width="160" height="32"/><text x="90" y="283" text-anchor="middle">nearing graduation</text>
+      <path class="io" d="M242 296 H420 L408 328 H230 Z"/><text x="325" y="317" text-anchor="middle" class="mono">print(studentType)</text>
+      <line class="ln" x1="160" y1="40" x2="228" y2="40" marker-end="url(#ar4)"/>
+      <line class="ln" x1="160" y1="124" x2="228" y2="124" marker-end="url(#ar4)"/>
+      <line class="ln" x1="160" y1="208" x2="228" y2="208" marker-end="url(#ar4)"/>
+      <text class="lbl" x="172" y="34">True</text><text class="lbl" x="172" y="118">True</text><text class="lbl" x="172" y="202">True</text>
+      <line class="ln" x1="90" y1="72" x2="90" y2="90" marker-end="url(#ar4)"/>
+      <line class="ln" x1="90" y1="156" x2="90" y2="174" marker-end="url(#ar4)"/>
+      <line class="ln" x1="90" y1="240" x2="90" y2="260" marker-end="url(#ar4)"/>
+      <text class="lbl" x="97" y="86">False</text><text class="lbl" x="97" y="170">False</text><text class="lbl" x="97" y="254">False</text>
+      <path class="ln" d="M420 40 H450 V312 H416" marker-end="url(#ar4)"/>
+      <line class="ln" x1="420" y1="124" x2="450" y2="124"/>
+      <line class="ln" x1="420" y1="208" x2="450" y2="208"/>
+      <path class="ln" d="M90 294 V312 H234" marker-end="url(#ar4)"/>
+    </svg></div>
+    <figcaption><b>Lecture 3.1, slide 2.</b> Each False arrow leads to the next test. Exactly one box runs, and every path meets at the print.</figcaption>
+  </figure>
+  <p>The tests don’t repeat the lower limit, and they don’t need to. The line <code>elif hours &lt; 30</code> is only reached when <code>hours &lt; 12</code> was false, so it really means 12 ≤ hours &lt; 30. Ranges in increasing order with <code>&lt;</code>, or in decreasing order with <code>&gt;=</code>, both work this way. Mixing the order breaks it, as the grading example above showed.</p>
 
   <h3>The temperature warnings (slides 18–24)</h3>
   <p>The lecture builds this up in the four steps from Lesson 1: problem (warn above 90 °F and below 30 °F), pseudocode, flowchart, code. The first version used two separate ifs; the final one uses <code>elif</code> and adds a normal-range message.</p>
@@ -1473,13 +1667,29 @@ else:
 <!-- =============================== LESSON 13 =============================== -->
 <section id="l13" class="lesson" data-title="Lesson 13 · Defining and calling functions">
   <header class="lesson-head">
-    <div class="eyebrow"><span class="lnum">Lesson 13</span><span>Lecture 3.1, slides 4–10, 13–17</span></div>
+    <div class="eyebrow"><span class="lnum">Lesson 13</span><span>Lecture 3.1, slides 4–10, 13–17 · Lecture 2.2, slide 22</span></div>
     <h2>Defining and calling a function</h2>
     <p class="idea"><b>The one idea</b>A function is a named block of code. <code>def</code> only <em>defines</em> it: nothing inside runs until you <em>call</em> it by name with brackets. When called, Python jumps into the body with the parameters set to the arguments you passed, runs it, then comes back.</p>
   </header>
 
   <h3>Why bother?</h3>
   <p>“We use functions when we need to perform the same task multiple times without writing the same code again” (slide 4). Write the code once, give it a sensible name, and call it whenever you need it. You have been calling functions since Lesson 2 (<code>print</code>, <code>input</code>, <code>int</code>, <code>type</code>); now you write your own.</p>
+
+  <h3>The lecturer’s first example (slide 7)</h3>
+<pre class="py" data-run>def add(num1, num2):
+    print("Number 1:", num1)
+    print("Number 2:", num1)  #!!
+    addition = num1 + num2
+
+    return addition
+
+res = add(2, 4)
+print(res)</pre>
+<pre class="out">Number 1: 2
+Number 2: 2
+6</pre>
+  <p>Spot the slip, copied exactly from the slide: the marked line prints <code>num1</code> again, so it says “Number 2: 2” although <code>num2</code> is 4. The sum is still right, because the next line uses <code>num2</code>. Changing <code>num1</code> to <code>num2</code> on the marked line fixes it. The program runs without complaint and is still wrong: a logic error (Lesson 2), the kind “find the errors” questions hide.</p>
+  <p>The slide’s notes: a function only runs when it is called; you can pass data into it, as parameters; the reason to use one is reuse (define the code once, use it many times); <code>def</code> is mandatory and <code>return</code> optional. It also says functions are “also known as methods”. Strictly, Python keeps the word <em>method</em> for a function that belongs to a value and is called with a dot, like <code>"mary".upper()</code>; you will meet those with strings.</p>
 
   <h3>The anatomy</h3>
 <pre class="pseudo">def function_name(parameter1, parameter2, ...):
@@ -1540,6 +1750,41 @@ Equivalent temperature in fahrenheit is:  77.0</pre>
   </ol>
   <p>Notice the argument (<code>temp</code>) and the parameter (<code>temp_c</code>) have different names. That is normal: the parameter is the function’s own name for whatever value it is given.</p>
   <p>Slide 13’s checklist for <strong>calling</strong> any function: what is it called? what arguments does it expect (how many, what types)? does it give back a result, and if so what?</p>
+
+  <h3>Plan first, then code: Temp.py with the warnings</h3>
+  <p>Lecture 2.2 (slide 22) planned the next version of the temperature program as a comment before writing any code, split into input, and processing and output:</p>
+<pre class="py">'''
+Input
+    Display a message asking the user for the temperature in celsius
+    save to a suitable variable and cast to float
+
+Processing &amp; Output
+    Calculate fahrenheit as 9/5 celsius + 32 in a function
+    and return the output to main program.
+    Invoke the function and print the fahrenheit output to the screen
+
+    If fahrenheit &gt; 90, print a heat warning to the screen
+    If fahrenheit &lt; 30, print a cold warning to the screen
+'''</pre>
+  <p>Every line of the plan turns into a line or two of code. Joining Temp.py’s function to Lesson 11’s warnings:</p>
+<pre class="py" data-run data-stdin="-5">def celsius_to_fahr(temp_c):
+    # Returns the fahrenheit equivalent of a given celsius temperature
+    temp_f = temp_c * 9 / 5 + 32
+    return temp_f
+
+# Main program
+celsius = float(input("What is the Celsius temperature? "))
+fahrenheit = celsius_to_fahr(celsius)
+print(f"The temperature is {fahrenheit:.2f} degrees Fahrenheit.")
+
+if fahrenheit &gt; 90:
+    print("Warning: Hot weather!")
+elif fahrenheit &lt; 30:
+    print("Warning: Cold weather!")</pre>
+<pre class="out">What is the Celsius temperature? -5
+The temperature is 23.00 degrees Fahrenheit.
+Warning: Cold weather!</pre>
+  <p>The function does only the calculation and returns it; the main program does the input, the printing and the decisions. Writing the plan first is the Lesson 1 habit, and it leaves you with a header comment for the finished file.</p>
 
   <div class="warn-box"><span class="tag">Trap</span><p>Define before you call. Python reads top to bottom, so calling <code>celsius_to_fahr(temp)</code> on a line <em>above</em> its <code>def</code> gives <code>NameError: name 'celsius_to_fahr' is not defined</code>. Put all your functions at the top and the main program underneath, as the lecturer does.</p></div>
 
@@ -1704,6 +1949,17 @@ calculate_square(number)
     Returns:
         int or float: The square of the input number.
 </pre>
+  <p>Slide 18 gives the general template. The slide opens and closes it with <code>"""</code>; <code>'''</code> works the same.</p>
+<pre class="pseudo">def some_function(argument1):
+    """Summary or Description of the Function
+
+    Parameters:
+    argument1 (int): Description of arg1
+
+    Returns:
+    int: Returning value
+    """
+    return argument1</pre>
   <p>Three things to include (slide 18): the <strong>purpose</strong> of the function, each <strong>parameter</strong> (data type and content), and the <strong>output</strong> (data type and content). Python stores the docstring with the function, which is why <code>help()</code> can show it. A one-line function can have a one-line docstring: <code>"""Return the Fahrenheit equivalent of a Celsius temperature."""</code></p>
 
   <h3>Built-in functions</h3>
@@ -2074,7 +2330,7 @@ Returns:
       <p><code>f"{name} is {age}"</code>, <code>f"{x:.2f}"</code> → 2 decimals, rounded.</p>
     </div>
     <div class="card"><h3>Conditions</h3>
-      <p><code>&lt; &lt;= == &gt;= &gt; !=</code> give a bool. <code>==</code> compares, <code>=</code> assigns. <code>and</code> both, <code>or</code> either, <code>not</code> flips. Ranges: <code>a &gt;= 3 and a &lt;= 5</code>.</p>
+      <p>A condition is a boolean expression: <code>&lt; &lt;= == &gt;= &gt; !=</code> give a bool. <code>==</code> compares, <code>=</code> assigns. <code>and</code> both, <code>or</code> either, <code>not</code> flips. Ranges: <code>a &gt;= 3 and a &lt;= 5</code>.</p>
     </div>
     <div class="card"><h3>if / elif / else</h3>
 <pre class="py" style="margin-top:6px">if c1:
@@ -2099,6 +2355,7 @@ x, y = name(arg1, arg2)</pre>
     </div>
     <div class="card"><h3>Errors</h3>
       <p><code>SyntaxError</code> (missing <code>:</code>, <code>=</code> for <code>==</code>, bad name) · <code>IndentationError</code> · <code>NameError</code> (typo, case, undefined) · <code>TypeError</code> (int + str, wrong number of arguments) · <code>ValueError</code> (<code>int("abc")</code>).</p>
+      <p>Syntax errors stop the file before it starts; runtime errors stop it at the bad line; logic errors give a wrong answer and only testing finds them.</p>
     </div>
   </div>
 </section>

@@ -2,6 +2,19 @@
 
 Dated log of working sessions. Newest first. Each entry: what changed, why, and anything left unfinished.
 
+## 2026-10-01 — CS1068: coverage re-check against all course material
+
+- Re-read every slide of lectures 0.1–3.1 (text and slide images), both lab sheets, both practice sheets, Quizzes 2–3, the Canvas notices and all four past papers (the "Question Papers – Booklet" is the same four papers), and compared them with the guide.
+- **CS1068:** added what was missing, no new lessons (still 15):
+  - Start page: "How the lecturer wants you to learn" (the Golden Rule, the module goal, Phase 1, tips for success, the textbook, software, academic integrity and GenAI declarations).
+  - Lesson 1: Lecture 0.2's sum-of-two-numbers algorithm; machine, assembly and high-level languages with the history list; why Python and the Python vs Java slide; pseudocode and flowchart definitions; the Gale–Shapley 4×4 example traced day by day (boys first and girls first) and the 3×3 lecture exercise in Check yourself. Answers verified with a script.
+  - Lesson 2: Lecture 1.1's `average.py` with input; three kinds of error (syntax, runtime, logic).
+  - Lesson 7: the Employee input example (2.1 slide 10). Lesson 10: "boolean expression".
+  - Lesson 11: the Lecture 3.1 review chain (credit hours → student type) with a flowchart.
+  - Lesson 13: slide 7's `add()` example, including the slide's own bug (prints `num1` twice), and Lecture 2.2 slide 22's plan-as-a-comment turned into Temp.py with the warnings. Lesson 15: slide 18's docstring template.
+  - Cheat sheet: error kinds, boolean expression.
+- `tools/check_examples.py`: 66 examples, all match. Phone widths 320/375/414 px have no page overflow; the new two-column tables wrap instead of scrolling.
+
 ## 2026-10-01 — CS1068 Introductory Programming in Python added
 
 - New module, set up from a Claude Code session in the CS1068 project; source material was the project's shared files (slides 0.1–3.1, lab and practice sheets, Quizzes 2–3, Canvas notices, Winter 2022–23 to 2025–26 papers).
