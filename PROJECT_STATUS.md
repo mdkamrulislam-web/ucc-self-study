@@ -1,6 +1,6 @@
 # Project status
 
-_Last updated: 30 September 2026_
+_Last updated: 1 October 2026_
 
 ## Snapshot
 
@@ -10,6 +10,7 @@ _Last updated: 30 September 2026_
 | EE6043 Design of Digital ICs | `ee6043/` | 13 | Lectures 1–3 (intro, Verilog parts 1–2) | 30 Sep 2026 | Live |
 | EE6041 Advanced Signal Processing | `ee6041/` | 34 | Topics 1–2 of 7: LTI systems (8, 9, 15 Sep) and z-transform (22, 23, 29, 30 Sep; Z slides 1–36) | 30 Sep 2026 | Live |
 | CS6322 Optimisation | `cs6322/` | 18 | Lecture notes 1–8 | 30 Sep 2026 | Live |
+| CS1068 Introductory Programming in Python | `cs1068/` | 15 | Lectures 0.1–3.1 (to Functions); runnable examples, Quizzes 2–3, past-paper Q1s | 1 Oct 2026 | Live |
 | Semester 2 (MEMS, Data Converters, Adv. Analogue IC, RF ICs) | — | — | — | — | Planned |
 
 ## Site infrastructure
@@ -28,7 +29,8 @@ _Last updated: 30 September 2026_
 3. **EE6041** — z-transform slides 37–53 (frequency response) next, then topics 3–7. Edited directly in this repo now; its artifact is frozen.
 4. **EE6049** — write up lecture 7 (29 Sep) onwards; lab-related theory before the labs on 8, 22, 29 Oct (no lab answers).
 5. **CS6322** — beyond notes 8 (local search / simulated annealing, genetic algorithms).
-6. Optional: a small "last updated" line on each hub card, generated from `NOTES.md`.
+6. **CS1068** — lectures after 3.1 (loops next); after 7 Oct add 2025–26 Q1(iii) to practice; mid-term quiz revision before 28 Oct. Edited directly in this repo; run `tools/check_examples.py` after edits. No lab, practice or assignment answers.
+7. Optional: a small "last updated" line on each hub card, generated from `NOTES.md`.
 
 ## Open decisions
 

@@ -1,0 +1,2314 @@
+<!doctype html>
+<html lang="en-GB">
+<meta charset="utf-8"><meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CS1068 Study Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Schibsted+Grotesk:wght@500;600;700;800&display=swap">
+<style>
+/* ================= tokens ================= */
+:root {
+  --bg: #f2f4f8;
+  --surface: #ffffff;
+  --surface-2: #e6ebf2;
+  --ink: #151b24;
+  --ink-2: #2d3846;
+  --muted: #5a6574;
+  --rule: #d2d9e3;
+  --grid: #e2e7ef;
+  --accent: #2b5d9b;
+  --accent-soft: #dce7f5;
+  --hl-bg: #ffe58a;
+  --hl-ink: #221c00;
+  --hl-soft: #fff4c4;
+  --region: #dbe7f5;
+  --region-hatch: #9db6d8;
+  --good: #0a7d0a;
+  --bad: #c43535;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4; --s6: #008300; --s7: #4a3aa7; --s8: #e34948;
+  --shadow: 0 1px 2px rgba(21, 27, 36, .06), 0 4px 16px rgba(21, 27, 36, .07);
+  --f-head: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Literata", Georgia, "Times New Roman", serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --radius: 6px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0f131a; --surface: #151b24; --surface-2: #1b232e;
+    --ink: #e3e8ef; --ink-2: #c1cbd8; --muted: #909cab; --rule: #29323e; --grid: #1e2631;
+    --accent: #80b2ee; --accent-soft: #1a2d46;
+    --hl-bg: #5a4a0e; --hl-ink: #fff0bd; --hl-soft: #2c2610;
+    --region: #1c3149; --region-hatch: #3e5f88;
+    --good: #4cc04c; --bad: #ff7b72;
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #2f9a2f; --s7: #9085e9; --s8: #e66767;
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 6px 18px rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0f131a; --surface: #151b24; --surface-2: #1b232e;
+  --ink: #e3e8ef; --ink-2: #c1cbd8; --muted: #909cab; --rule: #29323e; --grid: #1e2631;
+  --accent: #80b2ee; --accent-soft: #1a2d46;
+  --hl-bg: #5a4a0e; --hl-ink: #fff0bd; --hl-soft: #2c2610;
+  --region: #1c3149; --region-hatch: #3e5f88;
+  --good: #4cc04c; --bad: #ff7b72;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #2f9a2f; --s7: #9085e9; --s8: #e66767;
+  --shadow: 0 1px 2px rgba(0,0,0,.35), 0 6px 18px rgba(0,0,0,.3);
+}
+
+/* ================= base ================= */
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.62; -webkit-font-smoothing: antialiased; }
+a { color: var(--accent); text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent); text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+h1, h2, h3, h4 { font-family: var(--f-head); line-height: 1.15; text-wrap: balance; margin: 0; color: var(--ink); letter-spacing: -0.01em; }
+p { margin: 0; }
+strong { font-weight: 650; }
+sub, sup { line-height: 0; }
+code, .mono { font-family: var(--f-mono); font-size: .84em; }
+code { background: var(--surface-2); padding: 1px 5px; border-radius: 3px; white-space: nowrap; }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
+
+/* ================= layout ================= */
+.topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); }
+.topbar-in { display: flex; align-items: center; gap: 14px; padding-block: 10px; padding-inline: 16px; max-width: 1280px; margin: 0 auto; }
+.brand { display: flex; align-items: baseline; gap: 10px; min-width: 0; }
+.brand .code { font-family: var(--f-mono); font-size: 12.5px; font-weight: 700; background: var(--accent); color: var(--bg); padding: 2px 7px; border-radius: 3px; }
+.brand .name { font-family: var(--f-head); font-weight: 700; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.meter { margin-left: auto; display: flex; align-items: center; gap: 10px; font-family: var(--f-head); font-size: 13.5px; color: var(--muted); white-space: nowrap; }
+.meter-bar { width: 120px; height: 8px; background: var(--surface-2); border-radius: 99px; overflow: hidden; border: 1px solid var(--rule); }
+.meter-bar span { display: block; height: 100%; width: 0; background: var(--accent); transition: width .3s ease; }
+.toc-btn { display: none; font: 600 14px var(--f-head); border: 1px solid var(--rule); background: var(--surface); color: var(--ink); border-radius: 5px; padding: 6px 12px; cursor: pointer; }
+.shell { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 40px; max-width: 1280px; margin: 0 auto; padding-inline: 16px; }
+main { min-width: 0; padding-block: 28px 80px; }
+.col { max-width: 780px; }
+
+.rail { position: sticky; top: 58px; align-self: start; max-height: calc(100vh - 70px); overflow-y: auto; padding-block: 26px 40px; font-family: var(--f-head); }
+.rail h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 10px; }
+.rail ol { list-style: none; margin: 0; padding: 0; }
+.rail .lec { position: relative; padding-left: 18px; padding-bottom: 12px; }
+.rail .lec::before { content: ""; position: absolute; left: 4px; top: 8px; bottom: -2px; width: 1.5px; background: var(--rule); }
+.rail .lec:last-child::before { display: none; }
+.rail .lec-date { position: relative; font-size: 12.5px; font-weight: 700; color: var(--ink-2); letter-spacing: .02em; }
+.rail .lec-date::before { content: ""; position: absolute; left: -18px; top: 4px; width: 9px; height: 9px; border-radius: 50%; background: var(--surface); border: 2px solid var(--ink-2); }
+.rail a { display: flex; gap: 8px; align-items: baseline; text-decoration: none; font-size: 14.5px; padding: 3px 6px; margin-left: -6px; border-radius: 4px; color: var(--ink-2); line-height: 1.3; }
+.rail a .n { font-family: var(--f-mono); font-size: 11px; color: var(--muted); min-width: 16px; }
+.rail a .tick { margin-left: auto; color: var(--accent); font-size: 13px; visibility: hidden; }
+.rail a.done .tick { visibility: visible; }
+.rail a:hover { background: var(--surface-2); }
+.rail a.active { background: var(--hl-bg); color: var(--hl-ink); }
+.rail a.active .n { color: var(--hl-ink); }
+.rail .extras { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); display: grid; gap: 2px; }
+.rail .note { font-size: 12.5px; color: var(--muted); margin-top: 16px; line-height: 1.45; }
+
+@media (max-width: 980px) {
+  .shell { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .toc-btn { display: inline-block; }
+  .meter-bar { width: 70px; }
+  .rail { display: none; position: fixed; z-index: 40; top: calc(env(safe-area-inset-top, 0px) + 52px); left: 0; right: 0; bottom: 0; max-height: none; background: var(--bg); padding: 20px 16px 60px; border-top: 1px solid var(--rule); }
+  .rail.open { display: block; }
+}
+@media (max-width: 520px) { .brand .name { display: none; } .meter .lbl-long { display: none; } body { font-size: 16.5px; } }
+
+/* ================= intro ================= */
+.intro { padding-block: 18px 8px; }
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 28px; align-items: center; }
+@media (max-width: 760px) { .hero { grid-template-columns: minmax(0, 1fr); } }
+.kicker { font-family: var(--f-head); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.intro h1 { font-size: clamp(34px, 5vw, 50px); font-weight: 800; margin-top: 10px; letter-spacing: -.02em; }
+.intro h1 .hl { background: linear-gradient(transparent 58%, var(--hl-bg) 58%, var(--hl-bg) 92%, transparent 92%); }
+.lede { font-size: 19px; margin-top: 16px; color: var(--ink-2); max-width: 62ch; }
+.hero-fig { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 10px; background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 16px 16px; }
+.hero-fig figcaption { font-size: 13px; margin-top: 6px; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 26px; }
+.fact { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 14px 16px; }
+.fact h3 { font-size: 12.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 6px; }
+.fact p { font-size: 15px; line-height: 1.5; }
+.steps { margin-top: 26px; display: grid; gap: 10px; counter-reset: st; padding: 0; list-style: none; }
+.steps li { counter-increment: st; display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: baseline; }
+.steps li::before { content: counter(st); font: 700 13px var(--f-mono); width: 24px; height: 24px; border-radius: 50%; display: inline-grid; place-items: center; background: var(--ink); color: var(--bg); }
+
+/* ================= tables ================= */
+.tbl-wrap { overflow-x: auto; margin-top: 16px; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; line-height: 1.45; }
+th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+th { font-family: var(--f-head); font-size: 12.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); background: var(--surface-2); font-weight: 700; }
+td.num, th.num { font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
+.tbl-wrap.min table { min-width: 520px; }
+
+/* ================= lessons ================= */
+section.lesson, section.block { padding-top: 64px; }
+.lesson-head { border-top: 2px solid var(--ink); padding-top: 14px; }
+.eyebrow { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; font-family: var(--f-head); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.eyebrow .lnum { color: var(--accent); font-weight: 800; }
+.lesson-head h2 { font-size: clamp(27px, 3.6vw, 35px); font-weight: 800; margin-top: 8px; }
+.idea { margin-top: 18px; font-size: 18.5px; line-height: 1.55; background: var(--hl-soft); padding: 16px 18px; border-radius: var(--radius); color: var(--ink); }
+.idea b { font-family: var(--f-head); font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; display: block; margin-bottom: 4px; color: var(--ink-2); }
+.lesson h3, .block h3 { font-size: 21px; font-weight: 750; margin-top: 38px; }
+.lesson h4, .block h4 { font-size: 16.5px; font-weight: 700; margin-top: 22px; }
+.lesson p, .block p { margin-top: 14px; }
+.lesson ul, .lesson ol, .block ul, .block ol { margin: 12px 0 0; padding-left: 1.3em; }
+.lesson li + li, .block li + li { margin-top: 6px; }
+figure { margin: 22px 0 0; }
+figure .fig-box { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 12px; overflow-x: auto; }
+figure .fig-box svg { display: block; margin: 0 auto; width: 100%; height: auto; }
+figcaption { font-size: 14px; color: var(--muted); margin-top: 8px; line-height: 1.45; }
+figcaption b { color: var(--ink-2); font-family: var(--f-head); }
+.figs2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin-top: 22px; }
+.figs2 figure { margin: 0; }
+.figs2 figcaption { font-size: 13.5px; }
+
+
+.key { margin-top: 22px; background: var(--surface); border: 1.5px solid var(--ink); border-radius: var(--radius); padding: 14px 18px 16px; }
+.key .tag, .example .tag, .exam .tag, .check .tag, .tool .tag, .warn-box .tag, .gpt .tag { font-family: var(--f-head); font-size: 11.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.key .tag { background: var(--hl-bg); color: var(--hl-ink); padding: 2px 7px; border-radius: 3px; }
+.key p:first-of-type { margin-top: 10px; }
+.example { margin-top: 22px; background: var(--surface-2); border-radius: var(--radius); padding: 14px 18px 16px; }
+.example .tag { color: var(--ink-2); }
+.warn-box { margin-top: 22px; border-left: 4px solid var(--bad); background: var(--surface); padding: 12px 16px 14px; border-radius: 0 var(--radius) var(--radius) 0; }
+.warn-box .tag { color: var(--bad); }
+.exam { margin-top: 26px; border: 1px dashed var(--ink-2); border-radius: var(--radius); padding: 12px 16px 14px; font-size: 15.5px; }
+.exam .tag { color: var(--ink); border: 1.5px solid var(--ink); padding: 1px 6px; border-radius: 3px; }
+.exam p { margin-top: 8px; }
+.analogy { font-style: italic; color: var(--ink-2); }
+.analogy::before { content: "Picture it: "; font-style: normal; font-family: var(--f-head); font-weight: 700; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.check { margin-top: 26px; }
+.check .tag { color: var(--muted); }
+details { margin-top: 8px; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--surface); }
+details > summary { cursor: pointer; padding: 10px 14px 10px 34px; position: relative; font-family: var(--f-head); font-weight: 600; font-size: 15.5px; list-style: none; display: block; }
+details > summary::-webkit-details-marker { display: none; }
+details > summary::before { content: "+"; position: absolute; left: 14px; top: 10px; font-family: var(--f-mono); font-weight: 700; color: var(--muted); }
+details[open] > summary::before { content: "−"; }
+details > .d-body { padding: 0 16px 14px 36px; font-size: 16px; }
+details > .d-body > :first-child { margin-top: 0; }
+details.sol { border-color: var(--ink-2); }
+.lesson-foot { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; border-top: 1px solid var(--rule); padding-top: 14px; }
+.done-toggle { display: inline-flex; gap: 8px; align-items: center; font-family: var(--f-head); font-weight: 600; font-size: 15px; cursor: pointer; }
+.done-toggle input { width: 18px; height: 18px; accent-color: var(--accent); }
+.btn { font: 600 14px var(--f-head); border-radius: 5px; padding: 7px 14px; cursor: pointer; border: 1.5px solid var(--ink); background: var(--surface); color: var(--ink); }
+.btn:hover { background: var(--hl-soft); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn.primary:hover { filter: brightness(1.08); background: var(--accent); }
+.btn.small { padding: 4px 10px; font-size: 13px; }
+.btn[disabled] { opacity: .5; cursor: not-allowed; }
+
+/* code / terminal */
+pre.lp, pre.term { font-family: var(--f-mono); font-size: 13.5px; line-height: 1.55; background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 12px 14px; overflow-x: auto; margin: 16px 0 0; white-space: pre; }
+pre.term { background: #0d1117; color: #dbe3ee; border-color: #0d1117; }
+pre.lp .cm, pre.term .cm { color: var(--muted); }
+pre.term .cm { color: #8b98a8; }
+pre .bad-line { background: color-mix(in srgb, var(--bad) 16%, transparent); display: inline-block; min-width: 100%; }
+.cols2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-top: 16px; }
+.cols2 > * { min-width: 0; }
+.cols2 pre { margin-top: 0; }
+.cols2 .cap { font-family: var(--f-head); font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+
+/* ================= tools ================= */
+.tool { margin-top: 26px; background: var(--surface); border: 1.5px solid var(--ink); border-radius: 8px; overflow: hidden; }
+.tool-head { padding: 12px 16px; border-bottom: 1px solid var(--rule); display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; background: var(--surface-2); }
+.tool-head h4 { font-size: 18px; font-weight: 800; margin: 0; }
+.tool .tag { color: var(--bg); background: var(--accent); padding: 2px 7px; border-radius: 3px; }
+.tool-head p { margin: 0; font-size: 14.5px; color: var(--muted); flex-basis: 100%; }
+.tool-body { padding: 14px 16px 16px; display: grid; gap: 14px; }
+.tool-row { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; font-family: var(--f-head); font-size: 14px; }
+.tool-row label { font-weight: 600; }
+select, input[type="text"], input[type="number"] { font: 14px var(--f-head); padding: 5px 7px; border-radius: 4px; border: 1px solid var(--rule); background: var(--surface); color: var(--ink); max-width: 100%; }
+textarea.code { font: 13.5px/1.55 var(--f-mono); width: 100%; min-height: 190px; padding: 10px 12px; border-radius: 6px; border: 1px solid var(--rule); background: var(--bg); color: var(--ink); resize: vertical; tab-size: 4; box-sizing: border-box; }
+textarea.code.short { min-height: 90px; }
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+@media (max-width: 860px) { .lab-grid { grid-template-columns: minmax(0, 1fr); } }
+.panel-cap { font-family: var(--f-head); font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.statusbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-family: var(--f-head); font-size: 14px; }
+.pill { display: inline-block; font-family: var(--f-head); font-weight: 700; font-size: 12px; letter-spacing: .04em; padding: 2px 8px; border-radius: 99px; border: 1.5px solid currentColor; white-space: nowrap; }
+.pill.ok { color: var(--good); } .pill.bad { color: var(--bad); } .pill.mut { color: var(--muted); } .pill.ink { color: var(--ink); }
+.swatch { display: inline-block; width: 18px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+.readout { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
+.ro { background: var(--surface-2); border-radius: 5px; padding: 8px 10px; }
+.ro .k { font-family: var(--f-head); font-size: 12.5px; color: var(--muted); font-weight: 700; }
+.ro .v { font-family: var(--f-mono); font-size: 14.5px; font-weight: 700; font-variant-numeric: tabular-nums; margin-top: 2px; }
+.explain { font-size: 15px; line-height: 1.5; background: var(--surface-2); border-radius: 5px; padding: 10px 12px; }
+.explain p { margin: 0; } .explain p + p { margin-top: 4px; }
+.seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.seg button { font: 600 13.5px var(--f-head); padding: 5px 11px; border-radius: 5px; border: 1.5px solid var(--rule); background: var(--surface); color: var(--ink); cursor: pointer; }
+.seg button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent); color: var(--bg); }
+
+/* svg graph styling */
+svg.fig text { font-family: var(--f-head); fill: var(--ink-2); font-size: 12px; }
+svg.fig .edge { stroke: var(--ink-2); stroke-width: 1.8; fill: none; }
+svg.fig .node { fill: var(--surface); stroke: var(--ink); stroke-width: 1.8; }
+svg.fig .muted { fill: var(--muted); }
+svg.fig .accent { stroke: var(--accent); }
+svg.fig .ah { fill: var(--ink-2); }
+svg.fig .ah-acc { fill: var(--accent); }
+
+/* ================= practice ================= */
+.prob { margin-top: 30px; background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px 18px; }
+.prob-head { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+.prob-head .src { font-family: var(--f-mono); font-size: 12px; font-weight: 700; background: var(--surface-2); padding: 2px 7px; border-radius: 3px; }
+.prob-head h3 { font-size: 20px; margin: 0; flex-basis: 100%; margin-top: 6px; }
+.prob-head .tags { font-family: var(--f-head); font-size: 13px; color: var(--muted); }
+.who { font-family: var(--f-head); font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 6px; border-radius: 3px; border: 1px solid var(--rule); color: var(--muted); }
+.who.paper { color: var(--accent); border-color: var(--accent); }
+.marks { font-family: var(--f-mono); font-size: 12px; color: var(--muted); white-space: nowrap; }
+.prob .q { margin-top: 12px; }
+.prob .q ul, .prob .q ol { margin-top: 8px; }
+
+.sheet { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 14px; margin-top: 18px; }
+.card { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 14px 16px; font-size: 15px; min-width: 0; }
+.card h3 { font-size: 14px !important; text-transform: uppercase; letter-spacing: .08em; margin: 0 0 6px !important; color: var(--ink-2); }
+.card p { margin-top: 8px !important; }
+.card ul { margin-top: 6px !important; padding-left: 1.1em !important; }
+.card table { font-size: 13.5px; }
+.card td, .card th { padding: 4px 6px; }
+
+
+/* ask panel */
+footer.site { margin-top: 70px; border-top: 2px solid var(--ink); padding-top: 16px; font-size: 14.5px; color: var(--muted); line-height: 1.55; }
+footer.site p + p { margin-top: 8px; }
+.nowrap { white-space: nowrap; }
+.hlt { background: var(--hl-bg); color: var(--hl-ink); padding: 0 3px; border-radius: 2px; }
+
+/* ================= python code ================= */
+:root { --k: #8a3fb8; --s: #a3531f; --n: #1f7a4d; --c: #6b7684; --b: #2b5d9b; --term-bg: #0d1117; --term-ink: #dbe3ee; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --k: #d09cf5; --s: #f0a774; --n: #7fd6a4; --c: #8b98a8; --b: #8fbaf0; } }
+:root[data-theme="dark"] { --k: #d09cf5; --s: #f0a774; --n: #7fd6a4; --c: #8b98a8; --b: #8fbaf0; }
+pre.py, pre.out, pre.pseudo { font-family: var(--f-mono); font-size: 13.5px; line-height: 1.6; border-radius: var(--radius); padding: 12px 14px; overflow-x: auto; margin: 16px 0 0; white-space: pre; tab-size: 4; }
+pre.py { background: var(--surface); border: 1px solid var(--rule); color: var(--ink); }
+pre.pseudo { background: var(--surface-2); border: 1px dashed var(--rule); color: var(--ink-2); }
+pre.out { background: var(--term-bg); color: var(--term-ink); border: 1px solid var(--term-bg); }
+pre.out::before { content: "Output"; display: block; font: 700 10.5px var(--f-head); letter-spacing: .1em; text-transform: uppercase; color: #8b98a8; margin-bottom: 4px; }
+pre.out.err { box-shadow: inset 4px 0 0 var(--bad); }
+pre.out .tb { color: #ff9b94; }
+pre.out .typed { color: #f5d76e; }
+pre.py + pre.out { margin-top: 6px; }
+.tk-k { color: var(--k); font-weight: 600; }
+.tk-s { color: var(--s); }
+.tk-n { color: var(--n); }
+.tk-c { color: var(--c); font-style: italic; }
+.tk-b { color: var(--b); }
+pre.py .bad-line, pre.pseudo .bad-line { background: color-mix(in srgb, var(--bad) 16%, transparent); display: inline-block; min-width: 100%; }
+.codepair { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-top: 16px; }
+.codepair > * { min-width: 0; }
+.codepair pre { margin-top: 0; }
+.codepair .cap { font-family: var(--f-head); font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+/* runner */
+.run-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 6px; }
+.run-bar .hint { font-family: var(--f-head); font-size: 12.5px; color: var(--muted); }
+.try-btn { font: 600 13px var(--f-head); background: var(--accent-soft); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); padding: 3px 10px; border-radius: 99px; cursor: pointer; }
+.try-btn::before { content: "▶ "; font-size: 10px; }
+.try-btn:hover { background: var(--accent); color: var(--bg); }
+textarea.code { display: block; font: 13.5px/1.6 var(--f-mono); width: 100%; min-height: 90px; padding: 12px 14px; margin-top: 16px; border-radius: var(--radius); border: 1.5px solid var(--accent); background: var(--surface); color: var(--ink); resize: vertical; tab-size: 4; white-space: pre; overflow-x: auto; }
+.run-out { margin-top: 6px; }
+.run-out pre.out { margin-top: 0; min-height: 44px; }
+/* quiz-style multiple choice */
+.mcq { margin-top: 26px; background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 14px 18px 16px; }
+.mcq .qn { font-family: var(--f-head); font-weight: 700; }
+.mcq ol.opts { list-style: upper-alpha; margin-top: 8px; }
+.mcq pre.py { margin-top: 10px; }
+/* timeline of the semester */
+.dates { display: grid; gap: 8px; margin-top: 14px; }
+.date { display: grid; grid-template-columns: 112px 1fr; gap: 12px; padding: 10px 14px; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; font-size: 15.5px; }
+.date .d { font-family: var(--f-mono); font-size: 12.5px; font-weight: 700; color: var(--accent); padding-top: 2px; }
+.date.past { opacity: .62; }
+.date.hot { border-color: var(--ink); }
+.later { display: grid; gap: 10px; margin-top: 16px; }
+.later-item { display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 12px 14px; background: var(--surface); border: 1px dashed var(--rule); border-radius: 6px; }
+.later-item .src { font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+.later-item p { margin: 0 !important; font-size: 15.5px; }
+.later-item p + p { margin-top: 4px !important; color: var(--muted); font-size: 14.5px; }
+@media (max-width: 520px) { .date, .later-item { grid-template-columns: minmax(0, 1fr); gap: 2px; } }
+/* flowchart svg */
+svg.fc text { font-family: var(--f-head); fill: var(--ink); font-size: 12.5px; }
+svg.fc .box { fill: var(--surface); stroke: var(--ink-2); stroke-width: 1.6; }
+svg.fc .dia { fill: var(--hl-soft); stroke: var(--ink-2); stroke-width: 1.6; }
+svg.fc .term { fill: var(--surface-2); stroke: var(--ink-2); stroke-width: 1.6; }
+svg.fc .io { fill: var(--accent-soft); stroke: var(--ink-2); stroke-width: 1.6; }
+svg.fc .ln { stroke: var(--ink-2); stroke-width: 1.6; fill: none; }
+svg.fc .ah { fill: var(--ink-2); }
+svg.fc .lbl { fill: var(--muted); font-size: 11.5px; font-weight: 700; }
+svg.fc .mono { font-family: var(--f-mono); font-size: 12px; }
+/* memory boxes for variables */
+.mem { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.mem .slot { display: grid; gap: 2px; text-align: center; }
+.mem .slot .nm { font: 700 12.5px var(--f-mono); color: var(--ink-2); }
+.mem .slot .val { font: 600 15px var(--f-mono); border: 1.5px solid var(--ink-2); border-radius: 4px; padding: 6px 12px; background: var(--surface); min-width: 54px; }
+.mem .slot .ty { font: 600 11px var(--f-head); color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.mem .slot.old .val { text-decoration: line-through; color: var(--muted); border-style: dashed; }
+code.wrap { white-space: normal; word-spacing: .3em; line-height: 1.9; }
+@media (max-width: 640px) { code { white-space: normal; overflow-wrap: break-word; } }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) pre.out { border-color: var(--rule); } }
+:root[data-theme="dark"] pre.out { border-color: var(--rule); }
+
+</style>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brand"><span class="code">CS1068</span><span class="name">Introductory Programming in Python</span></div>
+    <div class="meter" aria-live="polite"><span id="meter-text"><span class="lbl-long">Lessons done: </span>0 / 15</span><span class="meter-bar" aria-hidden="true"><span id="meter-fill"></span></span></div>
+    <button class="toc-btn" id="toc-btn" aria-expanded="false" aria-controls="rail">Contents</button>
+  </div>
+</header>
+
+<div class="shell">
+<nav class="rail" id="rail" aria-label="Contents">
+  <h2>Lectures so far</h2>
+  <ol>
+    <li class="lec"><div class="lec-date">0.2 · 1.1 · Thinking first</div>
+      <ol>
+        <li><a href="#l1"><span class="n">1</span><span>Problem to program</span><span class="tick" aria-label="done">✓</span></a></li>
+        <li><a href="#l2"><span class="n">2</span><span>Your first program</span><span class="tick" aria-label="done">✓</span></a></li>
+      </ol>
+    </li>
+    <li class="lec"><div class="lec-date">1.2 · Variables and operators</div>
+      <ol>
+        <li><a href="#l3"><span class="n">3</span><span>Variables and assignment</span><span class="tick" aria-label="done">✓</span></a></li>
+        <li><a href="#l4"><span class="n">4</span><span>Data types</span><span class="tick" aria-label="done">✓</span></a></li>
+        <li><a href="#l5"><span class="n">5</span><span>Operators and precedence</span><span class="tick" aria-label="done">✓</span></a></li>
+      </ol>
+    </li>
+    <li class="lec"><div class="lec-date">2.1 · Input and output</div>
+      <ol>
+        <li><a href="#l6"><span class="n">6</span><span>Type conversion</span><span class="tick" aria-label="done">✓</span></a></li>
+        <li><a href="#l7"><span class="n">7</span><span>input() gives a string</span><span class="tick" aria-label="done">✓</span></a></li>
+        <li><a href="#l8"><span class="n">8</span><span>print(), sep and end</span><span class="tick" aria-label="done">✓</span></a></li>
+        <li><a href="#l9"><span class="n">9</span><span>f-strings</span><span class="tick" aria-label="done">✓</span></a></li>
+      </ol>
+    </li>
+    <li class="lec"><div class="lec-date">2.2 · Conditional statements</div>
+      <ol>
+        <li><a href="#l10"><span class="n">10</span><span>The if statement</span><span class="tick" aria-label="done">✓</span></a></li>
+        <li><a href="#l11"><span class="n">11</span><span>else and elif</span><span class="tick" aria-label="done">✓</span></a></li>
+        <li><a href="#l12"><span class="n">12</span><span>Nested if, and/or/not</span><span class="tick" aria-label="done">✓</span></a></li>
+      </ol>
+    </li>
+    <li class="lec"><div class="lec-date">3.1 · Functions</div>
+      <ol>
+        <li><a href="#l13"><span class="n">13</span><span>Defining and calling</span><span class="tick" aria-label="done">✓</span></a></li>
+        <li><a href="#l14"><span class="n">14</span><span>return vs print</span><span class="tick" aria-label="done">✓</span></a></li>
+        <li><a href="#l15"><span class="n">15</span><span>Docstrings, built-ins</span><span class="tick" aria-label="done">✓</span></a></li>
+      </ol>
+    </li>
+  </ol>
+  <div class="extras">
+    <a href="#playground"><span class="n">↗</span><span>Python playground</span></a>
+    <a href="#quizzes"><span class="n">↗</span><span>Weekly quizzes explained</span></a>
+    <a href="#labs"><span class="n">↗</span><span>Labs and deadlines</span></a>
+    <a href="#practice"><span class="n">↗</span><span>Exam practice</span></a>
+    <a href="#later"><span class="n">↗</span><span>Still to come</span></a>
+    <a href="#sheet"><span class="n">↗</span><span>Cheat sheet</span></a>
+  </div>
+  <p class="note">Your ticks are saved in this browser only.</p>
+</nav>
+
+<main id="main">
+<div class="col">
+
+<section id="start" class="intro">
+  <div class="hero">
+    <div>
+      <p class="kicker">UCC · CS1068 / CS6501 / CS6506 · Semester 1, 2026–27 · Dr Tatiana Tabirca</p>
+      <h1>Python, <span class="hl">one idea at a time</span></h1>
+      <p class="lede">Plain-English lessons for every lecture so far (0.1 to 3.1): from turning a problem into an algorithm, through variables, types, operators, input and output, to <code>if</code> statements and your own functions. Every lesson opens with the one idea to keep, shows the lecturer’s examples with their real output, and lets you run the code here in the browser.</p>
+    </div>
+    <figure class="hero-fig" style="margin:0">
+      <pre class="py" style="margin:0">c = float(input("Celsius? "))
+f = 9 / 5 * c + 32
+
+if f &gt; 90:
+    print("Hot weather!")
+elif f &lt; 30:
+    print("Cold weather!")
+else:
+    print("Normal range.")</pre>
+      <figcaption>Lecture 2.2’s temperature warnings: input, a calculation and a three-way decision. By Lesson 11 every line here is yours.</figcaption>
+    </figure>
+  </div>
+
+  <div class="facts">
+    <div class="fact"><h3>Assessment</h3><p>Final exam 70%: closed-book, pen and paper, 90 minutes, 70 marks, four compulsory questions. Continuous assessment 30%: mid-term quiz 5% (Wed 28 Oct, in your lab slot), programming assignment 10% (out 28 Oct, due 5 Nov), programming project 15% (specification on Thu 5 Nov).</p></div>
+    <div class="fact"><h3>The rhythm</h3><p>Lectures Tue and Thu 2–3 pm (BHSC G01 and G05; Thu 5 Nov in WGB G20). Labs on Wednesdays in WGB G.21, 10–11 or 11–12. A short ungraded quiz opens each week; a Practice sheet is open for a week.</p></div>
+    <div class="fact"><h3>AI and this guide</h3><p>“Phase 1” rule: don’t use AI to generate solutions for labs, practice sheets, the quiz or the assignment. This guide explains ideas with the lecturer’s own examples and past papers. It never answers your lab or practice exercises: those stay yours.</p></div>
+  </div>
+
+  <ol class="steps">
+    <li><p><strong>Read one lesson at a time.</strong> The highlighted box is the idea to take away; the rest builds it up with slide references.</p></li>
+    <li><p><strong>Press ▶ Try it on any example.</strong> The code becomes editable and runs right here (real Python 3, loaded the first time you press it). Change things and see what breaks.</p></li>
+    <li><p><strong>Predict before you run.</strong> The mid-term quiz and the weekly quizzes are “what is the output?” questions. Say the answer out loud first.</p></li>
+    <li><p><strong>Do the <a href="#practice">exam practice</a> on paper.</strong> The exam is handwritten, so practise writing code without an editor.</p></li>
+  </ol>
+
+  <h3 style="margin-top:40px">What each lecture covered</h3>
+  <div class="tbl-wrap min">
+    <table>
+      <thead><tr><th>Lecture</th><th>Topics</th><th>Lessons</th></tr></thead>
+      <tbody>
+        <tr><td>0.1</td><td>Module overview, assessment, software (Ubuntu, Python 3, VS Code), academic integrity and GenAI declarations</td><td><a href="#start">this page</a></td></tr>
+        <tr><td>0.2</td><td>Thinking like a programmer: problem → algorithm → pseudocode → program; the Gale–Shapley stable matching algorithm</td><td><a href="#l1">1</a></td></tr>
+        <tr><td>1.1</td><td>What a program is, kinds of language, the four steps of the programming process, pseudocode and flowcharts, variables, functions, comments, testing</td><td><a href="#l1">1</a>, <a href="#l2">2</a></td></tr>
+        <tr><td>1.2</td><td>Variables and assignment, data types and <code>type()</code>, naming rules, reserved words, <code>NameError</code>, operators, integer vs float division, <code>%</code> and <code>**</code>, precedence</td><td><a href="#l3">3</a>, <a href="#l4">4</a>, <a href="#l5">5</a></td></tr>
+        <tr><td>2.1</td><td>Quiz 2, casting with <code>int()</code>, <code>float()</code>, <code>str()</code>, <code>bool()</code>; <code>input()</code>; <code>print()</code> with <code>sep</code>, <code>end</code>, <code>\n</code>, <code>\t</code>; f-strings</td><td><a href="#l6">6</a>–<a href="#l9">9</a></td></tr>
+        <tr><td>2.2</td><td><code>if</code>, relational operators, <code>if</code>–<code>else</code>, <code>if</code>–<code>elif</code>–<code>else</code>, nested <code>if</code>; ExamMarks, temperature warnings and the guessing game</td><td><a href="#l10">10</a>, <a href="#l11">11</a>, <a href="#l12">12</a></td></tr>
+        <tr><td>3.1</td><td>Quiz 3, user-defined functions (<code>def</code>, parameters, <code>return</code>), calling, returning several values, Temp.py, docstrings, built-in functions <code>len()</code> and <code>max()</code></td><td><a href="#l13">13</a>, <a href="#l14">14</a>, <a href="#l15">15</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="margin-top:12px;font-size:15px;color:var(--muted)">Canvas note: “Lectures 0.1 and 0.2 were introductory sessions. The material covered in these two introductory lectures will not be included in the exam.”</p>
+</section>
+
+
+<!-- =============================== LESSON 1 =============================== -->
+<section id="l1" class="lesson" data-title="Lesson 1 · From problem to program">
+  <header class="lesson-head">
+    <div class="eyebrow"><span class="lnum">Lesson 1</span><span>Lectures 0.2 and 1.1</span></div>
+    <h2>From problem to program</h2>
+    <p class="idea"><b>The one idea</b>Python comes last. First you pin down the problem, then you write the steps (the algorithm) in plain words or a flowchart, and only then do you translate those steps into code and test it.</p>
+  </header>
+
+  <h3>The four steps</h3>
+  <p>Lecture 1.1 calls these the four pillars of programming, and Quiz 2 asked for them in order:</p>
+  <ol>
+    <li><strong>Identify the problem.</strong> What exactly should happen? What goes in, what comes out?</li>
+    <li><strong>Design a solution.</strong> Write the <em>algorithm</em>: a finite sequence of well-defined steps. Use pseudocode or a flowchart.</li>
+    <li><strong>Write the program.</strong> Translate each step into Python.</li>
+    <li><strong>Check the solution.</strong> Run it with different inputs and fix what is wrong.</li>
+  </ol>
+  <p>A <strong>program</strong> is “a set of instructions written in a programming language that tells a computer what to do” (the exact wording Quiz 2 used). Application programs help users (Google Maps, Word, games); system programs run the computer itself (drivers, Windows, Linux).</p>
+
+  <h3>The lecturer’s worked example: an average</h3>
+  <p><strong>Problem:</strong> a teacher wants a student’s average from two test scores. <strong>Algorithm</strong>, split into input, processing and output:</p>
+  <div class="codepair">
+    <div><p class="cap">Pseudocode</p>
+<pre class="pseudo">Program find_average
+  Input num1
+  Input num2
+  Sum = num1 + num2
+  Average = Sum / 2
+  Print Average</pre></div>
+    <div><p class="cap">Flowchart</p>
+      <figure style="margin:0"><div class="fig-box">
+      <svg class="fc" viewBox="0 0 260 300" role="img" aria-label="Flowchart: start, input two scores, add them, divide by two, print average, end">
+        <defs><marker id="ar1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+        <rect class="term" x="80" y="6" width="100" height="30" rx="15"/><text x="130" y="26" text-anchor="middle">Start</text>
+        <path class="io" d="M62 62 H212 L198 96 H48 Z"/><text x="130" y="84" text-anchor="middle">Input num1, num2</text>
+        <rect class="box" x="55" y="122" width="150" height="34"/><text x="130" y="144" text-anchor="middle" class="mono">Sum = num1 + num2</text>
+        <rect class="box" x="55" y="182" width="150" height="34"/><text x="130" y="204" text-anchor="middle" class="mono">Average = Sum / 2</text>
+        <path class="io" d="M62 242 H212 L198 272 H48 Z" transform="translate(0,-4)"/><text x="130" y="258" text-anchor="middle">Print Average</text>
+        <line class="ln" x1="130" y1="36" x2="130" y2="60" marker-end="url(#ar1)"/>
+        <line class="ln" x1="130" y1="96" x2="130" y2="120" marker-end="url(#ar1)"/>
+        <line class="ln" x1="130" y1="156" x2="130" y2="180" marker-end="url(#ar1)"/>
+        <line class="ln" x1="130" y1="216" x2="130" y2="236" marker-end="url(#ar1)"/>
+      </svg></div></figure>
+    </div>
+  </div>
+  <p>Flowchart shapes: rounded box for start and end, parallelogram for input and output, rectangle for a processing step, and (from Lesson 10) a diamond for a yes/no decision. Arrows run top to bottom.</p>
+  <p>Only now do we write Python. Each pseudocode line becomes one line of code (Lecture 1.2, slide 2):</p>
+<pre class="py" data-run>score1 = 80
+score2 = 90
+average = (score1 + score2) / 2
+print("Average score:", average)</pre>
+<pre class="out">Average score: 85.0</pre>
+  <p>Notice the brackets: without them Python would compute <code>score1 + score2 / 2</code> = 80 + 45 = 125. Lesson 5 explains why.</p>
+
+  <h3>An algorithm that won a Nobel Prize</h3>
+  <p>Lecture 0.2 showed that an algorithm is an idea, not code. In 1962 Gale and Shapley gave a step-by-step procedure for the <em>stable marriage problem</em>: <var>n</var> people on each side rank everyone on the other side, and we want a matching with no <strong>blocking pair</strong> (two people who both prefer each other to their current partners).</p>
+<pre class="pseudo">Each day, until everyone is engaged:
+  Morning:   every unengaged proposer proposes to the top person
+             on their list they haven't proposed to yet
+  Afternoon: every receiver keeps the best proposal so far
+             and rejects the rest
+  Evening:   every rejected proposer crosses that name off their list</pre>
+  <p>The procedure always ends, and always ends with a stable matching. Versions of it run school admissions in New York (unmatched students fell from about 30,000 to 3,000 a year), kidney exchanges, and the assignment of users to web servers. Shapley and Roth shared the 2012 Nobel Prize in Economics for this work.</p>
+
+  <aside class="exam"><span class="tag">Exam angle</span><p>Lectures 0.1 and 0.2 are <em>not</em> examined (Canvas). What matters from here is the habit: in the exam every “write a complete program” question is easier if you jot down input → processing → output first. Quiz 2 Q8 asked for the order of the four steps.</p></aside>
+
+  <div class="check"><span class="tag">Check yourself</span>
+    <details><summary>Put these in order: write the program, check the solution, identify the problem, design a solution.</summary><div class="d-body"><p>Identify the problem → design a solution → write the program → check the solution.</p></div></details>
+    <details><summary>Which flowchart shape would you use for “Input num1”?</summary><div class="d-body"><p>A parallelogram: it is input or output. Calculations go in rectangles, decisions in diamonds.</p></div></details>
+    <details><summary>Write pseudocode for: read a price and a quantity, print the total cost.</summary><div class="d-body"><pre class="pseudo">Input price
+Input quantity
+Total = price * quantity
+Print Total</pre></div></details>
+  </div>
+
+  <footer class="lesson-foot"><label class="done-toggle"><input type="checkbox" data-done="l1"> I’ve got this lesson</label></footer>
+</section>
+
+
+<!-- =============================== LESSON 2 =============================== -->
+<section id="l2" class="lesson" data-title="Lesson 2 · Your first program">
+  <header class="lesson-head">
+    <div class="eyebrow"><span class="lnum">Lesson 2</span><span>Lecture 1.1 · Lab week 2</span></div>
+    <h2>Your first program: files, print and comments</h2>
+    <p class="idea"><b>The one idea</b>A Python program is a plain text file ending in <code>.py</code>. Python reads it from the top, one line at a time, and does exactly what each line says, so every bracket, quote, colon and space matters.</p>
+  </header>
+
+  <h3>Running a file</h3>
+  <p>In the lab you boot Ubuntu, log in with your CS account, and use <strong>VS Code</strong>, an IDE (integrated development environment): an editor that also runs your code. Lab 2 had you create a folder <code>CS1068/Lab_Week2</code>, a file <code>lab_week2.py</code>, and run it with the ▷ button. From a terminal the same thing is</p>
+<pre class="out">$ python3 average.py</pre>
+  <p>Use Python <strong>3</strong>, never Python 2 (Lecture 0.1). For quick experiments the lecturer uses the Programiz online compiler; every ▶ Try it button in this guide does the same job.</p>
+
+  <h3>The smallest program</h3>
+<pre class="py" data-run>print("Hello, world!")</pre>
+<pre class="out">Hello, world!</pre>
+  <p><code>print</code> is a <strong>function</strong>: a named block of code that does a job. You call it by writing its name followed by brackets, with what it needs inside. The text in quotes is a <strong>string</strong>. Single or double quotes both work, as long as they match.</p>
+
+  <h3>Syntax matters</h3>
+  <p>Python is fussy. Each of these is a different mistake (Quiz 3 Q8 was exactly this):</p>
+  <div class="tbl-wrap min">
+    <table>
+      <thead><tr><th>Line</th><th>What Python does</th></tr></thead>
+      <tbody>
+        <tr><td><code>print("Welcome")</code></td><td>Prints <code>Welcome</code>. Correct.</td></tr>
+        <tr><td><code>print(Welcome)</code></td><td><code>NameError</code>: without quotes, <code>Welcome</code> is read as a variable name, and there is no such variable.</td></tr>
+        <tr><td><code>print Welcome</code></td><td><code>SyntaxError</code>: that was Python 2. In Python 3, print needs brackets.</td></tr>
+        <tr><td><code>Print("Welcome")</code></td><td><code>NameError</code>: Python is case-sensitive, and the function is <code>print</code>, lower case.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Comments</h3>
+  <p>A comment is text Python ignores, written for people. “All professional code should be commented” (Lecture 1.1).</p>
+<pre class="py" data-run># average.py: the average of two test scores
+score1 = 80          # first test
+score2 = 90          # second test
+'''
+A block between triple quotes can run
+over several lines.
+'''
+print((score1 + score2) / 2)</pre>
+<pre class="out">85.0</pre>
+  <ul>
+    <li><code>#</code> starts a comment that runs to the end of the line.</li>
+    <li><code>'''</code> … <code>'''</code> (or <code>"""</code> … <code>"""</code>) wraps several lines. Lesson 15 uses this for a function’s docstring.</li>
+  </ul>
+
+  <h3>Testing</h3>
+  <p>Step 4 of the process is checking. Lecture 1.1’s cautionary tale: at a 1998 demo of Windows 98, plugging in a scanner live on stage crashed the PC to the Blue Screen of Death in front of Bill Gates. Test with ordinary values, edge values (zero, negative, very large) and silly values before anyone else does.</p>
+
+  <aside class="exam"><span class="tag">Exam angle</span><p>The exam is handwritten, so nothing checks your syntax for you. Every past paper has a “this code contains a number of errors, identify and fix them” part worth 6–7 marks: missing colons, wrong case, a missing bracket and a misspelt name are the usual suspects.</p></aside>
+
+  <div class="check"><span class="tag">Check yourself</span>
+    <details><summary>What does <code>print("5 + 3")</code> print? And <code>print(5 + 3)</code>?</summary><div class="d-body"><p><code>5 + 3</code> (it is just text in quotes), then <code>8</code> (an expression Python works out first).</p></div></details>
+    <details><summary>A friend’s file is called <code>lab1</code> with no extension. What should it be called?</summary><div class="d-body"><p><code>lab1.py</code>. All Python programs have the <code>.py</code> extension.</p></div></details>
+  </div>
+
+  <footer class="lesson-foot"><label class="done-toggle"><input type="checkbox" data-done="l2"> I’ve got this lesson</label></footer>
+</section>
+
+
+<!-- =============================== LESSON 3 =============================== -->
+<section id="l3" class="lesson" data-title="Lesson 3 · Variables and assignment">
+  <header class="lesson-head">
+    <div class="eyebrow"><span class="lnum">Lesson 3</span><span>Lecture 1.2, slides 4–17</span></div>
+    <h2>Variables and assignment</h2>
+    <p class="idea"><b>The one idea</b>A variable is a name stuck onto a value in memory. <code>=</code> does not mean “equals”: it means “work out the right-hand side, then stick the left-hand name on the result”. Reading a name that was never assigned is an error.</p>
+  </header>
+
+  <h3>Name = value</h3>
+<pre class="py">name = "Alice"
+age = 15
+score1 = 80</pre>
+  <div class="mem" aria-hidden="true">
+    <div class="slot"><span class="nm">name</span><span class="val">"Alice"</span><span class="ty">str</span></div>
+    <div class="slot"><span class="nm">age</span><span class="val">15</span><span class="ty">int</span></div>
+    <div class="slot"><span class="nm">score1</span><span class="val">80</span><span class="ty">int</span></div>
+  </div>
+  <p>The variable is on the left, the value on the right, and <code>=</code> is the <strong>assignment operator</strong> (slide 5). Later lines can use the name instead of the value: <code>sum = score1 + score2</code>.</p>
+
+  <h3>Variables can change</h3>
+  <p>Slide 16 spells out what <code>x = 2 * 3</code> does:</p>
+  <ol>
+    <li>Evaluate the expression on the right (<code>2 * 3</code> → 6).</li>
+    <li>Attach the name on the left to the result.</li>
+    <li>Detach any old value from that name.</li>
+  </ol>
+<pre class="py" data-run>x = 10       # x is 10
+x = 2 * 3    # x is now 6
+print(x)
+x = x + 1    # right side first: 6 + 1 = 7, then x is 7
+print(x)</pre>
+<pre class="out">6
+7</pre>
+  <p><code>x = x + 1</code> would be nonsense in maths, but it is perfectly normal Python: the right side is finished before the left side is touched.</p>
+
+  <div class="example"><span class="tag">Worked example · Quiz 2 Q10</span>
+<pre class="py" data-run>x = 5
+y = 2
+x = x * 3
+y = x + y
+print(x, y)</pre>
+<pre class="out">15 17</pre>
+    <p>Trace it line by line: x = 5, y = 2; then x = 5 × 3 = 15; then y = 15 + 2 = 17 (it uses the <em>new</em> x). Many people answer “15 7” by using the old x.</p>
+  </div>
+
+  <h3>Using a name before assigning it</h3>
+<pre class="py" data-run>a = b + 1</pre>
+<pre class="out err">Traceback (most recent call last):
+  File "main.py", line 1, in &lt;module&gt;
+NameError: name 'b' is not defined</pre>
+  <p>Fine on the left of <code>=</code> (that creates the name); never fine on the right before it exists (slide 17). A typo gives the same error: <code>print(Name)</code> when you assigned <code>name</code>.</p>
+
+  <h3>Naming rules (must) and conventions (should)</h3>
+  <div class="tbl-wrap min">
+    <table>
+      <thead><tr><th>Rule</th><th>Breaks it</th><th>Error</th></tr></thead>
+      <tbody>
+        <tr><td>Letters, digits and <code>_</code> only</td><td><code>Mixture#3 = 2.2</code></td><td><code>#</code> starts a comment, so Python sees <code>Mixture</code> alone: <code>NameError</code></td></tr>
+        <tr><td>Must not start with a digit</td><td><code>3DGraph = "3 D Graph Display"</code>, <code>7_days_of_the_week</code></td><td><code>SyntaxError</code></td></tr>
+        <tr><td>No spaces</td><td><code>7DaysOfThe Week</code></td><td><code>SyntaxError</code></td></tr>
+        <tr><td>Not a reserved word</td><td><code>class = 4</code></td><td><code>SyntaxError</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><strong>Case matters:</strong> <code>Temperature</code>, <code>temperature</code> and <code>TEMPERATURE</code> are three separate variables (slide 8).</p>
+  <p>The 35 <strong>reserved words</strong> (slide 10) have a fixed meaning: <code class="wrap">False None True and as assert async await break class continue def del elif else except finally for from global if import in is lambda nonlocal not or pass raise return try while with yield</code>. You don’t need to learn the list; you will know most of them by December.</p>
+  <p><strong>Conventions</strong> (PEP 8, Python’s style guide): variable and function names in lower case with words separated by underscores, called <em>snake case</em> (<code>gross_salary</code>). Pick names that say what the value is: <code>salary = 40000</code>, not <code>x = 40000</code>. Other styles you will see: camel case <code>grossSalary</code> (the lab sheets use it) and Pascal case <code>GrossSalary</code> (used for class names).</p>
+
+  <aside class="exam"><span class="tag">Exam angle</span><p>“What is the output?” questions with several reassignments (Quiz 2 Q10) are standard quiz fare: trace one line at a time and write each variable’s value next to it. In written answers, sensible names and snake case are part of “good style”.</p></aside>
+
+  <div class="check"><span class="tag">Check yourself</span>
+    <details><summary>Which are valid names: <code>units_per_day</code>, <code>daysOfWeek</code>, <code>June1997</code>, <code>2ndPlace</code>, <code>for</code>?</summary><div class="d-body"><p>The first three are valid (slide 11 lists them as fine). <code>2ndPlace</code> starts with a digit and <code>for</code> is a reserved word.</p></div></details>
+    <details><summary>Slide 15: with <code>name = "Mary"</code>, what do <code>print(name)</code>, <code>print("name")</code> and <code>print(Name)</code> show?</summary><div class="d-body"><p><code>Mary</code>; <code>name</code> (quotes make it literal text); a <code>NameError</code>, because <code>Name</code> with a capital N was never assigned.</p></div></details>
+    <details><summary>After <code>a = 3</code>, <code>b = a</code>, <code>a = 10</code>, what is <code>b</code>?</summary><div class="d-body"><p>3. <code>b = a</code> stuck the name <code>b</code> on the value 3; re-pointing <code>a</code> later doesn’t move <code>b</code>.</p></div></details>
+  </div>
+
+  <footer class="lesson-foot"><label class="done-toggle"><input type="checkbox" data-done="l3"> I’ve got this lesson</label></footer>
+</section>
+
+
+<!-- =============================== LESSON 4 =============================== -->
+<section id="l4" class="lesson" data-title="Lesson 4 · Data types">
+  <header class="lesson-head">
+    <div class="eyebrow"><span class="lnum">Lesson 4</span><span>Lecture 1.2, slides 6–14</span></div>
+    <h2>Every value has a type</h2>
+    <p class="idea"><b>The one idea</b>Every value has a type that decides what you can do with it: <code>int</code> for whole numbers, <code>float</code> for numbers with a decimal point, <code>str</code> for text and <code>bool</code> for <code>True</code>/<code>False</code>. <code>type(x)</code> tells you which one you have.</p>
+  </header>
+
+  <h3>The four basic types</h3>
+  <div class="tbl-wrap min">
+    <table>
+      <thead><tr><th>Type</th><th>Name in Python</th><th>Examples</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Integer</td><td><code>int</code></td><td><code>10</code>, <code>-3</code>, <code>0</code></td><td>Whole numbers, no decimal point</td></tr>
+        <tr><td>Floating point</td><td><code>float</code></td><td><code>10.0</code>, <code>43.56</code>, <code>-2.0</code></td><td>Has a decimal point, even if it is <code>.0</code></td></tr>
+        <tr><td>String</td><td><code>str</code></td><td><code>"Mike"</code>, <code>'12345'</code>, <code>""</code></td><td>Text in matching quotes</td></tr>
+        <tr><td>Boolean</td><td><code>bool</code></td><td><code>True</code>, <code>False</code></td><td>Capital T and F, no quotes</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><code>10</code> and <code>10.0</code> are equal in value but different in type. And <code>nameID = 12345</code> is an int while <code>nameID = "12345"</code> is a string that happens to contain digits (slide 4): you can do arithmetic with the first, not the second.</p>
+
+  <h3>Asking for the type</h3>
+<pre class="py" data-run>x = 10
+print("x is a", type(x), "and has a value of", x)
+x = 10.0
+print("x is a", type(x), "and has a value of", x)
+x = "Mike"
+print("x is a", type(x), "and has a value of", x)
+x = True
+print("x is a", type(x), "and has a value of", x)</pre>
+<pre class="out">x is a &lt;class 'int'&gt; and has a value of 10
+x is a &lt;class 'float'&gt; and has a value of 10.0
+x is a &lt;class 'str'&gt; and has a value of Mike
+x is a &lt;class 'bool'&gt; and has a value of True</pre>
+  <p>Note two things. One variable can hold different types at different times. And <code>type()</code> prints as <code>&lt;class 'int'&gt;</code>: the type’s name is <code>int</code>, not “integer” (Quiz 2 Q6 and Quiz 3 Q6 both tested this).</p>
+
+  <h3>Four containers you have only glimpsed</h3>
+  <p>Slide 7 also lists types that hold several values. They get full lessons later; for now just recognise them.</p>
+  <div class="tbl-wrap min">
+    <table>
+      <thead><tr><th>Type</th><th>Example</th><th><code>type()</code></th></tr></thead>
+      <tbody>
+        <tr><td>List</td><td><code>[10, 20, 30]</code></td><td><code>&lt;class 'list'&gt;</code></td></tr>
+        <tr><td>Tuple</td><td><code>("Ed", "Edd", "Eddy", 2009)</code></td><td><code>&lt;class 'tuple'&gt;</code></td></tr>
+        <tr><td>Dictionary</td><td><code>{'one': 1, 'two': 2}</code></td><td><code>&lt;class 'dict'&gt;</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <aside class="exam"><span class="tag">Exam angle</span><p>Quiz favourites: “what is the type of …?”, “which is not a float?” (Quiz 3 Q9: <code>5</code>, because it has no decimal point; <code>-2.0</code> <em>is</em> a float). In longer exam questions types matter because input arrives as a string (Lesson 7) and mixing types causes errors (Lesson 5).</p></aside>
+
+  <div class="check"><span class="tag">Check yourself</span>
+    <details><summary>What are the types of <code>3.14</code>, <code>"3.14"</code>, <code>False</code>, <code>"False"</code>, <code>-7</code>?</summary><div class="d-body"><p><code>float</code>, <code>str</code>, <code>bool</code>, <code>str</code>, <code>int</code>.</p></div></details>
+    <details><summary>Is <code>true</code> (lower case) a Boolean?</summary><div class="d-body"><p>No. Python only knows <code>True</code> and <code>False</code>. A bare <code>true</code> is read as a variable name and gives a <code>NameError</code>.</p></div></details>
+  </div>
+
+  <footer class="lesson-foot"><label class="done-toggle"><input type="checkbox" data-done="l4"> I’ve got this lesson</label></footer>
+</section>
+
+
+<!-- =============================== LESSON 5 =============================== -->
+<section id="l5" class="lesson" data-title="Lesson 5 · Operators and precedence">
+  <header class="lesson-head">
+    <div class="eyebrow"><span class="lnum">Lesson 5</span><span>Lecture 1.2, slides 18–22</span></div>
+    <h2>Operators and precedence</h2>
+    <p class="idea"><b>The one idea</b><code>/</code> always gives a float, <code>//</code> throws away the fractional part and <code>%</code> gives the remainder. Python works out <code>**</code> first, then <code>* / // %</code>, then <code>+ -</code>, left to right within a level; brackets override everything.</p>
+  </header>
+
+  <h3>The arithmetic operators</h3>
+  <div class="tbl-wrap min">
+    <table>
+      <thead><tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td><code>+</code></td><td>add</td><td><code>7 + 2</code></td><td><code>9</code></td></tr>
+        <tr><td><code>-</code></td><td>subtract</td><td><code>7 - 2</code></td><td><code>5</code></td></tr>
+        <tr><td><code>*</code></td><td>multiply</td><td><code>7 * 2</code></td><td><code>14</code></td></tr>
+        <tr><td><code>/</code></td><td>float division</td><td><code>13 / 6</code></td><td><code>2.1666666666666665</code></td></tr>
+        <tr><td><code>//</code></td><td>integer (floor) division</td><td><code>13 // 6</code></td><td><code>2</code></td></tr>
+        <tr><td><code>%</code></td><td>modulus: the remainder</td><td><code>11 % 3</code></td><td><code>2</code></td></tr>
+        <tr><td><code>**</code></td><td>power</td><td><code>2 ** 3</code></td><td><code>8</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>/ always gives a float</h3>
+<pre class="py" data-run>print(36 / 4)
+print(36 // 4)
+x = 13
+y = 6
+z = x // y
+print(z)
+z = float(z)
+print(z)</pre>
+<pre class="out">9.0
+9
+2
+2.0</pre>
+  <p><code>36 / 4</code> is <code>9.0</code>, not <code>9</code>, even though it divides exactly. This was a question on <em>both</em> Quiz 2 and Quiz 3.</p>
+
+  <h3>// and % belong together</h3>
+  <p>Dividing 13 by 6 gives 2 with 1 left over: <code>13 // 6</code> is the 2, <code>13 % 6</code> is the 1. Two uses you will meet constantly:</p>
+  <ul>
+    <li><strong>Divisibility:</strong> <code>n % k == 0</code> exactly when <var>k</var> divides <var>n</var>. In particular <code>n % 2 == 0</code> means <var>n</var> is even.</li>
+    <li><strong>Splitting units:</strong> 200 seconds is <code>200 // 60</code> = 3 minutes and <code>200 % 60</code> = 20 seconds.</li>
+  </ul>
+<pre class="py" data-run>total_minutes = 135
+hours = total_minutes // 60
+minutes = total_minutes % 60
+print(hours, "h", minutes, "min")</pre>
+<pre class="out">2 h 15 min</pre>
+
+  <h3>Operators change meaning with the type</h3>
+  <p>Slide 18 calls operators “mutable”: the same symbol does different things to different types.</p>
+<pre class="py" data-run>x = 5
+print(x * 3)
+x = "Mary"
+print(x * 3)
+print("fred" + "." + "fox")</pre>
+<pre class="out">15
+MaryMaryMary
+fred.fox</pre>
+  <p>With strings, <code>+</code> joins them (<strong>concatenation</strong>) and <code>*</code> by an int repeats. But you cannot add a number to a string:</p>
+<pre class="py" data-run>var1 = 1
+var2 = 2
+var3 = "3"
+print(var1 + var2 + var3)</pre>
+<pre class="out err">Traceback (most recent call last):
+  File "main.py", line 4, in &lt;module&gt;
+TypeError: unsupported operand type(s) for +: 'int' and 'str'</pre>
+  <p>That was Quiz 3 Q5. Python works left to right: <code>1 + 2</code> is fine (3), then <code>3 + "3"</code> is an int plus a str, which Python refuses rather than guess whether you meant 6 or “33”. To join, convert first: <code>str(var1 + var2) + var3</code> gives <code>"33"</code>.</p>
+
+  <h3>Precedence</h3>
+  <ol>
+    <li>Brackets <code>( )</code></li>
+    <li>Exponent <code>**</code></li>
+    <li>Multiplication and both divisions and remainder <code>* / // %</code></li>
+    <li>Addition and subtraction <code>+ -</code></li>
+  </ol>
+  <p>Operators on the same level go left to right. Slide 22’s example:</p>
+<pre class="pseudo">x = 11 - 2 ** 2 + 3 * 2
+  = 11 - 4 + 3 * 2      ** first
+  = 11 - 4 + 6          then *
+  = 7 + 6               then + and - left to right
+  = 13</pre>
+
+  <div class="example"><span class="tag">Worked example · Quiz 2 Q5</span>
+<pre class="py" data-run>x = 36 / 4 * (3 + 2) * 4 + 2
+print(x)</pre>
+<pre class="out">182.0</pre>
+    <p>Brackets: (3 + 2) = 5. Then <code>/</code> and <code>*</code> left to right: 36 / 4 = 9.0, × 5 = 45.0, × 4 = 180.0. Finally + 2 = 182.0. It is a float because the first <code>/</code> made a float, and every later step keeps it one.</p>
+  </div>
+
+  <div class="warn-box"><span class="tag">Trap</span><p><code>10 - 4 * 2</code> is <code>2</code>, not 12 (Quiz 2 Q4). When in doubt, add brackets: <code>(11 - (2 ** 2)) + (3 * 2)</code> is the same value and much easier to read.</p></div>
+
+  <aside class="exam"><span class="tag">Exam angle</span><p>Precedence decides whether a formula you type is the formula you meant. <code>9 / 5 * celsius + 32</code> is right; <code>(score1 + score2) / 2</code> needs its brackets. Exam calculations (areas, averages, distances, unit conversions) lose marks for a missing bracket.</p></aside>
+
+  <div class="check"><span class="tag">Check yourself</span>
+    <details><summary>What are <code>(11 - 2) * 3</code> and <code>11 - (2 * 3)</code>?</summary><div class="d-body"><p>27 and 5 (slide 21).</p></div></details>
+    <details><summary>What do <code>17 // 5</code>, <code>17 % 5</code> and <code>17 / 5</code> give?</summary><div class="d-body"><p><code>3</code>, <code>2</code>, <code>3.4</code>.</p></div></details>
+    <details><summary>What does <code>print("James" * 2 * 3)</code> show? (Quiz 2 Q1)</summary><div class="d-body"><p><code>JamesJamesJamesJamesJamesJames</code>: “James” × 2 is “JamesJames”, then × 3 gives six copies.</p></div></details>
+    <details><summary>How do you test whether a number <code>n</code> is odd?</summary><div class="d-body"><p><code>n % 2 == 1</code> (or <code>n % 2 != 0</code>).</p></div></details>
+  </div>
+
+  <footer class="lesson-foot"><label class="done-toggle"><input type="checkbox" data-done="l5"> I’ve got this lesson</label></footer>
+</section>
+
+<!-- =============================== LESSON 6 =============================== -->
+<section id="l6" class="lesson" data-title="Lesson 6 · Type conversion">
+  <header class="lesson-head">
+    <div class="eyebrow"><span class="lnum">Lesson 6</span><span>Lecture 2.1, slides 6–9</span></div>
+    <h2>Type conversion (casting)</h2>
+    <p class="idea"><b>The one idea</b>To change a value’s type, call the type’s name as a function: <code>int()</code>, <code>float()</code>, <code>str()</code>, <code>bool()</code>. The conversion makes a <em>new</em> value; <code>int()</code> chops off the decimal part (it does not round) and refuses text that isn’t a whole number.</p>
+  </header>
+
+  <h3>The four casting functions</h3>
+  <div class="tbl-wrap min">
+    <table>
+      <thead><tr><th>Call</th><th>Result</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td><code>int(3.14)</code></td><td><code>3</code></td><td>Drops the fraction</td></tr>
+        <tr><td><code>int(2.999)</code></td><td><code>2</code></td><td>Still drops it: no rounding (Quiz 2 Q3)</td></tr>
+        <tr><td><code>int("225")</code></td><td><code>225</code></td><td>Text that is a whole number</td></tr>
+        <tr><td><code>int(True)</code></td><td><code>1</code></td><td><code>True</code> counts as 1, <code>False</code> as 0</td></tr>
+        <tr><td><code>float(725)</code></td><td><code>725.0</code></td><td>Adds the decimal point</td></tr>
+        <tr><td><code>float("725.535")</code></td><td><code>725.535</code></td><td>Text that is a number</td></tr>
+        <tr><td><code>str(15)</code></td><td><code>"15"</code></td><td>Any value can become text</td></tr>
+        <tr><td><code>str(75.35)</code></td><td><code>"75.35"</code></td><td></td></tr>
+        <tr><td><code>bool(0)</code>, <code>bool("")</code></td><td><code>False</code></td><td>Zero and empty count as False</td></tr>
+        <tr><td><code>bool(5)</code>, <code>bool("no")</code></td><td><code>True</code></td><td>Anything non-zero or non-empty is True</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Slide 7, run it</h3>
+<pre class="py" data-run>pi = 3.14
+print(type(pi))
+num = int(pi)            # converting float to integer
+print("Integer number:", num)
+print(type(num))
+
+string_num = "225"
+num1 = int(string_num)   # converting str to integer
+print("Integer number 1:", num1)
+print(type(num1))</pre>
+<pre class="out">&lt;class 'float'&gt;
+Integer number: 3
+&lt;class 'int'&gt;
+Integer number 1: 225
+&lt;class 'int'&gt;</pre>
+  <p>Notice <code>pi</code> is unchanged: <code>int(pi)</code> returns a new value, which we stored in <code>num</code>. To change a variable you must assign: <code>pi = int(pi)</code>.</p>
+
+  <h3>When conversion fails</h3>
+<pre class="py" data-run>print(int("2.5"))</pre>
+<pre class="out err">Traceback (most recent call last):
+  File "main.py", line 1, in &lt;module&gt;
+ValueError: invalid literal for int() with base 10: '2.5'</pre>
+  <p><code>int()</code> accepts a float <em>value</em> (it truncates) but not a <em>string</em> with a decimal point. If a user might type “2.5”, use <code>float()</code>, or go via both: <code>int(float("2.5"))</code> is 2. Text like <code>"ten"</code> fails for every number type.</p>
+
+  <aside class="exam"><span class="tag">Exam angle</span><p>Short-answer quiz questions love <code>int(2.999)</code> (answer 2, not 3) and string concatenation that needs <code>str()</code>. In longer programs, casting is the bridge between <code>input()</code> (always text) and arithmetic: that is the next lesson.</p></aside>
+
+  <div class="check"><span class="tag">Check yourself</span>
+    <details><summary>What do <code>int(-3.7)</code>, <code>float("4")</code> and <code>str(4) + str(4)</code> give?</summary><div class="d-body"><p><code>-3</code> (drops the fraction towards zero), <code>4.0</code>, <code>"44"</code>.</p></div></details>
+    <details><summary>Fix: <code>print("You are " + 16 + " years old")</code></summary><div class="d-body"><p><code>print("You are " + str(16) + " years old")</code>, or use commas, or an f-string (Lesson 9).</p></div></details>
+  </div>
+
+  <footer class="lesson-foot"><label class="done-toggle"><input type="checkbox" data-done="l6"> I’ve got this lesson</label></footer>
+</section>
+
+
+<!-- =============================== LESSON 7 =============================== -->
+<section id="l7" class="lesson" data-title="Lesson 7 · input() always gives a string">
+  <header class="lesson-head">
+    <div class="eyebrow"><span class="lnum">Lesson 7</span><span>Lecture 2.1, slides 10–13</span></div>
+    <h2>input() always gives you a string</h2>
+    <p class="idea"><b>The one idea</b><code>input("prompt")</code> shows the prompt, waits for the user to press Enter, and returns what they typed <em>as a string</em>, even if it looks like a number. Wrap it in <code>int()</code> or <code>float()</code> before doing arithmetic.</p>
+  </header>
+
+  <h3>The pattern</h3>
+<pre class="pseudo">variable = input(prompt as a string)            → a str
+variable = int(input(prompt as a string))       → an int
+variable = float(input(prompt as a string))     → a float</pre>
+  <p>The prompt is optional but always worth giving, ending with a space so the user’s typing doesn’t touch it. When you press ▶ Try it here, Python asks for each input in a pop-up box; in the output, what you typed appears after the prompt, as it would in a terminal.</p>
+
+  <h3>Slide 11: everything typed is a string</h3>
+<pre class="py" data-run data-stdin="22&#10;Jessa">number = input("Enter roll number ")
+name = input("Enter age ")
+
+print()
+print("Roll number:", number, "Name:", name)
+print("Printing type of a input values")
+print("type of number", type(number))
+print("type of name", type(name))</pre>
+<pre class="out">Enter roll number 22
+Enter age Jessa
+
+Roll number: 22 Name: Jessa
+Printing type of a input values
+type of number &lt;class 'str'&gt;
+type of name &lt;class 'str'&gt;</pre>
+  <p>(The slide’s second prompt really does say “Enter age” while storing a name: a reminder that Python doesn’t check your prompts make sense.)</p>
+
+  <h3>Slide 12: the classic bug</h3>
+<pre class="py" data-run data-stdin="12&#10;8">first_number = input("Enter first number ")
+second_number = input("Enter second number ")
+sum1 = first_number + second_number
+print("Addition of two number is: ", sum1)</pre>
+<pre class="out">Enter first number 12
+Enter second number 8
+Addition of two number is:  128</pre>
+  <p><code>"12" + "8"</code> is string concatenation: <code>"128"</code>. The fix is to convert as you read:</p>
+<pre class="py" data-run data-stdin="12&#10;8">first_number = int(input("Enter first number "))
+second_number = int(input("Enter second number "))
+sum1 = first_number + second_number
+print("Addition of two number is: ", sum1)</pre>
+<pre class="out">Enter first number 12
+Enter second number 8
+Addition of two number is:  20</pre>
+
+  <h3>Slide 13: float input</h3>
+<pre class="py" data-run data-stdin="85&#10;92"># average2.py
+# A simple program to average two exam scores
+score1 = float(input("Enter the first score: "))
+score2 = float(input("Enter the second score: "))
+
+average = (score1 + score2) / 2.0
+
+print("The average of the scores is:", average)</pre>
+<pre class="out">Enter the first score: 85
+Enter the second score: 92
+The average of the scores is: 88.5</pre>
+  <p>Use <code>float</code> when the user might type a decimal (marks, prices, temperatures). Use <code>int</code> when only whole numbers make sense (a count, a month, a year). If the user types <code>85.5</code> into an <code>int(input(…))</code>, the program crashes with the <code>ValueError</code> from Lesson 6.</p>
+
+  <aside class="exam"><span class="tag">Exam angle</span><p>“Write a complete Python program that asks the user to enter …” opens Question 1 on most past papers (6–8 marks). The first lines are always <code>x = float(input("…"))</code>. Forgetting the conversion is the single most common lost mark, because the program then concatenates or crashes.</p></aside>
+
+  <div class="check"><span class="tag">Check yourself</span>
+    <details><summary>The user types <code>5</code>. What does <code>print(input("n? ") * 3)</code> show?</summary><div class="d-body"><p><code>555</code>: the input is the string <code>"5"</code>, and string × 3 repeats it.</p></div></details>
+    <details><summary>Write two lines that read a temperature that might have decimals and print double it.</summary><div class="d-body"><pre class="py">t = float(input("Temperature: "))
+print(t * 2)</pre></div></details>
+  </div>
+
+  <footer class="lesson-foot"><label class="done-toggle"><input type="checkbox" data-done="l7"> I’ve got this lesson</label></footer>
+</section>
+
+
+<!-- =============================== LESSON 8 =============================== -->
+<section id="l8" class="lesson" data-title="Lesson 8 · print(), sep and end">
+  <header class="lesson-head">
+    <div class="eyebrow"><span class="lnum">Lesson 8</span><span>Lecture 2.1, slides 14–18</span></div>
+    <h2>print(): commas, sep and end</h2>
+    <p class="idea"><b>The one idea</b><code>print(a, b, c)</code> prints its values with <code>sep</code> between them (a space by default) and <code>end</code> after them (a newline by default). Change <code>sep</code> and <code>end</code> to control exactly how the output looks.</p>
+  </header>
+
+  <h3>Several values, separated by commas</h3>
+<pre class="py" data-run>print(3+4)
+print(3, 4, 3 + 4)
+print()
+print("The answer is", 3)
+p = 10
+q = 20
+r = 30
+print(p, q, r)</pre>
+<pre class="out">7
+3 4 7
+
+The answer is 3
+10 20 30</pre>
+  <p>Each argument is worked out first, then printed with a space between. <code>print()</code> on its own prints an empty line. Each print starts on a new line because it ends with one.</p>
+
+  <h3>Special characters</h3>
+  <p>Inside a string, a backslash starts an <strong>escape sequence</strong>: <code>\n</code> is a new line and <code>\t</code> is a tab.</p>
+<pre class="py" data-run>print("The answer is", 3)
+print("The answer is\t", 3)
+print("The answer is\n", 3)</pre>
+<pre class="out">The answer is 3
+The answer is	 3
+The answer is
+ 3</pre>
+  <p>Look closely at the last line: there is a space before the 3, because <code>sep</code> still puts a space between the two arguments, and here that space lands at the start of the new line.</p>
+
+  <h3>sep: what goes between</h3>
+<pre class="py" data-run>print("2024", "01", "02")
+print("2024", "01", "02", sep="-")
+print("Apple", "Banana", "Cherry", sep=", ")
+print("Apple", "Banana", "Cherry", sep="\n")</pre>
+<pre class="out">2024 01 02
+2024-01-02
+Apple, Banana, Cherry
+Apple
+Banana
+Cherry</pre>
+
+  <h3>end: what goes after</h3>
+<pre class="py" data-run>print("Hey!!")
+print("Python end")
+print("Hey!!", end=" ")
+print("Python end")
+print("Hey!!", end="@")
+print("Python end")</pre>
+<pre class="out">Hey!!
+Python end
+Hey!! Python end
+Hey!!@Python end</pre>
+  <p>With a different <code>end</code>, the next print carries on from the same line.</p>
+
+  <h3>Both together</h3>
+<pre class="py" data-run>print("Hello", "Python", sep=" -> ", end="!")
+print()
+print("Hello", "Python", sep=" -> ", end="!\n")
+print("Apple", "Banana", "Cherry", sep=", ", end=".\n")</pre>
+<pre class="out">Hello -> Python!
+Hello -> Python!
+Apple, Banana, Cherry.</pre>
+
+  <aside class="exam"><span class="tag">Exam angle</span><p><code>end=""</code> is how past papers print patterns on one line (the 2022–23 <code>mystery(n)</code> function and the 2024–25 diagonal pattern both use it with loops, coming later). The quiz asks “what is the output?” with <code>sep</code> and <code>end</code> mixed in, so count spaces and newlines carefully.</p></aside>
+
+  <div class="check"><span class="tag">Check yourself</span>
+    <details><summary>What does <code>print("a", "b", sep="")</code> print? And <code>print("a", "b", end="")</code> followed by <code>print("c")</code>?</summary><div class="d-body"><p><code>ab</code>. Then <code>a bc</code>: the space comes from <code>sep</code>, and <code>end=""</code> lets <code>c</code> continue the line.</p></div></details>
+    <details><summary>Print <code>10:30:00</code> from the three numbers 10, 30 and 0 using one print.</summary><div class="d-body"><p><code>print(10, 30, "00", sep=":")</code>. The last value must be the string <code>"00"</code>: a plain <code>0</code> would print as <code>0</code>.</p></div></details>
+  </div>
+
+  <footer class="lesson-foot"><label class="done-toggle"><input type="checkbox" data-done="l8"> I’ve got this lesson</label></footer>
+</section>
+
+
+<!-- =============================== LESSON 9 =============================== -->
+<section id="l9" class="lesson" data-title="Lesson 9 · f-strings">
+  <header class="lesson-head">
+    <div class="eyebrow"><span class="lnum">Lesson 9</span><span>Lecture 2.1, slides 19–22 · Lecture 2.2, slide 2</span></div>
+    <h2>f-strings and decimal places</h2>
+    <p class="idea"><b>The one idea</b>Put an <code>f</code> right before the opening quote and anything inside <code>{ }</code> is worked out and dropped into the text. Add <code>:.2f</code> inside the braces to show a number with exactly two decimal places.</p>
+  </header>
+
+  <h3>Three ways to say hello</h3>
+<pre class="py" data-run>name = "Ava"
+age = 16
+print("Hello,", name, "!")
+print("Hello, " + name + "! You are " + str(age) + " years old.")
+print(f"Hello, {name}! You are {age} years old.")</pre>
+<pre class="out">Hello, Ava !
+Hello, Ava! You are 16 years old.
+Hello, Ava! You are 16 years old.</pre>
+  <ol>
+    <li><strong>Commas:</strong> easy, but you get a space between every item (“Ava !”).</li>
+    <li><strong>Concatenation:</strong> exact, but every number needs <code>str()</code> and the quotes and pluses get messy.</li>
+    <li><strong>f-string:</strong> exact, readable, and no conversion needed. This is the lecturer’s recommended way.</li>
+  </ol>
+
+  <h3>Any expression goes in the braces</h3>
+<pre class="py" data-run>x = 5
+y = 3
+print(f"The sum of {x} and {y} is {x + y}.")</pre>
+<pre class="out">The sum of 5 and 3 is 8.</pre>
+
+  <h3>Formatting decimals: <code>{value:.2f}</code></h3>
+  <p>After a colon you can say <em>how</em> to show the value. <code>.nf</code> means fixed-point notation with <var>n</var> digits after the decimal point, rounded:</p>
+<pre class="py" data-run>average = 245 / 3
+print(average)
+print(f"{average:.2f}")
+print(f"{average:.0f}")
+print(f"{2/3:.3f}")
+print(f"{7:.2f}")</pre>
+<pre class="out">81.66666666666667
+81.67
+82
+0.667
+7.00</pre>
+  <p>Unlike <code>int()</code>, formatting <em>rounds</em>. It changes only how the number is shown; the variable keeps its full value.</p>
+
+  <div class="example"><span class="tag">Lecture 2.2’s temperature line</span>
+<pre class="py" data-run data-stdin="21.5">celsius = float(input("What is the Celsius temperature? "))
+fahrenheit = 9 / 5 * celsius + 32
+print(f"The temperature is {fahrenheit:.2f} degrees Fahrenheit.")</pre>
+<pre class="out">What is the Celsius temperature? 21.5
+The temperature is 70.70 degrees Fahrenheit.</pre>
+  </div>
+
+  <div class="warn-box"><span class="tag">Trap</span><p>Forget the <code>f</code> and the braces are printed literally: <code>print("{x}")</code> shows <code>{x}</code>. No error, just wrong output, so check it.</p></div>
+
+  <aside class="exam"><span class="tag">Exam angle</span><p>“Output the result to two decimal places” appears on the papers (2022–23 Q1(i), the circle area; 2024–25 Q1(iv), π to four places with <code>:.4f</code>). An f-string with <code>:.2f</code> is the shortest correct answer. <code>round(x, 2)</code> also rounds but drops trailing zeros (<code>7.0</code>, not <code>7.00</code>).</p></aside>
+
+  <div class="check"><span class="tag">Check yourself</span>
+    <details><summary>What does <code>print(f"{10/4:.1f}%")</code> show?</summary><div class="d-body"><p><code>2.5%</code>.</p></div></details>
+    <details><summary>Rewrite <code>print("Total: " + str(price * qty) + " euro")</code> as an f-string with two decimals.</summary><div class="d-body"><p><code>print(f"Total: {price * qty:.2f} euro")</code></p></div></details>
+  </div>
+
+  <footer class="lesson-foot"><label class="done-toggle"><input type="checkbox" data-done="l9"> I’ve got this lesson</label></footer>
+</section>
+
+
+<!-- =============================== LESSON 10 =============================== -->
+<section id="l10" class="lesson" data-title="Lesson 10 · The if statement">
+  <header class="lesson-head">
+    <div class="eyebrow"><span class="lnum">Lesson 10</span><span>Lecture 2.2, slides 4–12</span></div>
+    <h2>The if statement</h2>
+    <p class="idea"><b>The one idea</b>A condition is an expression that is either <code>True</code> or <code>False</code>. <code>if condition:</code> runs the indented block below it only when the condition is <code>True</code>; either way, the program then carries on with the first unindented line.</p>
+  </header>
+
+  <h3>Syntax</h3>
+<pre class="pseudo">if condition:
+    statement 1
+    statement 2      ← the body: one or more lines, all indented the same
+statement n          ← back at the left margin: runs whatever happened</pre>
+  <p>Three details, and every one is examinable: the keyword <code>if</code> in lower case, the <strong>colon</strong> at the end of the line, and the <strong>indentation</strong> (four spaces by convention). The indentation is not decoration: it is how Python knows which lines belong to the <code>if</code>. Slide 10 puts it as “indentation is vital: it dictates the scope of the condition”.</p>
+  <div class="codepair">
+    <div><p class="cap">Slide 7</p>
+<pre class="py" data-run>number = 6
+if number &gt; 5:
+    # Calculate square
+    print(number * number)
+print('Next lines of code')</pre>
+<pre class="out">36
+Next lines of code</pre></div>
+    <div><p class="cap">Same program, number = 3</p>
+<pre class="py" data-run>number = 3
+if number &gt; 5:
+    # Calculate square
+    print(number * number)
+print('Next lines of code')</pre>
+<pre class="out">Next lines of code</pre></div>
+  </div>
+
+  <h3>The flowchart</h3>
+  <figure><div class="fig-box">
+    <svg class="fc" viewBox="0 0 440 250" role="img" aria-label="Flowchart of an if statement: a diamond asks whether it is cold outside; yes leads to wear a coat, wear a hat, wear a scarf; both paths then go to go outside">
+      <defs><marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+      <polygon class="dia" points="120,20 200,62 120,104 40,62"/><text x="120" y="58" text-anchor="middle">Is it cold</text><text x="120" y="73" text-anchor="middle">outside?</text>
+      <text class="lbl" x="214" y="55">True</text><text class="lbl" x="128" y="126">False</text>
+      <line class="ln" x1="200" y1="62" x2="270" y2="62" marker-end="url(#ar2)"/>
+      <rect class="box" x="272" y="45" width="130" height="32"/><text x="337" y="66" text-anchor="middle">Wear a coat</text>
+      <rect class="box" x="272" y="95" width="130" height="32"/><text x="337" y="116" text-anchor="middle">Wear a hat</text>
+      <rect class="box" x="272" y="145" width="130" height="32"/><text x="337" y="166" text-anchor="middle">Wear a scarf</text>
+      <line class="ln" x1="337" y1="77" x2="337" y2="93" marker-end="url(#ar2)"/>
+      <line class="ln" x1="337" y1="127" x2="337" y2="143" marker-end="url(#ar2)"/>
+      <path class="ln" d="M337 177 V210 H182" marker-end="url(#ar2)"/>
+      <line class="ln" x1="120" y1="104" x2="120" y2="192" marker-end="url(#ar2)"/>
+      <rect class="term" x="58" y="194" width="124" height="34" rx="6"/><text x="120" y="216" text-anchor="middle">Go outside</text>
+    </svg></div>
+    <figcaption><b>Slides 10–11.</b> The diamond is the decision. The body can hold several statements; both paths meet again at “Go outside”.</figcaption>
+  </figure>
+<pre class="py" data-run>coldOutside = True
+
+if coldOutside:
+    print("Wear a Coat!")
+    print("Wear a Hat!")
+    print("Wear a Scarf!")
+
+print("Let's go outside")</pre>
+<pre class="out">Wear a Coat!
+Wear a Hat!
+Wear a Scarf!
+Let's go outside</pre>
+  <p>Change the first line to <code>False</code> and only “Let’s go outside” appears. A Boolean variable is already a condition, so <code>if coldOutside:</code> is enough; <code>if coldOutside == True:</code> works but is clumsy.</p>
+
+  <h3>The six relational operators</h3>
+  <div class="tbl-wrap min">
+    <table>
+      <thead><tr><th>Python</th><th>Maths</th><th>Meaning</th><th><code>x = 5, y = 3</code></th></tr></thead>
+      <tbody>
+        <tr><td><code>x &lt; y</code></td><td>&lt;</td><td>less than</td><td><code>False</code></td></tr>
+        <tr><td><code>x &lt;= y</code></td><td>≤</td><td>less than or equal to</td><td><code>False</code></td></tr>
+        <tr><td><code>x == y</code></td><td>=</td><td>equal to</td><td><code>False</code></td></tr>
+        <tr><td><code>x &gt;= y</code></td><td>≥</td><td>greater than or equal to</td><td><code>True</code></td></tr>
+        <tr><td><code>x &gt; y</code></td><td>&gt;</td><td>greater than</td><td><code>True</code></td></tr>
+        <tr><td><code>x != y</code></td><td>≠</td><td>not equal to</td><td><code>True</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>A condition has the shape <code>&lt;expr1&gt; &lt;relop&gt; &lt;expr2&gt;</code>, and its value is a <code>bool</code>: try <code>print(5 &gt; 3)</code>. <strong>Double equals checks; single equals assigns.</strong></p>
+
+  <h3>Slide 12: spot the errors</h3>
+<pre class="py" data-run>a = 100
+if a = 100:
+    print("Perfect score")</pre>
+<pre class="out err">  File "main.py", line 2
+    if a = 100:
+       ^^^^^^^
+SyntaxError: invalid syntax. Maybe you meant '==' or ':=' instead of '='?</pre>
+  <p>Quiz 3 Q10 was exactly this: the answer is “Error”. The other mistakes on the slide: a missing colon (<code>if a == 100</code> → <code>SyntaxError: expected ':'</code>) and a body that isn’t indented (<code>IndentationError: expected an indented block</code>).</p>
+
+  <div class="example"><span class="tag">Worked example · Quiz 3 Q7</span>
+<pre class="py" data-run>x = 10
+if x ** 2 &gt; 100:
+    print(x)</pre>
+<pre class="out"></pre>
+    <p>Nothing at all is printed: 10² = 100, and 100 &gt; 100 is <code>False</code>, so the body is skipped. (The quiz’s option “None” stood for “no output”.) With <code>&gt;=</code> it would print 10. Boundary values like this are where <code>&gt;</code> versus <code>&gt;=</code> matters.</p>
+  </div>
+
+  <aside class="exam"><span class="tag">Exam angle</span><p>The three classic syntax errors (<code>=</code> for <code>==</code>, missing colon, wrong indentation) are what the “find the errors” parts are built from. In “what is the output?” questions, check boundaries: is the value exactly on the line?</p></aside>
+
+  <div class="check"><span class="tag">Check yourself</span>
+    <details><summary>What does <code>print(7 != 7)</code> print?</summary><div class="d-body"><p><code>False</code>.</p></div></details>
+    <details><summary>Which lines run when <code>t = 15</code>?<pre class="py">if t &gt; 20:
+    print("warm")
+    print("t-shirt")
+print("done")</pre></summary><div class="d-body"><p>Only <code>print("done")</code>. Both indented lines belong to the <code>if</code> and are skipped.</p></div></details>
+  </div>
+
+  <footer class="lesson-foot"><label class="done-toggle"><input type="checkbox" data-done="l10"> I’ve got this lesson</label></footer>
+</section>
+
+
+<!-- =============================== LESSON 11 =============================== -->
+<section id="l11" class="lesson" data-title="Lesson 11 · else and elif">
+  <header class="lesson-head">
+    <div class="eyebrow"><span class="lnum">Lesson 11</span><span>Lecture 2.2, slides 13–26</span></div>
+    <h2>Choosing one of several paths: else and elif</h2>
+    <p class="idea"><b>The one idea</b><code>if</code>–<code>elif</code>–<code>else</code> tests its conditions from the top and runs the body of the <em>first</em> one that is true, then skips the rest. Exactly one branch runs (or none, if there is no <code>else</code>), so the order of the tests matters.</p>
+  </header>
+
+  <h3>if–else: two paths</h3>
+<pre class="py" data-run data-stdin="PYnative@#29">password = input('Enter password ')
+
+if password == "PYnative@#29":
+    print("Correct password")
+else:
+    print("Incorrect Password")</pre>
+<pre class="out">Enter password PYnative@#29
+Correct password</pre>
+  <p><code>else</code> has no condition: it catches everything the <code>if</code> didn’t. Note its colon, and that it lines up with its <code>if</code>.</p>
+
+  <h3>if–elif–else: many paths</h3>
+<pre class="pseudo">if condition_1:
+    statements    ← if condition_1 is true; the rest is skipped
+elif condition_2:
+    statements    ← otherwise, if condition_2 is true; the rest is skipped
+else:
+    statements    ← if none of the above were true</pre>
+<pre class="py" data-run data-stdin="2">choice = int(input("Enter choice: "))
+if choice == 1:
+    print("Admin")
+elif choice == 2:
+    print("Editor")
+elif choice == 3:
+    print("Guest")
+else:
+    print("Wrong entry")</pre>
+<pre class="out">Enter choice: 2
+Editor</pre>
+
+  <h3>ExamMarks.py: what’s wrong with this?</h3>
+  <p>Slide 14 asks “Is this program correct? Could the decision structure be improved?”</p>
+  <div class="codepair">
+    <div><p class="cap">Three separate ifs</p>
+<pre class="py">score1 = float(input("Exam mark #1? "))
+score2 = float(input("Exam mark #2? "))
+score3 = float(input("Exam mark #3? "))
+average = (score1 + score2 + score3) / 3
+print(f"The average is {average:.2f}")
+
+if average &lt; 40:
+    print("You did not pass.")
+if average == 40:
+    print("You passed with exactly 40.")
+if average &gt; 40:
+    print("You passed.")</pre></div>
+    <div><p class="cap">One if–elif–else</p>
+<pre class="py" data-run data-stdin="40&#10;35&#10;45">score1 = float(input("Exam mark #1? "))
+score2 = float(input("Exam mark #2? "))
+score3 = float(input("Exam mark #3? "))
+average = (score1 + score2 + score3) / 3
+print(f"The average is {average:.2f}")
+
+if average &lt; 40:
+    print("You did not pass.")
+elif average == 40:
+    print("You passed with exactly 40.")
+else:
+    print("You passed.")</pre>
+<pre class="out">Exam mark #1? 40
+Exam mark #2? 35
+Exam mark #3? 45
+The average is 40.00
+You passed with exactly 40.</pre></div>
+  </div>
+  <p>Both print the right message, so the first version is <em>correct</em>, but it always tests all three conditions even though only one can be true. The <code>elif</code> version stops at the first match, says in its structure that the cases are exclusive, and needs no condition at all for the last case. The slide’s summary: “more efficient to run because if the first expression evaluates to TRUE then the other expressions will not be checked”.</p>
+
+  <h3>Order matters</h3>
+  <p>Because only the first true branch runs, put the most specific test first. This grading program is wrong:</p>
+<pre class="py" data-run data-stdin="85">mark = int(input("Mark: "))
+if mark &gt;= 40:
+    print("Pass")  #!!
+elif mark &gt;= 70:
+    print("First class")</pre>
+<pre class="out">Mark: 85
+Pass</pre>
+  <p>85 ≥ 40 is true, so “Pass” is printed and the <code>elif</code> is never reached: “First class” is unreachable for every mark. Test <code>mark &gt;= 70</code> first, then <code>mark &gt;= 40</code>.</p>
+
+  <h3>The temperature warnings (slides 18–24)</h3>
+  <p>The lecture builds this up in the four steps from Lesson 1: problem (warn above 90 °F and below 30 °F), pseudocode, flowchart, code. The first version used two separate ifs; the final one uses <code>elif</code> and adds a normal-range message.</p>
+<pre class="py" data-run data-stdin="35">celsius = float(input("What is the Celsius temperature? "))
+
+fahrenheit = 9 / 5 * celsius + 32
+
+print(f"The temperature is {fahrenheit:.2f} degrees Fahrenheit.")
+
+if fahrenheit &gt; 90:
+    print("Warning: Hot weather!")
+elif fahrenheit &lt; 30:
+    print("Warning: Cold weather!")
+else:
+    print("The temperature is within the normal range.")</pre>
+<pre class="out">What is the Celsius temperature? 35
+The temperature is 95.00 degrees Fahrenheit.
+Warning: Hot weather!</pre>
+
+  <h3>The guessing game (slide 26)</h3>
+  <p>Three outcomes (too big, too small, exactly right) need a multi-branch if. The game also uses <code>random.randint(MIN, MAX)</code>, which picks a whole number between MIN and MAX <em>inclusive</em>; <code>import random</code> at the top makes it available.</p>
+<pre class="py" data-run data-stdin="5">import random
+
+MIN = 1
+MAX = 10
+number = random.randint(MIN, MAX)
+
+guess = int(input("Please guess a number between "
+                  + str(MIN) + " and " + str(MAX) + ": "))
+
+if guess &gt; number:
+    print("Too big!")
+elif guess &lt; number:
+    print("Too small!")
+else:
+    print("Yippee!!! You guessed it")</pre>
+  <p>Run it a few times: the number changes every run. <code>MIN</code> and <code>MAX</code> are in capitals by convention because they are <em>constants</em>, values that never change while the program runs.</p>
+
+  <aside class="exam"><span class="tag">Exam angle</span><p>Classifying a number into ranges is a staple 6–7 mark opener: positive/negative/zero (2025–26 Q1(i)), the season of a month (2023–24 Q1(i)); both are worked in <a href="#practice">Exam practice</a>. Every year since 2023 also uses <code>random.randint</code> for a simulation question, once loops arrive.</p></aside>
+
+  <div class="check"><span class="tag">Check yourself</span>
+    <details><summary>With <code>x = 7</code>, what does this print?<pre class="py">if x &gt; 5:
+    print("A")
+elif x &gt; 3:
+    print("B")
+else:
+    print("C")</pre></summary><div class="d-body"><p>Only <code>A</code>. <code>x &gt; 3</code> is also true, but the chain stopped at the first true branch.</p></div></details>
+    <details><summary>Change the previous code so it prints both A and B for <code>x = 7</code>.</summary><div class="d-body"><p>Make the <code>elif</code> a separate <code>if</code> (and decide what you want <code>else</code> to belong to).</p></div></details>
+  </div>
+
+  <footer class="lesson-foot"><label class="done-toggle"><input type="checkbox" data-done="l11"> I’ve got this lesson</label></footer>
+</section>
+
+
+<!-- =============================== LESSON 12 =============================== -->
+<section id="l12" class="lesson" data-title="Lesson 12 · Nested if, and/or/not">
+  <header class="lesson-head">
+    <div class="eyebrow"><span class="lnum">Lesson 12</span><span>Lecture 2.2, slide 27 · Quiz 3</span></div>
+    <h2>Nested if, and combining conditions</h2>
+    <p class="idea"><b>The one idea</b>An <code>if</code> can sit inside another <code>if</code> to make a decision in stages; its indentation shows which <code>else</code> belongs to which <code>if</code>. Often the same logic is shorter with <code>and</code>, <code>or</code> and <code>not</code>, which join conditions into one.</p>
+  </header>
+
+  <h3>Slide 27: nested if–else</h3>
+<pre class="py" data-run data-stdin="56&#10;15"># Find greater number between two numbers
+num1 = int(input('Enter first number '))
+num2 = int(input('Enter second number '))
+
+if num1 &gt;= num2:
+    if num1 == num2:
+        print(num1, 'and', num2, 'are equal')
+    else:
+        print(num1, 'is greater than', num2)
+else:
+    print(num1, 'is smaller than', num2)</pre>
+<pre class="out">Enter first number 56
+Enter second number 15
+56 is greater than 15</pre>
+  <p>The inner <code>if</code>–<code>else</code> only runs when <code>num1 &gt;= num2</code>. Read the indentation as a tree: the outer <code>else</code> lines up with the outer <code>if</code>, the inner <code>else</code> with the inner <code>if</code>.</p>
+
+  <div class="example"><span class="tag">Worked example · Quiz 3 Q2</span>
+<pre class="py" data-run>x = 0
+a = 5
+b = 5
+if a &gt; 0:
+    if b &lt; 0:
+        x = x + 5
+    else:
+        x = x + 3
+else:
+    x = x + 2
+print(x)</pre>
+<pre class="out">3</pre>
+    <p>a &gt; 0 is true, so go inside. b &lt; 0 is false, so take the inner <code>else</code>: x = 0 + 3. The outer <code>else</code> is skipped.</p>
+  </div>
+
+  <h3>and, or, not</h3>
+  <p>These logical operators combine Boolean values. Quiz 3 Q4 used <code>and</code> before the slides had: here they are properly.</p>
+  <div class="tbl-wrap min">
+    <table>
+      <thead><tr><th>Expression</th><th>True when</th><th>Example (<code>age = 20</code>)</th></tr></thead>
+      <tbody>
+        <tr><td><code>A and B</code></td><td>both are true</td><td><code>age &gt;= 18 and age &lt; 65</code> → <code>True</code></td></tr>
+        <tr><td><code>A or B</code></td><td>at least one is true</td><td><code>age &lt; 12 or age &gt; 65</code> → <code>False</code></td></tr>
+        <tr><td><code>not A</code></td><td>A is false</td><td><code>not age &gt; 30</code> → <code>True</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+<pre class="py" data-run>x = 10
+y = 5
+if x &gt; y and (x - y) &gt; 2:
+    print("Condition is satisfied")
+else:
+    print("Condition is not satisfied")</pre>
+<pre class="out">Condition is satisfied</pre>
+  <p>Quiz 3 Q4: 10 &gt; 5 is true and 10 − 5 = 5 &gt; 2 is true, so the whole <code>and</code> is true. Relational operators are worked out before <code>and</code>/<code>or</code>, so the brackets here are optional but help the reader.</p>
+
+  <h3>Nested or combined?</h3>
+  <p>These two are equivalent; the second is easier to read.</p>
+  <div class="codepair">
+    <div><p class="cap">Nested</p>
+<pre class="py">if temp &gt; 15:
+    if not raining:
+        print("Picnic!")</pre></div>
+    <div><p class="cap">Combined</p>
+<pre class="py">if temp &gt; 15 and not raining:
+    print("Picnic!")</pre></div>
+  </div>
+  <p>Nesting earns its place when the inner decision has its own <code>else</code> that should only happen in one outer case, as in slide 27.</p>
+
+  <div class="warn-box"><span class="tag">Trap</span><p><code>if month == 12 or 1 or 2:</code> is always true! Python reads it as <code>(month == 12) or 1 or 2</code>, and <code>1</code> on its own counts as true (Lesson 6’s <code>bool()</code> rules). Write each comparison in full: <code>month == 12 or month == 1 or month == 2</code>.</p></div>
+
+  <aside class="exam"><span class="tag">Exam angle</span><p>Ranges are written with <code>and</code>: “months 3 to 5 inclusive” is <code>month &gt;= 3 and month &lt;= 5</code>. Nested ifs are fair game in “what is the value of x?” questions; trace them branch by branch as in Quiz 3 Q2.</p></aside>
+
+  <div class="check"><span class="tag">Check yourself</span>
+    <details><summary>With <code>a = 3, b = 0</code>, what are <code>a &gt; 0 and b &gt; 0</code>, <code>a &gt; 0 or b &gt; 0</code>, <code>not b &gt; 0</code>?</summary><div class="d-body"><p><code>False</code>, <code>True</code>, <code>True</code>.</p></div></details>
+    <details><summary>Write one condition that is true when <code>n</code> is between 1 and 100 inclusive.</summary><div class="d-body"><p><code>n &gt;= 1 and n &lt;= 100</code></p></div></details>
+  </div>
+
+  <footer class="lesson-foot"><label class="done-toggle"><input type="checkbox" data-done="l12"> I’ve got this lesson</label></footer>
+</section>
+
+<!-- =============================== LESSON 13 =============================== -->
+<section id="l13" class="lesson" data-title="Lesson 13 · Defining and calling functions">
+  <header class="lesson-head">
+    <div class="eyebrow"><span class="lnum">Lesson 13</span><span>Lecture 3.1, slides 4–10, 13–17</span></div>
+    <h2>Defining and calling a function</h2>
+    <p class="idea"><b>The one idea</b>A function is a named block of code. <code>def</code> only <em>defines</em> it: nothing inside runs until you <em>call</em> it by name with brackets. When called, Python jumps into the body with the parameters set to the arguments you passed, runs it, then comes back.</p>
+  </header>
+
+  <h3>Why bother?</h3>
+  <p>“We use functions when we need to perform the same task multiple times without writing the same code again” (slide 4). Write the code once, give it a sensible name, and call it whenever you need it. You have been calling functions since Lesson 2 (<code>print</code>, <code>input</code>, <code>int</code>, <code>type</code>); now you write your own.</p>
+
+  <h3>The anatomy</h3>
+<pre class="pseudo">def function_name(parameter1, parameter2, ...):
+    # function body
+    statements
+    return value</pre>
+  <div class="tbl-wrap min">
+    <table>
+      <thead><tr><th>Part</th><th>What it is</th></tr></thead>
+      <tbody>
+        <tr><td><code>def</code></td><td>Keyword that starts a definition. Mandatory.</td></tr>
+        <tr><td><code>function_name</code></td><td>Lower case, words joined by underscores, saying what it does: <code>calculate_total()</code> beats <code>total()</code>.</td></tr>
+        <tr><td><code>(parameters)</code></td><td>Names for the values the function receives. Zero, one or several; the brackets are needed even when empty.</td></tr>
+        <tr><td><code>:</code></td><td>Marks the start of the body, just as with <code>if</code>.</td></tr>
+        <tr><td>indented block</td><td>The body: the statements that belong to the function.</td></tr>
+        <tr><td><code>return</code></td><td>Optional. Sends a value back to the caller (Lesson 14).</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Without parameters, then with</h3>
+<pre class="py" data-run># function
+def message():
+    print("Welcome to PYnative")
+
+# call function using its name
+message()</pre>
+<pre class="out">Welcome to PYnative</pre>
+<pre class="py" data-run># function
+def course_func(name, course_name):
+    print("Hello", name, "Welcome to PYnative")
+    print("Your course name is", course_name)
+
+# call function
+course_func('John', 'Python')</pre>
+<pre class="out">Hello John Welcome to PYnative
+Your course name is Python</pre>
+  <p>In the call, <code>'John'</code> and <code>'Python'</code> are the <strong>arguments</strong>. They are matched to the <strong>parameters</strong> by position: the first argument becomes <code>name</code>, the second <code>course_name</code>. Pass the wrong number and Python stops with a <code>TypeError</code>.</p>
+
+  <h3>Two parts: definition and invocation (Temp.py)</h3>
+<pre class="py" data-run data-stdin="25">def celsius_to_fahr(temp_c):
+    # Returns the fahrenheit equivalent of a given celsius temperature
+    temp_f = temp_c * 9 / 5 + 32
+    return temp_f
+
+# Main Program
+temp = float(input("Enter temperature in celsius: "))
+convertedTemp = celsius_to_fahr(temp)
+print("Equivalent temperature in fahrenheit is: ", convertedTemp)</pre>
+<pre class="out">Enter temperature in celsius: 25
+Equivalent temperature in fahrenheit is:  77.0</pre>
+  <p>Follow the order Python actually runs it in (slide 17):</p>
+  <ol>
+    <li>Lines 1–4: the <code>def</code> is read and the function is <em>remembered</em>. Its body does not run.</li>
+    <li>Line 7: the main program asks for a temperature: <code>temp</code> is 25.0.</li>
+    <li>Line 8: the call. Python jumps into the function with <code>temp_c</code> = 25.0, computes <code>temp_f</code> = 77.0 and returns it.</li>
+    <li>Back on line 8, the returned 77.0 is stored in <code>convertedTemp</code>, and line 9 prints it.</li>
+  </ol>
+  <p>Notice the argument (<code>temp</code>) and the parameter (<code>temp_c</code>) have different names. That is normal: the parameter is the function’s own name for whatever value it is given.</p>
+  <p>Slide 13’s checklist for <strong>calling</strong> any function: what is it called? what arguments does it expect (how many, what types)? does it give back a result, and if so what?</p>
+
+  <div class="warn-box"><span class="tag">Trap</span><p>Define before you call. Python reads top to bottom, so calling <code>celsius_to_fahr(temp)</code> on a line <em>above</em> its <code>def</code> gives <code>NameError: name 'celsius_to_fahr' is not defined</code>. Put all your functions at the top and the main program underneath, as the lecturer does.</p></div>
+
+  <aside class="exam"><span class="tag">Exam angle</span><p>Almost every exam question since 2022 says “write a function <code>name(parameters)</code> that …”. Copy the given name and parameters exactly, and write the <code>def</code> line first. Several papers also ask for the main program that calls it.</p></aside>
+
+  <div class="check"><span class="tag">Check yourself</span>
+    <details><summary>What does this program print?<pre class="py">def greet():
+    print("Hi")
+print("Start")</pre></summary><div class="d-body"><p>Only <code>Start</code>. <code>greet</code> is defined but never called.</p></div></details>
+    <details><summary>In <code>def area(width, height):</code> and the call <code>area(3, 4)</code>, which are the parameters and which the arguments?</summary><div class="d-body"><p><code>width</code> and <code>height</code> are parameters; <code>3</code> and <code>4</code> are arguments. Inside, width = 3 and height = 4.</p></div></details>
+  </div>
+
+  <footer class="lesson-foot"><label class="done-toggle"><input type="checkbox" data-done="l13"> I’ve got this lesson</label></footer>
+</section>
+
+
+<!-- =============================== LESSON 14 =============================== -->
+<section id="l14" class="lesson" data-title="Lesson 14 · return vs print">
+  <header class="lesson-head">
+    <div class="eyebrow"><span class="lnum">Lesson 14</span><span>Lecture 3.1, slides 9, 11–12, 15–16</span></div>
+    <h2>return hands a value back; print only shows it</h2>
+    <p class="idea"><b>The one idea</b><code>return value</code> ends the function and hands the value back to the line that called it, where you can store it or use it. <code>print</code> just shows text on screen and gives nothing back. A function without <code>return</code> returns <code>None</code>.</p>
+  </header>
+
+  <h3>With and without a return value (slide 9)</h3>
+  <div class="codepair">
+    <div><p class="cap">Returns a value</p>
+<pre class="py" data-run># function
+def calculator(a, b):
+    add = a + b
+    return add
+
+# call function
+# take return value in variable
+res = calculator(20, 5)
+
+print("Addition :", res)</pre>
+<pre class="out">Addition : 25</pre></div>
+    <div><p class="cap">Prints, returns nothing</p>
+<pre class="py" data-run># function
+def even_odd(n):
+    # check number is even or odd
+    if n % 2 == 0:
+        print('Even number')
+    else:
+        print('Odd Number')
+
+# calling function by its name
+even_odd(19)</pre>
+<pre class="out">Odd Number</pre></div>
+  </div>
+
+  <h3>See the difference</h3>
+<pre class="py" data-run>def double_print(x):
+    print(x * 2)
+
+def double_return(x):
+    return x * 2
+
+a = double_print(5)
+b = double_return(5)
+print("a is", a)
+print("b is", b)
+print(double_return(5) + 1)</pre>
+<pre class="out">10
+a is None
+b is 10
+11</pre>
+  <p><code>double_print</code> showed 10 on screen, but the caller got <code>None</code> back, so <code>a</code> is <code>None</code> and <code>double_print(5) + 1</code> would crash. <code>double_return</code> showed nothing itself, but its value can be stored, printed or used in more arithmetic. That is why most exam functions should <em>return</em> their answer and let the main program print it.</p>
+
+  <h3>return ends the function</h3>
+<pre class="py" data-run>def sign(n):
+    if n &gt; 0:
+        return "positive"
+    elif n &lt; 0:
+        return "negative"
+    return "zero"
+
+print(sign(-4), sign(0), sign(7))</pre>
+<pre class="out">negative zero positive</pre>
+  <p>As soon as a <code>return</code> runs, the function is finished, so code after it in the same path never runs. The last line only runs when neither earlier return did, which is why it needs no <code>else</code>.</p>
+
+  <h3>Returning several values (slides 11–12)</h3>
+<pre class="py" data-run data-stdin="Ada&#10;Lovelace"># getDetails.py
+def getName():
+    # Ask for a user's first and last name
+    first = input('Enter your first name: ')
+    last = input('Enter your last name: ')
+    return first, last
+
+firstName, lastName = getName()
+print("First Name: ", firstName, "Second Name: ", lastName)</pre>
+<pre class="out">Enter your first name: Ada
+Enter your last name: Lovelace
+First Name:  Ada Second Name:  Lovelace</pre>
+  <p>List the values after <code>return</code> separated by commas, and put the same number of variables, separated by commas, on the left of <code>=</code> at the call. They are matched in order.</p>
+
+  <h3>Parameters are local</h3>
+  <p>Slide 15: “the scope of this [parameter] is local.” A parameter, and any variable created inside a function, exists only while the function runs:</p>
+<pre class="py" data-run>def celsius_to_fahr(temp_c):
+    temp_f = temp_c * 9 / 5 + 32
+    return temp_f
+
+result = celsius_to_fahr(100)
+print(result)
+print(temp_f)</pre>
+<pre class="out err">212.0
+Traceback (most recent call last):
+  File "main.py", line 7, in &lt;module&gt;
+NameError: name 'temp_f' is not defined</pre>
+  <p>To get a value out of a function, return it. Don’t try to reach inside.</p>
+
+  <aside class="exam"><span class="tag">Exam angle</span><p>“Return” versus “print” is spelled out in the questions: “the function should <em>print</em> a summary … and <em>return</em> the number of coin flips” (2023–24 Q2). Do exactly what each verb says. A common error in “find the errors” code is a function that calculates a total but returns the wrong variable, or never returns it.</p></aside>
+
+  <div class="check"><span class="tag">Check yourself</span>
+    <details><summary>What does <code>print(print("hi"))</code> show?</summary><div class="d-body"><p><code>hi</code>, then <code>None</code>: the inner print shows “hi” and returns <code>None</code>, which the outer print then shows.</p></div></details>
+    <details><summary>Write a function <code>min_sec(total)</code> that returns minutes and seconds for a number of seconds, and use it on 200.</summary><div class="d-body"><pre class="py">def min_sec(total):
+    return total // 60, total % 60
+
+m, s = min_sec(200)
+print(m, "min", s, "s")    # 3 min 20 s</pre></div></details>
+  </div>
+
+  <footer class="lesson-foot"><label class="done-toggle"><input type="checkbox" data-done="l14"> I’ve got this lesson</label></footer>
+</section>
+
+
+<!-- =============================== LESSON 15 =============================== -->
+<section id="l15" class="lesson" data-title="Lesson 15 · Docstrings and built-in functions">
+  <header class="lesson-head">
+    <div class="eyebrow"><span class="lnum">Lesson 15</span><span>Lecture 3.1, slides 18–24</span></div>
+    <h2>Docstrings and built-in functions</h2>
+    <p class="idea"><b>The one idea</b>Every function you write should start with a docstring: a triple-quoted string saying what it does, what each parameter is (type and meaning) and what it returns. Built-in functions such as <code>len()</code> and <code>max()</code> are documented the same way, and you call them exactly like your own.</p>
+  </header>
+
+  <h3>Writing a docstring</h3>
+  <p>The first line inside the function, before any code, is a string in triple quotes. Slide 19’s example:</p>
+<pre class="py" data-run>def calculate_square(number):
+    """
+    Calculate the square of a number.
+
+    Parameters:
+        number (int or float): The number to be squared.
+
+    Returns:
+        int or float: The square of the input number.
+    """
+    result = number ** 2
+    return result
+
+print(calculate_square(7))
+help(calculate_square)</pre>
+<pre class="out">49
+Help on function calculate_square in module __main__:
+
+calculate_square(number)
+    Calculate the square of a number.
+    
+    Parameters:
+        number (int or float): The number to be squared.
+    
+    Returns:
+        int or float: The square of the input number.
+</pre>
+  <p>Three things to include (slide 18): the <strong>purpose</strong> of the function, each <strong>parameter</strong> (data type and content), and the <strong>output</strong> (data type and content). Python stores the docstring with the function, which is why <code>help()</code> can show it. A one-line function can have a one-line docstring: <code>"""Return the Fahrenheit equivalent of a Celsius temperature."""</code></p>
+
+  <h3>Built-in functions</h3>
+  <p>These come with Python (slide 20). You already know four. Slide 21 sorts them by what they take and give back:</p>
+  <div class="tbl-wrap min">
+    <table>
+      <thead><tr><th>Call</th><th>Takes</th><th>Returns</th></tr></thead>
+      <tbody>
+        <tr><td><code>int(x)</code></td><td>a value to convert</td><td>an int</td></tr>
+        <tr><td><code>type(x)</code></td><td>any value</td><td>its type</td></tr>
+        <tr><td><code>input(prompt)</code></td><td>a question to show</td><td>what the user typed, as a str</td></tr>
+        <tr><td><code>print(…)</code></td><td>things to show</td><td>nothing (<code>None</code>)</td></tr>
+        <tr><td><code>len(s)</code></td><td>a string or list</td><td>how many characters or items</td></tr>
+        <tr><td><code>max(a, b, …)</code></td><td>several values</td><td>the largest</td></tr>
+      </tbody>
+    </table>
+  </div>
+<pre class="py" data-run>name = 'Tatiana'
+print(len(name))
+list_people = ["John", "Mary", "Luke"]
+print(len(list_people))
+largest = max(34, 45, 56)
+print(largest)
+print(min(34, 45, 56), abs(-7), round(3.14159, 2))</pre>
+<pre class="out">7
+3
+56
+34 7 3.14</pre>
+  <p>Slide 22’s two kinds of function: a <strong>simple function</strong> does a job (<code>print('hello')</code>), a <strong>value-returning function</strong> gives back a value you store (<code>user_input = input('Enter a number: ')</code>). Slide 24 links the <a href="https://docs.python.org/3/library/functions.html" rel="noopener">full list of built-in functions</a>.</p>
+
+  <h3>Calls inside calls</h3>
+<pre class="pseudo">patient_name = input("Name please: ")   ← return value saved in a variable
+print(input("Name please: "))           ← return value passed straight to print</pre>
+  <p>Inner calls are worked out first. You have been doing this since Lesson 7: in <code>int(input("n? "))</code>, <code>input</code> runs, its string goes into <code>int</code>, and the int is stored.</p>
+
+  <aside class="exam"><span class="tag">Exam angle</span><p>2022–23 Q1(ii) (6 marks) was simply “write a suitable header comment for the function given below”: you had to work out what an unexplained function does and describe its purpose, parameter and output. Practise reading code you didn’t write. Also, when a question bans a built-in (“without using <code>max()</code>”), it means write the comparisons yourself with <code>if</code>.</p></aside>
+
+  <div class="check"><span class="tag">Check yourself</span>
+    <details><summary>What do <code>len("CS1068")</code> and <code>len("")</code> return?</summary><div class="d-body"><p><code>6</code> and <code>0</code>.</p></div></details>
+    <details><summary>Write the docstring for <code>def celsius_to_fahr(temp_c):</code> in the slide’s style.</summary><div class="d-body"><pre class="py">"""
+Convert a temperature from Celsius to Fahrenheit.
+
+Parameters:
+    temp_c (float): The temperature in degrees Celsius.
+
+Returns:
+    float: The same temperature in degrees Fahrenheit.
+"""</pre></div></details>
+  </div>
+
+  <footer class="lesson-foot"><label class="done-toggle"><input type="checkbox" data-done="l15"> I’ve got this lesson</label></footer>
+</section>
+
+
+<!-- =============================== PLAYGROUND =============================== -->
+<section id="playground" class="block" data-title="Python playground">
+  <header class="lesson-head">
+    <div class="eyebrow"><span class="lnum">Playground</span><span>Real Python 3, in your browser</span></div>
+    <h2>Try anything</h2>
+  </header>
+  <p>Write or paste code and press Run. <code>input()</code> opens a pop-up box. The first run takes a few seconds while Python loads (about 10 MB, once per visit); after that it is instant. Nothing is saved or sent anywhere. For lab work use VS Code, as the lab sheets ask.</p>
+<pre class="py" data-run data-open data-stdin="Kamrul"># Edit me, then press Run
+name = input("What is your name? ")
+print(f"Hello, {name}! Your name has {len(name)} letters.")</pre>
+</section>
+
+
+<!-- =============================== QUIZZES =============================== -->
+<section id="quizzes" class="block" data-title="Weekly quizzes explained">
+  <header class="lesson-head">
+    <div class="eyebrow"><span class="lnum">Quizzes</span><span>Quiz 2 · Quiz 3 · ungraded</span></div>
+    <h2>The weekly quizzes, explained</h2>
+  </header>
+  <p>The mid-term quiz on 28 October “will consist mainly of multiple-choice questions … similar in style to the short practice quizzes completed at the beginning of Tuesday lectures” (Canvas). So these are the best preview you have. Cover the answers, predict, then check. Quiz 2’s class average was 85/100.</p>
+
+  <h3>Quiz 2</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Q</th><th>Asked</th><th>Answer</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><code>"James" * 2 * 3</code></td><td>James six times</td><td>String × int repeats (<a href="#l5">L5</a>)</td></tr>
+        <tr><td>2</td><td><code>print(p, q, r)</code> with 10, 20, 30</td><td><code>10 20 30</code></td><td>Commas print with spaces (<a href="#l8">L8</a>)</td></tr>
+        <tr><td>3</td><td><code>int(2.999)</code></td><td><code>2</code></td><td><code>int</code> chops, doesn’t round (<a href="#l6">L6</a>)</td></tr>
+        <tr><td>4</td><td><code>10 - 4 * 2</code></td><td><code>2</code></td><td><code>*</code> before <code>-</code> (<a href="#l5">L5</a>)</td></tr>
+        <tr><td>5</td><td><code>36 / 4 * (3 + 2) * 4 + 2</code></td><td><code>182.0</code></td><td>Brackets, then left to right; <code>/</code> makes a float (<a href="#l5">L5</a>)</td></tr>
+        <tr><td>6</td><td><code>type(10)</code></td><td><code>int</code></td><td>The type’s name, not “integer” (<a href="#l4">L4</a>)</td></tr>
+        <tr><td>7</td><td><code>36 / 4</code></td><td><code>9.0</code></td><td><code>/</code> always gives a float (<a href="#l5">L5</a>)</td></tr>
+        <tr><td>8</td><td>Order of the programming process</td><td>B</td><td>Identify → design → write → check (<a href="#l1">L1</a>)</td></tr>
+        <tr><td>9</td><td>What is a computer program?</td><td>Instructions in a programming language that tell a computer what to do</td><td>Lecture 1.1’s definition (<a href="#l1">L1</a>)</td></tr>
+        <tr><td>10</td><td><code>x=5; y=2; x=x*3; y=x+y</code></td><td><code>15 17</code></td><td>y uses the new x (<a href="#l3">L3</a>)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Quiz 3</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Q</th><th>Asked</th><th>Answer</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><code>a = 12, b = 5; if a == b</code></td><td><code>False</code></td><td>The <code>else</code> branch prints the string 'False' (<a href="#l11">L11</a>)</td></tr>
+        <tr><td>2</td><td>Nested if with a = 5, b = 5</td><td><code>3</code></td><td>Outer true, inner false (<a href="#l12">L12</a>)</td></tr>
+        <tr><td>3</td><td><code>36 / 4</code></td><td><code>9.0</code></td><td>Again! (<a href="#l5">L5</a>)</td></tr>
+        <tr><td>4</td><td><code>x &gt; y and (x - y) &gt; 2</code></td><td>Condition is satisfied</td><td>Both parts true (<a href="#l12">L12</a>)</td></tr>
+        <tr><td>5</td><td><code>1 + 2 + "3"</code></td><td>Error</td><td>int + str is a <code>TypeError</code> (<a href="#l5">L5</a>)</td></tr>
+        <tr><td>6</td><td><code>type(10)</code></td><td><code>int</code></td><td>(<a href="#l4">L4</a>)</td></tr>
+        <tr><td>7</td><td><code>if x ** 2 &gt; 100</code> with x = 10</td><td>None (no output)</td><td>100 &gt; 100 is false (<a href="#l10">L10</a>)</td></tr>
+        <tr><td>8</td><td>Valid way to display Welcome</td><td><code>print("Welcome")</code></td><td>Lower-case print, brackets, quotes (<a href="#l2">L2</a>)</td></tr>
+        <tr><td>9</td><td>Not a float</td><td><code>5</code></td><td>No decimal point (<a href="#l4">L4</a>)</td></tr>
+        <tr><td>10</td><td><code>if a = 100:</code></td><td>Error</td><td><code>=</code> assigns; comparisons need <code>==</code> (<a href="#l10">L10</a>)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<!-- =============================== LABS =============================== -->
+<section id="labs" class="block" data-title="Labs and deadlines">
+  <header class="lesson-head">
+    <div class="eyebrow"><span class="lnum">Labs</span><span>Wednesdays, WGB G.21</span></div>
+    <h2>Labs, practice sheets and deadlines</h2>
+  </header>
+  <p>The lab sheets and practice sheets ask you not to use GenAI tools to generate code at this stage, so this section lists what each one is about and which lessons cover the ideas. It doesn’t give answers. Each submission includes the code with an example of its output pasted as comments at the end of the <code>.py</code> file.</p>
+  <div class="dates">
+    <div class="date past"><span class="d">23 Sep</span><div><strong>Lab week 2.</strong> Log in to Ubuntu, VS Code, first program; variables for freezing and boiling points, a duration in days/hours/minutes/seconds to total seconds, a string variable with <code>type()</code> and repetition. Ideas: <a href="#l2">L2</a>–<a href="#l7">L7</a>.</div></div>
+    <div class="date past"><span class="d">Week 2</span><div><strong>Practice week 2</strong> (ungraded, three files). Integer division, building a string by concatenation, a picture made with <code>print()</code>. Ideas: <a href="#l5">L5</a>, <a href="#l8">L8</a>.</div></div>
+    <div class="date past"><span class="d">30 Sep</span><div><strong>Lab 3: conditionals and functions.</strong> Three programs using <code>%</code>, <code>if</code>/<code>elif</code>/<code>else</code>, and functions that take several parameters and return several values. Ideas: <a href="#l5">L5</a>, <a href="#l11">L11</a>, <a href="#l13">L13</a>, <a href="#l14">L14</a>.</div></div>
+    <div class="date hot"><span class="d">7 Oct</span><div><strong>Practice 3 due</strong> (ungraded, open 30 Sep to 7 Oct). Do any three of four exercises; for each, draw a flowchart first (photo uploaded with the code) and give every function a docstring with parameters, types and return values. Ideas: <a href="#l1">L1</a> (flowcharts), <a href="#l10">L10</a>–<a href="#l15">L15</a>.</div></div>
+    <div class="date hot"><span class="d">Wed 28 Oct</span><div><strong>Mid-term quiz, 5%.</strong> In your lab slot (10–11 or 11–12), on a computer, mainly multiple choice, like the weekly quizzes. No GenAI. (Lecture 0.1 said Thu 29 Oct; the Canvas page is newer.)</div></div>
+    <div class="date"><span class="d">28 Oct–5 Nov</span><div><strong>Programming assignment, 10%.</strong> Released after the lab on 28 Oct. Canvas gives the deadline as “Wednesday, 5 November 2026”, but 5 November is a Thursday, so confirm which day. Problems like the lab and practice exercises, done independently. No GenAI.</div></div>
+    <div class="date"><span class="d">Thu 5 Nov</span><div><strong>Programming project, 15%.</strong> Specification given out in the lecture (WGB G20 that day).</div></div>
+    <div class="date"><span class="d">December</span><div><strong>Final exam, 70%.</strong> 90 minutes, closed book, pen and paper; date set by the university timetable.</div></div>
+  </div>
+</section>
+
+
+<!-- =============================== PRACTICE =============================== -->
+<section id="practice" class="block" data-title="Exam practice">
+  <header class="lesson-head">
+    <div class="eyebrow"><span class="lnum">Exam practice</span><span>Winter 2022–23 to 2025–26 papers</span></div>
+    <h2>Exam practice</h2>
+  </header>
+  <p>All four past papers have the same shape: <strong>90 minutes, 70 marks, answer all four questions</strong>, handwritten. Since 2024–25: “use of calculators is not permitted”.</p>
+  <div class="tbl-wrap min">
+    <table>
+      <thead><tr><th>Question</th><th>Marks</th><th>What it always is</th></tr></thead>
+      <tbody>
+        <tr><td>Q1</td><td>20–25</td><td>Three or four short parts: a complete small program with input and output; find and fix the errors in a function; explain or document given code; a short function</td></tr>
+        <tr><td>Q2</td><td>15–20</td><td>Functions with loops: simulations with <code>random</code>, number patterns, string puzzles</td></tr>
+        <tr><td>Q3</td><td>15</td><td>Processing a list of tuples or records: counting, sorting, finding the most popular, splitting a prize</td></tr>
+        <tr><td>Q4</td><td>15</td><td>Reading (and sometimes writing) a text file line by line</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>With lectures up to 3.1 you can already answer the first part of Q1 on every paper. Those are below with full solutions, plus exam-style questions written for this guide. Write your answer on paper first; then open the solution and run it. More questions appear here as loops, strings, lists and files are taught (see <a href="#later">Still to come</a>).</p>
+
+  <div class="prob">
+    <div class="prob-head"><span class="src">2022–23 Q1(i)</span><span class="who paper">Past paper</span><span class="marks">8 marks</span><h3>Area of a circle</h3><span class="tags">input · float · f-string</span></div>
+    <div class="q"><p>Write a complete Python program to calculate the area of a circle from its radius. The program should request the user to enter a number (the radius) and then calculate and print the area. Use π ≈ 3.14 and output the result to two decimal places.</p></div>
+    <details class="sol"><summary>Solution</summary><div class="d-body">
+<pre class="py" data-run data-stdin="2.5"># Area of a circle from its radius
+radius = float(input("Enter the radius: "))
+area = 3.14 * radius ** 2
+print(f"The area of the circle is {area:.2f}")</pre>
+<pre class="out">Enter the radius: 2.5
+The area of the circle is 19.62</pre>
+      <p>Marks go on: reading input with a prompt, converting with <code>float</code> (a radius may have decimals), the formula with correct precedence (<code>**</code> binds before <code>*</code>, so no brackets needed), and two-decimal output. A comment at the top is good style. 3.14 × 6.25 = 19.625, exactly halfway. Python breaks such ties towards the even digit, so it shows 19.62; by hand you would probably write 19.63. Don’t lose sleep over the last digit of a tie.</p>
+    </div></details>
+  </div>
+
+  <div class="prob">
+    <div class="prob-head"><span class="src">2025–26 Q1(i)</span><span class="who paper">Past paper</span><span class="marks">6 marks</span><h3>Positive, negative or zero</h3><span class="tags">input · if–elif–else</span></div>
+    <div class="q"><p>Write a complete Python program that prompts the user to enter a number and then prints a message indicating if the number is positive, negative or zero.</p></div>
+    <details class="sol"><summary>Solution</summary><div class="d-body">
+<pre class="py" data-run data-stdin="-3.5">number = float(input("Enter a number: "))
+
+if number &gt; 0:
+    print("The number is positive.")
+elif number &lt; 0:
+    print("The number is negative.")
+else:
+    print("The number is zero.")</pre>
+<pre class="out">Enter a number: -3.5
+The number is negative.</pre>
+      <p>Three exclusive cases, so one <code>if</code>–<code>elif</code>–<code>else</code>. Use <code>float</code> because “a number” could be 2.7; <code>int</code> would crash on it. The <code>else</code> needs no condition: if a number is neither above nor below zero, it is zero.</p>
+    </div></details>
+  </div>
+
+  <div class="prob">
+    <div class="prob-head"><span class="src">2023–24 Q1(i)</span><span class="who paper">Past paper</span><span class="marks">7 marks</span><h3>Irish seasons</h3><span class="tags">ranges · and · elif</span></div>
+    <div class="q"><p>The seasons in Ireland are officially defined as follows: Spring spans months March to May inclusive; Summer spans June to August; Autumn spans September to November. Write a Python program that reads in a number representing a month, and that prints out a message indicating the season that month falls within.</p></div>
+    <details class="sol"><summary>Solution</summary><div class="d-body">
+<pre class="py" data-run data-stdin="10">month = int(input("Enter a month number (1-12): "))
+
+if month &lt; 1 or month &gt; 12:
+    print("That is not a valid month.")
+elif month &gt;= 3 and month &lt;= 5:
+    print("Spring")
+elif month &gt;= 6 and month &lt;= 8:
+    print("Summer")
+elif month &gt;= 9 and month &lt;= 11:
+    print("Autumn")
+else:
+    print("Winter")</pre>
+<pre class="out">Enter a month number (1-12): 10
+Autumn</pre>
+      <p>Winter (December to February) isn’t stated, but it is what’s left. Check the invalid months first, so that 13 or 0 doesn’t fall through to “Winter”. Write each range in full with <code>and</code>; a shortcut like <code>elif month &lt;= 8</code> only works if every earlier branch has already removed the smaller months, and here months 1 and 2 haven’t been removed, so they would wrongly come out as Summer.</p>
+    </div></details>
+  </div>
+
+  <div class="prob">
+    <div class="prob-head"><span class="src">2024–25 Q1(i)</span><span class="who paper">Past paper</span><span class="marks">7 marks</span><h3>Distance from the origin</h3><span class="tags">input · ** · formatting</span></div>
+    <div class="q"><p>Write a complete Python program that asks the user to enter two real numbers representing the x- and y-coordinates of a point and that calculates and prints the distance of that point from the origin. (Recall that the distance of point (<var>x</var>, <var>y</var>) is √(<var>x</var>² + <var>y</var>²).)</p></div>
+    <details class="sol"><summary>Solution</summary><div class="d-body">
+<pre class="py" data-run data-stdin="3&#10;4"># Distance of a point (x, y) from the origin
+x = float(input("Enter the x-coordinate: "))
+y = float(input("Enter the y-coordinate: "))
+
+distance = (x ** 2 + y ** 2) ** 0.5
+print(f"The distance from the origin is {distance:.2f}")</pre>
+<pre class="out">Enter the x-coordinate: 3
+Enter the y-coordinate: 4
+The distance from the origin is 5.00</pre>
+      <p>“Real numbers” means <code>float</code>. A square root is a power of one half, so <code>** 0.5</code> needs nothing new; the brackets around <code>x ** 2 + y ** 2</code> are essential, because without them <code>** 0.5</code> would apply only to <code>y ** 2</code>. Alternatively write <code>import math</code> at the top and use <code>math.sqrt(x ** 2 + y ** 2)</code>.</p>
+    </div></details>
+  </div>
+
+  <div class="prob">
+    <div class="prob-head"><span class="src">Guide · Q1 style</span><span class="who">Exam-style</span><span class="marks">6 marks</span><h3>Find the errors</h3><span class="tags">syntax · logic · functions</span></div>
+    <div class="q"><p>The program below is meant to read a distance in kilometres and print it in miles to two decimal places (1 mile = 1.609 km). It contains a number of errors, both syntactic and logical. Identify each error and explain how to correct it.</p>
+<pre class="py">Def km_to_miles(km)
+    miles = km / 1.609
+    print(miles)
+
+distance = input("Distance in km: ")
+result = km_to_miles(Distance)
+print(f"{distance} km is {result:.2f} miles")</pre></div>
+    <details class="sol"><summary>Solution</summary><div class="d-body">
+      <ol>
+        <li><code>Def</code> must be lower case: <code>def</code> (syntax).</li>
+        <li>The <code>def</code> line needs a colon at the end (syntax).</li>
+        <li>The function prints <code>miles</code> instead of returning it, so <code>result</code> would be <code>None</code> and the f-string’s <code>:.2f</code> would fail: use <code>return miles</code> (logic).</li>
+        <li><code>input()</code> returns a string, and <code>"10" / 1.609</code> is a <code>TypeError</code>: wrap it in <code>float()</code> (logic).</li>
+        <li><code>Distance</code> is not the variable’s name (<code>NameError</code>): use <code>distance</code>.</li>
+      </ol>
+<pre class="py" data-run data-stdin="10">def km_to_miles(km):
+    miles = km / 1.609
+    return miles
+
+distance = float(input("Distance in km: "))
+result = km_to_miles(distance)
+print(f"{distance} km is {result:.2f} miles")</pre>
+<pre class="out">Distance in km: 10
+10.0 km is 6.22 miles</pre>
+      <p>In the exam, list the errors one per line with the line they are on and the fix; you don’t need to rewrite the whole program unless asked.</p>
+    </div></details>
+  </div>
+
+  <div class="prob">
+    <div class="prob-head"><span class="src">Guide · Q1 style</span><span class="who">Exam-style</span><span class="marks">7 marks</span><h3>Cinema ticket prices</h3><span class="tags">function · return · elif</span></div>
+    <div class="q"><p>A cinema charges nothing for children under 5, €6 for ages 5 to 17, €10 for ages 18 to 64 and €7 for ages 65 and over. Write a function <code>ticket_price(age)</code> that returns the price for a given age, with a suitable docstring. Then write a main program that reads an age from the user and prints the price in the form <code>Your ticket costs €6.00</code>.</p></div>
+    <details class="sol"><summary>Solution</summary><div class="d-body">
+<pre class="py" data-run data-stdin="16">def ticket_price(age):
+    """
+    Return the cinema ticket price for a customer.
+
+    Parameters:
+        age (int): The customer's age in years.
+
+    Returns:
+        int: The price in euro.
+    """
+    if age &lt; 5:
+        return 0
+    elif age &lt;= 17:
+        return 6
+    elif age &lt;= 64:
+        return 10
+    else:
+        return 7
+
+# Main program
+age = int(input("Enter your age: "))
+price = ticket_price(age)
+print(f"Your ticket costs €{price:.2f}")</pre>
+<pre class="out">Enter your age: 16
+Your ticket costs €6.00</pre>
+      <p>Here the short conditions are safe: each <code>elif</code> is only reached when the earlier tests failed, so <code>age &lt;= 17</code> already knows age ≥ 5. The function returns the price and the main program prints it, as Lesson 14 recommends. Test the boundaries 4, 5, 17, 18, 64 and 65.</p>
+    </div></details>
+  </div>
+
+  <div class="prob">
+    <div class="prob-head"><span class="src">Guide · Q1 style</span><span class="who">Exam-style</span><span class="marks">6 marks</span><h3>Write the header comment</h3><span class="tags">reading code · docstrings</span></div>
+    <div class="q"><p>Write a suitable header comment (docstring) for the function below, and give the result of <code>share(17, 5)</code> and <code>share(20, 0)</code>.</p>
+<pre class="py">def share(total, people):
+    if people &lt;= 0:
+        return 0, total
+    return total // people, total % people</pre></div>
+    <details class="sol"><summary>Solution</summary><div class="d-body">
+<pre class="py">"""
+Share a number of items equally among a number of people.
+
+Parameters:
+    total (int): The number of items to share out.
+    people (int): The number of people sharing them.
+
+Returns:
+    tuple of two ints: how many whole items each person gets,
+    and how many are left over. If there is nobody to share
+    with, each gets 0 and all the items are left over.
+"""</pre>
+      <p><code>share(17, 5)</code> returns <code>(3, 2)</code>: 3 each, 2 left over. <code>share(20, 0)</code> returns <code>(0, 20)</code>; the first test also stops a <code>ZeroDivisionError</code>. A good header says <em>what</em> the function achieves, not a line-by-line retelling of the code.</p>
+    </div></details>
+  </div>
+
+  <p style="margin-top:22px;font-size:15px;color:var(--muted)">One more Q1 part fits what has been taught, 2025–26 Q1(iii) (fix a function that should return the largest of three numbers). It overlaps a current practice exercise, so it will be added here after Practice 3 closes on 7 October.</p>
+</section>
+
+
+<!-- =============================== STILL TO COME =============================== -->
+<section id="later" class="block" data-title="Still to come">
+  <header class="lesson-head">
+    <div class="eyebrow"><span class="lnum">Still to come</span><span>What the rest of each paper needs</span></div>
+    <h2>Still to come</h2>
+  </header>
+  <p>Mapping the four past papers onto topics shows what the coming lectures must cover. Each will get its own lessons as it is taught.</p>
+  <div class="later">
+    <div class="later-item"><span class="src">Loops</span><div><p><code>for</code> with <code>range()</code>, <code>while</code>, accumulating a total, nested loops for patterns.</p><p>Every paper: sums and series for π (2023–24 Q1(ii), 2024–25 Q1(iv)), rewriting a <code>for</code> loop (2025–26 Q1(ii)), patterns (2022–23 Q1(ii), Q2(ii); 2024–25 Q1(ii)), factorials (2022–23 Q1(iii)).</p></div></div>
+    <div class="later-item"><span class="src">Strings</span><div><p>Indexing, slicing, <code>.upper()</code>, <code>.split()</code>, <code>.join()</code>, <code>list()</code> and <code>sorted()</code> on strings.</p><p>Anagrams (2023–24 Q1(iii), 2025–26 Q2(ii)), counting words (2023–24 Q1(iv)), acronyms (2024–25 Q1(iii)), numbers in English words (2025–26 Q2(i)).</p></div></div>
+    <div class="later-item"><span class="src">random</span><div><p>Simulations with <code>random.randint</code> inside loops.</p><p>Coin flips until two tails or two heads (2023–24 Q2, 2024–25 Q2(i)), dice runs (2024–25 Q3), a raffle (2023–24 Q3).</p></div></div>
+    <div class="later-item"><span class="src">Lists, tuples, dicts</span><div><p>Lists of tuples, dictionaries for counting, sorting by a value.</p><p>Q3 every year: lottery frequencies (2022–23), raffle winners (2023–24), unique characters with a dictionary (2024–25 Q2(ii)), top ten baby names (2025–26).</p></div></div>
+    <div class="later-item"><span class="src">Files</span><div><p>Opening, reading line by line, splitting on commas, writing a file.</p><p>Q4 every year: reversing lines and words (2022–23, 2024–25), row totals of a CSV-like file (2023–24), merging two files (2025–26).</p></div></div>
+  </div>
+</section>
+
+
+<!-- =============================== CHEAT SHEET =============================== -->
+<section id="sheet" class="block" data-title="Cheat sheet">
+  <header class="lesson-head">
+    <div class="eyebrow"><span class="lnum">Cheat sheet</span><span>Lessons 1–15 on one page</span></div>
+    <h2>Everything so far, on one page</h2>
+  </header>
+  <div class="sheet">
+    <div class="card"><h3>Process</h3>
+      <p>Identify the problem → design (pseudocode, flowchart) → write → check. Input → processing → output.</p>
+      <p>Flowchart: oval start/end, parallelogram input/output, rectangle process, diamond decision.</p>
+    </div>
+    <div class="card"><h3>Variables</h3>
+      <p><code>name = value</code>: right side first, then attach the name. Names: letters, digits, <code>_</code>; not starting with a digit; no spaces; not a keyword; case-sensitive. Style: <code>snake_case</code>.</p>
+      <p>Unassigned name → <code>NameError</code>.</p>
+    </div>
+    <div class="card"><h3>Types</h3>
+      <p><code>int</code> 10 · <code>float</code> 10.0 · <code>str</code> "10" · <code>bool</code> True/False. <code>type(x)</code> → <code>&lt;class 'int'&gt;</code>.</p>
+      <p>Containers to come: list <code>[1, 2]</code>, tuple <code>(1, 2)</code>, dict <code>{'a': 1}</code>.</p>
+    </div>
+    <div class="card"><h3>Operators</h3>
+      <p><code>/</code> float always (36/4 → 9.0) · <code>//</code> floor · <code>%</code> remainder · <code>**</code> power.</p>
+      <p>Order: <code>( )</code> → <code>**</code> → <code>* / // %</code> → <code>+ -</code>, left to right. Strings: <code>+</code> joins, <code>* n</code> repeats; int + str → <code>TypeError</code>.</p>
+    </div>
+    <div class="card"><h3>Casting</h3>
+      <p><code>int(2.999)</code> → 2 (chops) · <code>int("7")</code> → 7 · <code>int("2.5")</code> → <code>ValueError</code> · <code>float("2.5")</code> → 2.5 · <code>str(5)</code> → "5" · <code>bool(0)</code>, <code>bool("")</code> → False.</p>
+    </div>
+    <div class="card"><h3>Input</h3>
+      <p><code>input()</code> always returns a str.</p>
+      <p><code>n = int(input("n? "))</code><br><code>x = float(input("x? "))</code></p>
+    </div>
+    <div class="card"><h3>Output</h3>
+      <p><code>print(a, b)</code> → space between, newline after. <code>sep="-"</code> between, <code>end=""</code> after. <code>\n</code> newline, <code>\t</code> tab.</p>
+      <p><code>f"{name} is {age}"</code>, <code>f"{x:.2f}"</code> → 2 decimals, rounded.</p>
+    </div>
+    <div class="card"><h3>Conditions</h3>
+      <p><code>&lt; &lt;= == &gt;= &gt; !=</code> give a bool. <code>==</code> compares, <code>=</code> assigns. <code>and</code> both, <code>or</code> either, <code>not</code> flips. Ranges: <code>a &gt;= 3 and a &lt;= 5</code>.</p>
+    </div>
+    <div class="card"><h3>if / elif / else</h3>
+<pre class="py" style="margin-top:6px">if c1:
+    ...
+elif c2:
+    ...
+else:
+    ...</pre>
+      <p>Colon, indent. First true branch only; specific tests first.</p>
+    </div>
+    <div class="card"><h3>Functions</h3>
+<pre class="py" style="margin-top:6px">def name(p1, p2):
+    """Purpose, params, returns."""
+    ...
+    return a, b
+
+x, y = name(arg1, arg2)</pre>
+      <p>Define before calling. Parameters and inner variables are local. No <code>return</code> → <code>None</code>.</p>
+    </div>
+    <div class="card"><h3>Built-ins</h3>
+      <p><code>print input int float str bool type len max min abs round help</code>. <code>import random</code>; <code>random.randint(a, b)</code> includes both ends.</p>
+    </div>
+    <div class="card"><h3>Errors</h3>
+      <p><code>SyntaxError</code> (missing <code>:</code>, <code>=</code> for <code>==</code>, bad name) · <code>IndentationError</code> · <code>NameError</code> (typo, case, undefined) · <code>TypeError</code> (int + str, wrong number of arguments) · <code>ValueError</code> (<code>int("abc")</code>).</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <p><strong>Built from</strong> the CS1068 lecture slides 0.1–3.1 (Dr Tatiana Tabirca), the Canvas notices, Quizzes 2 and 3, and the Winter 2022–23 to 2025–26 papers. Every code example and its output was checked by running it in Python 3.11.</p>
+  <p>Answers here are my working, not official solutions: if one disagrees with the lecturer, trust the lecturer. Updated 1 October 2026 with Lecture 3.1; new lectures get added as new lessons. Personal study notes, not official UCC material.</p>
+</footer>
+
+</div>
+</main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  var store = {
+    get: function (k, d) { try { var v = window.localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+    set: function (k, v) { try { window.localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } }
+  };
+
+  /* ================================================================ syntax highlighting */
+  var KW = 'False None True and as assert async await break class continue def del elif else except finally for from global if import in is lambda nonlocal not or pass raise return try while with yield'.split(' ');
+  var BI = 'print input int float str bool type len max min abs round range list tuple dict set sorted help sum open'.split(' ');
+  var TOKEN = /(#[^\n]*)|([rRbBfF]{0,2}(?:"""[\s\S]*?"""|'''[\s\S]*?'''|"(?:\\.|[^"\\\n])*"|'(?:\\.|[^'\\\n])*'))|(\b\d+(?:\.\d+)?\b)|([A-Za-z_]\w*)/g;
+  function highlight(src) {
+    var out = '', last = 0, m;
+    TOKEN.lastIndex = 0;
+    while ((m = TOKEN.exec(src))) {
+      out += esc(src.slice(last, m.index));
+      if (m[1]) out += '<span class="tk-c">' + esc(m[1]) + '</span>';
+      else if (m[2]) out += '<span class="tk-s">' + esc(m[2]) + '</span>';
+      else if (m[3]) out += '<span class="tk-n">' + esc(m[3]) + '</span>';
+      else if (KW.indexOf(m[4]) >= 0) out += '<span class="tk-k">' + m[4] + '</span>';
+      else if (BI.indexOf(m[4]) >= 0 && src.charAt(m.index + m[4].length) === '(') out += '<span class="tk-b">' + m[4] + '</span>';
+      else out += esc(m[4]);
+      last = TOKEN.lastIndex;
+    }
+    return out + esc(src.slice(last));
+  }
+  /* "  #!!" at the end of a line marks it as the faulty line */
+  function render(pre, src) {
+    pre.innerHTML = src.split('\n').map(function (line) {
+      if (/\s*#!!\s*$/.test(line)) return '<span class="bad-line">' + highlight(line.replace(/\s*#!!\s*$/, '')) + '</span>';
+      return highlight(line);
+    }).join('\n');
+  }
+  $$('pre.py').forEach(function (pre) {
+    var src = pre.textContent;
+    pre.dataset.src = src.replace(/\s*#!!\s*$/gm, '');
+    render(pre, src);
+  });
+
+  /* ================================================================ running Python (Pyodide, loaded on first use) */
+  var PY_BASE = window.CS1068_PYODIDE || 'https://cdn.jsdelivr.net/pyodide/v0.26.4/full/';
+  var pyReady = null, busy = false;
+  var SHIM = [
+    'import builtins, sys, js',
+    'def _cs_input(prompt=""):',
+    '    sys.stdout.write(str(prompt)); sys.stdout.flush()',
+    '    v = js.cs1068_ask(str(prompt))',
+    '    v = "" if v is None else str(v)',
+    '    js.cs1068_typed(v)',
+    '    return v',
+    'builtins.input = _cs_input'
+  ].join('\n');
+  function loadPy() {
+    if (pyReady) return pyReady;
+    pyReady = new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src = PY_BASE + 'pyodide.js';
+      s.onload = function () {
+        window.loadPyodide({ indexURL: PY_BASE }).then(function (py) {
+          py.runPython(SHIM);
+          resolve(py);
+        }, reject);
+      };
+      s.onerror = function () { reject(new Error('Python could not be downloaded.')); };
+      document.head.appendChild(s);
+    });
+    pyReady.catch(function () { pyReady = null; });
+    return pyReady;
+  }
+  function cleanError(msg) {
+    var lines = String(msg).replace(/\s+$/, '').split('\n');
+    var i = -1;
+    lines.forEach(function (l, k) { if (i < 0 && l.indexOf('File "<exec>"') >= 0) i = k; });
+    var body = i >= 0 ? lines.slice(i) : lines.slice(-1);
+    body = body.map(function (l) { return l.replace('File "<exec>"', 'File "main.py"'); });
+    var last = body[body.length - 1] || '';
+    var syntax = /^(SyntaxError|IndentationError|TabError)/.test(last);
+    return (syntax ? '' : 'Traceback (most recent call last):\n') + body.join('\n');
+  }
+  function run(code, outPre, answers) {
+    if (busy) return;
+    busy = true;
+    outPre.classList.remove('err');
+    outPre.innerHTML = '<span class="cm">Loading Python…</span>';
+    var dec = new TextDecoder();
+    var started = false;
+    function write(html) { if (!started) { outPre.innerHTML = ''; started = true; } outPre.insertAdjacentHTML('beforeend', html); }
+    var k = 0;
+    window.cs1068_ask = function (prompt) {
+      var def = answers[k++]; var v = window.prompt(prompt || 'Input:', def === undefined ? '' : def);
+      return v === null ? '' : v;
+    };
+    window.cs1068_typed = function (v) { write('<span class="typed">' + esc(v) + '</span>\n'); };
+    loadPy().then(function (py) {
+      outPre.innerHTML = ''; started = true;
+      var sink = { raw: function (c) { write(esc(dec.decode(new Uint8Array([c]), { stream: true }))); } };
+      py.setStdout(sink);
+      py.setStderr(sink);
+      var ns = py.globals.get('dict')();
+      return py.runPythonAsync(code, { globals: ns }).then(function () {
+        py.runPython('import sys; sys.stdout.flush(); sys.stderr.flush()');
+      }, function (err) {
+        py.runPython('import sys; sys.stdout.flush(); sys.stderr.flush()');
+        outPre.classList.add('err');
+        write('<span class="tb">' + esc(cleanError(err && err.message)) + '</span>');
+      }).then(function () { ns.destroy(); });
+    }, function () {
+      outPre.classList.add('err');
+      outPre.innerHTML = '<span class="tb">Python could not be loaded here (no connection, or the browser blocked it). Paste the code into VS Code or the Programiz online compiler instead.</span>';
+    }).then(function () {
+      busy = false;
+      if (!outPre.textContent) outPre.innerHTML = '<span class="cm">(no output)</span>';
+    });
+  }
+  function makeEditor(pre, autoRun) {
+    var original = pre.dataset.src;
+    var answers = (pre.dataset.stdin || '').split('\n');
+    var shown = pre.nextElementSibling && pre.nextElementSibling.matches('pre.out') ? pre.nextElementSibling : null;
+    var ta = document.createElement('textarea');
+    ta.className = 'code'; ta.spellcheck = false; ta.value = original;
+    ta.setAttribute('aria-label', 'Python code you can edit');
+    ta.rows = Math.max(4, original.split('\n').length + 1);
+    var bar = document.createElement('div'); bar.className = 'run-bar';
+    bar.innerHTML = '<button type="button" class="btn primary small">Run</button><button type="button" class="btn small">Reset</button><span class="hint">Ctrl/⌘ + Enter runs. Tab indents.</span>';
+    var box = document.createElement('div'); box.className = 'run-out';
+    var out = document.createElement('pre'); out.className = 'out'; out.setAttribute('aria-live', 'polite');
+    box.appendChild(out);
+    pre.replaceWith(ta);
+    if (shown) shown.hidden = true;
+    ta.after(bar); bar.after(box);
+    if (shown) box.after(shown);
+    box.hidden = true;
+    var go = function () { box.hidden = false; run(ta.value, out, answers); };
+    bar.children[0].addEventListener('click', go);
+    bar.children[1].addEventListener('click', function () { ta.value = original; box.hidden = true; out.innerHTML = ''; });
+    ta.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); go(); }
+      else if (e.key === 'Tab' && !e.shiftKey) {
+        e.preventDefault();
+        var s = ta.selectionStart, en = ta.selectionEnd;
+        ta.value = ta.value.slice(0, s) + '    ' + ta.value.slice(en);
+        ta.selectionStart = ta.selectionEnd = s + 4;
+      }
+    });
+    if (autoRun) { go(); ta.focus({ preventScroll: true }); }
+  }
+  $$('pre.py[data-run]').forEach(function (pre) {
+    if (pre.hasAttribute('data-open')) { makeEditor(pre, false); return; }
+    var bar = document.createElement('div'); bar.className = 'run-bar';
+    bar.innerHTML = '<button type="button" class="try-btn">Try it</button>';
+    var anchor = pre.nextElementSibling && pre.nextElementSibling.matches('pre.out') ? pre.nextElementSibling : pre;
+    anchor.after(bar);
+    bar.firstChild.addEventListener('click', function () { bar.remove(); makeEditor(pre, true); });
+  });
+
+  /* ================================================================ progress + rail */
+  var KEY = 'cs1068-guide-done-v1';
+  var LESSONS = $$('section.lesson').map(function (s) { return s.id; });
+  var done = store.get(KEY, {});
+  function renderProgress() {
+    var n = LESSONS.filter(function (id) { return done[id]; }).length;
+    $('meter-text').innerHTML = '<span class="lbl-long">Lessons done: </span>' + n + ' / ' + LESSONS.length;
+    $('meter-fill').style.width = (100 * n / LESSONS.length) + '%';
+    $$('.rail a').forEach(function (a) { var id = (a.getAttribute('href') || '').slice(1); a.classList.toggle('done', !!done[id]); });
+  }
+  $$('input[data-done]').forEach(function (cb) {
+    cb.checked = !!done[cb.dataset.done];
+    cb.addEventListener('change', function () { done[cb.dataset.done] = cb.checked; store.set(KEY, done); renderProgress(); });
+  });
+  renderProgress();
+  var rail = $('rail'), tocBtn = $('toc-btn');
+  tocBtn.addEventListener('click', function () { var o = rail.classList.toggle('open'); tocBtn.setAttribute('aria-expanded', o ? 'true' : 'false'); });
+  $$('.rail a').forEach(function (a) { a.addEventListener('click', function () { rail.classList.remove('open'); tocBtn.setAttribute('aria-expanded', 'false'); }); });
+  if ('IntersectionObserver' in window) {
+    var links = {}; $$('.rail a').forEach(function (a) { links[(a.getAttribute('href') || '').slice(1)] = a; });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting && links[en.target.id]) { $$('.rail a.active').forEach(function (x) { x.classList.remove('active'); }); links[en.target.id].classList.add('active'); } });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    $$('section[id]').forEach(function (s) { io.observe(s); });
+  }
+})();
+
+</script>
+<!-- hub-injected -->
+<style id="hub-link-style">
+.hub-link{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:60;
+display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:99px;
+font:600 13px/1 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.02em;text-decoration:none;
+background:#0d1117;color:#f5b841;border:1px solid #f5b84166;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.hub-link:hover{background:#f5b841;color:#0d1117}
+.hub-link:focus-visible{outline:2px solid #2fd0c0;outline-offset:2px}
+@media print{.hub-link{display:none}}
+</style>
+<a class="hub-link" href="../" aria-label="Back to the study hub">&larr; Study hub</a>
+</body>
+</html>

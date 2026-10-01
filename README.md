@@ -10,6 +10,7 @@ Plain-English, lesson-by-lesson study guides for my MEngSc in Electrical & Elect
 | EE6043 | Design of Digital ICs | [`ee6043/`](ee6043/) | Live · 13 lessons, lectures 1–3 |
 | EE6041 | Advanced Signal Processing | [`ee6041/`](ee6041/) | Live · 34 sections, LTI + z-transform (to 30 Sep) |
 | CS6322 | Optimisation | [`cs6322/`](cs6322/) | Live · 18 lessons, notes 1–8 |
+| CS1068 | Introductory Programming in Python | [`cs1068/`](cs1068/) | Live · 15 lessons, lectures 0.1–3.1 |
 
 ## Start here (continuing on another computer or Claude account)
 
@@ -24,8 +25,9 @@ Plain-English, lesson-by-lesson study guides for my MEngSc in Electrical & Elect
 index.html            Hub page (module cards, progress bars, semester 2 plan)
 ee6049/index.html     EE6049 guide (self-contained HTML)
 ee6049/NOTES.md       Tracking notes for that guide
-ee6041/ ee6043/ cs6322/  Same pattern
+ee6041/ ee6043/ cs6322/ cs1068/  Same pattern
 tools/import_guide.py Prepares a guide HTML for the site (noindex, <title>, hub link)
+tools/check_examples.py Runs a guide's Python examples and checks their shown output (CS1068)
 CNAME                 Custom domain for GitHub Pages
 .nojekyll             Serve files as-is (no Jekyll build)
 robots.txt, 404.html  Keep out of search engines; friendly not-found page
@@ -33,7 +35,7 @@ robots.txt, 404.html  Keep out of search engines; friendly not-found page
 
 ## Run locally
 
-Every page is plain HTML with inline CSS/JS (only Google Fonts load from outside).
+Every page is plain HTML with inline CSS/JS (only Google Fonts load from outside, plus Pyodide from jsDelivr when a CS1068 example is run).
 
 ```bash
 python3 -m http.server 8000   # then open http://localhost:8000

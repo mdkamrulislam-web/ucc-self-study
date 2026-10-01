@@ -2,6 +2,14 @@
 
 Dated log of working sessions. Newest first. Each entry: what changed, why, and anything left unfinished.
 
+## 2026-10-01 — CS1068 Introductory Programming in Python added
+
+- New module, set up from a Claude Code session in the CS1068 project; source material was the project's shared files (slides 0.1–3.1, lab and practice sheets, Quizzes 2–3, Canvas notices, Winter 2022–23 to 2025–26 papers).
+- **CS1068:** new guide `cs1068/index.html`, 15 lessons (problem → program, first program, variables, types, operators, casting, input, print, f-strings, if, elif, nested/and-or-not, defining functions, return vs print, docstrings and built-ins), plus a Python playground, Quizzes 2–3 explained, labs and deadlines (no answers), exam practice (four past-paper Q1 openers with solutions, three exam-style questions), still to come and a cheat sheet. Progress key `cs1068-guide-done-v1` (`l1`–`l15`).
+- Every example runs in the browser through Pyodide 0.26.4 (CDN, loaded on first use). Added `tools/check_examples.py`, which runs every example in Python and checks the output shown on the page (59 examples, all match).
+- Hub: CS1068 card; stats 5 guides, 93 lessons, 5 modules. README, CLAUDE.md, PROJECT_STATUS, `cs1068/NOTES.md` updated.
+- Held back: 2025–26 Q1(iii) overlaps Practice 3 (due 7 Oct); add it after that date.
+
 ## 2026-09-30 — Sync: CS6322 notes 8, EE6041 sections 32–34 pushed
 
 - Found the updates in Drive `UCC/SEMESTER-1/COURSES/<module>/Claude outputs/`, not in the artifacts (all four artifacts were unchanged), so the first check of the day missed them.
