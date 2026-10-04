@@ -7,7 +7,7 @@
 - **Lecturer:** Dr Steven Prestwich
 
 ## Module facts
-- Lectures Mon 14:00 WGB_G02, Wed 12:00 WGB_G18; practical lab Wed 14:00 WGB_G24.
+- Lecture and lab times and rooms: in the private `ucc-private` repo (`plan/class-timetable.md`).
 - Labs in lp_solve 5.5, submitted on Canvas; each Wednesday lab is due the following Sunday night.
 - The lecturer asks students to declare GenAI use in labs and would rather it isn't used. **Never add lab answers to the guide.**
 - Winter 2025 paper: 90 min, 80 marks, five compulsory questions (LP by graph, IP with logic, DP/greedy, local search, genetic algorithms).

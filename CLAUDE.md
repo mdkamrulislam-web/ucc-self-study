@@ -11,16 +11,26 @@ A static website of self-study guides for Kamrul's (Shuvo's) MEngSc in Electrica
 - **DNS:** a `CNAME` record `study` → `mdkamrulislam-web.github.io` at the whoiskamrul.com DNS provider
 - **Owner's portfolio:** whoiskamrul.com (the hub borrows its "Amber IC" look: amber/teal on near-black, Bebas Neue / Barlow / Fira Code)
 
-## Kamrul's plans (`plan/`)
+## Kamrul's plans
 
-All his plans live in `plan/` and replaced their claude.ai docs on 4 Oct 2026, so edit these files from now on:
+Project and study plans that are fine to publish live in `plan/` and replaced their claude.ai docs on 4 Oct 2026, so edit these files from now on:
 
-- `plan/semester-1-study-plan.md`: Semester 1 timetable, backlog catch-up, deadlines and rules. His Google Calendar carries the same blocks; keep both in step.
 - `plan/ee6019-project-plan.md`: the EE6019 open chip-flow project plan (scope, tools and PDK, week-by-week table to 30 Apr 2027, Friday log template, risks).
 - `plan/tiny-tapeout-study-path.md`: the ordered Tiny Tapeout videos and reading, plus the counter-on-IHP exercise.
 - `plan/scope-questions-for-prof-popovici.md`: the scope questions sent to his supervisor.
 
-Personal admin (names, immigration, banking, placement details) stays out of this public repo. It lives in his private repo `mdkamrulislam-web/ucc-private`.
+**Anything about his routine, timetable or whereabouts goes in his private repo `mdkamrulislam-web/ucc-private`, never here** (this repo is public and served on the site). That covers the Semester 1 study plan (`plan/semester-1-study-plan.md`), the EE6049 catch-up plan (`plan/ee6049-catch-up.html`), class times and rooms (`plan/class-timetable.md`), the EE6019 meeting time and place (`plan/ee6019-weekly-routine.md`), and personal admin (names, immigration, banking, placement details). If a re-imported guide brings back class times or rooms, remove them again.
+
+## Continuing on another Claude account or machine
+
+Kamrul works from more than one Claude account and switches when one hits its weekly limit. Nothing from a previous session's memory carries over, so everything a new session needs is in files:
+
+1. Read this file, then `PROJECT_STATUS.md` (current state and next steps) and the newest `CHANGELOG.md` entries (what was done last and what was left half-done).
+2. If you have access, also clone the private repo `mdkamrulislam-web/ucc-private` and read its `CLAUDE.md`. It holds his plans and routine, where the current catch-up work stands, and decisions still waiting on him.
+3. Before your first commit on a new machine, check `git config user.name`. If it's empty, set it for this repo only, matching the history: `git config user.name "MD. KAMRUL ISLAM"` and `git config user.email "68586718+mdkamrulislam-web@users.noreply.github.com"`.
+4. **Pushing to `main` deploys the site.** Afterwards confirm the build with `gh api repos/mdkamrulislam-web/ucc-self-study/pages/builds/latest` (status `built` for your commit) and fetch the changed page from study.whoiskamrul.com.
+5. Claude artifacts (claude.ai/artifact links) open only for the account that published them. Prefer files in a repo or in his Drive over artifact links, and say which account a link needs.
+6. At the end of a session, follow the session checklist below so the next account can pick up.
 
 ## Source of truth
 
@@ -30,7 +40,7 @@ Personal admin (names, immigration, banking, placement details) stays out of thi
 - Otherwise edit the repo HTML directly. Don't rebuild a guide from scratch.
 - After editing a guide in the repo, if you're on the main account you may republish it to its artifact so both match, but that's optional.
 - **EE6041 is edited here directly (from 30 Sep 2026).** Its artifact is no longer updated and is older than the repo copy, so never sync or re-import EE6041 from the artifact.
-- **CS1068 has no artifact: it was created in this repo (1 Oct 2026) and is only edited here.** Skip it when syncing. After editing it, run `python3 tools/check_examples.py cs1068/index.html` (see `cs1068/NOTES.md`).
+- **CS1068 has no artifact: it was created in this repo (1 Oct 2026) and is only edited here.** Skip it when syncing. After editing it, run `python3 tools/check_examples.py cs1068/index.html` (see `cs1068/NOTES.md`; on Windows the command is `python`). Under Python 3.13 one `help()` example reports a mismatch because 3.13 formats docstrings differently; that one is expected.
 
 ## Writing and style rules (from Kamrul)
 

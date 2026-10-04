@@ -2,6 +2,15 @@
 
 Dated log of working sessions. Newest first. Each entry: what changed, why, and anything left unfinished.
 
+## 2026-10-04 — Routine and timetable moved to the private repo
+
+- Kamrul asked for everything routine-related to live in `ucc-private`. Moved there: `plan/semester-1-study-plan.md` (deleted here), the EE6049 catch-up page (`ee6049/catch-up.html` deleted, hub link removed; now `ucc-private/plan/ee6049-catch-up.html`), class times and rooms from every module's NOTES (now `ucc-private/plan/class-timetable.md`), and the EE6019 meeting time, place and weekly hours (now `ucc-private/plan/ee6019-weekly-routine.md`; the public project plan keeps the log process).
+- EE6043 guide: the "When and where" box no longer gives times and rooms (its artifact still does; strip again after a re-import).
+- CS1068 guide: "The rhythm" box no longer gives lecture and lab times and rooms. `tools/check_examples.py` still reports 66 examples with 1 mismatch, a `help()` example that only differs under Python 3.13 (same before this change).
+- CLAUDE.md: new "Continuing on another Claude account or machine" section (Kamrul switches accounts at weekly limits): read order, the private repo's `CLAUDE.md`, local git identity, how to verify a deploy, artifact links being per-account. PROJECT_STATUS: the git-history decision added.
+- CLAUDE.md now says routine, timetable and whereabouts never go in this repo.
+- Still to decide: the removed files remain in this public repo's git history until it is rewritten.
+
 ## 2026-10-04 — Semester 1 study plan added as a file
 
 - New `plan/semester-1-study-plan.md`: the full Semester 1 study plan (week budget, backlog catch-up to 25 Oct, library-day timetable, deadlines, one-off tasks, rules, things to confirm), exported from its Claude Doc so it can be edited here from now on. Personal admin (third-party names, immigration and banking details) is not in it because the repo is public; Kamrul asked for it in full, which needs his decision on publishing those details.

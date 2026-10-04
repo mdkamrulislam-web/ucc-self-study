@@ -123,7 +123,7 @@ Each row is one Friday log. The first counter run landed on 30 Sep, ahead of the
 
 ### Friday log template
 
-Save each week as `logbook/2026-W41.md` (ISO week number) and email the same text to Prof. Popovici before the Friday 11:00 meeting.
+Save each week as `logbook/2026-W41.md` (ISO week number) and email the same text to Prof. Popovici before the weekly meeting.
 
 ```markdown
 # Week 41 (5 to 9 Oct 2026)
@@ -146,10 +146,10 @@ Save each week as `logbook/2026-W41.md` (ISO week number) and email the same tex
 
 ## Weekly routine
 
-Every Friday from 11:00 to 12:00 I meet Prof. Popovici in the Electrical Engineering Building meeting room. The week's log entry is written and the work pushed before that meeting, so the final logbook writes itself. Project time is spread over four days, about 9 hours a week with the meeting: Monday evening, Thursday evening (ending with the log draft), Friday around the meeting, and Sunday morning.
+I meet Prof. Popovici once a week. The week's log entry is written and the work pushed before that meeting, so the final logbook writes itself. (The meeting time and place, and how the project hours fit into the week, are kept in the private `ucc-private` repo.)
 
 - **Friday log:** what I did, what broke and how I fixed it, what is next, and any question for Prof. Popovici. He asked for mistakes to be recorded, so failed runs count. Keep entries in `logbook/` in the repo, one file per week (`2026-W40.md`), and email him the same text before the meeting.
-- **Friday meeting, 11:00 to 12:00:** bring the latest log and one screenshot or report (layout, timing summary, DRC count).
+- **Weekly meeting:** bring the latest log and one screenshot or report (layout, timing summary, DRC count).
 - **Repository habits:** every flow change goes through a pull request; CI runs the reference design so a broken flow is caught at once; tool and PDK versions are pinned and written in the README.
 - **Student view:** each time a step works, write the student-guide paragraph for it that same week, while the pitfalls are fresh.
 
@@ -182,7 +182,7 @@ Five answers from Prof. Popovici would lock this plan; the full list, with defau
 This week:
 
 - [ ] Send the scope questions and this plan to Prof. Popovici, and ask for the website link he mentioned
-- [ ] Write the first Friday log entry (week of 28 Sep) on Thursday 1 Oct, ready for the first 11:00 meeting on Friday 2 Oct
+- [ ] Write the first Friday log entry (week of 28 Sep) on Thursday 1 Oct, ready for the first weekly meeting on 2 Oct
 - [ ] Review and merge the first-run pull request (counter through LibreLane on SKY130) once it is up
 - [ ] Work through the [Tiny Tapeout study path](tiny-tapeout-study-path.md) (Prof. Popovici's 30 Sep request), then start the open-tool survey table for report chapter 2
 - [ ] Draft the one-page risk assessment

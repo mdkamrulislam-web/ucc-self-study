@@ -8,7 +8,7 @@
 
 ## Module facts
 - Lecturer: Prof. Cantillon-Murphy. Seven topics in the module; the guide grows as each is taught.
-- Lectures: Tue 15:00 D_ELECT_EDA L3, Wed 11:00 ORB_132.
+- Lecture times and rooms: in the private `ucc-private` repo (`plan/class-timetable.md`).
 - The guide has an "Assignment 1" section (explains the task; no answers).
 
 ## Coverage (topics 1–2 of 7)

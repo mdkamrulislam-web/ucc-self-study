@@ -8,7 +8,7 @@
 
 ## Module facts
 - Lecturer: Dr Tatiana Tabirca. Co-taught as CS1068 / CS6501 / CS6506 (same lectures and labs; the Canvas page is labelled CS1068). Assumes no programming background.
-- Lectures Tue 2–3 pm BHSC G01, Thu 2–3 pm BHSC G05 (Thu 5 Nov in WGB G20). Labs Wednesdays, WGB G.21, 10–11 or 11–12, from 23 Sep.
+- Lecture and lab times and rooms: in the private `ucc-private` repo (`plan/class-timetable.md`). Labs are weekly, from 23 Sep.
 - Python 3, VS Code, Ubuntu in the labs.
 - Assessment (Canvas): mid-term quiz 5% (Wed 28 Oct, in the lab slot, mostly multiple choice, like the weekly quizzes); programming assignment 10% (released 28 Oct; Canvas says due "Wednesday, 5 November 2026" but 5 Nov is a Thursday); programming project 15% (spec on Thu 5 Nov; rest of the notice was cut off in the PDF); final exam 70%. Lecture 0.1 said "in-class test Thu 29 Oct"; Canvas is newer.
 - Lectures 0.1 and 0.2 are not examined (Canvas).

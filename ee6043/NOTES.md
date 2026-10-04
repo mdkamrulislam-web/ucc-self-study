@@ -9,7 +9,7 @@
 - 5 credits, taught with EE4023, by AMD/Xilinx lecturers (John McGrath, Ali Boumaalif).
 - Exam 60% (1.5 h; Q1 compulsory 40 marks, then two of Q2–Q4). Labs 20% + project 20%.
 - Project: handwritten-digit recognition with a small neural network in your own RTL, on the PYNQ-Z2 board. Canvas shows 28 Nov with last year's year on it — confirm.
-- Thu 10:00 and 11:00 D_ELECT_EDA L3, Thu 14:00–16:00 ELECT_L2 (10:00 and afternoon slots don't run in week 12).
+- Lecture times and rooms: in the private `ucc-private` repo (`plan/class-timetable.md`). The guide's "When and where" box no longer gives them; its artifact still does, so strip them again after any re-import.
 
 ## Coverage (lectures 1–3)
 
