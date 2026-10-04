@@ -11,9 +11,16 @@ A static website of self-study guides for Kamrul's (Shuvo's) MEngSc in Electrica
 - **DNS:** a `CNAME` record `study` → `mdkamrulislam-web.github.io` at the whoiskamrul.com DNS provider
 - **Owner's portfolio:** whoiskamrul.com (the hub borrows its "Amber IC" look: amber/teal on near-black, Bebas Neue / Barlow / Fira Code)
 
-## Kamrul's study plan
+## Kamrul's plans (`plan/`)
 
-`plan/semester-1-study-plan.md` holds his Semester 1 timetable, backlog catch-up, deadlines and rules in full. It replaced the claude.ai doc on 4 Oct 2026, so edit this file when his week changes. His Google Calendar carries the same blocks; keep both in step. Personal admin (names, immigration, banking) stays out of this public repo.
+All his plans live in `plan/` and replaced their claude.ai docs on 4 Oct 2026, so edit these files from now on:
+
+- `plan/semester-1-study-plan.md`: Semester 1 timetable, backlog catch-up, deadlines and rules. His Google Calendar carries the same blocks; keep both in step.
+- `plan/ee6019-project-plan.md`: the EE6019 open chip-flow project plan (scope, tools and PDK, week-by-week table to 30 Apr 2027, Friday log template, risks).
+- `plan/tiny-tapeout-study-path.md`: the ordered Tiny Tapeout videos and reading, plus the counter-on-IHP exercise.
+- `plan/scope-questions-for-prof-popovici.md`: the scope questions sent to his supervisor.
+
+Personal admin (names, immigration, banking, placement details) stays out of this public repo. It lives in his private repo `mdkamrulislam-web/ucc-private`.
 
 ## Source of truth
 

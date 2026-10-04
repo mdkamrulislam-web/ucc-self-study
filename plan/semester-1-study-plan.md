@@ -83,7 +83,7 @@ The EE6019 project has to be finished before the work placement starts on 10 May
 
 ## One-off tasks
 
-Personal admin from the original plan is kept out of this public file; it stays in the Google Calendar.
+Personal admin from the original plan is kept out of this public file; it is in the private `ucc-private` repo and the Google Calendar.
 
 | Date | Time | Place | Task Name | Priority | Short description | Status |
 | --- | --- | --- | --- | --- | --- | --- |
