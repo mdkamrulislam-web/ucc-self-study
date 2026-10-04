@@ -4,6 +4,8 @@ Dated log of working sessions. Newest first. Each entry: what changed, why, and 
 
 ## 2026-10-04 — EE6049: catch-up plan page
 
+- Later update: Kamrul wants to watch his own lecture recordings as well as Razavi. Every day now pairs a Razavi lecture with timestamped segments of the 8 Sep–2 Oct recordings (taken from the captions), with each problem placed before the recording segment that solves it. Plan extended by a day to Wed 14 Oct (about 2.5 hours a day); Lab 1 day kept light; new purple "Lecture" chip; steps and intro reworded. Storage key moved to `ee6049-catchup-v3` because tasks changed places.
+
 - **EE6049:** new page `ee6049/catch-up.html`, a 10-day plan (4–13 Oct) from Razavi *Electronics 1* Lec 29–30 to slide 178 (end of Section 11, common-gate). Each day lists the Razavi lecture with its start time and the asides to skip, the slide range, the matching guide lesson and the end-of-section problem; class and Lab 1 times are on their days. Ticks in `localStorage` (`ee6049-catchup-v2`).
 - Built from a read of the slides v1.1 (580 slides, 27 sections), the EE6049 captions for lectures 1–8, the EE4022 captions for lectures 10–12 and the Razavi Lec 29–45 transcripts in Drive. The Razavi-to-section map is in `ee6049/NOTES.md`.
 - Kept separate from `ee6049/index.html` so an artifact re-import can't drop it. Hub: one link line under the Semester 1 cards (no change to lesson counts or stats).

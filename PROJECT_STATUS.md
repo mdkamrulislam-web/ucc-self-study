@@ -6,7 +6,7 @@ _Last updated: 4 October 2026_
 
 | Module | Guide | Lessons | Covers | Last content update | State |
 |---|---|---|---|---|---|
-| EE6049 Design of Analogue ICs | `ee6049/` | 13 | Lectures 1–6 (8–25 Sep), slides 1–146; lectures 7–8 (29 Sep, 2 Oct; slides 147–171) not yet written up. Plus `ee6049/catch-up.html`, a 4–13 Oct catch-up plan to slide 178 | 4 Oct 2026 | Live |
+| EE6049 Design of Analogue ICs | `ee6049/` | 13 | Lectures 1–6 (8–25 Sep), slides 1–146; lectures 7–8 (29 Sep, 2 Oct; slides 147–171) not yet written up. Plus `ee6049/catch-up.html`, a 4–14 Oct catch-up plan to slide 178 (Razavi + his lecture recordings) | 4 Oct 2026 | Live |
 | EE6043 Design of Digital ICs | `ee6043/` | 13 | Lectures 1–3 (intro, Verilog parts 1–2) | 30 Sep 2026 | Live |
 | EE6041 Advanced Signal Processing | `ee6041/` | 34 | Topics 1–2 of 7: LTI systems (8, 9, 15 Sep) and z-transform (22, 23, 29, 30 Sep; Z slides 1–36) | 30 Sep 2026 | Live |
 | CS6322 Optimisation | `cs6322/` | 18 | Lecture notes 1–8 | 30 Sep 2026 | Live |
@@ -27,7 +27,7 @@ _Last updated: 4 October 2026_
 1. **Sync after each guide update** — say "sync the website" (workflow in `CLAUDE.md`).
 2. **EE6043** — FPGA architecture lecture next, then timing and power.
 3. **EE6041** — z-transform slides 37–53 (frequency response) next, then topics 3–7. Edited directly in this repo now; its artifact is frozen.
-4. **EE6049** — write up lectures 7–8 (Sections 9–10, slides 147–171) and Section 11 (common-gate, slides 172–178; EE4022 Lecture 11 captions are in Drive) so the catch-up plan's last three days have guide lessons; lab-related theory before the labs on 8, 22, 29 Oct (no lab answers). Retire or refresh `ee6049/catch-up.html` after 13 Oct.
+4. **EE6049** — write up lectures 7–8 (Sections 9–10, slides 147–171) and Section 11 (common-gate, slides 172–178; EE4022 Lecture 11 captions are in Drive) so the catch-up plan's last three days have guide lessons; lab-related theory before the labs on 8, 22, 29 Oct (no lab answers). Retire or refresh `ee6049/catch-up.html` after 14 Oct.
 5. **CS6322** — beyond notes 8 (local search / simulated annealing, genetic algorithms).
 6. **CS1068** — lectures after 3.1 (loops next); after 7 Oct add 2025–26 Q1(iii) to practice; mid-term quiz revision before 28 Oct. Edited directly in this repo; run `tools/check_examples.py` after edits. No lab, practice or assignment answers.
 7. Optional: a small "last updated" line on each hub card, generated from `NOTES.md`.
