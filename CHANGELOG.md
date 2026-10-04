@@ -4,8 +4,39 @@ Dated log of working sessions. Newest first. Each entry: what changed, why, and 
 
 ## 2026-10-04 — Semester 1 study plan added as a file
 
-- New `plan/semester-1-study-plan.md`: the Semester 1 study plan (library-day timetable, backlog catch-up to 25 Oct, deadlines, rules), exported from its Claude Doc so it can be edited here from now on.
-- Personal admin (names, immigration and banking details) left out because the repo is public; those items stay in Kamrul's Google Calendar.
+- New `plan/semester-1-study-plan.md`: the full Semester 1 study plan (week budget, backlog catch-up to 25 Oct, library-day timetable, deadlines, one-off tasks, rules, things to confirm), exported from its Claude Doc so it can be edited here from now on. Personal admin (third-party names, immigration and banking details) is not in it because the repo is public; Kamrul asked for it in full, which needs his decision on publishing those details.
+- CLAUDE.md points Claude Code sessions to it.
+
+## 2026-10-04 — EE6049: catch-up plan page
+
+- Later update: Kamrul wants to watch his own lecture recordings as well as Razavi. Every day now pairs a Razavi lecture with timestamped segments of the 8 Sep–2 Oct recordings (taken from the captions), with each problem placed before the recording segment that solves it. Plan extended by a day to Wed 14 Oct (about 2.5 hours a day); Lab 1 day kept light; new purple "Lecture" chip; steps and intro reworded. Storage key moved to `ee6049-catchup-v3` because tasks changed places.
+
+- **EE6049:** new page `ee6049/catch-up.html`, a 10-day plan (4–13 Oct) from Razavi *Electronics 1* Lec 29–30 to slide 178 (end of Section 11, common-gate). Each day lists the Razavi lecture with its start time and the asides to skip, the slide range, the matching guide lesson and the end-of-section problem; class and Lab 1 times are on their days. Ticks in `localStorage` (`ee6049-catchup-v2`).
+- Built from a read of the slides v1.1 (580 slides, 27 sections), the EE6049 captions for lectures 1–8, the EE4022 captions for lectures 10–12 and the Razavi Lec 29–45 transcripts in Drive. The Razavi-to-section map is in `ee6049/NOTES.md`.
+- Kept separate from `ee6049/index.html` so an artifact re-import can't drop it. Hub: one link line under the Semester 1 cards (no change to lesson counts or stats).
+- Left for later: guide lessons for Sections 9–11 (the plan's last three days use the captions instead).
+- Same day, update: added the newly shared resources. Each problem now names its solution PDF (62 covers 63, 81 covers 81–83; none yet for 178), and the whiteboard handouts sit on their days (FET types, 2nd order effects, diode load, receiver line-up, common-mode problem, source follower). From the lab manual and worksheet: Thursday now has Lab 1 prep (slide 111, slides 295–297 and 304–315 for the pole and zero, the manual's Lab 1 chapter and the EDA quick start) and the circuit values; problems 81–83 moved from Wednesday to Friday; Monday 12 gained the 2 Oct common-mode section. New "The three labs" panel (Lab 3 needs Sections 19–21, likely ahead of the lectures). Ticks kept (same storage key).
+
+## 2026-10-01 — CS1068: coverage re-check against all course material
+
+- Re-read every slide of lectures 0.1–3.1 (text and slide images), both lab sheets, both practice sheets, Quizzes 2–3, the Canvas notices and all four past papers (the "Question Papers – Booklet" is the same four papers), and compared them with the guide.
+- **CS1068:** added what was missing, no new lessons (still 15):
+  - Start page: "How the lecturer wants you to learn" (the Golden Rule, the module goal, Phase 1, tips for success, the textbook, software, academic integrity and GenAI declarations).
+  - Lesson 1: Lecture 0.2's sum-of-two-numbers algorithm; machine, assembly and high-level languages with the history list; why Python and the Python vs Java slide; pseudocode and flowchart definitions; the Gale–Shapley 4×4 example traced day by day (boys first and girls first) and the 3×3 lecture exercise in Check yourself. Answers verified with a script.
+  - Lesson 2: Lecture 1.1's `average.py` with input; three kinds of error (syntax, runtime, logic).
+  - Lesson 7: the Employee input example (2.1 slide 10). Lesson 10: "boolean expression".
+  - Lesson 11: the Lecture 3.1 review chain (credit hours → student type) with a flowchart.
+  - Lesson 13: slide 7's `add()` example, including the slide's own bug (prints `num1` twice), and Lecture 2.2 slide 22's plan-as-a-comment turned into Temp.py with the warnings. Lesson 15: slide 18's docstring template.
+  - Cheat sheet: error kinds, boolean expression.
+- `tools/check_examples.py`: 66 examples, all match. Phone widths 320/375/414 px have no page overflow; the new two-column tables wrap instead of scrolling.
+
+## 2026-10-01 — CS1068 Introductory Programming in Python added
+
+- New module, set up from a Claude Code session in the CS1068 project; source material was the project's shared files (slides 0.1–3.1, lab and practice sheets, Quizzes 2–3, Canvas notices, Winter 2022–23 to 2025–26 papers).
+- **CS1068:** new guide `cs1068/index.html`, 15 lessons (problem → program, first program, variables, types, operators, casting, input, print, f-strings, if, elif, nested/and-or-not, defining functions, return vs print, docstrings and built-ins), plus a Python playground, Quizzes 2–3 explained, labs and deadlines (no answers), exam practice (four past-paper Q1 openers with solutions, three exam-style questions), still to come and a cheat sheet. Progress key `cs1068-guide-done-v1` (`l1`–`l15`).
+- Every example runs in the browser through Pyodide 0.26.4 (CDN, loaded on first use). Added `tools/check_examples.py`, which runs every example in Python and checks the output shown on the page (59 examples, all match).
+- Hub: CS1068 card; stats 5 guides, 93 lessons, 5 modules. README, CLAUDE.md, PROJECT_STATUS, `cs1068/NOTES.md` updated.
+- Held back: 2025–26 Q1(iii) overlaps Practice 3 (due 7 Oct); add it after that date.
 
 ## 2026-09-30 — Sync: CS6322 notes 8, EE6041 sections 32–34 pushed
 

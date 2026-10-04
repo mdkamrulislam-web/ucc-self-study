@@ -23,6 +23,7 @@ A static website of self-study guides for Kamrul's (Shuvo's) MEngSc in Electrica
 - Otherwise edit the repo HTML directly. Don't rebuild a guide from scratch.
 - After editing a guide in the repo, if you're on the main account you may republish it to its artifact so both match, but that's optional.
 - **EE6041 is edited here directly (from 30 Sep 2026).** Its artifact is no longer updated and is older than the repo copy, so never sync or re-import EE6041 from the artifact.
+- **CS1068 has no artifact: it was created in this repo (1 Oct 2026) and is only edited here.** Skip it when syncing. After editing it, run `python3 tools/check_examples.py cs1068/index.html` (see `cs1068/NOTES.md`).
 
 ## Writing and style rules (from Kamrul)
 
@@ -34,8 +35,10 @@ A static website of self-study guides for Kamrul's (Shuvo's) MEngSc in Electrica
   - EE6043 → `ee6043-guide-done-v1` (keys `l1`…`l13`)
   - EE6041 → `ee6041-lti-progress-v1` (keys `s1`…`s19`, `z1`…`z15`)
   - CS6322 → `cs6322-done` (keys `l1`…`l18`)
+  - CS1068 → `cs1068-guide-done-v1` (keys `l1`…`l15`)
   If you add lessons, update `data-total` on that module's card in `index.html`.
 - Labs: CS6322's lecturer asks that GenAI is not used for lab answers. Guides may explain ideas and check models, but never publish full lab solutions.
+- CS1068 is stricter: in "Phase 1" students must not use AI to generate solutions, and GenAI is banned for the mid-term quiz and the programming assignment. Never put lab, practice-sheet, quiz or assignment answers in the guide, and hold back past-paper questions that overlap an open practice sheet until it closes.
 - Don't put personal details (phone, email, student number, addresses) anywhere in this public repo.
 - When showing code changes to Kamrul, show only the relevant changes and say where they go.
 
