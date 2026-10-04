@@ -8,6 +8,7 @@ Dated log of working sessions. Newest first. Each entry: what changed, why, and 
 - Built from a read of the slides v1.1 (580 slides, 27 sections), the EE6049 captions for lectures 1–8, the EE4022 captions for lectures 10–12 and the Razavi Lec 29–45 transcripts in Drive. The Razavi-to-section map is in `ee6049/NOTES.md`.
 - Kept separate from `ee6049/index.html` so an artifact re-import can't drop it. Hub: one link line under the Semester 1 cards (no change to lesson counts or stats).
 - Left for later: guide lessons for Sections 9–11 (the plan's last three days use the captions instead).
+- Same day, update: added the newly shared resources. Each problem now names its solution PDF (62 covers 63, 81 covers 81–83; none yet for 178), and the whiteboard handouts sit on their days (FET types, 2nd order effects, diode load, receiver line-up, common-mode problem, source follower). From the lab manual and worksheet: Thursday now has Lab 1 prep (slide 111, slides 295–297 and 304–315 for the pole and zero, the manual's Lab 1 chapter and the EDA quick start) and the circuit values; problems 81–83 moved from Wednesday to Friday; Monday 12 gained the 2 Oct common-mode section. New "The three labs" panel (Lab 3 needs Sections 19–21, likely ahead of the lectures). Ticks kept (same storage key).
 
 ## 2026-10-01 — CS1068: coverage re-check against all course material
 

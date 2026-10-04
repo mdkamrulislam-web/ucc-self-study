@@ -31,6 +31,8 @@ A separate page, not part of the guide (so an artifact re-import of `index.html`
 - 10 days, 4–13 Oct 2026, ending at slide 178 (end of Section 11, common-gate). Each day: a Razavi lecture with start time and asides to skip, a slide range, the matching guide lesson, and the end-of-section problem.
 - Razavi Lec ↔ section map used: 29–31 → S2 · 32 → S3 (CLM only) · 32–34 → S4 · 35–36 → S5 · 37 → S6–7 · none → S8 · 38 (+39 to 11:30) → S9 · 41 → S10 · 39 from 59:00 + 40 → S11. Lec 42–45 (op-amps as a black box) only touch S19, S24–27. Razavi Electronics 1 has nothing for S12–18 or S20–23.
 - Ticks in `localStorage` key `ee6049-catchup-v2` (Lec 29–30 pre-ticked on first visit). The hub does not read it.
+- Uses the shared course resources: sample-problem solutions (slides 62 [+63], 81 [81–83], 101, 115, 126, 139, 146, 161, 171), the six whiteboard handouts, and the lab manual + Lab 1–3 worksheets + EDA quick start.
+- Lab facts used (lab manual v1.0, 24 Sep 2026): Labs 1–2 = common-source NMOS, W/L 10/1 µm, 10 kΩ rppoly2 load, VDD 3.3 V, VIN 1 V DC, 1 pF load, AMS C35B4. Lab 1 worksheet: DC op point and headroom, ID from the square law, gain 20·log(gm/(gds+1/RL)), pole (gds+1/RL)/(2πCL), zero gm/(2πCgd), transient, DFT with HD2 ≈ Vp/(4(VGS−Vt)). Lab 2: sweeps, calculator, process corners. Lab 3: feedback amplifier, loop gain, phase margin, compensation (Sections 19–21). No worksheet answers in the guide or the plan.
 - Also published as a private Claude artifact (main Claude account only): https://claude.ai/artifact/4vnwi3t35LYq5cMo7G9xA5. The repo copy is the one to edit.
 
 ## To do

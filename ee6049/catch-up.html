@@ -204,6 +204,7 @@ h1 { font-size: clamp(34px, 6vw, 50px); font-weight: 800; font-stretch: 80%; lin
 .two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 .panel { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
 .panel h2 { font-size: 20px; font-weight: 750; font-stretch: 90%; }
+.panel.labs { margin: 0; }
 .panel ul { margin: 0; padding-left: 1.1em; display: flex; flex-direction: column; gap: 8px; font-size: 16px; color: var(--ink-2); }
 @media (max-width: 680px) { .two { grid-template-columns: 1fr; } }
 footer { font-size: 14px; color: var(--muted); }
@@ -240,10 +241,12 @@ footer { font-size: 14px; color: var(--muted); }
     <li><span class="n">1</span><h3>Watch Razavi</h3><p>At 1.25–1.5× speed. When he gives a 90-second quiz, pause and try it.</p></li>
     <li><span class="n">2</span><h3>Read the slides</h3><p>They are the exam version. They add the body effect, g<sub>ds</sub> and the G<sub>m</sub>/G<sub>out</sub> shortcut.</p></li>
     <li><span class="n">3</span><h3>Try the problem</h3><p>Do the end-of-section problem on paper before you open the solution.</p></li>
-    <li><span class="n">4</span><h3>Check</h3><p>Compare with the guide lesson or the solution. Stuck for 20 minutes? Rewatch the Razavi part first.</p></li>
+    <li><span class="n">4</span><h3>Check</h3><p>Compare with the solution PDF for that slide, or the guide lesson. Stuck for 20 minutes? Rewatch the Razavi part first.</p></li>
   </ol>
   <dl class="where">
-    <dt>Slides</dt><dd>The course notes PDF, v1.1, from Canvas. The slide number is the page number.</dd>
+    <dt>Slides</dt><dd>The course notes PDF, v1.1, from Canvas. The slide number is the page number. The whiteboard handouts named on each day are separate PDFs.</dd>
+    <dt>Solutions</dt><dd>The sample-problem solution PDFs on Canvas, named by slide: 62 (also covers 63), 81 (covers 81–83), 101, 115, 126, 139, 146, 161 and 171.</dd>
+    <dt>Labs</dt><dd>The lab manual, the Lab 1–3 worksheets (Word and PDF) and the EDA quick start, all on Canvas.</dd>
     <dt>Guide</dt><dd><a href="./">EE6049 Study Guide</a>, lessons 1–13 (slides 1–146)</dd>
     <dt>Captions</dt><dd>The EE6049 lecture captions (29 Sep is file 7, 2 Oct is file 8) and the EE4022 recordings on Canvas. EE4022 uses older slide numbers, 11 lower from Section 9 on.</dd>
     <dt>Razavi</dt><dd>YouTube, “Electronics 1” series. Timestamps below are from the start of each video.</dd>
@@ -265,7 +268,7 @@ footer { font-size: 14px; color: var(--muted); }
           <li class="task"><input type="checkbox" id="d04-1"><span class="chip watch">Watch</span><div class="task-text"><label for="d04-1"><b>Razavi Lec 29</b>, Intro. to MOSFETs</label><span class="meta">Already watched. Ticked for you.</span></div></li>
           <li class="task"><input type="checkbox" id="d04-2"><span class="chip watch">Watch</span><div class="task-text"><label for="d04-2"><b>Razavi Lec 30</b>, MOS Characteristics I</label><span class="meta">Already watched. Ticked for you.</span></div></li>
           <li class="task"><input type="checkbox" id="d04-3"><span class="chip read">Skim</span><div class="task-text"><label for="d04-3"><b>Slides 4–31</b>, Section 1</label><span class="meta">About 20 minutes. Why analogue design matters, how the course runs, the exam (70%) and the labs (30%).</span></div></li>
-          <li class="task"><input type="checkbox" id="d04-4"><span class="chip read">Read</span><div class="task-text"><label for="d04-4"><b>Slides 32–56</b>, the course version of Lec 29–30</label><span class="meta">MOSFET structure, how it turns on, the threshold voltage and the I–V derivation, which you've seen. Also PMOS, n-wells, scaling, FinFETs and symbols, which Razavi skips.</span></div></li>
+          <li class="task"><input type="checkbox" id="d04-4"><span class="chip read">Read</span><div class="task-text"><label for="d04-4"><b>Slides 32–56</b>, the course version of Lec 29–30</label><span class="meta">MOSFET structure, how it turns on, the threshold voltage and the I–V derivation, which you've seen. Also PMOS, n-wells, scaling, FinFETs and symbols, which Razavi skips. Read the “Historical trends and FET types” whiteboard handout alongside slides 44–47.</span></div></li>
           <li class="task"><input type="checkbox" id="d04-5"><span class="chip read">Read</span><div class="task-text"><label for="d04-5"><b>Guide lessons 1 and 2</b></label><span class="meta"><a href="./#l1">Lesson 1</a> · <a href="./#l2">Lesson 2</a>. Do the “check yourself” questions at the end of each.</span></div></li>
         </ul>
         <p class="note">No problem today. Section 2's problems need saturation, which comes in Lec 31 tomorrow.</p>
@@ -280,7 +283,7 @@ footer { font-size: 14px; color: var(--muted); }
           <li class="task"><input type="checkbox" id="d05-1"><span class="chip watch">Watch</span><div class="task-text"><label for="d05-1"><b>Razavi Lec 31</b>, MOS Characteristics II, from 4:30</label><span class="meta">The transistor as a resistor and a switch, pinch-off, saturation, the current-source model. <a href="https://www.youtube.com/results?search_query=Razavi+Electronics+1+Lec+31" target="_blank" rel="noopener">Find on YouTube</a></span></div></li>
           <li class="task"><input type="checkbox" id="d05-2"><span class="chip read">Read</span><div class="task-text"><label for="d05-2"><b>Slides 57–63</b></label><span class="meta">Saturation current, NMOS and PMOS operating regions, the note on the linear region.</span></div></li>
           <li class="task"><input type="checkbox" id="d05-3"><span class="chip read">Read</span><div class="task-text"><label for="d05-3"><b>Guide lessons 3 and 4</b></label><span class="meta"><a href="./#l3">Lesson 3</a> · <a href="./#l4">Lesson 4</a></span></div></li>
-          <li class="task"><input type="checkbox" id="d05-4"><span class="chip try">Try</span><div class="task-text"><label for="d05-4"><b>Problems 62 and 63</b>, NMOS and PMOS operating regions</label></div></li>
+          <li class="task"><input type="checkbox" id="d05-4"><span class="chip try">Try</span><div class="task-text"><label for="d05-4"><b>Problems 62 and 63</b>, NMOS and PMOS operating regions</label><span class="meta">Check against the slide 62 solution PDF, which covers both problems.</span></div></li>
         </ul>
       </div>
     </article>
@@ -292,7 +295,7 @@ footer { font-size: 14px; color: var(--muted); }
         <ul class="tasks">
           <li class="task"><input type="checkbox" id="d06-1"><span class="chip watch">Watch</span><div class="task-text"><label for="d06-1"><b>Razavi Lec 32</b>, Biasing, Transconductance, from 6:28</label><span class="meta">Before class if you can. Channel-length modulation, why a transistor must be biased, g<sub>m</sub>. <a href="https://www.youtube.com/results?search_query=Razavi+Electronics+1+Lec+32" target="_blank" rel="noopener">Find on YouTube</a></span></div></li>
           <li class="task"><input type="checkbox" id="d06-2"><span class="chip event">Class</span><div class="task-text"><label for="d06-2"><b>Lecture, 12:00, KANE_G06</b></label><span class="meta">Probably the common-gate stage (Section 11). You won't follow all of it yet. Write down the slide numbers and where you got lost.</span></div></li>
-          <li class="task"><input type="checkbox" id="d06-3"><span class="chip read">Read</span><div class="task-text"><label for="d06-3"><b>Slides 64–72</b>, second-order effects</label><span class="meta">Razavi only covers channel-length modulation. Learn the body effect, subthreshold conduction and velocity saturation from these slides.</span></div></li>
+          <li class="task"><input type="checkbox" id="d06-3"><span class="chip read">Read</span><div class="task-text"><label for="d06-3"><b>Slides 64–72</b> and the “2nd order effects” whiteboard handout</label><span class="meta">Razavi only covers channel-length modulation. Learn the body effect, subthreshold conduction and velocity saturation from the slides. The handout is a one-page summary.</span></div></li>
           <li class="task"><input type="checkbox" id="d06-4"><span class="chip read">Read</span><div class="task-text"><label for="d06-4"><b>Guide lesson 5</b></label><span class="meta"><a href="./#l5">Lesson 5</a></span></div></li>
         </ul>
       </div>
@@ -305,8 +308,8 @@ footer { font-size: 14px; color: var(--muted); }
         <ul class="tasks">
           <li class="task"><input type="checkbox" id="d07-1"><span class="chip watch">Watch</span><div class="task-text"><label for="d07-1"><b>Razavi Lec 33</b>, Large-Signal &amp; Small-Signal Operation, from 5:30</label><span class="meta">The three forms of g<sub>m</sub>, splitting a circuit into a bias part and a signal part. <a href="https://www.youtube.com/results?search_query=Razavi+Electronics+1+Lec+33" target="_blank" rel="noopener">Find on YouTube</a></span></div></li>
           <li class="task"><input type="checkbox" id="d07-2"><span class="chip watch">Watch</span><div class="task-text"><label for="d07-2"><b>Razavi Lec 34</b>, MOS Small-Signal Model, PMOS Device, from 7:00</label><span class="meta">r<sub>o</sub> = 1/(λI<sub>D</sub>), drawing a whole circuit's small-signal model, the PMOS device. <a href="https://www.youtube.com/results?search_query=Razavi+Electronics+1+Lec+34" target="_blank" rel="noopener">Find on YouTube</a></span></div></li>
-          <li class="task"><input type="checkbox" id="d07-3"><span class="chip read">Read</span><div class="task-text"><label for="d07-3"><b>Slides 73–101</b> and guide lessons 6 and 7</label><span class="meta">Skim 73–80 (typical values and graphs). <a href="./#l6">Lesson 6</a> · <a href="./#l7">Lesson 7</a></span></div></li>
-          <li class="task"><input type="checkbox" id="d07-4"><span class="chip try">Try</span><div class="task-text"><label for="d07-4"><b>Problems 81–83</b> (DC biasing) <b>and 101</b> (small-signal model)</label></div></li>
+          <li class="task"><input type="checkbox" id="d07-3"><span class="chip read">Read</span><div class="task-text"><label for="d07-3"><b>Slides 73–101</b> and guide lessons 6 and 7</label><span class="meta">Read 74–80 properly: the k′ notation, the 0.35 µm values and the square law against simulated curves are what Lab 1 measures. <a href="./#l6">Lesson 6</a> · <a href="./#l7">Lesson 7</a></span></div></li>
+          <li class="task"><input type="checkbox" id="d07-4"><span class="chip try">Try</span><div class="task-text"><label for="d07-4"><b>Problem 101</b>, small-signal model</label><span class="meta">Check against the slide 101 solution PDF. Problems 81–83 have moved to Friday to leave room for Lab 1.</span></div></li>
         </ul>
         <p class="note">The longest day, with two Razavi lectures. There's no class today.</p>
       </div>
@@ -315,25 +318,27 @@ footer { font-size: 14px; color: var(--muted); }
     <article class="day" data-date="2026-10-08">
       <div class="date"><span class="dow">Thu</span><span class="dnum">8</span><span class="mon">October</span><span class="tally"></span></div>
       <div class="body">
-        <div class="day-head"><h3>Common-source stage, part 1, then Lab 1</h3><span class="scope">Section 5 · slides 102–110</span></div>
+        <div class="day-head"><h3>Common-source stage, then Lab 1</h3><span class="scope">Sections 5 and 18 · slides 102–111, 295–315</span></div>
         <ul class="tasks">
           <li class="task"><input type="checkbox" id="d08-1"><span class="chip watch">Watch</span><div class="task-text"><label for="d08-1"><b>Razavi Lec 35</b>, Common-Source Stage I, from 6:00</label><span class="meta">Skip <span class="mono">24:29–34:12</span> (automotive radar). <a href="https://www.youtube.com/results?search_query=Razavi+Electronics+1+Lec+35" target="_blank" rel="noopener">Find on YouTube</a></span></div></li>
-          <li class="task"><input type="checkbox" id="d08-2"><span class="chip read">Read</span><div class="task-text"><label for="d08-2"><b>Slides 102–110</b></label><span class="meta">The common-source stage with a resistor load, swept from off to triode.</span></div></li>
-          <li class="task"><input type="checkbox" id="d08-3"><span class="chip event">Lab</span><div class="task-text"><label for="d08-3"><b>Lab 1, 17:00–19:00, Elec Eng L3</b></label></div></li>
+          <li class="task"><input type="checkbox" id="d08-2"><span class="chip read">Read</span><div class="task-text"><label for="d08-2"><b>Slides 102–111</b></label><span class="meta">The common-source stage with a resistor load, swept from off to triode. Slide 111 gives the gain with g<sub>ds</sub> included, the formula on the Lab 1 worksheet.</span></div></li>
+          <li class="task"><input type="checkbox" id="d08-3"><span class="chip read">Read</span><div class="task-text"><label for="d08-3"><b>Slides 295–297 and 304–315</b>, for Lab 1</label><span class="meta">MOS capacitances, then the pole and zero of a common-source stage with a load capacitor. The worksheet asks you to find both. Not lectured yet, and not in Razavi's Electronics 1.</span></div></li>
+          <li class="task"><input type="checkbox" id="d08-4"><span class="chip read">Read</span><div class="task-text"><label for="d08-4"><b>Lab 1 chapter of the lab manual</b> and the EDA quick start</label><span class="meta">Manual section 2, pages 6–58: the steps you'll follow, and the notes on what the results should show. Skim the quick start for logging in and starting Cadence. Have the Lab 1 worksheet (Word file) ready to fill in.</span></div></li>
+          <li class="task"><input type="checkbox" id="d08-5"><span class="chip event">Lab</span><div class="task-text"><label for="d08-5"><b>Lab 1, 17:00–19:00, Elec Eng L3</b></label><span class="meta">The circuit: NMOS 10/1 µm, 10 kΩ load, 3.3 V supply, input biased at 1 V, 1 pF on the output. Your hand-calculated I<sub>D</sub> will come out higher than the simulator's. The manual says to expect that.</span></div></li>
         </ul>
-        <p class="note">Kept light because of the lab.</p>
+        <p class="note">If time runs short before the lab, the two Lab 1 reads matter most.</p>
       </div>
     </article>
 
     <article class="day" data-date="2026-10-09">
       <div class="date"><span class="dow">Fri</span><span class="dnum">9</span><span class="mon">October</span><span class="tally"></span></div>
       <div class="body">
-        <div class="day-head"><h3>Common-source stage, part 2</h3><span class="scope">Section 5 · slides 111–115</span></div>
+        <div class="day-head"><h3>Common-source stage, part 2</h3><span class="scope">Sections 3 and 5 · slides 81–83, 112–115</span></div>
         <ul class="tasks">
           <li class="task"><input type="checkbox" id="d09-1"><span class="chip event">Class</span><div class="task-text"><label for="d09-1"><b>Lecture, 09:00, ELECT_L2</b></label><span class="meta">Note the slide numbers it covers.</span></div></li>
           <li class="task"><input type="checkbox" id="d09-2"><span class="chip watch">Watch</span><div class="task-text"><label for="d09-2"><b>Razavi Lec 36</b>, Common-Source Stage II, from 5:00</label><span class="meta">Skip <span class="mono">36:32–42:17</span> (conference tour). <a href="https://www.youtube.com/results?search_query=Razavi+Electronics+1+Lec+36" target="_blank" rel="noopener">Find on YouTube</a></span></div></li>
-          <li class="task"><input type="checkbox" id="d09-3"><span class="chip read">Read</span><div class="task-text"><label for="d09-3"><b>Slides 111–115</b> and guide lessons 8 and 9</label><span class="meta"><a href="./#l8">Lesson 8</a> · <a href="./#l9">Lesson 9</a></span></div></li>
-          <li class="task"><input type="checkbox" id="d09-4"><span class="chip try">Try</span><div class="task-text"><label for="d09-4"><b>Problem 115</b>, PMOS common-source stage with a resistor load</label></div></li>
+          <li class="task"><input type="checkbox" id="d09-3"><span class="chip read">Read</span><div class="task-text"><label for="d09-3"><b>Slides 112–115</b> and guide lessons 8 and 9</label><span class="meta"><a href="./#l8">Lesson 8</a> · <a href="./#l9">Lesson 9</a></span></div></li>
+          <li class="task"><input type="checkbox" id="d09-4"><span class="chip try">Try</span><div class="task-text"><label for="d09-4"><b>Problems 81–83</b> (DC biasing) <b>and 115</b> (PMOS common-source stage)</label><span class="meta">Check against the slide 81 solution PDF, which covers 81–83, and the slide 115 solution PDF.</span></div></li>
         </ul>
       </div>
     </article>
@@ -344,9 +349,9 @@ footer { font-size: 14px; color: var(--muted); }
         <div class="day-head"><h3>Diode and current-source loads</h3><span class="scope">Sections 6–7 · slides 116–139</span></div>
         <ul class="tasks">
           <li class="task"><input type="checkbox" id="d10-1"><span class="chip watch">Watch</span><div class="task-text"><label for="d10-1"><b>Razavi Lec 37</b>, Common-Source Variants, from 4:20</label><span class="meta">MOS current sources, the diode-connected transistor, common-source stages with diode and current-source loads. <a href="https://www.youtube.com/results?search_query=Razavi+Electronics+1+Lec+37" target="_blank" rel="noopener">Find on YouTube</a></span></div></li>
-          <li class="task"><input type="checkbox" id="d10-2"><span class="chip read">Read</span><div class="task-text"><label for="d10-2"><b>Slides 116–126</b> and guide lesson 10</label><span class="meta"><a href="./#l10">Lesson 10</a></span></div></li>
+          <li class="task"><input type="checkbox" id="d10-2"><span class="chip read">Read</span><div class="task-text"><label for="d10-2"><b>Slides 116–126</b>, the “Diode load” whiteboard handout and guide lesson 10</label><span class="meta">The handout shows why a diode load gives a more linear gain than a resistor load. <a href="./#l10">Lesson 10</a></span></div></li>
           <li class="task"><input type="checkbox" id="d10-3"><span class="chip read">Read</span><div class="task-text"><label for="d10-3"><b>Slides 127–139</b> and guide lessons 11 and 12</label><span class="meta"><a href="./#l11">Lesson 11</a> · <a href="./#l12">Lesson 12</a></span></div></li>
-          <li class="task"><input type="checkbox" id="d10-4"><span class="chip try">Try</span><div class="task-text"><label for="d10-4"><b>Problems 126</b> (NMOS diode load) <b>and 139</b> (CMOS inverter)</label></div></li>
+          <li class="task"><input type="checkbox" id="d10-4"><span class="chip try">Try</span><div class="task-text"><label for="d10-4"><b>Problems 126</b> (NMOS diode load) <b>and 139</b> (CMOS inverter)</label><span class="meta">Check against the slide 126 and slide 139 solution PDFs.</span></div></li>
         </ul>
       </div>
     </article>
@@ -356,8 +361,8 @@ footer { font-size: 14px; color: var(--muted); }
       <div class="body">
         <div class="day-head"><h3>Two-port analysis and source degeneration</h3><span class="scope">Sections 8–9 · slides 140–160</span></div>
         <ul class="tasks">
-          <li class="task"><input type="checkbox" id="d11-1"><span class="chip read">Read</span><div class="task-text"><label for="d11-1"><b>Slides 140–146</b>, guide lesson 13, and the 29 Sep captions up to 16:00</label><span class="meta">Razavi has nothing for Section 8. File 7 in EE6049_Captions has the y-parameter examples. <a href="./#l13">Lesson 13</a></span></div></li>
-          <li class="task"><input type="checkbox" id="d11-2"><span class="chip try">Try</span><div class="task-text"><label for="d11-2"><b>Problem 146</b>, CMOS inverter and y-parameters</label></div></li>
+          <li class="task"><input type="checkbox" id="d11-1"><span class="chip read">Read</span><div class="task-text"><label for="d11-1"><b>Slides 140–146</b>, guide lesson 13, and the 29 Sep captions up to 16:00</label><span class="meta">Razavi has nothing for Section 8. File 7 of the EE6049 captions has the y-parameter examples. <a href="./#l13">Lesson 13</a></span></div></li>
+          <li class="task"><input type="checkbox" id="d11-2"><span class="chip try">Try</span><div class="task-text"><label for="d11-2"><b>Problem 146</b>, CMOS inverter and y-parameters</label><span class="meta">Check against the slide 146 solution PDF. Its first page sums up the gain = −G<sub>m</sub>R<sub>out</sub> shortcut, which you'll use from here on.</span></div></li>
           <li class="task"><input type="checkbox" id="d11-3"><span class="chip watch">Watch</span><div class="task-text"><label for="d11-3"><b>Razavi Lec 38</b>, Common-Source Stage with Degeneration, from 5:20</label><span class="meta">Skip <span class="mono">25:56–31:00</span> (brain sensors). <a href="https://www.youtube.com/results?search_query=Razavi+Electronics+1+Lec+38" target="_blank" rel="noopener">Find on YouTube</a></span></div></li>
           <li class="task"><input type="checkbox" id="d11-4"><span class="chip watch">Watch</span><div class="task-text"><label for="d11-4"><b>Razavi Lec 39</b>, only <span class="mono">1:47–11:30</span></label><span class="meta">Output resistance of the degenerated stage. <a href="https://www.youtube.com/results?search_query=Razavi+Electronics+1+Lec+39" target="_blank" rel="noopener">Find on YouTube</a></span></div></li>
         </ul>
@@ -367,12 +372,13 @@ footer { font-size: 14px; color: var(--muted); }
     <article class="day" data-date="2026-10-12">
       <div class="date"><span class="dow">Mon</span><span class="dnum">12</span><span class="mon">October</span><span class="tally"></span></div>
       <div class="body">
-        <div class="day-head"><h3>Degeneration problem and the source follower</h3><span class="scope">Sections 9–10 · slides 147–171</span></div>
+        <div class="day-head"><h3>Degeneration, the common-mode problem and the source follower</h3><span class="scope">Sections 9–10 · slides 147–171</span></div>
         <ul class="tasks">
-          <li class="task"><input type="checkbox" id="d12-1"><span class="chip read">Read</span><div class="task-text"><label for="d12-1"><b>Slides 147–160</b>, plus the 29 Sep captions from 16:00 and the 2 Oct captions up to 11:00</label><span class="meta">Files 7 and 8 in EE6049_Captions.</span></div></li>
-          <li class="task"><input type="checkbox" id="d12-2"><span class="chip try">Try</span><div class="task-text"><label for="d12-2"><b>Problem 161</b>, common-source stage with degeneration</label><span class="meta">The lecturer said degeneration isn't usually examined. Don't overspend time here.</span></div></li>
-          <li class="task"><input type="checkbox" id="d12-3"><span class="chip watch">Watch</span><div class="task-text"><label for="d12-3"><b>Razavi Lec 41</b>, Source Followers &amp; Summary, from 4:24</label><span class="meta">Skip <span class="mono">48:52–56:40</span> (quartz watch). Keep the summary at the end. <a href="https://www.youtube.com/results?search_query=Razavi+Electronics+1+Lec+41" target="_blank" rel="noopener">Find on YouTube</a></span></div></li>
-          <li class="task"><input type="checkbox" id="d12-4"><span class="chip read">Read</span><div class="task-text"><label for="d12-4"><b>Slides 162–171</b> and the 2 Oct captions from 21:00, then <b>try problem 171</b></label></div></li>
+          <li class="task"><input type="checkbox" id="d12-1"><span class="chip read">Read</span><div class="task-text"><label for="d12-1"><b>Slides 147–160</b>, the “Receiver line-up” whiteboard handout and the 29 Sep captions from 16:00</label><span class="meta">The handout shows where degeneration is used in a radio receiver: trading gain for linearity.</span></div></li>
+          <li class="task"><input type="checkbox" id="d12-2"><span class="chip try">Try</span><div class="task-text"><label for="d12-2"><b>Problem 161</b>, common-source stage with degeneration</label><span class="meta">Check against the slide 161 solution PDF. The lecturer said degeneration isn't usually examined, so don't overspend time here.</span></div></li>
+          <li class="task"><input type="checkbox" id="d12-3"><span class="chip read">Read</span><div class="task-text"><label for="d12-3"><b>The 2 Oct captions up to 21:00</b> and the “Common-mode problem” whiteboard handout</label><span class="meta">Why a high-gain stage can't hold its DC output voltage without feedback. This comes back in op-amps and in Lab 3.</span></div></li>
+          <li class="task"><input type="checkbox" id="d12-4"><span class="chip watch">Watch</span><div class="task-text"><label for="d12-4"><b>Razavi Lec 41</b>, Source Followers &amp; Summary, from 4:24</label><span class="meta">Skip <span class="mono">48:52–56:40</span> (quartz watch). Keep the summary at the end. <a href="https://www.youtube.com/results?search_query=Razavi+Electronics+1+Lec+41" target="_blank" rel="noopener">Find on YouTube</a></span></div></li>
+          <li class="task"><input type="checkbox" id="d12-5"><span class="chip read">Read</span><div class="task-text"><label for="d12-5"><b>Slides 162–171</b>, the “Source follower” whiteboard handout and the 2 Oct captions from 21:00, then <b>try problem 171</b></label><span class="meta">Check against the slide 171 solution PDF.</span></div></li>
         </ul>
       </div>
     </article>
@@ -385,13 +391,22 @@ footer { font-size: 14px; color: var(--muted); }
           <li class="task"><input type="checkbox" id="d13-1"><span class="chip watch">Watch</span><div class="task-text"><label for="d13-1"><b>Razavi Lec 39</b> from 59:00, then <b>Lec 40</b>, Common-Gate Stage, from 4:15</label><span class="meta">Before class if you can. <a href="https://www.youtube.com/results?search_query=Razavi+Electronics+1+Lec+40" target="_blank" rel="noopener">Find Lec 40 on YouTube</a></span></div></li>
           <li class="task"><input type="checkbox" id="d13-2"><span class="chip event">Class</span><div class="task-text"><label for="d13-2"><b>Lecture, 12:00, KANE_G06</b></label><span class="meta">Probably cascode stages (Section 12) by now.</span></div></li>
           <li class="task"><input type="checkbox" id="d13-3"><span class="chip read">Read</span><div class="task-text"><label for="d13-3"><b>Slides 172–178</b> and the EE4022 Lecture 11 captions</label><span class="meta">The slides add the body effect and the r<sub>o</sub> term in the input resistance, which Razavi skips.</span></div></li>
-          <li class="task"><input type="checkbox" id="d13-4"><span class="chip try">Try</span><div class="task-text"><label for="d13-4"><b>Problem 178</b>, common-gate stage</label></div></li>
+          <li class="task"><input type="checkbox" id="d13-4"><span class="chip try">Try</span><div class="task-text"><label for="d13-4"><b>Problem 178</b>, common-gate stage</label><span class="meta">There's no solution PDF for this one yet. Look for it on Canvas once the lecture has covered Section 11.</span></div></li>
         </ul>
         <p class="note">After today you've caught up on everything before the cascode stage.</p>
       </div>
     </article>
 
   </div>
+</section>
+
+<section class="panel labs">
+  <h2>The three labs</h2>
+  <ul>
+    <li><b>Lab 1, Thu 8 Oct.</b> A common-source stage with a resistor load: DC operating point, gain, pole and zero, transient and harmonic distortion. Prepared for on Thursday above.</li>
+    <li><b>Lab 2, Thu 22 Oct.</b> The same circuit with DC sweeps, the ADE calculator and process corners. Sections 2–5 are enough.</li>
+    <li><b>Lab 3, Thu 29 Oct.</b> A feedback amplifier: loop gain, phase margin and frequency compensation, Sections 19–21 (slides 323–405). The lectures probably won't reach these by then, so plan to study them yourself in the week before.</li>
+  </ul>
 </section>
 
 <div class="two">
@@ -413,7 +428,7 @@ footer { font-size: 14px; color: var(--muted); }
   </section>
 </div>
 
-<footer>Plan written 4 October 2026, from the EE6049 slides v1.1, the lecture captions up to 2 October and Razavi's Electronics 1 transcripts.</footer>
+<footer>Plan written 4 October 2026 from the EE6049 slides v1.1, the lecture captions up to 2 October, the lab manual and worksheets, the sample-problem solutions and Razavi's Electronics 1 transcripts.</footer>
 
 </div>
 
