@@ -2,6 +2,12 @@
 
 Dated log of working sessions. Newest first. Each entry: what changed, why, and anything left unfinished.
 
+## 2026-10-04 — Semester 1 study plan added as a file
+
+- New `plan/semester-1-study-plan.md`: the full Semester 1 study plan (week budget, backlog catch-up to 25 Oct, library-day timetable, deadlines, one-off tasks, rules, things to confirm), exported from its Claude Doc so it can be edited here from now on. Personal admin (third-party names, immigration and banking details) is not in it because the repo is public; Kamrul asked for it in full, which needs his decision on publishing those details.
+- CLAUDE.md points Claude Code sessions to it.
+- Later the same day: the rest of his plans added under `plan/`: `ee6019-project-plan.md`, `tiny-tapeout-study-path.md` and `scope-questions-for-prof-popovici.md`, exported in full from their Claude Docs. Public edits only: placement employer and Drive file links removed, the project timeline chart (which can't export) replaced by a pointer to the month table, and doc links changed to the repo files. The personal study-plan items went to the private repo `ucc-private` at Kamrul's request. CLAUDE.md now lists all four plan files.
+
 ## 2026-10-04 — EE6049: catch-up plan page
 
 - Later update: Kamrul wants to watch his own lecture recordings as well as Razavi. Every day now pairs a Razavi lecture with timestamped segments of the 8 Sep–2 Oct recordings (taken from the captions), with each problem placed before the recording segment that solves it. Plan extended by a day to Wed 14 Oct (about 2.5 hours a day); Lab 1 day kept light; new purple "Lecture" chip; steps and intro reworded. Storage key moved to `ee6049-catchup-v3` because tasks changed places.
