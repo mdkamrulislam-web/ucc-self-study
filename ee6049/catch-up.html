@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>EE6049 Catch-up Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..600&display=swap">
+<style>
+/* Layout: one reading column; each day is a row with a date rail on the left and a checklist on the right. Palette and faces match the EE6049 Study Guide. */
+:root {
+  --bg: #f3f5f8;
+  --surface: #ffffff;
+  --surface-2: #eaeef3;
+  --ink: #142030;
+  --ink-2: #2b3a4d;
+  --muted: #5a6879;
+  --rule: #d6dde6;
+  --hl-bg: #ffe98a;
+  --hl-ink: #1e1a05;
+  --hl-soft: #fff6c9;
+  --watch: #2a62d8;
+  --try: #cc3a2d;
+  --check: #137f56;
+  --event: #a86a06;
+  --read: #5a6879;
+  --focus: #2a62d8;
+  --shadow: 0 1px 2px rgba(20, 32, 48, .06), 0 4px 16px rgba(20, 32, 48, .06);
+  --f-head: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Source Serif 4", "Source Serif Pro", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --radius: 6px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0e141b;
+    --surface: #151d27;
+    --surface-2: #1c2632;
+    --ink: #e4eaf1;
+    --ink-2: #c6d0dc;
+    --muted: #97a5b5;
+    --rule: #2a3645;
+    --hl-bg: #5b4a0c;
+    --hl-ink: #fff2bf;
+    --hl-soft: #2d2710;
+    --watch: #78a5ff;
+    --try: #ff8475;
+    --check: #4cc08c;
+    --event: #eeb04a;
+    --read: #97a5b5;
+    --focus: #78a5ff;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 6px 18px rgba(0, 0, 0, .25);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0e141b;
+  --surface: #151d27;
+  --surface-2: #1c2632;
+  --ink: #e4eaf1;
+  --ink-2: #c6d0dc;
+  --muted: #97a5b5;
+  --rule: #2a3645;
+  --hl-bg: #5b4a0c;
+  --hl-ink: #fff2bf;
+  --hl-soft: #2d2710;
+  --watch: #78a5ff;
+  --try: #ff8475;
+  --check: #4cc08c;
+  --event: #eeb04a;
+  --read: #97a5b5;
+  --focus: #78a5ff;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 6px 18px rgba(0, 0, 0, .25);
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 17px;
+  line-height: 1.55;
+  padding-block: 40px 72px;
+  padding-inline: 16px;
+  margin: 0;
+}
+.wrap { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
+a { color: var(--watch); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--f-head); text-wrap: balance; margin: 0; }
+p { margin: 0; }
+.mono { font-family: var(--f-mono); font-size: .86em; }
+.eyebrow {
+  font-family: var(--f-head); font-stretch: 87%; font-weight: 700; font-size: 12.5px;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+}
+
+/* ---------- header ---------- */
+.back { font-family: var(--f-head); font-size: 14px; font-weight: 600; text-decoration: none; align-self: flex-start; }
+.back:hover { text-decoration: underline; }
+header { display: flex; flex-direction: column; gap: 14px; }
+h1 { font-size: clamp(34px, 6vw, 50px); font-weight: 800; font-stretch: 80%; line-height: 1.02; letter-spacing: -.01em; }
+.lede { font-size: 19px; color: var(--ink-2); max-width: 62ch; }
+.lede mark { background: var(--hl-bg); color: var(--hl-ink); padding: 0 .2em; border-radius: 3px; }
+.progress { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
+.progress-row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; }
+.progress-count { font-family: var(--f-head); font-weight: 700; font-size: 15px; font-variant-numeric: tabular-nums; }
+.progress-links { display: flex; gap: 16px; font-family: var(--f-head); font-size: 14px; }
+.bar { height: 10px; background: var(--surface-2); border-radius: 5px; overflow: hidden; border: 1px solid var(--rule); }
+.bar > span { display: block; height: 100%; width: 0; background: var(--check); transition: width .25s ease; }
+.textbtn {
+  background: none; border: 0; padding: 0; font: inherit; color: var(--muted); cursor: pointer;
+  text-decoration: underline; text-underline-offset: 2px;
+}
+.textbtn.armed { color: var(--try); }
+
+/* ---------- routine ---------- */
+.section-head { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.section-head h2 { font-size: 24px; font-weight: 750; font-stretch: 90%; }
+.section-head p { color: var(--muted); font-size: 16px; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.steps li {
+  background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius);
+  padding: 14px 14px 16px; display: flex; flex-direction: column; gap: 6px; min-width: 0;
+}
+.steps .n { font-family: var(--f-mono); font-size: 13px; color: var(--muted); }
+.steps h3 { font-size: 17px; font-weight: 750; font-stretch: 90%; }
+.steps p { font-size: 15px; color: var(--ink-2); line-height: 1.45; }
+@media (max-width: 720px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 420px) { .steps { grid-template-columns: 1fr; } }
+
+.where { margin-top: 14px; display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; font-size: 15px; color: var(--ink-2); }
+.where dt { font-family: var(--f-head); font-weight: 700; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); padding-top: 2px; }
+.where dd { margin: 0; min-width: 0; }
+@media (max-width: 520px) { .where { grid-template-columns: 1fr; gap: 2px; } .where dd { margin-bottom: 8px; } }
+
+/* ---------- days ---------- */
+.days { display: flex; flex-direction: column; gap: 14px; }
+.day {
+  display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 0;
+  background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius);
+  scroll-margin-top: 16px;
+}
+.day.today { border-color: var(--event); box-shadow: var(--shadow); }
+.date {
+  padding: 18px 12px 18px 16px; border-right: 1px solid var(--rule);
+  display: flex; flex-direction: column; gap: 2px; font-family: var(--f-head);
+}
+.date .dow { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.date .dnum { font-size: 34px; font-weight: 800; font-stretch: 80%; line-height: 1; font-variant-numeric: tabular-nums; }
+.date .mon { font-size: 13px; color: var(--muted); }
+.date .tally { margin-top: 10px; font-family: var(--f-mono); font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.date .tally.full { color: var(--check); font-weight: 600; }
+.today-pill {
+  align-self: flex-start; margin-top: 8px; font-family: var(--f-head); font-size: 11.5px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; background: var(--hl-bg); color: var(--hl-ink);
+  padding: 2px 7px; border-radius: 3px;
+}
+.body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.day-head { display: flex; flex-direction: column; gap: 2px; }
+.day-head h3 { font-size: 20px; font-weight: 750; font-stretch: 90%; line-height: 1.2; }
+.day-head .scope { font-family: var(--f-mono); font-size: 13px; color: var(--muted); }
+.tasks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.task {
+  display: grid; grid-template-columns: 22px 64px minmax(0, 1fr); gap: 4px 10px; align-items: start;
+  padding: 10px 0; border-top: 1px solid var(--rule);
+}
+.task:first-child { border-top: 0; padding-top: 4px; }
+.task input { width: 18px; height: 18px; margin: 3px 0 0; accent-color: var(--check); cursor: pointer; }
+.chip {
+  font-family: var(--f-head); font-stretch: 87%; font-size: 11.5px; font-weight: 700;
+  letter-spacing: .07em; text-transform: uppercase; text-align: center;
+  padding: 2px 0; margin-top: 3px; border-radius: 3px; border: 1px solid currentColor;
+}
+.chip.watch { color: var(--watch); }
+.chip.read { color: var(--read); }
+.chip.try { color: var(--try); }
+.chip.event { color: var(--event); }
+.task-text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.task-text label { cursor: pointer; color: var(--ink); }
+.task-text label b { font-weight: 650; }
+.meta { font-size: 14.5px; color: var(--muted); line-height: 1.45; }
+.meta .mono { font-size: 13px; }
+.task.done .task-text label { color: var(--muted); }
+.task.done .task-text label b { text-decoration: line-through; text-decoration-thickness: 1px; }
+.note {
+  background: var(--hl-soft); border-radius: 4px; padding: 8px 12px; font-size: 14.5px; color: var(--ink-2);
+}
+@media (max-width: 560px) {
+  .day { grid-template-columns: 1fr; }
+  .date { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; border-right: 0; border-bottom: 1px solid var(--rule); padding: 12px 16px; }
+  .date .dnum { font-size: 26px; }
+  .date .tally, .today-pill { margin-top: 0; }
+  .date .tally { margin-left: auto; }
+  .task { grid-template-columns: 22px minmax(0, 1fr); }
+  .task .chip { grid-column: 2; justify-self: start; padding: 1px 6px; margin-top: 0; }
+  .task .task-text { grid-column: 2; }
+}
+
+/* ---------- later ---------- */
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.panel h2 { font-size: 20px; font-weight: 750; font-stretch: 90%; }
+.panel ul { margin: 0; padding-left: 1.1em; display: flex; flex-direction: column; gap: 8px; font-size: 16px; color: var(--ink-2); }
+@media (max-width: 680px) { .two { grid-template-columns: 1fr; } }
+footer { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { .bar > span { transition: none; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header>
+  <a class="back" href="./">&larr; EE6049 Study Guide</a>
+  <span class="eyebrow">EE6049 · Design of Analogue Integrated Circuits</span>
+  <h1>Catch-up plan</h1>
+  <p class="lede">You've watched Razavi Lec 29–30 but haven't been through the course slides or problems yet. This plan starts there and gets you to <mark>slide 178, the end of the common-gate stage, by Tuesday 13 October</mark>, in about two hours a day.</p>
+  <div class="progress" aria-live="polite">
+    <div class="progress-row">
+      <span class="progress-count" id="count">0 of 0 done</span>
+      <span class="progress-links">
+        <a href="#today" id="jump" hidden>Jump to today</a>
+        <button type="button" class="textbtn" id="clear">Clear all ticks</button>
+      </span>
+    </div>
+    <div class="bar"><span id="bar"></span></div>
+  </div>
+</header>
+
+<section>
+  <div class="section-head">
+    <h2>Every block, the same four steps</h2>
+    <p>Each day below is one block. Work through it in this order.</p>
+  </div>
+  <ol class="steps">
+    <li><span class="n">1</span><h3>Watch Razavi</h3><p>At 1.25–1.5× speed. When he gives a 90-second quiz, pause and try it.</p></li>
+    <li><span class="n">2</span><h3>Read the slides</h3><p>They are the exam version. They add the body effect, g<sub>ds</sub> and the G<sub>m</sub>/G<sub>out</sub> shortcut.</p></li>
+    <li><span class="n">3</span><h3>Try the problem</h3><p>Do the end-of-section problem on paper before you open the solution.</p></li>
+    <li><span class="n">4</span><h3>Check</h3><p>Compare with the guide lesson or the solution. Stuck for 20 minutes? Rewatch the Razavi part first.</p></li>
+  </ol>
+  <dl class="where">
+    <dt>Slides</dt><dd>The course notes PDF, v1.1, from Canvas. The slide number is the page number.</dd>
+    <dt>Guide</dt><dd><a href="./">EE6049 Study Guide</a>, lessons 1–13 (slides 1–146)</dd>
+    <dt>Captions</dt><dd>The EE6049 lecture captions (29 Sep is file 7, 2 Oct is file 8) and the EE4022 recordings on Canvas. EE4022 uses older slide numbers, 11 lower from Section 9 on.</dd>
+    <dt>Razavi</dt><dd>YouTube, “Electronics 1” series. Timestamps below are from the start of each video.</dd>
+  </dl>
+</section>
+
+<section>
+  <div class="section-head">
+    <h2>Day by day</h2>
+    <p>Tick each task as you finish it. Ticks stay in this browser.</p>
+  </div>
+  <div class="days">
+
+    <article class="day" data-date="2026-10-04">
+      <div class="date"><span class="dow">Sun</span><span class="dnum">4</span><span class="mon">October</span><span class="tally"></span></div>
+      <div class="body">
+        <div class="day-head"><h3>The course side of Razavi Lec 29–30</h3><span class="scope">Sections 1–2 · slides 4–56</span></div>
+        <ul class="tasks">
+          <li class="task"><input type="checkbox" id="d04-1"><span class="chip watch">Watch</span><div class="task-text"><label for="d04-1"><b>Razavi Lec 29</b>, Intro. to MOSFETs</label><span class="meta">Already watched. Ticked for you.</span></div></li>
+          <li class="task"><input type="checkbox" id="d04-2"><span class="chip watch">Watch</span><div class="task-text"><label for="d04-2"><b>Razavi Lec 30</b>, MOS Characteristics I</label><span class="meta">Already watched. Ticked for you.</span></div></li>
+          <li class="task"><input type="checkbox" id="d04-3"><span class="chip read">Skim</span><div class="task-text"><label for="d04-3"><b>Slides 4–31</b>, Section 1</label><span class="meta">About 20 minutes. Why analogue design matters, how the course runs, the exam (70%) and the labs (30%).</span></div></li>
+          <li class="task"><input type="checkbox" id="d04-4"><span class="chip read">Read</span><div class="task-text"><label for="d04-4"><b>Slides 32–56</b>, the course version of Lec 29–30</label><span class="meta">MOSFET structure, how it turns on, the threshold voltage and the I–V derivation, which you've seen. Also PMOS, n-wells, scaling, FinFETs and symbols, which Razavi skips.</span></div></li>
+          <li class="task"><input type="checkbox" id="d04-5"><span class="chip read">Read</span><div class="task-text"><label for="d04-5"><b>Guide lessons 1 and 2</b></label><span class="meta"><a href="./#l1">Lesson 1</a> · <a href="./#l2">Lesson 2</a>. Do the “check yourself” questions at the end of each.</span></div></li>
+        </ul>
+        <p class="note">No problem today. Section 2's problems need saturation, which comes in Lec 31 tomorrow.</p>
+      </div>
+    </article>
+
+    <article class="day" data-date="2026-10-05">
+      <div class="date"><span class="dow">Mon</span><span class="dnum">5</span><span class="mon">October</span><span class="tally"></span></div>
+      <div class="body">
+        <div class="day-head"><h3>Saturation and the operating regions</h3><span class="scope">Section 2 · slides 57–63</span></div>
+        <ul class="tasks">
+          <li class="task"><input type="checkbox" id="d05-1"><span class="chip watch">Watch</span><div class="task-text"><label for="d05-1"><b>Razavi Lec 31</b>, MOS Characteristics II, from 4:30</label><span class="meta">The transistor as a resistor and a switch, pinch-off, saturation, the current-source model. <a href="https://www.youtube.com/results?search_query=Razavi+Electronics+1+Lec+31" target="_blank" rel="noopener">Find on YouTube</a></span></div></li>
+          <li class="task"><input type="checkbox" id="d05-2"><span class="chip read">Read</span><div class="task-text"><label for="d05-2"><b>Slides 57–63</b></label><span class="meta">Saturation current, NMOS and PMOS operating regions, the note on the linear region.</span></div></li>
+          <li class="task"><input type="checkbox" id="d05-3"><span class="chip read">Read</span><div class="task-text"><label for="d05-3"><b>Guide lessons 3 and 4</b></label><span class="meta"><a href="./#l3">Lesson 3</a> · <a href="./#l4">Lesson 4</a></span></div></li>
+          <li class="task"><input type="checkbox" id="d05-4"><span class="chip try">Try</span><div class="task-text"><label for="d05-4"><b>Problems 62 and 63</b>, NMOS and PMOS operating regions</label></div></li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="day" data-date="2026-10-06">
+      <div class="date"><span class="dow">Tue</span><span class="dnum">6</span><span class="mon">October</span><span class="tally"></span></div>
+      <div class="body">
+        <div class="day-head"><h3>Channel-length modulation and g<sub>m</sub></h3><span class="scope">Section 3 · slides 64–72</span></div>
+        <ul class="tasks">
+          <li class="task"><input type="checkbox" id="d06-1"><span class="chip watch">Watch</span><div class="task-text"><label for="d06-1"><b>Razavi Lec 32</b>, Biasing, Transconductance, from 6:28</label><span class="meta">Before class if you can. Channel-length modulation, why a transistor must be biased, g<sub>m</sub>. <a href="https://www.youtube.com/results?search_query=Razavi+Electronics+1+Lec+32" target="_blank" rel="noopener">Find on YouTube</a></span></div></li>
+          <li class="task"><input type="checkbox" id="d06-2"><span class="chip event">Class</span><div class="task-text"><label for="d06-2"><b>Lecture, 12:00, KANE_G06</b></label><span class="meta">Probably the common-gate stage (Section 11). You won't follow all of it yet. Write down the slide numbers and where you got lost.</span></div></li>
+          <li class="task"><input type="checkbox" id="d06-3"><span class="chip read">Read</span><div class="task-text"><label for="d06-3"><b>Slides 64–72</b>, second-order effects</label><span class="meta">Razavi only covers channel-length modulation. Learn the body effect, subthreshold conduction and velocity saturation from these slides.</span></div></li>
+          <li class="task"><input type="checkbox" id="d06-4"><span class="chip read">Read</span><div class="task-text"><label for="d06-4"><b>Guide lesson 5</b></label><span class="meta"><a href="./#l5">Lesson 5</a></span></div></li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="day" data-date="2026-10-07">
+      <div class="date"><span class="dow">Wed</span><span class="dnum">7</span><span class="mon">October</span><span class="tally"></span></div>
+      <div class="body">
+        <div class="day-head"><h3>Small-signal model and PMOS</h3><span class="scope">Sections 3–4 · slides 73–101</span></div>
+        <ul class="tasks">
+          <li class="task"><input type="checkbox" id="d07-1"><span class="chip watch">Watch</span><div class="task-text"><label for="d07-1"><b>Razavi Lec 33</b>, Large-Signal &amp; Small-Signal Operation, from 5:30</label><span class="meta">The three forms of g<sub>m</sub>, splitting a circuit into a bias part and a signal part. <a href="https://www.youtube.com/results?search_query=Razavi+Electronics+1+Lec+33" target="_blank" rel="noopener">Find on YouTube</a></span></div></li>
+          <li class="task"><input type="checkbox" id="d07-2"><span class="chip watch">Watch</span><div class="task-text"><label for="d07-2"><b>Razavi Lec 34</b>, MOS Small-Signal Model, PMOS Device, from 7:00</label><span class="meta">r<sub>o</sub> = 1/(λI<sub>D</sub>), drawing a whole circuit's small-signal model, the PMOS device. <a href="https://www.youtube.com/results?search_query=Razavi+Electronics+1+Lec+34" target="_blank" rel="noopener">Find on YouTube</a></span></div></li>
+          <li class="task"><input type="checkbox" id="d07-3"><span class="chip read">Read</span><div class="task-text"><label for="d07-3"><b>Slides 73–101</b> and guide lessons 6 and 7</label><span class="meta">Skim 73–80 (typical values and graphs). <a href="./#l6">Lesson 6</a> · <a href="./#l7">Lesson 7</a></span></div></li>
+          <li class="task"><input type="checkbox" id="d07-4"><span class="chip try">Try</span><div class="task-text"><label for="d07-4"><b>Problems 81–83</b> (DC biasing) <b>and 101</b> (small-signal model)</label></div></li>
+        </ul>
+        <p class="note">The longest day, with two Razavi lectures. There's no class today.</p>
+      </div>
+    </article>
+
+    <article class="day" data-date="2026-10-08">
+      <div class="date"><span class="dow">Thu</span><span class="dnum">8</span><span class="mon">October</span><span class="tally"></span></div>
+      <div class="body">
+        <div class="day-head"><h3>Common-source stage, part 1, then Lab 1</h3><span class="scope">Section 5 · slides 102–110</span></div>
+        <ul class="tasks">
+          <li class="task"><input type="checkbox" id="d08-1"><span class="chip watch">Watch</span><div class="task-text"><label for="d08-1"><b>Razavi Lec 35</b>, Common-Source Stage I, from 6:00</label><span class="meta">Skip <span class="mono">24:29–34:12</span> (automotive radar). <a href="https://www.youtube.com/results?search_query=Razavi+Electronics+1+Lec+35" target="_blank" rel="noopener">Find on YouTube</a></span></div></li>
+          <li class="task"><input type="checkbox" id="d08-2"><span class="chip read">Read</span><div class="task-text"><label for="d08-2"><b>Slides 102–110</b></label><span class="meta">The common-source stage with a resistor load, swept from off to triode.</span></div></li>
+          <li class="task"><input type="checkbox" id="d08-3"><span class="chip event">Lab</span><div class="task-text"><label for="d08-3"><b>Lab 1, 17:00–19:00, Elec Eng L3</b></label></div></li>
+        </ul>
+        <p class="note">Kept light because of the lab.</p>
+      </div>
+    </article>
+
+    <article class="day" data-date="2026-10-09">
+      <div class="date"><span class="dow">Fri</span><span class="dnum">9</span><span class="mon">October</span><span class="tally"></span></div>
+      <div class="body">
+        <div class="day-head"><h3>Common-source stage, part 2</h3><span class="scope">Section 5 · slides 111–115</span></div>
+        <ul class="tasks">
+          <li class="task"><input type="checkbox" id="d09-1"><span class="chip event">Class</span><div class="task-text"><label for="d09-1"><b>Lecture, 09:00, ELECT_L2</b></label><span class="meta">Note the slide numbers it covers.</span></div></li>
+          <li class="task"><input type="checkbox" id="d09-2"><span class="chip watch">Watch</span><div class="task-text"><label for="d09-2"><b>Razavi Lec 36</b>, Common-Source Stage II, from 5:00</label><span class="meta">Skip <span class="mono">36:32–42:17</span> (conference tour). <a href="https://www.youtube.com/results?search_query=Razavi+Electronics+1+Lec+36" target="_blank" rel="noopener">Find on YouTube</a></span></div></li>
+          <li class="task"><input type="checkbox" id="d09-3"><span class="chip read">Read</span><div class="task-text"><label for="d09-3"><b>Slides 111–115</b> and guide lessons 8 and 9</label><span class="meta"><a href="./#l8">Lesson 8</a> · <a href="./#l9">Lesson 9</a></span></div></li>
+          <li class="task"><input type="checkbox" id="d09-4"><span class="chip try">Try</span><div class="task-text"><label for="d09-4"><b>Problem 115</b>, PMOS common-source stage with a resistor load</label></div></li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="day" data-date="2026-10-10">
+      <div class="date"><span class="dow">Sat</span><span class="dnum">10</span><span class="mon">October</span><span class="tally"></span></div>
+      <div class="body">
+        <div class="day-head"><h3>Diode and current-source loads</h3><span class="scope">Sections 6–7 · slides 116–139</span></div>
+        <ul class="tasks">
+          <li class="task"><input type="checkbox" id="d10-1"><span class="chip watch">Watch</span><div class="task-text"><label for="d10-1"><b>Razavi Lec 37</b>, Common-Source Variants, from 4:20</label><span class="meta">MOS current sources, the diode-connected transistor, common-source stages with diode and current-source loads. <a href="https://www.youtube.com/results?search_query=Razavi+Electronics+1+Lec+37" target="_blank" rel="noopener">Find on YouTube</a></span></div></li>
+          <li class="task"><input type="checkbox" id="d10-2"><span class="chip read">Read</span><div class="task-text"><label for="d10-2"><b>Slides 116–126</b> and guide lesson 10</label><span class="meta"><a href="./#l10">Lesson 10</a></span></div></li>
+          <li class="task"><input type="checkbox" id="d10-3"><span class="chip read">Read</span><div class="task-text"><label for="d10-3"><b>Slides 127–139</b> and guide lessons 11 and 12</label><span class="meta"><a href="./#l11">Lesson 11</a> · <a href="./#l12">Lesson 12</a></span></div></li>
+          <li class="task"><input type="checkbox" id="d10-4"><span class="chip try">Try</span><div class="task-text"><label for="d10-4"><b>Problems 126</b> (NMOS diode load) <b>and 139</b> (CMOS inverter)</label></div></li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="day" data-date="2026-10-11">
+      <div class="date"><span class="dow">Sun</span><span class="dnum">11</span><span class="mon">October</span><span class="tally"></span></div>
+      <div class="body">
+        <div class="day-head"><h3>Two-port analysis and source degeneration</h3><span class="scope">Sections 8–9 · slides 140–160</span></div>
+        <ul class="tasks">
+          <li class="task"><input type="checkbox" id="d11-1"><span class="chip read">Read</span><div class="task-text"><label for="d11-1"><b>Slides 140–146</b>, guide lesson 13, and the 29 Sep captions up to 16:00</label><span class="meta">Razavi has nothing for Section 8. File 7 in EE6049_Captions has the y-parameter examples. <a href="./#l13">Lesson 13</a></span></div></li>
+          <li class="task"><input type="checkbox" id="d11-2"><span class="chip try">Try</span><div class="task-text"><label for="d11-2"><b>Problem 146</b>, CMOS inverter and y-parameters</label></div></li>
+          <li class="task"><input type="checkbox" id="d11-3"><span class="chip watch">Watch</span><div class="task-text"><label for="d11-3"><b>Razavi Lec 38</b>, Common-Source Stage with Degeneration, from 5:20</label><span class="meta">Skip <span class="mono">25:56–31:00</span> (brain sensors). <a href="https://www.youtube.com/results?search_query=Razavi+Electronics+1+Lec+38" target="_blank" rel="noopener">Find on YouTube</a></span></div></li>
+          <li class="task"><input type="checkbox" id="d11-4"><span class="chip watch">Watch</span><div class="task-text"><label for="d11-4"><b>Razavi Lec 39</b>, only <span class="mono">1:47–11:30</span></label><span class="meta">Output resistance of the degenerated stage. <a href="https://www.youtube.com/results?search_query=Razavi+Electronics+1+Lec+39" target="_blank" rel="noopener">Find on YouTube</a></span></div></li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="day" data-date="2026-10-12">
+      <div class="date"><span class="dow">Mon</span><span class="dnum">12</span><span class="mon">October</span><span class="tally"></span></div>
+      <div class="body">
+        <div class="day-head"><h3>Degeneration problem and the source follower</h3><span class="scope">Sections 9–10 · slides 147–171</span></div>
+        <ul class="tasks">
+          <li class="task"><input type="checkbox" id="d12-1"><span class="chip read">Read</span><div class="task-text"><label for="d12-1"><b>Slides 147–160</b>, plus the 29 Sep captions from 16:00 and the 2 Oct captions up to 11:00</label><span class="meta">Files 7 and 8 in EE6049_Captions.</span></div></li>
+          <li class="task"><input type="checkbox" id="d12-2"><span class="chip try">Try</span><div class="task-text"><label for="d12-2"><b>Problem 161</b>, common-source stage with degeneration</label><span class="meta">The lecturer said degeneration isn't usually examined. Don't overspend time here.</span></div></li>
+          <li class="task"><input type="checkbox" id="d12-3"><span class="chip watch">Watch</span><div class="task-text"><label for="d12-3"><b>Razavi Lec 41</b>, Source Followers &amp; Summary, from 4:24</label><span class="meta">Skip <span class="mono">48:52–56:40</span> (quartz watch). Keep the summary at the end. <a href="https://www.youtube.com/results?search_query=Razavi+Electronics+1+Lec+41" target="_blank" rel="noopener">Find on YouTube</a></span></div></li>
+          <li class="task"><input type="checkbox" id="d12-4"><span class="chip read">Read</span><div class="task-text"><label for="d12-4"><b>Slides 162–171</b> and the 2 Oct captions from 21:00, then <b>try problem 171</b></label></div></li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="day" data-date="2026-10-13">
+      <div class="date"><span class="dow">Tue</span><span class="dnum">13</span><span class="mon">October</span><span class="tally"></span></div>
+      <div class="body">
+        <div class="day-head"><h3>Common-gate stage</h3><span class="scope">Section 11 · slides 172–178</span></div>
+        <ul class="tasks">
+          <li class="task"><input type="checkbox" id="d13-1"><span class="chip watch">Watch</span><div class="task-text"><label for="d13-1"><b>Razavi Lec 39</b> from 59:00, then <b>Lec 40</b>, Common-Gate Stage, from 4:15</label><span class="meta">Before class if you can. <a href="https://www.youtube.com/results?search_query=Razavi+Electronics+1+Lec+40" target="_blank" rel="noopener">Find Lec 40 on YouTube</a></span></div></li>
+          <li class="task"><input type="checkbox" id="d13-2"><span class="chip event">Class</span><div class="task-text"><label for="d13-2"><b>Lecture, 12:00, KANE_G06</b></label><span class="meta">Probably cascode stages (Section 12) by now.</span></div></li>
+          <li class="task"><input type="checkbox" id="d13-3"><span class="chip read">Read</span><div class="task-text"><label for="d13-3"><b>Slides 172–178</b> and the EE4022 Lecture 11 captions</label><span class="meta">The slides add the body effect and the r<sub>o</sub> term in the input resistance, which Razavi skips.</span></div></li>
+          <li class="task"><input type="checkbox" id="d13-4"><span class="chip try">Try</span><div class="task-text"><label for="d13-4"><b>Problem 178</b>, common-gate stage</label></div></li>
+        </ul>
+        <p class="note">After today you've caught up on everything before the cascode stage.</p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<div class="two">
+  <section class="panel">
+    <h2>Leave these for later</h2>
+    <ul>
+      <li><b>Razavi Lec 39, 11:30–59:00.</b> Resistor-divider biasing and coupling capacitors. EE6049 biases with current mirrors instead.</li>
+      <li><b>Razavi Lec 42–45.</b> Op-amps as a black box. Come back when the course reaches Sections 19 and 24.</li>
+      <li><b>The “Frontiers in Electronics” asides.</b> The timestamps to skip are listed on each day.</li>
+    </ul>
+  </section>
+  <section class="panel">
+    <h2>After you catch up</h2>
+    <ul>
+      <li><b>Section 12, cascode stages.</b> The EE4022 Lecture 12 recording covers it.</li>
+      <li><b>Section 14, current mirrors.</b> Exam Question 2 is nearly always the output resistance of a current mirror or cascode, so these carry the most marks.</li>
+      <li><b>Razavi's Electronics 1 ends at Section 11.</b> Switch to his textbook <i>Design of Analog CMOS Integrated Circuits</i>, the one recommended on slide 27.</li>
+    </ul>
+  </section>
+</div>
+
+<footer>Plan written 4 October 2026, from the EE6049 slides v1.1, the lecture captions up to 2 October and Razavi's Electronics 1 transcripts.</footer>
+
+</div>
+
+<script>
+(function () {
+  var KEY = "ee6049-catchup-v2";
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.task input[type="checkbox"]'));
+  var state = {};
+  var raw = null;
+  try { raw = localStorage.getItem(KEY); } catch (e) {}
+  if (raw) {
+    try { state = JSON.parse(raw) || {}; } catch (e) { state = {}; }
+  } else {
+    state = { "d04-1": 1, "d04-2": 1 };
+  }
+
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  function render() {
+    var done = 0;
+    boxes.forEach(function (b) {
+      b.checked = !!state[b.id];
+      b.closest(".task").classList.toggle("done", b.checked);
+      if (b.checked) done++;
+    });
+    document.getElementById("count").textContent = done + " of " + boxes.length + " done";
+    document.getElementById("bar").style.width = (boxes.length ? (done / boxes.length) * 100 : 0) + "%";
+    document.querySelectorAll(".day").forEach(function (day) {
+      var bs = day.querySelectorAll('.task input[type="checkbox"]');
+      var n = 0;
+      bs.forEach(function (b) { if (b.checked) n++; });
+      var t = day.querySelector(".tally");
+      t.textContent = n + "/" + bs.length + (n === bs.length ? " done" : "");
+      t.classList.toggle("full", n === bs.length);
+    });
+  }
+
+  boxes.forEach(function (b) {
+    b.addEventListener("change", function () {
+      if (b.checked) { state[b.id] = 1; } else { delete state[b.id]; }
+      save();
+      render();
+    });
+  });
+
+  var clear = document.getElementById("clear");
+  var armTimer = null;
+  clear.addEventListener("click", function () {
+    if (!clear.classList.contains("armed")) {
+      clear.classList.add("armed");
+      clear.textContent = "Click again to clear";
+      armTimer = setTimeout(function () {
+        clear.classList.remove("armed");
+        clear.textContent = "Clear all ticks";
+      }, 3000);
+      return;
+    }
+    clearTimeout(armTimer);
+    clear.classList.remove("armed");
+    clear.textContent = "Clear all ticks";
+    state = {};
+    save();
+    render();
+  });
+
+  var d = new Date();
+  var iso = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  var today = document.querySelector('.day[data-date="' + iso + '"]');
+  if (today) {
+    today.classList.add("today");
+    today.id = "today";
+    var pill = document.createElement("span");
+    pill.className = "today-pill";
+    pill.textContent = "Today";
+    today.querySelector(".date").appendChild(pill);
+    document.getElementById("jump").hidden = false;
+  }
+
+  render();
+})();
+</script>
+<!-- hub-injected -->
+<style id="hub-link-style">
+.hub-link{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:60;
+display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:99px;
+font:600 13px/1 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.02em;text-decoration:none;
+background:#0d1117;color:#f5b841;border:1px solid #f5b84166;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.hub-link:hover{background:#f5b841;color:#0d1117}
+.hub-link:focus-visible{outline:2px solid #2fd0c0;outline-offset:2px}
+@media print{.hub-link{display:none}}
+</style>
+<a class="hub-link" href="../" aria-label="Back to the study hub">&larr; Study hub</a>
+</body>
+</html>
