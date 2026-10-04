@@ -11,6 +11,10 @@ A static website of self-study guides for Kamrul's (Shuvo's) MEngSc in Electrica
 - **DNS:** a `CNAME` record `study` → `mdkamrulislam-web.github.io` at the whoiskamrul.com DNS provider
 - **Owner's portfolio:** whoiskamrul.com (the hub borrows its "Amber IC" look: amber/teal on near-black, Bebas Neue / Barlow / Fira Code)
 
+## Kamrul's study plan
+
+`plan/semester-1-study-plan.md` holds his Semester 1 timetable, backlog catch-up, deadlines and rules in full. It replaced the claude.ai doc on 4 Oct 2026, so edit this file when his week changes. His Google Calendar carries the same blocks; keep both in step. Personal admin (names, immigration, banking) stays out of this public repo.
+
 ## Source of truth
 
 **The HTML in this repo is the source of truth.** The guides were first written as private Claude artifacts on Kamrul's main account (links in each `NOTES.md`). Those links only open for that account, so:
