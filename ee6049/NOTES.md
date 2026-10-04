@@ -2,15 +2,15 @@
 
 - **Page:** `ee6049/index.html` (title "EE6049 Study Guide")
 - **Original artifact (main Claude account only):** https://claude.ai/artifact/QaHTtP87LvfGVPvWeGQYFf
-- **Progress key:** `ee6049-guide-done-v1` → `l1`…`l13`
-- **Last content update:** 30 Sep 2026 (artifact version 1790743253; synced 30 Sep 2026)
+- **Progress key:** `ee6049-guide-done-v1` → `l1`…`l19`
+- **Last content update:** 4 Oct 2026 (lessons 14–19 written in this repo; lessons 1–13 from artifact version 1790743253, synced 30 Sep 2026). The artifact is now older than the repo: edit the repo copy, don't re-import from the artifact.
 
 ## Module facts used in the guide
 - Exam: December 2026, 1.5 hours, answer 3 of 4, 70% of the module. Only the NMOS saturation equation is given.
 - Labs: 30% (3 Cadence labs with worksheets 10%, op-amp design assignment 20%).
 - Lecture and lab times and rooms: in the private `ucc-private` repo (`plan/class-timetable.md`).
 
-## Coverage (lectures 1–6, slides 1–146)
+## Coverage (lectures 1–8, slides 1–171, plus read-ahead lessons for slides 172–233)
 
 | Lecture | Date | Lessons |
 |---|---|---|
@@ -20,9 +20,11 @@
 | 4 | Fri 18 Sep | 8 Intrinsic gain · 9 CS stage: resistor load |
 | 5 | Tue 22 Sep | 10 CS stage: diode load |
 | 6 | Fri 25 Sep | 11 CS stage: current-source load · 12 CMOS inverter amplifier · 13 Two-port shortcut |
-| 7 | Tue 29 Sep | *listed in the rail, not yet written up* |
+| 7 | Tue 29 Sep | 14 CS stage with degeneration |
+| 8 | Fri 2 Oct | 15 Source follower (and the DC biasing / common-mode problem) |
+| read ahead | not lectured yet (4 Oct) | 16 Common-gate stage · 17 Cascode stage · 18 Folded and regulated cascodes · 19 Current mirrors (Sections 11–14, slides 172–233) |
 
-Extras: interactive amplifier lab, 12 past-paper problems, formula sheet.
+Extras: interactive amplifier lab, 12 past-paper problems (Lessons 1–13), formula sheet (Lessons 1–19).
 
 ## Course mapping (from the 4 Oct catch-up work)
 
@@ -34,5 +36,8 @@ The day-by-day EE6049 catch-up plan is personal, so it lives in the private `ucc
 - Lab facts used (lab manual v1.0, 24 Sep 2026): Labs 1–2 = common-source NMOS, W/L 10/1 µm, 10 kΩ rppoly2 load, VDD 3.3 V, VIN 1 V DC, 1 pF load, AMS C35B4. Lab 1 worksheet: DC op point and headroom, ID from the square law, gain 20·log(gm/(gds+1/RL)), pole (gds+1/RL)/(2πCL), zero gm/(2πCgd), transient, DFT with HD2 ≈ Vp/(4(VGS−Vt)). Lab 2: sweeps, calculator, process corners. Lab 3: feedback amplifier, loop gain, phase margin, compensation (Sections 19–21). No worksheet answers in the guide or the plan.
 
 ## To do
-- [ ] Write up lecture 7 (29 Sep) and later lectures
+- [x] Lectures 7–8 written up (4 Oct), plus read-ahead lessons for Sections 11–14
+- [ ] When the lectures reach Sections 11–14, check lessons 16–19 against what was said (recordings from 6 Oct on) and move them under their lecture dates in the rail
+- [ ] Worked answers for problems 178, 190, 200, 207 and 227 are mine (no official solutions yet); compare them with the lecturer's when they appear
+- [ ] Next: Sections 15–17 (mismatch, differential pairs) ahead of the lectures
 - [ ] Theory primer before Lab 1 (8 Oct) — no worksheet answers

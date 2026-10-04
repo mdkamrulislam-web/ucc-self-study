@@ -2,6 +2,12 @@
 
 Dated log of working sessions. Newest first. Each entry: what changed, why, and anything left unfinished.
 
+## 2026-10-04 (late) — EE6049: lessons 14–19
+
+- New lessons from the slides (v1.1), the 29 Sep and 2 Oct captions, the EE4022 captions for Sections 10–12, the whiteboard handouts and the slide 161 and 171 solution PDFs: 14 CS stage with degeneration (Section 9), 15 Source follower plus the DC biasing problem (Section 10), and read-ahead lessons 16 Common gate (Section 11), 17 Cascode (Section 12), 18 Folded and regulated cascodes (Section 13), 19 Current mirrors (Section 14).
+- Each has new schematics in the guide's SVG style, MathML equations, a worked problem (161, 171, 178, 190, 200, 207, 227; the last five are my own answers, flagged as unofficial), an exam-angle note (Question 2: mirror/cascode output resistance) and check-yourself questions.
+- Side rail, intro and "what each lecture covered" table updated; four formula-sheet cards added. Hub card: 19 lessons; hub lesson total 99.
+
 ## 2026-10-04 — Routine and timetable moved to the private repo
 
 - Kamrul asked for everything routine-related to live in `ucc-private`. Moved there: `plan/semester-1-study-plan.md` (deleted here), the EE6049 catch-up page (`ee6049/catch-up.html` deleted, hub link removed; now `ucc-private/plan/ee6049-catch-up.html`), class times and rooms from every module's NOTES (now `ucc-private/plan/class-timetable.md`), and the EE6019 meeting time, place and weekly hours (now `ucc-private/plan/ee6019-weekly-routine.md`; the public project plan keeps the log process).
