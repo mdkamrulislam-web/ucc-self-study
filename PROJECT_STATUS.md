@@ -28,7 +28,8 @@ _Last updated: 30 September 2026_
 3. **EE6041** — z-transform slides 37–53 (frequency response) next, then topics 3–7. Edited directly in this repo now; its artifact is frozen.
 4. **EE6049** — write up lecture 7 (29 Sep) onwards; lab-related theory before the labs on 8, 22, 29 Oct (no lab answers).
 5. **CS6322** — beyond notes 8 (local search / simulated annealing, genetic algorithms).
-6. Optional: a small "last updated" line on each hub card, generated from `NOTES.md`.
+6. **Study plan** — `plan/semester-1-study-plan.md` is now the copy to edit (timetable, deadlines, rules).
+7. Optional: a small "last updated" line on each hub card, generated from `NOTES.md`.
 
 ## Open decisions
 

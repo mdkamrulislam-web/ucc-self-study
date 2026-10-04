@@ -2,6 +2,11 @@
 
 Dated log of working sessions. Newest first. Each entry: what changed, why, and anything left unfinished.
 
+## 2026-10-04 — Semester 1 study plan added as a file
+
+- New `plan/semester-1-study-plan.md`: the Semester 1 study plan (library-day timetable, backlog catch-up to 25 Oct, deadlines, rules), exported from its Claude Doc so it can be edited here from now on.
+- Personal admin (names, immigration and banking details) left out because the repo is public; those items stay in Kamrul's Google Calendar.
+
 ## 2026-09-30 — Sync: CS6322 notes 8, EE6041 sections 32–34 pushed
 
 - Found the updates in Drive `UCC/SEMESTER-1/COURSES/<module>/Claude outputs/`, not in the artifacts (all four artifacts were unchanged), so the first check of the day missed them.
