@@ -2,6 +2,12 @@
 
 Dated log of working sessions. Newest first. Each entry: what changed, why, and anything left unfinished.
 
+## 2026-10-05 — EE6049: one list of the slide problems
+
+- New "Problems from the slides" section (`#slide-problems`, before Exam practice, linked in the side rail): every problem and worked example in slides 1–233 (21 items: 62, 63, 81–83, 101, 113–114, 115, 122–125, 126, 132–138, 139, 144–145, 146, 161, 171, 178, 190, 200, 207, 227), in slide order and grouped by section. Each row says what it asks, links to where its lesson works it (new `sp-*` anchors), and says whether the answer is the lecturer's solution PDF, worked on the slides themselves, or the guide's own.
+- Per-problem ticks under a new localStorage key `ee6049-slide-problems-v1` (separate from the lesson ticks, so the hub count is unchanged). Rows stack on phones so the lesson link stays visible.
+- All 21 were already worked inside the lessons; nothing was missing. Slides 76–77 and 165 are graphs, not problems, so they aren't listed.
+
 ## 2026-10-04 (late) — EE6049: lessons 14–19
 
 - New lessons from the slides (v1.1), the 29 Sep and 2 Oct captions, the EE4022 captions for Sections 10–12, the whiteboard handouts and the slide 161 and 171 solution PDFs: 14 CS stage with degeneration (Section 9), 15 Source follower plus the DC biasing problem (Section 10), and read-ahead lessons 16 Common gate (Section 11), 17 Cascode (Section 12), 18 Folded and regulated cascodes (Section 13), 19 Current mirrors (Section 14).
